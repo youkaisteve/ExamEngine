@@ -1,0 +1,16 @@
+/*!
+ * Created by Jean on 8/29/2015.
+ * 
+ * email:mahai_1986@126.com
+ *
+ */
+define(["app"], function (app) {
+
+    app.controller("partial_container", ["$scope", function ($scope) {
+        $scope.path = "";
+        //TODO 根据每个流程动态读取form
+        $scope.path = "forms/test.html";
+
+    }]);
+
+});
