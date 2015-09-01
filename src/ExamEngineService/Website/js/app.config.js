@@ -35,6 +35,12 @@ define({
         //, controller: "default"
     }, {
         url: "/forms"
-        ,templateUrl:"partial_container.html"
+        , templateUrl: "partial_container.html"
+    }, {
+        url: "/test"
+        , templateUrl: "test.html"
     }]
+    , formDependence: {
+        "forms/test-frm1.html": ["table-form"]
+    }
 });

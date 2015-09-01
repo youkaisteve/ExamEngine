@@ -15,6 +15,9 @@ require.config({
         , "app.config": "app.config"
         , "angular-route": "lib/angular-route/angular-route"
         , "root_scope": "root_scope"
+
+        //directive
+        , "table-form": "directive/table-form/index"
     }
     , shim: {
         "angular": ["jquery"]

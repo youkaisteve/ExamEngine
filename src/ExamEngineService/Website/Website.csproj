@@ -59,12 +59,15 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="css\app.css" />
-    <Content Include="forms\test.html" />
+    <Content Include="forms\test-frm1.html" />
     <Content Include="index.html" />
     <Content Include="js\app.config.js" />
     <Content Include="js\app.js" />
+    <Content Include="js\controllers\test.js" />
     <Content Include="js\controllers\partial_container.js" />
     <Content Include="js\controllers\default.js" />
+    <Content Include="js\directive\table-form\index.js" />
+    <Content Include="js\directive\table-form\template.html" />
     <Content Include="js\lib\angular-route\angular-route.js" />
     <Content Include="js\lib\angular-route\angular-route.min.js" />
     <Content Include="js\lib\angular-route\index.js" />
@@ -203,6 +206,7 @@
     <Content Include="views\partial_container.html" />
     <Content Include="views\default.html" />
     <Content Include="views\login.html" />
+    <Content Include="views\test.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

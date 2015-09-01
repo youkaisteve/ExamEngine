@@ -66,9 +66,9 @@ define(["angularAMD", "app.config", "root_scope"], function (angularAMD, config,
         //}]);
     }]);
 
-    app.run(function ($rootScope) {
-        initRootScope($rootScope);
-    });
+    app.run(["$rootScope", function () {
+        initRootScope.apply(null, arguments);
+    }]);
 
     return angularAMD.bootstrap(app);
 

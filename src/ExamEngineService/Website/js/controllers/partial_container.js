@@ -1,16 +1,18 @@
-/*!
+ï»¿/*!
  * Created by Jean on 8/29/2015.
  * 
  * email:mahai_1986@126.com
  *
  */
-define(["app"], function (app) {
+define(["app", "app.config"], function (app, config) {
 
     app.controller("partial_container", ["$scope", function ($scope) {
-        $scope.path = "";
-        //TODO ¸ù¾İÃ¿¸öÁ÷³Ì¶¯Ì¬¶ÁÈ¡form
-        $scope.path = "forms/test.html";
-
+        //TODO æ ¹æ®æ¯ä¸ªæµç¨‹åŠ¨æ€è¯»å–form
+        var path = "forms/test-frm1.html";
+        var deps = config.formDependence[path];
+        require(deps, function () {
+            $scope.path = path;
+            $scope.$apply();
+        });
     }]);
-
 });
