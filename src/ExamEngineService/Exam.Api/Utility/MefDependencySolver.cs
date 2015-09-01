@@ -1,12 +1,4 @@
-﻿// 源文件头信息：
-// 文 件 名：MefDependencySolver.cs
-// 类    名：MefDependencySolver
-// 所属工程：Exam.Api
-// 最后修改：游凯
-// 最后修改：2013-09-11 05:08:10
-
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;

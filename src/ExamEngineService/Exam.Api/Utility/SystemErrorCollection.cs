@@ -1,11 +1,4 @@
-﻿// 源文件头信息：
-// 文 件 名：SystemErrorCollection.cs
-// 类    名：SystemErrorCollection
-// 所属工程：Exam.Api
-// 最后修改：游凯
-// 最后修改：2013-09-23 02:57:52
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Exam.Api.Utility
