@@ -6,9 +6,16 @@
  */
 "use strict";
 
-define(function(){
+define(["app.config"],function (config) {
 
-    function extendRootScope($rootScope){}
+    function extendRootScope($rootScope, $http) {
+        $rootScope._request = function (action, data) {
+            return $http.post(config.api, {
+                Action: action,
+                Params: data
+            });
+        };
+    }
 
     return extendRootScope;
 

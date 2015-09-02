@@ -63,6 +63,7 @@
     <Content Include="index.html" />
     <Content Include="js\app.config.js" />
     <Content Include="js\app.js" />
+    <Content Include="js\controllers\login.js" />
     <Content Include="js\controllers\test.js" />
     <Content Include="js\controllers\partial_container.js" />
     <Content Include="js\controllers\default.js" />
