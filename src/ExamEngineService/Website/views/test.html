@@ -2,3 +2,23 @@
 <table-form ng-model="Model.forms" defined="[{title:'姓名',name:'Name',type:'text'},{title:'性别',name:'Sex',type:'text'}]"></table-form>
 <table-form ng-model="Model.form2" ng-init="Model.form2={'0':{Name:'sdf'}}" defined="[{title:'姓名',name:'Name',type:'text'},{title:'性别',name:'Sex',type:'text'}]"></table-form>
 <div>RESULT:{{Model}}</div>
+
+<h1>CUSTOMER FORM</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody ng-init="rows=[0]">
+        <tr ng-repeat="row in rows">
+            <td><input type="text"/></td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="{{rows.length}}"><button ng-click="rows.push(rows.length)">+</button></td>
+        </tr>
+    </tfoot>
+</table>
+
