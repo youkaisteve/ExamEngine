@@ -1,11 +1,4 @@
-﻿// 源文件头信息：
-// 文 件 名：CacheWrapper.cs
-// 类    名：CacheWrapper
-// 所属工程：Exam.Api
-// 最后修改：游凯
-// 最后修改：2014-03-23 10:56:17
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Caching;
 using System.Web;

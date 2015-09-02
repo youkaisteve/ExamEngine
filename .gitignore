@@ -46,4 +46,5 @@ Temporary Items
 obj/
 bin/
 packages/
+*.suo
 

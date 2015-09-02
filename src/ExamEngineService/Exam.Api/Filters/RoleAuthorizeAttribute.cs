@@ -1,14 +1,6 @@
-﻿// 源文件头信息：
-// 文 件 名：RoleAuthorizeAttribute.cs
-// 类    名：RoleAuthorizeAttribute
-// 所属工程：Exam.Api
-// 最后修改：游凯
-// 最后修改：2013-10-16 09:39:57
+﻿using System.Web.Mvc;
 
-using System;
-using System.Web.Mvc;
-
-namespace Exam.Api.Utility
+namespace Exam.Api.Filters
 {
     public class RoleAuthorizeAttribute : AuthorizeAttribute
     {
