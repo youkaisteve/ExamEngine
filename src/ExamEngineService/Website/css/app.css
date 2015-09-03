@@ -1,4 +1,12 @@
 ﻿
 header{}
 
-footer{}
+footer{
+    border-top:solid 1px #ddd;
+}
+
+.table-style{border:solid 2px black;}
+.table-style thead{background-color:#dbd8d8;}
+.table-style th{border:none !important; }
+.table-style th,.table-style td{text-align:center; border-right:solid 1px #ddd !important;}
+.table-style td input[type=text]{width:100%;}
