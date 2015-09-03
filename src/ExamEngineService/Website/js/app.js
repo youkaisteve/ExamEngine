@@ -4,7 +4,7 @@
 
 "use strict";
 
-define(["angularAMD", "app.config", "root_scope"], function (angularAMD, config, initRootScope) {
+define(["angularAMD", "app.config", "root_scope", "bootstrap"], function (angularAMD, config, initRootScope) {
 
     var app = angular.module(config.appName, ["ngRoute"]);
 

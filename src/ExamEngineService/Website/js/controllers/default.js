@@ -8,6 +8,12 @@ define(["app"], function (app) {
 
     app.controller("default", ["$scope", function ($scope) {
 
+
+
+        $scope.path = "partials/default_student.html";
+
+        $scope.tasks = [1];
+
     }]);
 
 });

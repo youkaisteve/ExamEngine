@@ -7,10 +7,15 @@
 define(["app"], function (app) {
 
     app.controller("login", ["$scope", function ($scope) {
-        $scope.login = function ($event,model) {
-            return $scope._request("Login", model).success(function (res) {
-            });
+
+        $scope.login = function ($event, model) {
+            //return $scope._request("Login", model).success(function (res) {
+            //});
+            //location to default page when login success
+            window.location.hash = "/";
         }
+
+
     }]);
 
 });

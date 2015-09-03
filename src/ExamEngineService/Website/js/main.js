@@ -10,6 +10,7 @@ require.config({
     , paths: {
         "angular": "lib/angular/angular"
         , "jquery": "lib/jquery/dist/jquery"
+        , "bootstrap": "lib/bootstrap/dist/js/bootstrap"
         , "angularAMD": "lib/angularAMD/angularAMD"
         , "app": "app"
         , "app.config": "app.config"
@@ -23,6 +24,7 @@ require.config({
         "angular": ["jquery"]
         , "angular-route": ["angular"]
         , "angularAMD": ["angular-route"]
+        , "bootstrap": ["jquery"]
     }
     , deps: ["app"]
 });
