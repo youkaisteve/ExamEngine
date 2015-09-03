@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Composition;
 using System.Web.Http;
+using Component.Tools.Exceptions;
 using Exam.Api.Framework;
 using Exam.Repository;
 using Exam.Service.Interface;
@@ -16,7 +17,8 @@ namespace Exam.Api.Controllers
         [HttpPost]
         public ApiResponse Login(LoginUser user)
         {
-            return ApiOK("测试");
+            throw new BusinessException("aaa");
+            return ApiOk("测试");
         }
     }
 }

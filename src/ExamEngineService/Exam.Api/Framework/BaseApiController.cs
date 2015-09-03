@@ -1,10 +1,12 @@
 ﻿using System.Web.Http;
+using Exam.Api.Filters;
 
 namespace Exam.Api.Framework
 {
+    [BaseExceptionFilter]
     public class BaseApiController : ApiController
     {
-        protected ApiResponse ApiOK(object data)
+        protected ApiResponse ApiOk(object data)
         {
             return new ApiResponse
             {
@@ -13,7 +15,7 @@ namespace Exam.Api.Framework
             };
         }
 
-        protected ApiResponse ApiOK()
+        protected ApiResponse ApiOk()
         {
             return new ApiResponse
             {

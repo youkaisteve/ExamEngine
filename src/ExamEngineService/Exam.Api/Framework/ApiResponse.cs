@@ -8,9 +8,7 @@ namespace Exam.Api.Framework
         ///     接口响应状态代码
         ///     0-成功
         ///     1-业务异常
-        ///     2-授权错误
-        ///     3-系统异常
-        ///     4-其他
+        ///     2-系统异常
         /// </summary>
         public int Code { get; set; }
 

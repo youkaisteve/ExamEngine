@@ -1,12 +1,4 @@
-﻿//-------------------------------------------------------------------------------------------------------------
-// <copyright file="ApiJsonMediaTypeFormatter.cs" company="Sotao Network Technology Corporation">
-//     AUTHOR:      Roye
-//     YEAR:            2015
-//     Copyright (c) 2015-2020 Sotao Network Technology Co., Ltd. All rights reserved.
-// </copyright>
-//-------------------------------------------------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 using System.Net.Http.Headers;

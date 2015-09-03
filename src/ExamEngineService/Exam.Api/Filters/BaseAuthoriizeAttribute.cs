@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+using Component.Tools.Exceptions;
 using Exam.Api.Framework;
 
 namespace Exam.Api.Filters
@@ -11,17 +12,16 @@ namespace Exam.Api.Filters
     {
         public override void OnAuthorization(HttpActionContext actionContext)
         {
-            //string authStr = actionContext.Request.Headers.GetValues("exam-auth").First();
-            //if (authStr != null)
-            //{
-            //    string[] credArray = GetCredentials(authStr);
-            //    string userName = credArray[0];
-            //    string password = credArray[1];
-            //    if (true) //尝试登录并返回结果
-            //    {
-            //        return;
-            //    }
-            //}
+            var userToken = actionContext.Request.Headers.Authorization.Parameter;
+            if (string.IsNullOrEmpty(userToken))
+            {
+                throw new UnAuthorizedException();
+            }
+            var array = UserHelper.GetUserTokenString(userToken);
+            if (array == null || array.Length == 0)
+            {
+                throw new UnAuthorizedException();
+            }
 
             //HandleUnauthorizedRequest(actionContext);
             base.OnAuthorization(actionContext);

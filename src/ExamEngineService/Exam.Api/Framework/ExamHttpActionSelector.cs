@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http.Controllers;
+﻿using System.Web.Http.Controllers;
 
-namespace Exam.Api.Filters
+namespace Exam.Api.Framework
 {
     public class ExamHttpActionSelector : ApiControllerActionSelector
     {

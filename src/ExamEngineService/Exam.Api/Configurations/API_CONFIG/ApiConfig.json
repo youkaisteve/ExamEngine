@@ -2,13 +2,11 @@
 	{
 		"Name":"Login",
 		"Controller":"Account",
-		"Action":"Login",
-		"NeedAuthorize":true
+		"Action":"Login"
 	},
 		{
 		"Name":"Login1",
 		"Controller":"Account1",
-		"Action":"Login1",
-		"NeedAuthorize":false
+		"Action":"Login1"
 	}
 ]

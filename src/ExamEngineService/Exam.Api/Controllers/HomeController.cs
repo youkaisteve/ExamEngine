@@ -15,10 +15,11 @@ namespace Exam.Api.Controllers
         }
 
         [HttpPost]
-        [BaseAuthoriize]
+        //[BaseAuthoriize]
         public ApiResponse Handler(ApiRequestData data)
         {
-            return ApiOK();
+            throw new Exception("aaa");
+            return ApiOk();
         }
     }
 }

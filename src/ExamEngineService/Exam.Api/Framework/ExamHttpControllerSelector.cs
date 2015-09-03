@@ -1,9 +1,8 @@
 ﻿using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Dispatcher;
-using System.Web.Mvc;
 
-namespace Exam.Api.Filters
+namespace Exam.Api.Framework
 {
     public class ExamHttpControllerSelector : DefaultHttpControllerSelector
     {
