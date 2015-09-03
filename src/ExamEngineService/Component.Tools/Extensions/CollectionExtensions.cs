@@ -1,11 +1,4 @@
-﻿// 源文件头信息：
-// 文 件 名：CollectionExtension.cs
-// 类    名：CollectionExtension
-// 所属工程：Component.Tools
-// 最后修改：游凯
-// 最后修改：2013-09-30 01:11:49
-
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;

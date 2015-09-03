@@ -1,11 +1,4 @@
-﻿// 源文件头信息：
-// 文 件 名：IUnitOfWorkContext.cs
-// 接 口 名：IUnitOfWorkContext
-// 所属工程：Component.Data
-// 最后修改：游凯
-// 最后修改：2013-09-11 11:14:45
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 

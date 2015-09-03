@@ -1,13 +1,4 @@
-﻿/**************************************************************************************
- *  类名：PublicFunc.cs
- *  描述：公共方法
- *  创建者：tangting
- *  创建时间：2013/10/18
- *  修改记录：
- *  
- * ************************************************************************************/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;

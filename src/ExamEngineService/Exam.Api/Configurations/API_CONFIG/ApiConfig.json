@@ -1,0 +1,14 @@
+﻿[
+	{
+		"Name":"Login",
+		"Controller":"Account",
+		"Action":"Login",
+		"NeedAuthorize":true
+	},
+		{
+		"Name":"Login1",
+		"Controller":"Account1",
+		"Action":"Login1",
+		"NeedAuthorize":false
+	}
+]

@@ -1,11 +1,4 @@
-﻿// 源文件头信息：
-// 文 件 名：IRepository.cs
-// 接 口 名：IRepository
-// 所属工程：Component.Data
-// 最后修改：游凯
-// 最后修改：2013-09-10 05:37:35
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;

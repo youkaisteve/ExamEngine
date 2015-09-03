@@ -1,11 +1,4 @@
-﻿// 源文件头信息：
-// 文 件 名：CommandHelper.cs
-// 类    名：CommandHelper
-// 所属工程：Component.Data
-// 最后修改：游凯
-// 最后修改：2013-10-17 05:03:16
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -58,14 +51,14 @@ namespace Component.Data
                 begin.DbType = DbType.Int32;
                 begin.ParameterName = "@BeginNum";
                 begin.Direction = ParameterDirection.Input;
-                begin.Value = (condition.PageInfo.PageIndex - 1) * condition.PageInfo.PageSize;
+                begin.Value = (condition.PageInfo.PageIndex - 1)*condition.PageInfo.PageSize;
                 parameters.Add(begin);
 
                 var end = new SqlParameter();
                 end.DbType = DbType.Int32;
                 end.ParameterName = "@EndNum";
                 end.Direction = ParameterDirection.Input;
-                end.Value = condition.PageInfo.PageIndex * condition.PageInfo.PageSize;
+                end.Value = condition.PageInfo.PageIndex*condition.PageInfo.PageSize;
                 parameters.Add(end);
 
                 //设置输出参数
@@ -87,7 +80,7 @@ namespace Component.Data
                 //上一个Group的值
                 string oriGroup = string.Empty;
                 var builder = new StringBuilder();
-                Type targetModelType = typeof(T);
+                Type targetModelType = typeof (T);
                 PropertyInfo[] properties = targetModelType.GetProperties();
                 var attributes = new object[0];
 
@@ -128,12 +121,12 @@ namespace Component.Data
                     attributes = new object[0];
                     //找到对应的属性名字，根据conditon设置的PropertyName
                     IEnumerable<PropertyInfo> found = from temp in properties
-                                                      where temp.Name == condition.PropertyName
-                                                      select temp;
+                        where temp.Name == condition.PropertyName
+                        select temp;
                     //属性只能唯一，不会存在重名的属性名
                     if (found.Count() == 1)
                     {
-                        attributes = found.FirstOrDefault().GetCustomAttributes(typeof(DataMappingAttribute), true);
+                        attributes = found.FirstOrDefault().GetCustomAttributes(typeof (DataMappingAttribute), true);
                         //属性对应的DataMappingAttribute，拼接字符串
                         if (attributes.Length == 1 && attributes[0] is DataMappingAttribute)
                         {
@@ -172,12 +165,12 @@ namespace Component.Data
                         attributes = new object[0];
                         //找到对应的属性名字，根据conditon设置的PropertyName
                         IEnumerable<PropertyInfo> found = from temp in properties
-                                                          where temp.Name == condition.PropertyName
-                                                          select temp;
+                            where temp.Name == condition.PropertyName
+                            select temp;
                         //属性只能唯一，不会存在重名的属性名
                         if (found.Count() == 1)
                         {
-                            attributes = found.FirstOrDefault().GetCustomAttributes(typeof(DataMappingAttribute), true);
+                            attributes = found.FirstOrDefault().GetCustomAttributes(typeof (DataMappingAttribute), true);
                             //属性对应的DataMappingAttribute，拼接字符串
                             if (attributes.Length == 1 && attributes[0] is DataMappingAttribute)
                             {
@@ -230,7 +223,9 @@ namespace Component.Data
             {
                 foreach (OrderByProperty orderByProperty in orderByProperties)
                 {
-                    string tempName = string.IsNullOrEmpty(orderByProperty.AliaName)? aliasTableName : orderByProperty.AliaName + ".";
+                    string tempName = string.IsNullOrEmpty(orderByProperty.AliaName)
+                        ? aliasTableName
+                        : orderByProperty.AliaName + ".";
                     result += tempName + orderByProperty.OrderProperty + " " + orderByProperty.OrderbyType + ",";
                 }
 
@@ -378,7 +373,7 @@ namespace Component.Data
         public OrderByTypes OrderbyType { get; set; }
 
         /// <summary>
-        /// 排序字段别名
+        ///     排序字段别名
         /// </summary>
         public string AliaName { get; set; }
     }

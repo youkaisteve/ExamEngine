@@ -1,11 +1,4 @@
-﻿// 源文件头信息：
-// 文 件 名：DataHelper.cs
-// 类    名：DataHelper
-// 所属工程：Component.Data
-// 最后修改：游凯
-// 最后修改：2013-09-24 11:11:12
-
-namespace Component.Data
+﻿namespace Component.Data
 {
     /// <summary>
     ///     数据辅助操作类

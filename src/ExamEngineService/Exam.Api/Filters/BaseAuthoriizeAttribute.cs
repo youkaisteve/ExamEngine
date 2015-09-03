@@ -1,11 +1,9 @@
-﻿using System;
+﻿using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Security.Principal;
-using System.Text;
-using System.Threading;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+using Exam.Api.Framework;
 
 namespace Exam.Api.Filters
 {
@@ -13,41 +11,25 @@ namespace Exam.Api.Filters
     {
         public override void OnAuthorization(HttpActionContext actionContext)
         {
-            if (Thread.CurrentPrincipal.Identity.IsAuthenticated)
-            {
-                return;
-            }
+            //string authStr = actionContext.Request.Headers.GetValues("exam-auth").First();
+            //if (authStr != null)
+            //{
+            //    string[] credArray = GetCredentials(authStr);
+            //    string userName = credArray[0];
+            //    string password = credArray[1];
+            //    if (true) //尝试登录并返回结果
+            //    {
+            //        return;
+            //    }
+            //}
 
-            var authHeader = actionContext.Request.Headers.Authorization;
-            if (authHeader != null)
-            {
-                if (authHeader.Scheme.Equals("basic", StringComparison.OrdinalIgnoreCase) &&
-                    !String.IsNullOrWhiteSpace(authHeader.Parameter))
-                {
-                    var credArray = GetCredentials(authHeader);
-                    var userName = credArray[0];
-                    var password = credArray[1];
-                    if (true) //尝试登录并返回结果
-                    {
-                        var currentPrincipal = new GenericPrincipal(new GenericIdentity(userName), null);
-                        Thread.CurrentPrincipal = currentPrincipal;
-                        return;
-                    }
-                }
-            }
-
-            HandleUnauthorizedRequest(actionContext);
+            //HandleUnauthorizedRequest(actionContext);
+            base.OnAuthorization(actionContext);
         }
 
-        private string[] GetCredentials(System.Net.Http.Headers.AuthenticationHeaderValue authHeader)
+        private string[] GetCredentials(string authStr)
         {
-            var rawCred = authHeader.Parameter;
-            var encoding = Encoding.GetEncoding("iso-8859-1");
-            var cred = encoding.GetString(Convert.FromBase64String(rawCred));
-
-            var credArray = cred.Split('-');
-
-            return credArray;
+            return SymmetricEncryption.Decrypt(authStr).Split(':');
         }
 
         private void HandleUnauthorizedRequest(HttpActionContext actionContext)

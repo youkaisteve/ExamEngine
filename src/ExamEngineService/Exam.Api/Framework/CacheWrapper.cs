@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.Caching;
 using System.Web;
 
-namespace Exam.Api.Utility
+namespace Exam.Api.Framework
 {
     public enum MyCachePriority
     {
@@ -23,8 +23,9 @@ namespace Exam.Api.Utility
             if (!cache.Contains(key))
             {
                 pocily = new CacheItemPolicy();
-                pocily.Priority = (myCachePriority == MyCachePriority.Default) ?
-                                                CacheItemPriority.Default : CacheItemPriority.NotRemovable;
+                pocily.Priority = (myCachePriority == MyCachePriority.Default)
+                    ? CacheItemPriority.Default
+                    : CacheItemPriority.NotRemovable;
                 pocily.AbsoluteExpiration = expiration;
                 pocily.ChangeMonitors.Add(Monitor);
                 cache.Set(key, cacheItem, pocily);
@@ -36,8 +37,9 @@ namespace Exam.Api.Utility
             if (!cache.Contains(key))
             {
                 pocily = new CacheItemPolicy();
-                pocily.Priority = (myCachePriority == MyCachePriority.Default) ?
-                                                CacheItemPriority.Default : CacheItemPriority.NotRemovable;
+                pocily.Priority = (myCachePriority == MyCachePriority.Default)
+                    ? CacheItemPriority.Default
+                    : CacheItemPriority.NotRemovable;
                 pocily.AbsoluteExpiration = Expiration;
                 pocily.ChangeMonitors.Add(Monitor);
                 cache.Set(key, cacheItem, pocily);
@@ -59,21 +61,19 @@ namespace Exam.Api.Utility
     }
 
     /// <summary>
-    /// 用监控文件变化来更新缓存的方式
+    ///     用监控文件变化来更新缓存的方式
     /// </summary>
     public class FileMonitorCacheWrapper : CacheWrapper
     {
-        private string filePath = HttpContext.Current.Server.MapPath("~") + "\\cache.txt";
+        private readonly string filePath = HttpContext.Current.Server.MapPath("~") + "\\cache.txt";
+
         protected override ChangeMonitor Monitor
         {
-            get
-            {
-                return new HostFileChangeMonitor(new List<string> { filePath });
-            }
+            get { return new HostFileChangeMonitor(new List<string> {filePath}); }
         }
 
         /// <summary>
-        /// 缓存时间，默认1天
+        ///     缓存时间，默认1天
         /// </summary>
         protected override DateTimeOffset Expiration
         {

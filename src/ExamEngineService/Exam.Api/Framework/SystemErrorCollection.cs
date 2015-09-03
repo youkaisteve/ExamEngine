@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Exam.Api.Utility
+namespace Exam.Api.Framework
 {
     public enum DictSystemErrorType
     {
@@ -16,7 +16,7 @@ namespace Exam.Api.Utility
         SystemException = 2,
 
         /// <summary>
-        /// 文件未找到
+        ///     文件未找到
         /// </summary>
         FileNotFound = 3,
 

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Web;
 
 namespace Exam.Api.Models
 {
+    [Serializable]
     public class LoginUser
     {
         public string UserName { get; set; }

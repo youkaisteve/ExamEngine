@@ -1,11 +1,4 @@
-﻿// 源文件头信息：
-// 文 件 名：SortCondition.cs
-// 类    名：SortCondition
-// 所属工程：Component.Tools
-// 最后修改：游凯
-// 最后修改：2013-09-30 01:13:34
-
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace Component.Tools
 {

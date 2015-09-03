@@ -1,11 +1,4 @@
-﻿// 源文件头信息：
-// 文 件 名：UnitOfWorkContextBase.cs
-// 类    名：UnitOfWorkContextBase
-// 所属工程：Component.Data
-// 最后修改：游凯
-// 最后修改：2013-09-11 11:19:57
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;

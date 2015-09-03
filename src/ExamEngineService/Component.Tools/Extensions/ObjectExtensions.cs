@@ -1,11 +1,4 @@
-﻿// 源文件头信息：
-// 文 件 名：Extensions.cs
-// 类    名：Extensions
-// 所属工程：Component.Data
-// 最后修改：游凯
-// 最后修改：2013-09-18 09:38:26
-
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Reflection;
 

@@ -4,10 +4,13 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.ComponentModel.Composition.Primitives;
 using System.Web;
-using System.Web.Mvc;
+using System.Web.Http.Dependencies;
 
-namespace Exam.Api.Utility
+namespace Exam.Api.Framework
 {
+    /// <summary>
+    ///     MEF IOC
+    /// </summary>
     public class MefDependencySolver : IDependencyResolver
     {
         private const string MefContainerKey = "MefContainerKey";
@@ -41,6 +44,16 @@ namespace Exam.Api.Utility
         public IEnumerable<object> GetServices(Type serviceType)
         {
             return Container.GetExportedValues<object>(serviceType.FullName);
+        }
+
+        public IDependencyScope BeginScope()
+        {
+            return new MefDependencySolver(Container.Catalog);
+        }
+
+        public void Dispose()
+        {
+            Container.Dispose();
         }
     }
 }

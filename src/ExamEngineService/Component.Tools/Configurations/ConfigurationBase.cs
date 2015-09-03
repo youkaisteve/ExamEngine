@@ -1,15 +1,9 @@
-﻿// 源文件头信息：
-// 文 件 名：ConfigurationBase.cs
-// 类    名：ConfigurationBase
-// 所属工程：Component.Tools
-// 最后修改：游凯
-// 最后修改：2013-10-03 04:03:09
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Component.Tools.Configurations
 {
-    public abstract class ConfigurationBase<TConfig> where TConfig : ConfigBase
+    public abstract class ConfigurationBase<TConfig> : IConfiguration<TConfig> where TConfig : ConfigBase
     {
         protected const string BasePath = "Configurations";
 
@@ -29,5 +23,15 @@ namespace Component.Tools.Configurations
         protected abstract List<TConfig> Configurations { get; set; }
 
         protected abstract void Init();
+
+        public TConfig GetByKey(string key)
+        {
+            return Configurations.FirstOrDefault(m => m.Name == key); 
+        }
+
+        public List<TConfig> GetAll()
+        {
+            return Configurations;
+        }
     }
 }

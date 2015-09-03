@@ -1,11 +1,4 @@
-﻿// 源文件头信息：
-// 文 件 名：ConfigurationMgr.cs
-// 类    名：ConfigurationMgr
-// 所属工程：Component.Tools
-// 最后修改：游凯
-// 最后修改：2013-09-29 02:09:34
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -84,16 +77,6 @@ namespace Component.Tools.Configurations
         }
 
         #region 接口实现
-
-        public Command GetByKey(string key)
-        {
-            return Configurations.FirstOrDefault(m => m.Name == key);
-        }
-
-        public List<Command> GetAll()
-        {
-            return Configurations;
-        }
 
         public string GetCommandTextByKey(string key)
         {
