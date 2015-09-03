@@ -59,6 +59,7 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="css\app.css" />
+    <Content Include="forms\医疗保险费单位缴费月报表.html" />
     <Content Include="forms\test-frm1.html" />
     <Content Include="index.html" />
     <Content Include="js\app.config.js" />

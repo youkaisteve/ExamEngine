@@ -1,9 +1,10 @@
 ﻿
-header{}
+header{background-color:#1d9ce5;color:white;margin-bottom:10px;}
+header h1{display:inline-block;width:160px;}
+header .login-info{margin:10px 10px 0 0;}
 
-footer{
-    border-top:solid 1px #ddd;
-}
+footer {border-top: solid 1px #ddd;}
+footer p{padding:10px 0;}
 
 .table-style{border:solid 2px black;}
 .table-style thead{background-color:#dbd8d8;}
