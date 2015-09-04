@@ -4,9 +4,9 @@
 
 "use strict";
 
-define(["angularAMD", "app.config", "root_scope", "bootstrap"], function (angularAMD, config, initRootScope) {
+define(["angularAMD", "app.config", "root_scope"], function (angularAMD, config, initRootScope) {
 
-    var app = angular.module(config.appName, ["ngRoute"]);
+    var app = angular.module(config.appName, config.appDeps);
 
     function configRoute(templateUrl, controllerUrl, controller) {
 
@@ -50,6 +50,8 @@ define(["angularAMD", "app.config", "root_scope", "bootstrap"], function (angula
         $routeProvider.otherwise({
             redirectTo: config.start
         });
+        //
+        $httpProvider.defaults.withCredentials = true;
         //$httpProvider.interceptors.push(["$q", function ($q) {
         //    return {
         //        request: function (cfg) {
@@ -68,9 +70,7 @@ define(["angularAMD", "app.config", "root_scope", "bootstrap"], function (angula
         //}]);
     }]);
 
-    app.run(["$rootScope", "$http", function () {
-        initRootScope.apply(null, arguments);
-    }]);
+    app.run(initRootScope);
 
     return angularAMD.bootstrap(app);
 

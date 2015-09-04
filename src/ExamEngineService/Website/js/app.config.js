@@ -6,10 +6,11 @@
  */
 define({
     appName: "app"
+    , appDeps: ["ngRoute", "ngCookies"]
     , controllerPath: "controllers/"
     , templatePath: "views/"
     , api: "http://127.0.0.1/api/exam"
-    , start: "/login"
+    , start: "/default"
     , route: [{
         url: "/default"
         , templateUrl: "default.html"

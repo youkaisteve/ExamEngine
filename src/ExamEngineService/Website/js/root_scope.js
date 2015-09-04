@@ -6,16 +6,28 @@
  */
 "use strict";
 
-define(["app.config"],function (config) {
+define(["app.config"], function (config) {
 
-    function extendRootScope($rootScope, $http) {
-        $rootScope._request = function (action, data) {
-            return $http.post(config.api, {
-                Action: action,
-                Params: data
+    var extendRootScope = ["$rootScope", "$http", "$cookies",
+        function ($rootScope, $http, $cookies) {
+            $rootScope.$on("$routeChangeStart", function (next, current) {
+                //TODO check has authentication
+
+
             });
-        };
-    }
+
+            //API method
+            $rootScope._request = function (action, data) {
+                return $http.post(config.api, {
+                    Action: action,
+                    Params: data
+                }).success(function (res) {
+                    //TODO if dont authentication then location to login
+                    return res;
+                });
+            };
+        }];
+
 
     return extendRootScope;
 

@@ -70,6 +70,9 @@
     <Content Include="js\controllers\default.js" />
     <Content Include="js\directive\table-form\index.js" />
     <Content Include="js\directive\table-form\template.html" />
+    <Content Include="js\lib\angular-cookies\angular-cookies.js" />
+    <Content Include="js\lib\angular-cookies\angular-cookies.min.js" />
+    <Content Include="js\lib\angular-cookies\index.js" />
     <Content Include="js\lib\angular-route\angular-route.js" />
     <Content Include="js\lib\angular-route\angular-route.min.js" />
     <Content Include="js\lib\angular-route\index.js" />
@@ -374,6 +377,11 @@
     <Content Include="js\lib\requirejs\.bower.json" />
     <Content Include="js\lib\requirejs\bower.json" />
     <Content Include="js\lib\requirejs\README.md" />
+    <Content Include="js\lib\angular-cookies\.bower.json" />
+    <Content Include="js\lib\angular-cookies\angular-cookies.min.js.map" />
+    <Content Include="js\lib\angular-cookies\bower.json" />
+    <Content Include="js\lib\angular-cookies\package.json" />
+    <Content Include="js\lib\angular-cookies\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

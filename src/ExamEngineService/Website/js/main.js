@@ -15,6 +15,7 @@ require.config({
         , "app": "app"
         , "app.config": "app.config"
         , "angular-route": "lib/angular-route/angular-route"
+        , "angular-cookie": "lib/angular-cookies/angular-cookies"
         , "root_scope": "root_scope"
 
         //directive
@@ -23,8 +24,10 @@ require.config({
     , shim: {
         "angular": ["jquery"]
         , "angular-route": ["angular"]
+        , "angular-cookie": ["angular"]
         , "angularAMD": ["angular-route"]
         , "bootstrap": ["jquery"]
+        , "app": ["angular-cookie","bootstrap"]
     }
     , deps: ["app"]
 });
