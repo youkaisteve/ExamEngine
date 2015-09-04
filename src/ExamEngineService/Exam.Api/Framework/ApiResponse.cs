@@ -9,6 +9,7 @@ namespace Exam.Api.Framework
         ///     0-成功
         ///     1-业务异常
         ///     2-系统异常
+        ///     3-Token失效
         /// </summary>
         public int Code { get; set; }
 

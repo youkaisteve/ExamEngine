@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
+using Component.Tools;
 
 namespace Exam.Api.Framework
 {
     public static class SymmetricEncryption
     {
-        private static string key = "sfdjf48mdfdf3054";
+        private static string key = PublicFunc.GetConfigByKey_AppSettings("auth_key") ?? "sfdjf48mdfdf3054";
 
         public static string Encrypt(String plainText)
         {
@@ -14,7 +15,6 @@ namespace Exam.Api.Framework
             using (var tdesProvider = new TripleDESCryptoServiceProvider())
             {
                 tdesProvider.Key = hashmd5.ComputeHash(Encoding.UTF8.GetBytes(key));
-                ;
                 tdesProvider.Mode = CipherMode.ECB;
 
                 byte[] inputBytes = Encoding.UTF8.GetBytes(plainText);

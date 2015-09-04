@@ -15,7 +15,7 @@ namespace Exam.Api.Filters
             var auth = actionContext.Request.Headers.GetValues("user-authorize");
             if (auth == null || !auth.Any())
             {
-                throw new BusinessException("该接口需要用户认证");
+                throw new UnAuthorizedException();
             }
             var userToken = auth.FirstOrDefault();
             if (string.IsNullOrEmpty(userToken))
@@ -27,6 +27,9 @@ namespace Exam.Api.Filters
             {
                 throw new UnAuthorizedException();
             }
+
+            
+            
             base.OnAuthorization(actionContext);
         }
     }
