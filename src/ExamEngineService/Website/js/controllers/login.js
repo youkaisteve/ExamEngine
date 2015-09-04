@@ -12,7 +12,7 @@ define(["app"], function (app) {
             //return $scope._request("Login", model).success(function (res) {
             //});
             //location to default page when login success
-            window.location.hash = "/";
+            window.location.hash = "/default";
         }
 
 

@@ -9,8 +9,9 @@ define({
     , controllerPath: "controllers/"
     , templatePath: "views/"
     , api: "http://127.0.0.1/api/exam"
+    , start: "/login"
     , route: [{
-        url: "/"
+        url: "/default"
         , templateUrl: "default.html"
     }, {
         url: "/task/:id"

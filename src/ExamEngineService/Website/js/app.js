@@ -47,7 +47,9 @@ define(["angularAMD", "app.config", "root_scope", "bootstrap"], function (angula
             $routeProvider.when(ele.url,
                 angularAMD.route(configRoute(ele["templateUrl"], ele["controllerUrl"], ele["controller"])));
         }
-
+        $routeProvider.otherwise({
+            redirectTo: config.start
+        });
         //$httpProvider.interceptors.push(["$q", function ($q) {
         //    return {
         //        request: function (cfg) {
@@ -66,7 +68,7 @@ define(["angularAMD", "app.config", "root_scope", "bootstrap"], function (angula
         //}]);
     }]);
 
-    app.run(["$rootScope","$http", function () {
+    app.run(["$rootScope", "$http", function () {
         initRootScope.apply(null, arguments);
     }]);
 
