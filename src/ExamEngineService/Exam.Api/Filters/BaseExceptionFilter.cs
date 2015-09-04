@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 namespace Exam.Api.Filters
 {
-    public class BaseExceptionFilterAttribute : ExceptionFilterAttribute
+    public class BaseExceptionFilter : ExceptionFilterAttribute
     {
         public override void OnException(HttpActionExecutedContext actionExecutedContext)
         {

@@ -5,6 +5,7 @@ using Exam.Api.Framework;
 using Exam.Repository;
 using Exam.Service.Interface;
 using Exam.Api.Models;
+using Exam.Api.Filters;
 
 namespace Exam.Api.Controllers
 {
@@ -15,10 +16,11 @@ namespace Exam.Api.Controllers
         private IAccountService _accountService;
 
         [HttpPost]
-        public ApiResponse Login(LoginUser user)
+        [LoginActionFilter]
+        public ApiResponse Login([FromBody]LoginUser user)
         {
-            throw new BusinessException("aaa");
-            return ApiOk("测试");
+            var returnUser = _accountService.Login(user.UserName, user.Password);
+            return ApiOk(returnUser);
         }
     }
 }

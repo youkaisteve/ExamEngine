@@ -9,16 +9,15 @@ namespace Exam.Api.Controllers
     public class HomeController : BaseApiController
     {
         [HttpGet]
-        public IHttpActionResult Welcome()
+        public ApiResponse Welcome()
         {
-            return Ok(new ApiResponse {Code = 0, Message = "Test"});
+            return ApiOk("Welcome to exam");
         }
 
         [HttpPost]
         //[BaseAuthoriize]
         public ApiResponse Handler(ApiRequestData data)
         {
-            throw new Exception("aaa");
             return ApiOk();
         }
     }

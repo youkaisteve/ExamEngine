@@ -12,7 +12,7 @@ namespace Exam.Api.Framework
             return SymmetricEncryption.Encrypt(text);
         }
 
-        public static string[] GetUserTokenString(string token)
+        public static string[] GetCredentials(string token)
         {
             var str= SymmetricEncryption.Decrypt(token);
             return str.Split(':');

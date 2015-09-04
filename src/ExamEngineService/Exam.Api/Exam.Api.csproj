@@ -159,7 +159,8 @@
     <Compile Include="Configuration\API_CONFIG\ApiConfigurationMgr.cs" />
     <Compile Include="Configuration\API_CONFIG\IApiConfiguration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Filters\BaseExceptionFilterAttribute.cs" />
+    <Compile Include="Filters\LoginActionFilter.cs" />
+    <Compile Include="Filters\BaseExceptionFilter.cs" />
     <Compile Include="Framework\ExamHttpActionSelector.cs" />
     <Compile Include="Framework\RequestTransHandler.cs" />
     <Compile Include="Framework\ApiJsonMediaTypeFormatter.cs" />
@@ -176,7 +177,7 @@
     <Compile Include="Models\LoginUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Framework\ExamHttpControllerSelector.cs" />
-    <Compile Include="Filters\BaseAuthoriizeAttribute.cs" />
+    <Compile Include="Filters\BaseAuthoriizeFilter.cs" />
     <Compile Include="Framework\MefDependencySolver.cs" />
     <Compile Include="Framework\CacheWrapper.cs" />
     <Compile Include="Framework\SystemErrorCollection.cs" />

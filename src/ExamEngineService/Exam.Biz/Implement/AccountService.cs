@@ -10,14 +10,15 @@ namespace Exam.Service.Implement
     [Export(typeof (IAccountService))]
     public class AccountService : ServiceBase, IAccountService
     {
-        [Import] private UserRepository userRepo;
+        [Import] 
+        private UserRepository userRepo;
 
         protected override string ModuleName
         {
             get { return "Account"; }
         }
 
-        public User Logon(string userName, string password)
+        public User Login(string userName, string password)
         {
             if (userRepo.Entities.Any(m => m.UserName == userName && m.Password == password))
             {
