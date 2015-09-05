@@ -15,7 +15,7 @@ namespace Exam.Repository
     
     public partial class User : EntityBase<int>
     {
-        public int SysNo { get; set; }
+        public override int SysNo { get; set; }
         public string UserID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }

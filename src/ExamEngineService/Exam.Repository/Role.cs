@@ -15,7 +15,7 @@ namespace Exam.Repository
     
     public partial class Role : EntityBase<int>
     {
-        public int SysNo { get; set; }
+        public override int SysNo { get; set; }
         public string RoleName { get; set; }
         public int Status { get; set; }
         public System.DateTime InDate { get; set; }

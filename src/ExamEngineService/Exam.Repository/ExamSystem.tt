@@ -277,14 +277,28 @@ public class CodeStringGenerator
 
     public string Property(EdmProperty edmProperty)
     {
-        return string.Format(
-            CultureInfo.InvariantCulture,
-            "{0} {1} {2} {{ {3}get; {4}set; }}",
-            Accessibility.ForProperty(edmProperty),
-            _typeMapper.GetTypeName(edmProperty.TypeUsage),
-            _code.Escape(edmProperty),
-            _code.SpaceAfter(Accessibility.ForGetter(edmProperty)),
-            _code.SpaceAfter(Accessibility.ForSetter(edmProperty)));
+		if(_code.Escape(edmProperty) == "SysNo")
+        {
+            return string.Format(
+                CultureInfo.InvariantCulture,
+                "{0} override {1} {2} {{ {3}get; {4}set; }}",
+                Accessibility.ForProperty(edmProperty),
+                _typeMapper.GetTypeName(edmProperty.TypeUsage),
+                _code.Escape(edmProperty),
+                _code.SpaceAfter(Accessibility.ForGetter(edmProperty)),
+                _code.SpaceAfter(Accessibility.ForSetter(edmProperty)));
+        }
+        else
+        {
+			return string.Format(
+				CultureInfo.InvariantCulture,
+				"{0} {1} {2} {{ {3}get; {4}set; }}",
+				Accessibility.ForProperty(edmProperty),
+				_typeMapper.GetTypeName(edmProperty.TypeUsage),
+				_code.Escape(edmProperty),
+				_code.SpaceAfter(Accessibility.ForGetter(edmProperty)),
+				_code.SpaceAfter(Accessibility.ForSetter(edmProperty)));
+		}
     }
 
     public string NavigationProperty(NavigationProperty navigationProperty)

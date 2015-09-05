@@ -44,7 +44,7 @@ namespace Component.Data.Extensions
             }
             catch (InvalidOperationException)
             {
-                TEntity oldEntity = dbSet.Find(entity.Id);
+                TEntity oldEntity = dbSet.Find(entity.SysNo);
                 context.Entry(oldEntity).CurrentValues.SetValues(entity);
             }
         }
@@ -70,7 +70,7 @@ namespace Component.Data.Extensions
                 }
                 catch (InvalidOperationException)
                 {
-                    TEntity originalEntity = dbSet.Local.Single(m => Equals(m.Id, entity.Id));
+                    TEntity originalEntity = dbSet.Local.Single(m => Equals(m.SysNo, entity.SysNo));
                     ObjectContext objectContext = ((IObjectContextAdapter) dbContext).ObjectContext;
                     ObjectStateEntry objectEntry = objectContext.ObjectStateManager.GetObjectStateEntry(originalEntity);
                     objectEntry.ApplyCurrentValues(entity);

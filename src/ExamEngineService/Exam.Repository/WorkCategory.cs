@@ -15,7 +15,7 @@ namespace Exam.Repository
     
     public partial class WorkCategory : EntityBase<int>
     {
-        public int SysNo { get; set; }
+        public override int SysNo { get; set; }
         public string CategoryName { get; set; }
     }
 }

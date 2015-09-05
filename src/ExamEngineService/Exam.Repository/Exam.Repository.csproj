@@ -71,6 +71,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repo\ExamRepositoryBase.cs" />
     <Compile Include="Repo\UserRepository.cs" />
+    <Compile Include="Repo\TeamRepository.cs" />
+    <Compile Include="Repo\UserTeamRepository.cs" />
     <Compile Include="Role.cs">
       <DependentUpon>ExamSystem.tt</DependentUpon>
     </Compile>

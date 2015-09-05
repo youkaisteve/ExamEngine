@@ -15,7 +15,7 @@ namespace Exam.Repository
     
     public partial class Function : EntityBase<int>
     {
-        public int SysNo { get; set; }
+        public override int SysNo { get; set; }
         public string FunctionName { get; set; }
         public string FunctionKey { get; set; }
         public string Description { get; set; }

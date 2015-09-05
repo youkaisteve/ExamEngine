@@ -15,7 +15,7 @@ namespace Exam.Repository
     
     public partial class UserFunction : EntityBase<int>
     {
-        public int SysNo { get; set; }
+        public override int SysNo { get; set; }
         public int UserSysNo { get; set; }
         public int FunctionSysNo { get; set; }
         public System.DateTime InDate { get; set; }

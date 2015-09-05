@@ -162,7 +162,7 @@ namespace Component.Tools.Extensions
             total = source.Count(predicate);
             if (sortConditions == null || sortConditions.Length == 0)
             {
-                source = source.OrderBy(m => m.Id);
+                source = source.OrderBy(m => m.SysNo);
             }
             else
             {

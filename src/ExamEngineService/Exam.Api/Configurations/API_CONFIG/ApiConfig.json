@@ -8,5 +8,10 @@
 		"Name":"Login1",
 		"Controller":"Account1",
 		"Action":"Login1"
+	},
+	{
+		"Name":"MyTeamUsers",
+		"Controller":"Account",
+		"Action":"MyTeamUsers"
 	}
 ]

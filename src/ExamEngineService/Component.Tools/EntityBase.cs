@@ -9,6 +9,6 @@ namespace Component.Data
     public class EntityBase<TKey>
     {
         [Key]
-        public virtual TKey Id { get; set; }
+        public virtual TKey SysNo { get; set; }
     }
 }
