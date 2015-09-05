@@ -6,8 +6,9 @@ header .login-info{margin:10px 10px 0 0;}
 footer {border-top: solid 1px #ddd;}
 footer p{padding:10px 0;}
 
-.table-style{border:solid 2px black;}
-.table-style thead{background-color:#dbd8d8;}
-.table-style th{border:none !important; }
-.table-style th,.table-style td{text-align:center; border-right:solid 1px #ddd !important;}
-.table-style td input[type=text]{width:100%;}
+.table-style{border-right:solid 1px black !important;border-bottom:solid 1px black !important;}
+.table-style thead{background-color:#4d90b2; color:white;}
+.table-style th{border-bottom:none !important; }
+.table-style th,.table-style td{text-align:center;border-left:solid 1px black !important;border-top:solid 1px black !important;}
+.table-style td{padding:0 !important; vertical-align:middle !important;background-color:#e2f3fc;}
+.table-style td input[type=text]{width:100%; outline:none; border:none; padding:8px;text-align:center;}
