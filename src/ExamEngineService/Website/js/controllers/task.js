@@ -12,15 +12,19 @@ define(["app", "app.config"], function (app, config) {
         //var path = "forms/医疗保险费单位缴费月报表.html";
         taskID = "医疗保险费单位缴费月报表";
         var task = config.formDependence[taskID];
-        //var deps = config.formDependence[path];
-        if (task.deps) {
-            require(task.deps, function () {
+        if (task) {
+            if (task.deps) {
+                require(task.deps, function () {
+                    $scope.path = task.path;
+                    $scope.$apply();
+                });
+            }
+            else {
                 $scope.path = task.path;
-                $scope.$apply();
-            });
+            }
         }
         else {
-            $scope.path = task.path;
+            $scope.path = taskID;
         }
     }]);
 });

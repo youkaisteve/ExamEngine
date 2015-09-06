@@ -10,12 +10,11 @@ define(["app"], function (app) {
 
         $scope.login = function ($event, model) {
             //return $scope._request("Login", model).success(function (res) {
+            //    //location to default page when login success
+            //    window.location.hash = "/default";
             //});
-            //location to default page when login success
             window.location.hash = "/default";
         }
-
-
     }]);
 
 });
