@@ -58,7 +58,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Content Include="css\app.css" />
+    <Content Include="forms\社会保险单位信息登记表.html" />
+    <Content Include="forms\社会保险参保人员增加表.html" />
+    <Content Include="forms\社会保险个人信息登记表.html" />
     <Content Include="forms\医疗保险费单位缴费月报表.html" />
     <Content Include="index.html" />
     <Content Include="js\app.config.js" />
@@ -385,6 +387,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="css\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
