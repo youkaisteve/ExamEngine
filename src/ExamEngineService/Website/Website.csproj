@@ -60,12 +60,10 @@
     <Content Include=".gitignore" />
     <Content Include="css\app.css" />
     <Content Include="forms\医疗保险费单位缴费月报表.html" />
-    <Content Include="forms\test-frm1.html" />
     <Content Include="index.html" />
     <Content Include="js\app.config.js" />
     <Content Include="js\app.js" />
     <Content Include="js\controllers\login.js" />
-    <Content Include="js\controllers\test.js" />
     <Content Include="js\controllers\task.js" />
     <Content Include="js\controllers\default.js" />
     <Content Include="js\directive\table-form\index.js" />
@@ -213,7 +211,6 @@
     <Content Include="views\task.html" />
     <Content Include="views\default.html" />
     <Content Include="views\login.html" />
-    <Content Include="views\test.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
