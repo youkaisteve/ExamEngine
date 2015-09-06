@@ -38,13 +38,21 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WorkflowCallWapper">
+      <HintPath>..\Reference\WorkflowCallWapper.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implement\AccountService.cs" />
+    <Compile Include="Implement\TaskService.cs" />
     <Compile Include="Implement\UserService.cs" />
     <Compile Include="Interface\IAccountService.cs" />
+    <Compile Include="Interface\ITaskService.cs" />
     <Compile Include="Interface\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryFilters\QueryFilter.cs" />
+    <Compile Include="QueryFilters\UserTaskQueryFilter.cs" />
+    <Compile Include="QueryFilters\WorkfolowQueryFilter.cs" />
     <Compile Include="ServiceBase.cs" />
   </ItemGroup>
   <ItemGroup>
