@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+using Exam.Repository;
 using Exam.Repository.Repo;
 using Exam.Service.Interface;
 
@@ -18,14 +19,9 @@ namespace Exam.Service.Implement
             get { return "User"; }
         }
 
-        public List<dynamic> GetUserByTeamSysNo(int sysNo)
+        public List<User> GetUserByTeamSysNo(int sysNo)
         {
-            var query = from user in userRepo.Entities
-                join ut in userTeamRepo.Entities
-                    on user.SysNo equals ut.UserSysNo
-                where ut.TeamSysNo == sysNo
-                select new {user.UserID, user.UserName, ut};
-            return query.ToList<dynamic>();
+            return userRepo.GetUserByTeamSysNo(sysNo);
         }
 
         public List<dynamic> GetAllTeamsWithUser()

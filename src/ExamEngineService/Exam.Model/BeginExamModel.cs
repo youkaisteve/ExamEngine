@@ -8,8 +8,9 @@ namespace Exam.Model
 {
     public class BeginExamModel
     {
-        public string WorkflowId { get; set; }
+        public string ProcessName { get; set; }
         public string UserId { get; set; }
+        public string UserName { get; set; }
         public List<WorkflowNodeTeam> NodeTeams { get; set; }
     }
 
