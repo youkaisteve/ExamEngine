@@ -29,7 +29,7 @@ require.config({
         , "angular-storage": ["angular"]
         , "angularAMD": ["angular-route"]
         , "bootstrap": ["jquery"]
-        , "app": ["angular-storage","angular-cookie","bootstrap"]
+        , "app": ["angular-storage", /*"angular-cookie",*/"bootstrap"]
     }
     , deps: ["app"]
 });

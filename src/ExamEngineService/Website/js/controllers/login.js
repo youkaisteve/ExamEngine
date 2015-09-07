@@ -6,14 +6,18 @@
  */
 define(["app"], function (app) {
 
-    app.controller("login", ["$scope", function ($scope) {
+    app.controller("login", ["$scope","$window", function ($scope,$window) {
 
         $scope.login = function ($event, model) {
-            //return $scope._request("Login", model).success(function (res) {
-            //    //location to default page when login success
-            //    window.location.hash = "/default";
-            //});
-            window.location.hash = "/default";
+            return $scope._request("Login", model).success(function (res) {
+                //location to default page when login success
+                if(res.Code==0){
+                    $scope._goto("/default");
+                }
+                else{
+                    $window.alert(res.Message);
+                }
+            });
         }
     }]);
 
