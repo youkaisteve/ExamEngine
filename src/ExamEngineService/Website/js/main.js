@@ -16,6 +16,7 @@ require.config({
         , "app.config": "app.config"
         , "angular-route": "lib/angular-route/angular-route"
         , "angular-cookie": "lib/angular-cookies/angular-cookies"
+        , "angular-storage": "lib/ngstorage/ngStorage"
         , "root_scope": "root_scope"
 
         //directive
@@ -25,9 +26,10 @@ require.config({
         "angular": ["jquery"]
         , "angular-route": ["angular"]
         , "angular-cookie": ["angular"]
+        , "angular-storage": ["angular"]
         , "angularAMD": ["angular-route"]
         , "bootstrap": ["jquery"]
-        , "app": ["angular-cookie","bootstrap"]
+        , "app": ["angular-storage","angular-cookie","bootstrap"]
     }
     , deps: ["app"]
 });
