@@ -15,7 +15,7 @@ define(["app.config"], function (config) {
             $rootScope._TOKEN_KEY = "token";
 
             function toLogin() {
-                $rootScope._goto("#/login");
+                //$rootScope._goto("#/login");
             }
 
             $rootScope._goto = function (url) {

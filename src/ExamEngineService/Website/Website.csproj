@@ -202,6 +202,14 @@
     <Content Include="js\lib\jquery\src\var\support.js" />
     <Content Include="js\lib\jquery\src\var\toString.js" />
     <Content Include="js\lib\jquery\src\wrap.js" />
+    <Content Include="js\lib\ngStorage\examples\assets\foundation.min.css" />
+    <Content Include="js\lib\ngStorage\examples\assets\hero.jpg" />
+    <Content Include="js\lib\ngStorage\examples\assets\jquery-1.9.1.min.js" />
+    <Content Include="js\lib\ngStorage\examples\assets\prettify.css" />
+    <Content Include="js\lib\ngStorage\examples\assets\prettify.js" />
+    <Content Include="js\lib\ngStorage\examples\assets\style.css" />
+    <Content Include="js\lib\ngStorage\examples\index.html" />
+    <Content Include="js\lib\ngStorage\src\angularLocalStorage.js" />
     <Content Include="js\lib\normalize.css\normalize.css" />
     <Content Include="js\lib\requirejs\require.js" />
     <Content Include="js\main.js" />
@@ -381,6 +389,12 @@
     <Content Include="js\lib\angular-cookies\bower.json" />
     <Content Include="js\lib\angular-cookies\package.json" />
     <Content Include="js\lib\angular-cookies\README.md" />
+    <Content Include="js\lib\ngStorage\.bower.json" />
+    <Content Include="js\lib\ngStorage\bower.json" />
+    <Content Include="js\lib\ngStorage\examples\assets\style.less" />
+    <Content Include="js\lib\ngStorage\LICENSE" />
+    <Content Include="js\lib\ngStorage\package.json" />
+    <Content Include="js\lib\ngStorage\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

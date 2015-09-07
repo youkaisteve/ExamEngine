@@ -10,57 +10,57 @@
                 </tr>
                 <tr>
                     <td>*姓名</td>
-                    <td><input type="text" ng-model="Model.Name"/></td>
+                    <td><input type="text" ng-model="Model.XingMing"/></td>
                     <td>*公民身份号码<br />(社会保障号码)</td>
-                    <td colspan="2"><input type="text" ng-model="Model.Identity"/></td>
+                    <td colspan="2"><input type="text" ng-model="Model.GongMingShenFenHaoMa"/></td>
                 </tr>
                 <tr>
                     <td>*性别</td>
-                    <td><input type="text" ng-model="Model.Sex"/></td>
+                    <td><input type="text" ng-model="Model.XingBie"/></td>
                     <td>*出生日期</td>
-                    <td colspan="2"><input type="text" ng-model="Model.Birthday"/></td>
+                    <td colspan="2"><input type="text" ng-model="Model.ChuShengRiQi"/></td>
                 </tr>
                 <tr>
                     <td>*民族</td>
-                    <td><input type="text" ng-model="Model.Nation"/></td>
+                    <td><input type="text" ng-model="Model.MinZu"/></td>
                     <td>*国家/地区</td>
-                    <td colspan="2"><input type="text" ng-model="Model.Area"/></td>
+                    <td colspan="2"><input type="text" ng-model="Model.GuoJiaQuYu"/></td>
                 </tr>
                 <tr>
                     <td>*个人身份</td>
-                    <td><input type="text" ng-model="Model.GRSF"/></td>
+                    <td><input type="text" ng-model="Model.GeRenShenFen"/></td>
                     <td>*参加工作日期</td>
-                    <td colspan="2"><input type="text" ng-model="Model.CJGZRQ"/></td>
+                    <td colspan="2"><input type="text" ng-model="Model.CanJiaGongZuoRiQi"/></td>
                 </tr>
                 <tr>
                     <td>户口所在区县街乡</td>
-                    <td colspan="3"><input type="text" ng-model="Model.HKSZQXJX"/></td>
+                    <td colspan="3"><input type="text" ng-model="Model.HuKouSuoZaiQuXianJieXiang"/></td>
                     <td>*户口性质</td>
-                    <td><input type="text" ng-model="Model.HKXZ"/></td>
+                    <td><input type="text" ng-model="Model.HuKouXingZhi"/></td>
                 </tr>
                 <tr>
                     <td>*户口所在地址</td>
-                    <td colspan="3"><input type="text" ng-model="Model.HKSZDZ"/></td>
+                    <td colspan="3"><input type="text" ng-model="Model.HuKouSuoZaiDiZhi"/></td>
                     <td>*户口所在地邮政编码</td>
-                    <td><input type="text" ng-model="Model.HKSZDYZBM"/></td>
+                    <td><input type="text" ng-model="Model.HuKouSuoZaiDiYouZhengBianMa"/></td>
                 </tr>
                 <tr>
                     <td>*居住地(联系)地址</td>
-                    <td colspan="3"><input type="text" ng-model="Model.JZDDZ"/></td>
+                    <td colspan="3"><input type="text" ng-model="Model.JuZhuDiDiZhi"/></td>
                     <td>*居住地(联系)邮政编码</td>
-                    <td><input type="text" ng-model="Model.JZDYZBM"/></td>
+                    <td><input type="text" ng-model="Model.JuZhuDiYouZhengBianMa"/></td>
                 </tr>
                 <tr>
                     <td>*选择邮寄社会保险对账地址</td>
-                    <td colspan="3"><input type="text" ng-model="Model.XZYJSHBXDZDZ"/></td>
+                    <td colspan="3"><input type="text" ng-model="Model.XuanZeYouJiSheHuiBaoXianDuiZhangDiZhi"/></td>
                     <td>邮政编码</td>
-                    <td><input type="text" ng-model="Model.YZBM"/></td>
+                    <td><input type="text" ng-model="Model.YouZhengBianMa"/></td>
                 </tr>
                 <tr>
                     <td>*获取对账方式</td>
-                    <td><input type="text" ng-model="Model.HKSZDYZBM"/></td>
+                    <td><input type="text" ng-model="Model.HuoQuDuiZhangFangShi"/></td>
                     <td>电子邮件地址</td>
-                    <td><input type="text" ng-model="Model.DZYJDZ"/></td>
+                    <td><input type="text" ng-model="Model.DianZiYouJianDiZhi"/></td>
                     <td>*文化程度</td>
                     <td><input type="text" ng-model="Model.WenHuaChenDu"/></td>
                 </tr>
@@ -76,60 +76,52 @@
                     <td>*证件类型</td>
                     <td colspan="2"><input type="text" ng-model="Model.ZhengJianLeiXing"/></td>
                     <td>*证件号码</td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
+                    <td colspan="2"><input type="text" ng-model="Model.ZhengJianHaoMa"/></td>
                 </tr>
                 <tr>
                     <td>*缴费人员类别</td>
                     <td colspan="2"><input type="text" ng-model="Model.JiaoFeiRenYuanLeiBie"/></td>
                     <td>*医疗参保人员类别</td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
+                    <td colspan="2"><input type="text" ng-model="Model.YiLiaoCanBaoRenYuanLeiBie"/></td>
                 </tr>
                 <tr>
                     <td>离退休类别</td>
-                    <td colspan="2"><input type="text" /></td>
+                    <td colspan="2"><input type="text" ng-model="Model.LiTuiXiuLeiBie"/></td>
                     <td>离退休日期</td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
+                    <td colspan="2"><input type="text" ng-model="Model.LiTuiXiuRiQi"/></td>
                 </tr>
                 <tr>
                     <td>定点医疗机构1</td>
-                    <td colspan="2"><input type="text" /></td>
+                    <td colspan="2"><input type="text" ng-model="Model.DingDianYiLiaoJiGou1"/></td>
                     <td>定点医疗机构2</td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
+                    <td colspan="2"><input type="text" ng-model="Model.DingDianYiLiaoJiGou2"/></td>
                 </tr>
                 <tr>
                     <td>定点医疗机构3</td>
-                    <td colspan="2"><input type="text" /></td>
+                    <td colspan="2"><input type="text" ng-model="Model.DingDianYiLiaoJiGou3"/></td>
                     <td>定点医疗机构4</td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
+                    <td colspan="2"><input type="text" ng-model="Model.DingDianYiLiaoJiGou4"/></td>
                 </tr>
                 <tr>
                     <td>定点医疗机构5</td>
-                    <td colspan="2"><input type="text" /></td>
+                    <td colspan="2"><input type="text" ng-model="Model.DingDianYiLiaoJiGou5"/></td>
                     <td>*是否患有特殊病</td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
+                    <td colspan="2"><input type="text" ng-model="Model.ShiFouHuanYouTeShuBing"/></td>
                 </tr>
                 <tr>
                     <td style="padding:10px !important;" colspan="6">外籍人员信息</td>
                 </tr>
                 <tr>
                     <td>护照号码</td>
-                    <td colspan="2"><input type="text" /></td>
+                    <td colspan="2"><input type="text" ng-model="Model.HuZhaoHaoMa"/></td>
                     <td>外国人居留证号码</td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
+                    <td colspan="2"><input type="text" ng-model="Model.WaiGuoRenJuLiuZhengHaoMa"/></td>
                 </tr>
                 <tr>
                     <td>外国人证件类型</td>
                     <td colspan="2"><input type="text" ng-model="Model.WaiGuoRenZhengJianLeiXing"/></td>
                     <td>外国人证件号码</td>
-                    <td><input type="text" /></td>
-                    <td><input type="text" /></td>
+                    <td colspan="2"><input type="text" ng-model="Model.WaiGuoRenZhengJianHaoMa"/></td>
                 </tr>
                 <tr>
                     <td style="padding:10px !important;" colspan="6">本人目前确属社会保险参保对象,现申请参加社会保险,按照社会保险登记的要求本人已如实填写了上述相关信息,并对填写的内容真实有效性负责.</td>
