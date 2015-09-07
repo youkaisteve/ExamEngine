@@ -6,7 +6,7 @@
  */
 define({
     appName: "app"
-    , appDeps: ["ngRoute", "ngCookies","ngStorage"]
+    , appDeps: ["ngRoute", /*"ngCookies",*/"ngStorage"]
     , controllerPath: "controllers/"
     , templatePath: "views/"
     , api: "http://127.0.0.1:1567/Handler"
