@@ -7,7 +7,7 @@ namespace Exam.Api.Framework
 {
     public static class SymmetricEncryption
     {
-        private static string key = PublicFunc.GetConfigByKey_AppSettings("auth_key") ?? "sfdjf48mdfdf3054";
+        private static readonly string key = PublicFunc.GetConfigByKey_AppSettings("auth_key") ?? "sfdjf48mdfdf3054";
 
         public static string Encrypt(String plainText)
         {

@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.Composition;
+using Component.Tools;
+using Exam.Model;
+using Exam.Model.QueryFilters;
 using Exam.Service.Interface;
+using WorkflowCallWapper;
+using WorkflowCallWapper.Models;
 
 namespace Exam.Service.Implement
 {
-    [Export(typeof(ITaskService))]
+    [Export(typeof (ITaskService))]
     public class TaskService : ServiceBase, ITaskService
     {
         protected override string ModuleName
@@ -16,10 +16,19 @@ namespace Exam.Service.Implement
             get { return "Task"; }
         }
 
-        public List<dynamic> GetUserTasks(QueryFilters.UserTaskQueryFilter filter)
+        public dynamic GetUserTasks(UserTaskQueryFilter filter)
         {
-            //first:get all tasks by userid
-            return null;
+            var proxy = new WorkflowProxy();
+            QueryTaskView queryTasks = proxy.GetUnProcessTaskByUser(PublicFunc.GetConfigByKey_AppSettings("mock_user"),
+                filter.PageInfo.PageIndex,
+                filter.PageInfo.PageSize);
+
+            return queryTasks;
+        }
+
+        public void BeginExam(BeginExamModel data)
+        {
+            
         }
     }
 }

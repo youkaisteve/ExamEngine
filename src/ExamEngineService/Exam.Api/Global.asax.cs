@@ -4,7 +4,6 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
-using Exam.Api.Filters;
 using Exam.Api.Framework;
 
 namespace Exam.Api
@@ -28,10 +27,10 @@ namespace Exam.Api
 
             GlobalConfiguration.Configuration.MessageHandlers.Add(new RequestTransHandler());
 
-            var config = GlobalConfiguration.Configuration;
-            config.Services.Replace(typeof(IHttpControllerSelector), new ExamHttpControllerSelector(config));
+            HttpConfiguration config = GlobalConfiguration.Configuration;
+            config.Services.Replace(typeof (IHttpControllerSelector), new ExamHttpControllerSelector(config));
 
-            config.Services.Replace(typeof(IHttpActionSelector), new ExamHttpActionSelector());
+            config.Services.Replace(typeof (IHttpActionSelector), new ExamHttpActionSelector());
             //GlobalConfiguration.Configuration.Services.Remove(typeof(IHttpActionInvoker), GlobalConfiguration.Configuration.Services.GetActionInvoker());
             //GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpActionInvoker), new AuthorizeHandler());
         }

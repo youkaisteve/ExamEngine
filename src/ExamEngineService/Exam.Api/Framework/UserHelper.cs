@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Security.Principal;
-using System.Web;
-using System.Web.Security;
+
 namespace Exam.Api.Framework
 {
     public class UserHelper
@@ -14,7 +12,7 @@ namespace Exam.Api.Framework
 
         public static string[] GetCredentials(string token)
         {
-            var str= SymmetricEncryption.Decrypt(token);
+            string str = SymmetricEncryption.Decrypt(token);
             return str.Split(':');
         }
     }

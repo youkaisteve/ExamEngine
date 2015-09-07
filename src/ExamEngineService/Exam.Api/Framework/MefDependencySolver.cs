@@ -53,7 +53,7 @@ namespace Exam.Api.Framework
 
         public void Dispose()
         {
-            Container.Dispose();
+            //Container.Dispose();
         }
     }
 }

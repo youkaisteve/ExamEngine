@@ -1,6 +1,4 @@
-﻿using System.Web.Http;
-
-namespace Exam.Api.Framework
+﻿namespace Exam.Api.Framework
 {
     public class ApiResponse
     {

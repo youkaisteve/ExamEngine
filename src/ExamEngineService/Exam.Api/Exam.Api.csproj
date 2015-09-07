@@ -150,6 +150,9 @@
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WorkflowCallWapper">
+      <HintPath>..\Reference\WorkflowCallWapper.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -218,6 +221,10 @@
     <ProjectReference Include="..\Exam.Biz\Exam.Service.csproj">
       <Project>{f60d8cce-445e-415e-ad61-b9a85937fdc4}</Project>
       <Name>Exam.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Exam.Model\Exam.Model.csproj">
+      <Project>{4a8c0fcd-d4b3-4637-921f-36dfce434f49}</Project>
+      <Name>Exam.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Exam.Repository\Exam.Repository.csproj">
       <Project>{3b3b1bf0-8fd0-4df3-8059-50d15f9a6bab}</Project>

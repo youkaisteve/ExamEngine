@@ -6,7 +6,7 @@ namespace Exam.Api.Framework
     {
         public override HttpActionDescriptor SelectAction(HttpControllerContext controllerContext)
         {
-            var action =  base.SelectAction(controllerContext);
+            HttpActionDescriptor action = base.SelectAction(controllerContext);
             return action;
         }
     }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Component.Tools.Configurations;
+﻿using Component.Tools.Configurations;
 
 namespace Exam.Api.Configuration.API_CONFIG
 {

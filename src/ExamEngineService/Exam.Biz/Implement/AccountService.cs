@@ -10,8 +10,7 @@ namespace Exam.Service.Implement
     [Export(typeof (IAccountService))]
     public class AccountService : ServiceBase, IAccountService
     {
-        [Import] 
-        private UserRepository userRepo;
+        [Import] private UserRepository userRepo;
 
         protected override string ModuleName
         {

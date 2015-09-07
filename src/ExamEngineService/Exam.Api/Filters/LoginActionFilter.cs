@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Web;
+﻿using System.Net.Http;
 using System.Web.Http.Filters;
-using Exam.Repository;
 using Exam.Api.Framework;
+using Exam.Repository;
 
 namespace Exam.Api.Filters
 {
@@ -13,10 +9,11 @@ namespace Exam.Api.Filters
     {
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
-            var user = actionExecutedContext.Response.Content.ReadAsAsync<User>().Result;
+            User user = actionExecutedContext.Response.Content.ReadAsAsync<User>().Result;
             if (user != null)
             {
-                actionExecutedContext.Response.Content.Headers.Add("user-authorize", UserHelper.CreateUserToken(user.UserName));
+                actionExecutedContext.Response.Content.Headers.Add("user-authorize",
+                    UserHelper.CreateUserToken(user.UserName));
             }
         }
     }

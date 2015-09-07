@@ -1,6 +1,4 @@
-﻿using System;
-using System.Web.Http;
-using Exam.Api.Filters;
+﻿using System.Web.Http;
 using Exam.Api.Framework;
 using Exam.Api.Models;
 

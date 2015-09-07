@@ -8,10 +8,12 @@ namespace Exam.Api.Framework
     {
         public ExamHttpControllerSelector(HttpConfiguration configuration)
             : base(configuration)
-        { }
+        {
+        }
+
         public override string GetControllerName(HttpRequestMessage request)
         {
-            var str = base.GetControllerName(request);
+            string str = base.GetControllerName(request);
             return str;
         }
     }

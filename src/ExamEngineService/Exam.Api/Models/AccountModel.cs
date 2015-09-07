@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Security;
@@ -9,14 +7,14 @@ namespace Exam.Api.Models
 {
     public class AccountModel
     {
-        /// <summary>  
-        /// 创建登录用户的票据信息  
-        /// </summary>  
-        /// <param name="strUserName"></param>  
+        /// <summary>
+        ///     创建登录用户的票据信息
+        /// </summary>
+        /// <param name="strUserName"></param>
         internal void CreateLoginUserTicket(string strUserName, string strPassword)
         {
             //构造Form验证的票据信息  
-            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, strUserName, DateTime.Now, DateTime.Now.AddMinutes(90),
+            var ticket = new FormsAuthenticationTicket(1, strUserName, DateTime.Now, DateTime.Now.AddMinutes(90),
                 true, string.Format("{0}:{1}", strUserName, strPassword), FormsAuthentication.FormsCookiePath);
 
             string ticString = FormsAuthentication.Encrypt(ticket);
@@ -35,36 +33,37 @@ namespace Exam.Api.Models
             HttpContext.Current.User = principal;
         }
 
-        /// <summary>  
-        /// 获取用户权限列表数据  
-        /// </summary>  
-        /// <param name="userName"></param>  
-        /// <returns></returns>  
+        /// <summary>
+        ///     获取用户权限列表数据
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
         internal string GetUserAuthorities(string userName)
         {
             //从WebApi 访问用户权限数据，然后写入Session  
-            string jsonAuth = "[{\"Controller\": \"SampleController\", \"Actions\":\"Apply,Process,Complete\"}, {\"Controller\": \"Product\", \"Actions\": \"List,Get,Detail\"}]";
+            string jsonAuth =
+                "[{\"Controller\": \"SampleController\", \"Actions\":\"Apply,Process,Complete\"}, {\"Controller\": \"Product\", \"Actions\": \"List,Get,Detail\"}]";
             //var userAuthList = ServiceStack.Text.JsonSerializer.DeserializeFromString(jsonAuth, typeof(UserAuthModel[]));
             //HttpContext.Current.Session["USER_AUTHORITIES"] = userAuthList;
 
             return jsonAuth;
         }
 
-        /// <summary>  
-        /// 读取数据库用户表数据，判断用户密码是否匹配  
-        /// </summary>  
-        /// <param name="name"></param>  
-        /// <param name="password"></param>  
-        /// <returns></returns>  
+        /// <summary>
+        ///     读取数据库用户表数据，判断用户密码是否匹配
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         internal bool ValidateUserLogin(string name, string password)
         {
             //bool isValid = password == passwordInDatabase;  
             return true;
         }
 
-        /// <summary>  
-        /// 用户注销执行的操作  
-        /// </summary>  
+        /// <summary>
+        ///     用户注销执行的操作
+        /// </summary>
         internal void Logout()
         {
             FormsAuthentication.SignOut();

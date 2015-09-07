@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http.Filters;
 using Component.Tools.Exceptions;
 using Exam.Api.Framework;
-using Newtonsoft.Json;
 
 namespace Exam.Api.Filters
 {
@@ -15,7 +10,7 @@ namespace Exam.Api.Filters
     {
         public override void OnException(HttpActionExecutedContext actionExecutedContext)
         {
-            ApiResponse response = new ApiResponse();
+            var response = new ApiResponse();
             if (actionExecutedContext.Exception is BusinessException)
             {
                 response.Code = 1;
