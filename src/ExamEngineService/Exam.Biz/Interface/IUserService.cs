@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Exam.Repository;
 
 namespace Exam.Service.Interface
 {
@@ -9,7 +10,7 @@ namespace Exam.Service.Interface
         /// </summary>
         /// <param name="sysNo">小组sysno</param>
         /// <returns></returns>
-        List<dynamic> GetUserByTeamSysNo(int sysNo);
+        List<User> GetUserByTeamSysNo(int sysNo);
 
         /// <summary>
         ///     获取所有小组，包括用户信息

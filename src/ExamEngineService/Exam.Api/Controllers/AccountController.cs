@@ -27,7 +27,7 @@ namespace Exam.Api.Controllers
         [HttpPost]
         public ApiResponse MyTeamUsers([FromUri] int sysNo)
         {
-            List<dynamic> teamUsers = userService.GetUserByTeamSysNo(sysNo);
+            List<User> teamUsers = userService.GetUserByTeamSysNo(sysNo);
             return ApiOk(teamUsers);
         }
     }
