@@ -15,10 +15,8 @@ namespace Exam.Repository
     
     public partial class StandardAnwser : EntityBase<int>
     {
-        public override int SysNo { get; set; }
-        public string Title { get; set; }
-        public string Anwser { get; set; }
-        public string FieldName { get; set; }
+        public int SysNo { get; set; }
+        public string TemplateData { get; set; }
         public string TemplateName { get; set; }
         public System.DateTime InDate { get; set; }
         public string InUser { get; set; }

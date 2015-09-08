@@ -25,16 +25,13 @@ namespace Exam.Repository
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Function> Function { get; set; }
         public DbSet<Role> Role { get; set; }
-        public DbSet<RoleFunction> RoleFunction { get; set; }
         public DbSet<RoleUser> RoleUser { get; set; }
         public DbSet<StandardAnwser> StandardAnwser { get; set; }
         public DbSet<Team> Team { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<UserAnwser> UserAnwser { get; set; }
-        public DbSet<UserFunction> UserFunction { get; set; }
         public DbSet<UserTeam> UserTeam { get; set; }
-        public DbSet<WorkCategory> WorkCategory { get; set; }
+        public DbSet<WorkflowTeamRelation> WorkflowTeamRelation { get; set; }
     }
 }

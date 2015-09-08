@@ -15,12 +15,15 @@ namespace Exam.Repository
     
     public partial class UserAnwser : EntityBase<int>
     {
-        public override int SysNo { get; set; }
+        public int SysNo { get; set; }
         public int UserSysNo { get; set; }
-        public string FieldName { get; set; }
+        public string TempData { get; set; }
         public string TemplateName { get; set; }
-        public Nullable<int> WorkFlowInstanceID { get; set; }
-        public string UserAnwser1 { get; set; }
+        public string NodeName { get; set; }
+        public Nullable<int> NodeID { get; set; }
+        public Nullable<int> TokenID { get; set; }
+        public Nullable<int> ProcessInstanceID { get; set; }
+        public string WorkflowName { get; set; }
         public System.DateTime InDate { get; set; }
     }
 }

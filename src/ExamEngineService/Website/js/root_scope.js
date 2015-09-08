@@ -48,7 +48,8 @@ define(["app.config"], function (config) {
             $rootScope._request = function (action, data) {
                 return $http.post(config.api, data,{
 					headers :{
-						action:action
+					    "action": action,
+					    'Access-Control-Allow-Credentials': true
 					}
 				}).success(function (res) {
                     //if res.Code==401 then location to login

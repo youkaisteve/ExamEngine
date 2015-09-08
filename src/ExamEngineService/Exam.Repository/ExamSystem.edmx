@@ -1,29 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ExamSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008"
-              Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator"
-              xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Function">
-          <Key>
-            <PropertyRef Name="SysNo" />
-          </Key>
-          <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FunctionName" Type="nvarchar" MaxLength="200" />
-          <Property Name="FunctionKey" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
-          <Property Name="Status" Type="int" />
-          <Property Name="InDate" Type="datetime" Nullable="false" />
-          <Property Name="InUserName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="InUserSysNo" Type="int" Nullable="false" />
-          <Property Name="EditDate" Type="datetime" />
-          <Property Name="EditUserName" Type="nvarchar" MaxLength="100" />
-          <Property Name="EditUserSysNo" Type="int" />
-        </EntityType>
+      <Schema Namespace="ExamSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="SysNo" />
@@ -32,25 +13,9 @@
           <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="InDate" Type="datetime" Nullable="false" />
-          <Property Name="InUserName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="InUserSysNo" Type="int" Nullable="false" />
+          <Property Name="InUse" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="EditDate" Type="datetime" />
-          <Property Name="EditUserName" Type="nvarchar" MaxLength="100" />
-          <Property Name="EditUserSysNo" Type="int" />
-        </EntityType>
-        <EntityType Name="RoleFunction">
-          <Key>
-            <PropertyRef Name="SysNo" />
-          </Key>
-          <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RoleSysNo" Type="int" Nullable="false" />
-          <Property Name="FunctionSysNo" Type="int" Nullable="false" />
-          <Property Name="InDate" Type="datetime" Nullable="false" />
-          <Property Name="InUserName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="InUserSysNo" Type="int" Nullable="false" />
-          <Property Name="EditDate" Type="datetime" />
-          <Property Name="EditUserName" Type="nvarchar" MaxLength="100" />
-          <Property Name="EditUserSysNo" Type="int" />
+          <Property Name="EditUser" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="RoleUser">
           <Key>
@@ -61,20 +26,16 @@
           <Property Name="UserSysNo" Type="int" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="InDate" Type="datetime" Nullable="false" />
-          <Property Name="InUserName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="InUserSysNo" Type="int" Nullable="false" />
+          <Property Name="InUser" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="EditDate" Type="datetime" />
-          <Property Name="EditUserName" Type="nvarchar" MaxLength="100" />
-          <Property Name="EditUserSysNo" Type="int" />
+          <Property Name="EditUse" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="StandardAnwser">
           <Key>
             <PropertyRef Name="SysNo" />
           </Key>
           <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Anwser" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="FieldName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TemplateData" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="TemplateName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="InDate" Type="datetime" Nullable="false" />
           <Property Name="InUser" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -98,14 +59,11 @@
           <Property Name="UserID" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="UserAuthCode" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="InDate" Type="datetime" Nullable="false" />
-          <Property Name="InUserName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="InUserSysNo" Type="int" Nullable="false" />
+          <Property Name="InUser" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="EditDate" Type="datetime" />
-          <Property Name="EditUserName" Type="nvarchar" MaxLength="100" />
-          <Property Name="EditUserSysNo" Type="int" />
+          <Property Name="EditUser" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="UserAnwser">
           <Key>
@@ -113,25 +71,14 @@
           </Key>
           <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserSysNo" Type="int" Nullable="false" />
-          <Property Name="FieldName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TempData" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="TemplateName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="WorkFlowInstanceID" Type="int" />
-          <Property Name="UserAnwser" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="NodeName" Type="nvarchar" MaxLength="100" />
+          <Property Name="NodeID" Type="int" />
+          <Property Name="TokenID" Type="int" />
+          <Property Name="ProcessInstanceID" Type="int" />
+          <Property Name="WorkflowName" Type="nvarchar" MaxLength="100" />
           <Property Name="InDate" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UserFunction">
-          <Key>
-            <PropertyRef Name="SysNo" />
-          </Key>
-          <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserSysNo" Type="int" Nullable="false" />
-          <Property Name="FunctionSysNo" Type="int" Nullable="false" />
-          <Property Name="InDate" Type="datetime" Nullable="false" />
-          <Property Name="InUserName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="InUserSysNo" Type="int" Nullable="false" />
-          <Property Name="EditDate" Type="datetime" />
-          <Property Name="EditUserName" Type="nvarchar" MaxLength="100" />
-          <Property Name="EditUserSysNo" Type="int" />
         </EntityType>
         <EntityType Name="UserTeam">
           <Key>
@@ -143,50 +90,33 @@
           <Property Name="InUser" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="InDate" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="WorkCategory">
+        <EntityType Name="WorkflowTeamRelation">
           <Key>
             <PropertyRef Name="SysNo" />
           </Key>
-          <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SysNo" Type="int" Nullable="false" />
+          <Property Name="WorkflowName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TeamSysNo" Type="int" Nullable="false" />
+          <Property Name="InDate" Type="datetime" Nullable="false" />
+          <Property Name="InUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EditDate" Type="datetime" />
+          <Property Name="EditUser" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="ExamSystemModelStoreContainer">
-          <EntitySet Name="Function" EntityType="Self.Function" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RoleFunction" EntityType="Self.RoleFunction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleUser" EntityType="Self.RoleUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StandardAnwser" EntityType="Self.StandardAnwser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAnwser" EntityType="Self.UserAnwser" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserFunction" EntityType="Self.UserFunction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTeam" EntityType="Self.UserTeam" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="WorkCategory" EntityType="Self.WorkCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkflowTeamRelation" EntityType="Self.WorkflowTeamRelation" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ExamSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false"
-              xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation"
-              xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Function">
-          <Key>
-            <PropertyRef Name="SysNo" />
-          </Key>
-          <Property Name="SysNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FunctionName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="FunctionKey" Type="String" MaxLength="200" FixedLength="false" Unicode="true"
-                    Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="Int32" />
-          <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="InUserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="InUserSysNo" Type="Int32" Nullable="false" />
-          <Property Name="EditDate" Type="DateTime" Precision="3" />
-          <Property Name="EditUserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="EditUserSysNo" Type="Int32" />
-        </EntityType>
+      <Schema Namespace="ExamSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="SysNo" />
@@ -195,25 +125,9 @@
           <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="InUserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="InUserSysNo" Type="Int32" Nullable="false" />
+          <Property Name="InUse" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EditDate" Type="DateTime" Precision="3" />
-          <Property Name="EditUserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="EditUserSysNo" Type="Int32" />
-        </EntityType>
-        <EntityType Name="RoleFunction">
-          <Key>
-            <PropertyRef Name="SysNo" />
-          </Key>
-          <Property Name="SysNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleSysNo" Type="Int32" Nullable="false" />
-          <Property Name="FunctionSysNo" Type="Int32" Nullable="false" />
-          <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="InUserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="InUserSysNo" Type="Int32" Nullable="false" />
-          <Property Name="EditDate" Type="DateTime" Precision="3" />
-          <Property Name="EditUserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="EditUserSysNo" Type="Int32" />
+          <Property Name="EditUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="RoleUser">
           <Key>
@@ -224,22 +138,17 @@
           <Property Name="UserSysNo" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="InUserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="InUserSysNo" Type="Int32" Nullable="false" />
+          <Property Name="InUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EditDate" Type="DateTime" Precision="3" />
-          <Property Name="EditUserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="EditUserSysNo" Type="Int32" />
+          <Property Name="EditUse" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="StandardAnwser">
           <Key>
             <PropertyRef Name="SysNo" />
           </Key>
           <Property Name="SysNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Anwser" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FieldName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TemplateName" Type="String" MaxLength="100" FixedLength="false" Unicode="true"
-                    Nullable="false" />
+          <Property Name="TemplateData" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TemplateName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="InUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
@@ -262,15 +171,11 @@
           <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserAuthCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true"
-                    Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="InUserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="InUserSysNo" Type="Int32" Nullable="false" />
+          <Property Name="InUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EditDate" Type="DateTime" Precision="3" />
-          <Property Name="EditUserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="EditUserSysNo" Type="Int32" />
+          <Property Name="EditUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UserAnwser">
           <Key>
@@ -278,27 +183,14 @@
           </Key>
           <Property Name="SysNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserSysNo" Type="Int32" Nullable="false" />
-          <Property Name="FieldName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TemplateName" Type="String" MaxLength="100" FixedLength="false" Unicode="true"
-                    Nullable="false" />
-          <Property Name="WorkFlowInstanceID" Type="Int32" />
-          <Property Name="UserAnwser1" Type="String" MaxLength="500" FixedLength="false" Unicode="true"
-                    Nullable="false" />
+          <Property Name="TempData" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TemplateName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NodeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NodeID" Type="Int32" />
+          <Property Name="TokenID" Type="Int32" />
+          <Property Name="ProcessInstanceID" Type="Int32" />
+          <Property Name="WorkflowName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="UserFunction">
-          <Key>
-            <PropertyRef Name="SysNo" />
-          </Key>
-          <Property Name="SysNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserSysNo" Type="Int32" Nullable="false" />
-          <Property Name="FunctionSysNo" Type="Int32" Nullable="false" />
-          <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="InUserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="InUserSysNo" Type="Int32" Nullable="false" />
-          <Property Name="EditDate" Type="DateTime" Precision="3" />
-          <Property Name="EditUserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="EditUserSysNo" Type="Int32" />
         </EntityType>
         <EntityType Name="UserTeam">
           <Key>
@@ -310,51 +202,34 @@
           <Property Name="InUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="WorkCategory">
+        <EntityType Name="WorkflowTeamRelation">
           <Key>
             <PropertyRef Name="SysNo" />
           </Key>
-          <Property Name="SysNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true"
-                    Nullable="false" />
+          <Property Name="SysNo" Type="Int32" Nullable="false" />
+          <Property Name="WorkflowName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeamSysNo" Type="Int32" Nullable="false" />
+          <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <Property Name="EditUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="ExamSystemEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Function" EntityType="Self.Function" />
           <EntitySet Name="Role" EntityType="Self.Role" />
-          <EntitySet Name="RoleFunction" EntityType="Self.RoleFunction" />
           <EntitySet Name="RoleUser" EntityType="Self.RoleUser" />
           <EntitySet Name="StandardAnwser" EntityType="Self.StandardAnwser" />
           <EntitySet Name="Team" EntityType="Self.Team" />
           <EntitySet Name="User" EntityType="Self.User" />
           <EntitySet Name="UserAnwser" EntityType="Self.UserAnwser" />
-          <EntitySet Name="UserFunction" EntityType="Self.UserFunction" />
           <EntitySet Name="UserTeam" EntityType="Self.UserTeam" />
-          <EntitySet Name="WorkCategory" EntityType="Self.WorkCategory" />
+          <EntitySet Name="WorkflowTeamRelation" EntityType="Self.WorkflowTeamRelation" />
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ExamSystemModelStoreContainer"
-                                CdmEntityContainer="ExamSystemEntities">
-          <EntitySetMapping Name="Function">
-            <EntityTypeMapping TypeName="ExamSystemModel.Function">
-              <MappingFragment StoreEntitySet="Function">
-                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
-                <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
-                <ScalarProperty Name="FunctionKey" ColumnName="FunctionKey" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="InDate" ColumnName="InDate" />
-                <ScalarProperty Name="InUserName" ColumnName="InUserName" />
-                <ScalarProperty Name="InUserSysNo" ColumnName="InUserSysNo" />
-                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="EditUserName" ColumnName="EditUserName" />
-                <ScalarProperty Name="EditUserSysNo" ColumnName="EditUserSysNo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="ExamSystemModelStoreContainer" CdmEntityContainer="ExamSystemEntities">
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="ExamSystemModel.Role">
               <MappingFragment StoreEntitySet="Role">
@@ -362,26 +237,9 @@
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="InDate" ColumnName="InDate" />
-                <ScalarProperty Name="InUserName" ColumnName="InUserName" />
-                <ScalarProperty Name="InUserSysNo" ColumnName="InUserSysNo" />
+                <ScalarProperty Name="InUse" ColumnName="InUse" />
                 <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="EditUserName" ColumnName="EditUserName" />
-                <ScalarProperty Name="EditUserSysNo" ColumnName="EditUserSysNo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RoleFunction">
-            <EntityTypeMapping TypeName="ExamSystemModel.RoleFunction">
-              <MappingFragment StoreEntitySet="RoleFunction">
-                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
-                <ScalarProperty Name="RoleSysNo" ColumnName="RoleSysNo" />
-                <ScalarProperty Name="FunctionSysNo" ColumnName="FunctionSysNo" />
-                <ScalarProperty Name="InDate" ColumnName="InDate" />
-                <ScalarProperty Name="InUserName" ColumnName="InUserName" />
-                <ScalarProperty Name="InUserSysNo" ColumnName="InUserSysNo" />
-                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="EditUserName" ColumnName="EditUserName" />
-                <ScalarProperty Name="EditUserSysNo" ColumnName="EditUserSysNo" />
+                <ScalarProperty Name="EditUser" ColumnName="EditUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -393,11 +251,9 @@
                 <ScalarProperty Name="UserSysNo" ColumnName="UserSysNo" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="InDate" ColumnName="InDate" />
-                <ScalarProperty Name="InUserName" ColumnName="InUserName" />
-                <ScalarProperty Name="InUserSysNo" ColumnName="InUserSysNo" />
+                <ScalarProperty Name="InUser" ColumnName="InUser" />
                 <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="EditUserName" ColumnName="EditUserName" />
-                <ScalarProperty Name="EditUserSysNo" ColumnName="EditUserSysNo" />
+                <ScalarProperty Name="EditUse" ColumnName="EditUse" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -405,9 +261,7 @@
             <EntityTypeMapping TypeName="ExamSystemModel.StandardAnwser">
               <MappingFragment StoreEntitySet="StandardAnwser">
                 <ScalarProperty Name="SysNo" ColumnName="SysNo" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Anwser" ColumnName="Anwser" />
-                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="TemplateData" ColumnName="TemplateData" />
                 <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
                 <ScalarProperty Name="InDate" ColumnName="InDate" />
                 <ScalarProperty Name="InUser" ColumnName="InUser" />
@@ -433,14 +287,11 @@
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserAuthCode" ColumnName="UserAuthCode" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="InDate" ColumnName="InDate" />
-                <ScalarProperty Name="InUserName" ColumnName="InUserName" />
-                <ScalarProperty Name="InUserSysNo" ColumnName="InUserSysNo" />
+                <ScalarProperty Name="InUser" ColumnName="InUser" />
                 <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="EditUserName" ColumnName="EditUserName" />
-                <ScalarProperty Name="EditUserSysNo" ColumnName="EditUserSysNo" />
+                <ScalarProperty Name="EditUser" ColumnName="EditUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -449,26 +300,14 @@
               <MappingFragment StoreEntitySet="UserAnwser">
                 <ScalarProperty Name="SysNo" ColumnName="SysNo" />
                 <ScalarProperty Name="UserSysNo" ColumnName="UserSysNo" />
-                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="TempData" ColumnName="TempData" />
                 <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="WorkFlowInstanceID" ColumnName="WorkFlowInstanceID" />
-                <ScalarProperty Name="UserAnwser1" ColumnName="UserAnwser" />
+                <ScalarProperty Name="NodeName" ColumnName="NodeName" />
+                <ScalarProperty Name="NodeID" ColumnName="NodeID" />
+                <ScalarProperty Name="TokenID" ColumnName="TokenID" />
+                <ScalarProperty Name="ProcessInstanceID" ColumnName="ProcessInstanceID" />
+                <ScalarProperty Name="WorkflowName" ColumnName="WorkflowName" />
                 <ScalarProperty Name="InDate" ColumnName="InDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserFunction">
-            <EntityTypeMapping TypeName="ExamSystemModel.UserFunction">
-              <MappingFragment StoreEntitySet="UserFunction">
-                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
-                <ScalarProperty Name="UserSysNo" ColumnName="UserSysNo" />
-                <ScalarProperty Name="FunctionSysNo" ColumnName="FunctionSysNo" />
-                <ScalarProperty Name="InDate" ColumnName="InDate" />
-                <ScalarProperty Name="InUserName" ColumnName="InUserName" />
-                <ScalarProperty Name="InUserSysNo" ColumnName="InUserSysNo" />
-                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="EditUserName" ColumnName="EditUserName" />
-                <ScalarProperty Name="EditUserSysNo" ColumnName="EditUserSysNo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -483,11 +322,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="WorkCategory">
-            <EntityTypeMapping TypeName="ExamSystemModel.WorkCategory">
-              <MappingFragment StoreEntitySet="WorkCategory">
+          <EntitySetMapping Name="WorkflowTeamRelation">
+            <EntityTypeMapping TypeName="ExamSystemModel.WorkflowTeamRelation">
+              <MappingFragment StoreEntitySet="WorkflowTeamRelation">
                 <ScalarProperty Name="SysNo" ColumnName="SysNo" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="WorkflowName" ColumnName="WorkflowName" />
+                <ScalarProperty Name="TeamSysNo" ColumnName="TeamSysNo" />
+                <ScalarProperty Name="InDate" ColumnName="InDate" />
+                <ScalarProperty Name="InUser" ColumnName="InUser" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="EditUser" ColumnName="EditUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

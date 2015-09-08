@@ -15,7 +15,7 @@ namespace Exam.Repository
     
     public partial class Team : EntityBase<int>
     {
-        public override int SysNo { get; set; }
+        public int SysNo { get; set; }
         public string TeamName { get; set; }
         public System.DateTime InDate { get; set; }
         public string InUser { get; set; }

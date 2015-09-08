@@ -15,17 +15,14 @@ namespace Exam.Repository
     
     public partial class User : EntityBase<int>
     {
-        public override int SysNo { get; set; }
+        public int SysNo { get; set; }
         public string UserID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public string UserAuthCode { get; set; }
         public int Status { get; set; }
         public System.DateTime InDate { get; set; }
-        public string InUserName { get; set; }
-        public int InUserSysNo { get; set; }
+        public string InUser { get; set; }
         public Nullable<System.DateTime> EditDate { get; set; }
-        public string EditUserName { get; set; }
-        public Nullable<int> EditUserSysNo { get; set; }
+        public string EditUser { get; set; }
     }
 }

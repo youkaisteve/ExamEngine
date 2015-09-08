@@ -51,7 +51,7 @@ define(["angularAMD", "app.config", "root_scope"], function (angularAMD, config,
             redirectTo: config.start
         });
         //
-        $httpProvider.defaults.withCredentials = true;
+        $httpProvider.defaults.withCredentials = false;
         //$httpProvider.interceptors.push(["$q", function ($q) {
         //    return {
         //        request: function (cfg) {

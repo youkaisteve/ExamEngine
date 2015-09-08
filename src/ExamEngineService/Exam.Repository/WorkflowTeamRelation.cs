@@ -13,16 +13,14 @@ namespace Exam.Repository
     using System;
     using System.Collections.Generic;
     
-    public partial class UserFunction : EntityBase<int>
+    public partial class WorkflowTeamRelation : EntityBase<int>
     {
-        public override int SysNo { get; set; }
-        public int UserSysNo { get; set; }
-        public int FunctionSysNo { get; set; }
+        public int SysNo { get; set; }
+        public string WorkflowName { get; set; }
+        public int TeamSysNo { get; set; }
         public System.DateTime InDate { get; set; }
-        public string InUserName { get; set; }
-        public int InUserSysNo { get; set; }
+        public string InUser { get; set; }
         public Nullable<System.DateTime> EditDate { get; set; }
-        public string EditUserName { get; set; }
-        public Nullable<int> EditUserSysNo { get; set; }
+        public string EditUser { get; set; }
     }
 }

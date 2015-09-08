@@ -15,14 +15,12 @@ namespace Exam.Repository
     
     public partial class Role : EntityBase<int>
     {
-        public override int SysNo { get; set; }
+        public int SysNo { get; set; }
         public string RoleName { get; set; }
         public int Status { get; set; }
         public System.DateTime InDate { get; set; }
-        public string InUserName { get; set; }
-        public int InUserSysNo { get; set; }
+        public string InUse { get; set; }
         public Nullable<System.DateTime> EditDate { get; set; }
-        public string EditUserName { get; set; }
-        public Nullable<int> EditUserSysNo { get; set; }
+        public string EditUser { get; set; }
     }
 }
