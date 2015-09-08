@@ -62,6 +62,8 @@
     <Content Include="forms\社会保险参保人员增加表.html" />
     <Content Include="forms\社会保险个人信息登记表.html" />
     <Content Include="forms\医疗保险费单位缴费月报表.html" />
+    <Content Include="img\logo.png" />
+    <Content Include="favicon.ico" />
     <Content Include="index.html" />
     <Content Include="js\app.config.js" />
     <Content Include="js\app.js" />
@@ -395,6 +397,8 @@
     <Content Include="js\lib\ngStorage\LICENSE" />
     <Content Include="js\lib\ngStorage\package.json" />
     <Content Include="js\lib\ngStorage\README.md" />
+    <Content Include="less\app.less" />
+    <Content Include="log" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

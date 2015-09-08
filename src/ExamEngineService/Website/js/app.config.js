@@ -6,6 +6,7 @@
  */
 define({
     appName: "app"
+    , debug: true
     , appDeps: ["ngRoute", /*"ngCookies",*/"ngStorage"]
     , controllerPath: "controllers/"
     , templatePath: "views/"
