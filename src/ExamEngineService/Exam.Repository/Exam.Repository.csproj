@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExamAdoNetWrapper.cs" />
+    <Compile Include="ExamEntitiesExtend.cs" />
     <Compile Include="ExamSystem.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -62,11 +64,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ExamSystem.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Function.cs">
-      <DependentUpon>ExamSystem.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ExamAdoNetWrapper.cs" />
-    <Compile Include="ExamEntitiesExtend.cs" />
     <Compile Include="ExamUnitOfWorkContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repo\ExamRepositoryBase.cs" />
@@ -74,9 +71,6 @@
     <Compile Include="Repo\TeamRepository.cs" />
     <Compile Include="Repo\UserTeamRepository.cs" />
     <Compile Include="Role.cs">
-      <DependentUpon>ExamSystem.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RoleFunction.cs">
       <DependentUpon>ExamSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="RoleUser.cs">
@@ -94,13 +88,10 @@
     <Compile Include="UserAnwser.cs">
       <DependentUpon>ExamSystem.tt</DependentUpon>
     </Compile>
-    <Compile Include="UserFunction.cs">
-      <DependentUpon>ExamSystem.tt</DependentUpon>
-    </Compile>
     <Compile Include="UserTeam.cs">
       <DependentUpon>ExamSystem.tt</DependentUpon>
     </Compile>
-    <Compile Include="WorkCategory.cs">
+    <Compile Include="WorkflowTeamRelation.cs">
       <DependentUpon>ExamSystem.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -108,13 +99,11 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="ExamSystem.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ExamSystem.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="ExamSystem.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ExamSystem.edmx</DependentUpon>
