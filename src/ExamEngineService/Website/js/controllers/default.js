@@ -12,7 +12,9 @@ define(["app"], function (app) {
 
 
 
-        $scope.path = "partials/default_student.html";
+        //$scope.path = "partials/default_student.html";
+        $scope.path = "partials/default_teacher.html";
+        $scope.fixedFooter=true;
 
         $scope.tasks = [1];
 
