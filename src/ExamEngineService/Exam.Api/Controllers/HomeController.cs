@@ -17,7 +17,7 @@ namespace Exam.Api.Controllers
 
         [HttpPost]
         //[BaseAuthoriize]
-        [EnableCors("*", "*", "*")]
+        [EnableCors("localhost", "*", "*")]
         public ApiResponse Handler(ApiRequestData data)
         {
             return ApiOk();
