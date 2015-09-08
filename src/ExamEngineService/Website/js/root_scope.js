@@ -12,7 +12,7 @@ define(["app.config"], function (config) {
         function ($rootScope, $http, $sessionStorage) {
 
             $rootScope.sessionStorage = $sessionStorage;
-            $rootScope._TOKEN_KEY = "token";
+            $rootScope._AUTH_KEY = "auth";
 
             function toLogin() {
                 //$rootScope._goto("#/login");
@@ -27,29 +27,30 @@ define(["app.config"], function (config) {
                 }
             };
 
-            $rootScope._token = function (token) {
+            $rootScope._auth = function (auth) {
 
-                if (token) {
-                    $sessionStorage[$rootScope._TOKEN_KEY] = token;
+                if (auth) {
+                    $sessionStorage[$rootScope._AUTH_KEY] = auth;
                 }
                 else {
-                    return $sessionStorage[$rootScope._TOKEN_KEY];
+                    return $sessionStorage[$rootScope._AUTH_KEY];
                 }
             };
 
             $rootScope.$on("$routeChangeStart", function (next, current) {
                 //if not authentication then location to login
-                if (!$rootScope._token()) {
+                if (!$rootScope._auth()) {
                     toLogin();
                 }
             });
 
             //API method
             $rootScope._request = function (action, data) {
-                return $http.post(config.api, {
-                    Action: action,
-                    Params: data
-                }).success(function (res) {
+                return $http.post(config.api, data,{
+					headers :{
+						action:action
+					}
+				}).success(function (res) {
                     //if res.Code==401 then location to login
                     return res;
                 });

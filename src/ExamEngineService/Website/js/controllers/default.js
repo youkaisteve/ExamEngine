@@ -17,7 +17,7 @@ define(["app"], function (app) {
         $scope.tasks = [1];
 
         $scope._request("Tasks",{
-            UserID:"007"
+            UserId:"007"
         }).success(function(res){
 
         });

@@ -12,6 +12,8 @@ define(["app"], function (app) {
             return $scope._request("Login", model).success(function (res) {
                 //location to default page when login success
                 if(res.Code==0){
+                    //TODO save auth info when login success
+                    //auth info contain Role,UserId
                     $scope._goto("/default");
                 }
                 else{
