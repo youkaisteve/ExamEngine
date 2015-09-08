@@ -6,6 +6,7 @@ namespace Exam.Api
     {
         public static void Register(HttpConfiguration config)
         {
+            config.EnableCors();
             config.Routes.MapHttpRoute(
                 "DefaultApi", "api/{controller}/{action}/{id}", new {id = RouteParameter.Optional});
         }
