@@ -26,7 +26,7 @@ namespace Exam.Service.Implement
         public dynamic GetUserTasks(UserTaskQueryFilter filter)
         {
             var proxy = new WorkflowProxy();
-            QueryTaskView queryTasks = proxy.GetUnProcessTaskByUser(PublicFunc.GetConfigByKey_AppSettings("mock_user"),
+            QueryTaskView queryTasks = proxy.GetUnProcessTaskByUser(filter.UserId ?? PublicFunc.GetConfigByKey_AppSettings("mock_user"),
                 filter.PageInfo.PageIndex,
                 filter.PageInfo.PageSize);
 

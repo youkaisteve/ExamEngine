@@ -5,6 +5,7 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
 using Exam.Api.Framework;
+using Exam.Api.Cors;
 
 namespace Exam.Api
 {
@@ -25,6 +26,7 @@ namespace Exam.Api
             GlobalConfiguration.Configuration.Formatters.Clear();
             GlobalConfiguration.Configuration.Formatters.Add(new ApiJsonMediaTypeFormatter());
 
+            //GlobalConfiguration.Configuration.MessageHandlers.Add(new CorsMessageHandler());
             GlobalConfiguration.Configuration.MessageHandlers.Add(new RequestTransHandler());
 
             HttpConfiguration config = GlobalConfiguration.Configuration;

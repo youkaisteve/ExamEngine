@@ -16,6 +16,12 @@ namespace Exam.Api.Controllers
         [HttpPost]
         public ApiResponse GetUserTasks([FromBody] UserTaskQueryFilter filter)
         {
+            filter.PageInfo = new QueryPageInfo()
+            {
+                PageIndex = 0,
+                PageSize = 10000
+            };
+
             dynamic result = taskService.GetUserTasks(filter);
 
             return ApiOk(result);

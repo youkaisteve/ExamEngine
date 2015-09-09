@@ -4,6 +4,7 @@ using Exam.Api.Filters;
 using Exam.Api.Framework;
 using Exam.Api.Models;
 using System.Web.Http.Cors;
+using Exam.Api.Cors;
 
 namespace Exam.Api.Controllers
 {
