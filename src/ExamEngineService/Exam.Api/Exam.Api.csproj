@@ -169,8 +169,6 @@
     <Compile Include="Configuration\API_CONFIG\IApiConfiguration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
-    <Compile Include="Cors\CorsAttribute.cs" />
-    <Compile Include="Cors\CorsMessageHandler.cs" />
     <Compile Include="Filters\LoginActionFilter.cs" />
     <Compile Include="Filters\BaseExceptionFilter.cs" />
     <Compile Include="Framework\ExamHttpActionSelector.cs" />
@@ -213,6 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Cors\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -5,7 +5,6 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
 using Exam.Api.Framework;
-using Exam.Api.Cors;
 
 namespace Exam.Api
 {

@@ -4,116 +4,116 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ExamSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Role">
-          <Key>
-            <PropertyRef Name="SysNo" />
-          </Key>
-          <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Status" Type="int" Nullable="false" />
-          <Property Name="InDate" Type="datetime" Nullable="false" />
-          <Property Name="InUse" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="EditDate" Type="datetime" />
-          <Property Name="EditUser" Type="nvarchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="RoleUser">
-          <Key>
-            <PropertyRef Name="SysNo" />
-          </Key>
-          <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RoleSysNo" Type="int" Nullable="false" />
-          <Property Name="UserSysNo" Type="int" Nullable="false" />
-          <Property Name="Status" Type="int" Nullable="false" />
-          <Property Name="InDate" Type="datetime" Nullable="false" />
-          <Property Name="InUser" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="EditDate" Type="datetime" />
-          <Property Name="EditUse" Type="nvarchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="StandardAnwser">
-          <Key>
-            <PropertyRef Name="SysNo" />
-          </Key>
-          <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TemplateData" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="TemplateName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="InDate" Type="datetime" Nullable="false" />
-          <Property Name="InUser" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Team">
-          <Key>
-            <PropertyRef Name="SysNo" />
-          </Key>
-          <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TeamName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="InDate" Type="datetime" Nullable="false" />
-          <Property Name="InUser" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="EditDate" Type="datetime" />
-          <Property Name="EditUser" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="SysNo" />
-          </Key>
-          <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserID" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Status" Type="int" Nullable="false" />
-          <Property Name="InDate" Type="datetime" Nullable="false" />
-          <Property Name="InUser" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="EditDate" Type="datetime" />
-          <Property Name="EditUser" Type="nvarchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="UserAnwser">
-          <Key>
-            <PropertyRef Name="SysNo" />
-          </Key>
-          <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserSysNo" Type="int" Nullable="false" />
-          <Property Name="TempData" Type="nvarchar" MaxLength="4000" Nullable="false" />
-          <Property Name="TemplateName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="NodeName" Type="nvarchar" MaxLength="100" />
-          <Property Name="NodeID" Type="int" />
-          <Property Name="TokenID" Type="int" />
-          <Property Name="ProcessInstanceID" Type="int" />
-          <Property Name="WorkflowName" Type="nvarchar" MaxLength="100" />
-          <Property Name="InDate" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UserTeam">
-          <Key>
-            <PropertyRef Name="SysNo" />
-          </Key>
-          <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserSysNo" Type="int" Nullable="false" />
-          <Property Name="TeamSysNo" Type="int" Nullable="false" />
-          <Property Name="InUser" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="InDate" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="WorkflowTeamRelation">
-          <Key>
-            <PropertyRef Name="SysNo" />
-          </Key>
-          <Property Name="SysNo" Type="int" Nullable="false" />
-          <Property Name="TeamSysNo" Type="int" Nullable="false" />
-          <Property Name="InDate" Type="datetime" Nullable="false" />
-          <Property Name="InUser" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="EditDate" Type="datetime" />
-          <Property Name="EditUser" Type="nvarchar" MaxLength="50" />
-          <Property Name="ProcessName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="NodeName" Type="nvarchar" MaxLength="100" Nullable="false" />
-        </EntityType>
-        <EntityContainer Name="ExamSystemModelStoreContainer">
-          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RoleUser" EntityType="Self.RoleUser" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="StandardAnwser" EntityType="Self.StandardAnwser" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserAnwser" EntityType="Self.UserAnwser" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserTeam" EntityType="Self.UserTeam" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="WorkflowTeamRelation" EntityType="Self.WorkflowTeamRelation" Schema="dbo" store:Type="Tables" />
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="ExamSystemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ExamSystemModelStoreContainer">
+    <EntitySet Name="Role" EntityType="ExamSystemModel.Store.Role" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoleUser" EntityType="ExamSystemModel.Store.RoleUser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StandardAnwser" EntityType="ExamSystemModel.Store.StandardAnwser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Team" EntityType="ExamSystemModel.Store.Team" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="ExamSystemModel.Store.User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserAnwser" EntityType="ExamSystemModel.Store.UserAnwser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserTeam" EntityType="ExamSystemModel.Store.UserTeam" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WorkflowTeamRelation" EntityType="ExamSystemModel.Store.WorkflowTeamRelation" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="SysNo" />
+    </Key>
+    <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="InDate" Type="datetime" Nullable="false" />
+    <Property Name="InUse" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="EditDate" Type="datetime" Nullable="true" />
+    <Property Name="EditUser" Type="nvarchar" Nullable="true" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="RoleUser">
+    <Key>
+      <PropertyRef Name="SysNo" />
+    </Key>
+    <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleSysNo" Type="int" Nullable="false" />
+    <Property Name="UserSysNo" Type="int" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="InDate" Type="datetime" Nullable="false" />
+    <Property Name="InUser" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="EditDate" Type="datetime" Nullable="true" />
+    <Property Name="EditUse" Type="nvarchar" Nullable="true" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="StandardAnwser">
+    <Key>
+      <PropertyRef Name="SysNo" />
+    </Key>
+    <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TemplateData" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="TemplateName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="InDate" Type="datetime" Nullable="false" />
+    <Property Name="InUser" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Team">
+    <Key>
+      <PropertyRef Name="SysNo" />
+    </Key>
+    <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="InDate" Type="datetime" Nullable="false" />
+    <Property Name="InUser" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="EditDate" Type="datetime" Nullable="true" />
+    <Property Name="EditUser" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="SysNo" />
+    </Key>
+    <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="InDate" Type="datetime" Nullable="false" />
+    <Property Name="InUser" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="EditDate" Type="datetime" Nullable="true" />
+    <Property Name="EditUser" Type="nvarchar" Nullable="true" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="UserAnwser">
+    <Key>
+      <PropertyRef Name="SysNo" />
+    </Key>
+    <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserSysNo" Type="int" Nullable="false" />
+    <Property Name="TempData" Type="nvarchar" Nullable="false" MaxLength="4000" />
+    <Property Name="TemplateName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="NodeName" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="NodeID" Type="int" Nullable="true" />
+    <Property Name="TokenID" Type="int" Nullable="true" />
+    <Property Name="ProcessInstanceID" Type="int" Nullable="true" />
+    <Property Name="WorkflowName" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="InDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserTeam">
+    <Key>
+      <PropertyRef Name="SysNo" />
+    </Key>
+    <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserSysNo" Type="int" Nullable="false" />
+    <Property Name="TeamSysNo" Type="int" Nullable="false" />
+    <Property Name="InUser" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="InDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WorkflowTeamRelation">
+    <Key>
+      <PropertyRef Name="SysNo" />
+    </Key>
+    <Property Name="SysNo" Type="int" Nullable="false" />
+    <Property Name="TeamSysNo" Type="int" Nullable="false" />
+    <Property Name="InDate" Type="datetime" Nullable="false" />
+    <Property Name="InUser" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="EditDate" Type="datetime" Nullable="true" />
+    <Property Name="EditUser" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="ProcessName" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="NodeName" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ExamSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -326,14 +326,14 @@
     <EntitySetMapping Name="WorkflowTeamRelation">
       <EntityTypeMapping TypeName="IsTypeOf(ExamSystemModel.WorkflowTeamRelation)">
         <MappingFragment StoreEntitySet="WorkflowTeamRelation">
-          <ScalarProperty Name="NodeName" ColumnName="NodeName" />
-                <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
-                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+          <ScalarProperty Name="SysNo" ColumnName="SysNo" />
           <ScalarProperty Name="TeamSysNo" ColumnName="TeamSysNo" />
           <ScalarProperty Name="InDate" ColumnName="InDate" />
           <ScalarProperty Name="InUser" ColumnName="InUser" />
           <ScalarProperty Name="EditDate" ColumnName="EditDate" />
           <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+          <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
+          <ScalarProperty Name="NodeName" ColumnName="NodeName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
