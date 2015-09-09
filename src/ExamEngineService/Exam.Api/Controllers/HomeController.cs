@@ -16,6 +16,12 @@ namespace Exam.Api.Controllers
         }
 
         [HttpPost]
+        public ApiResponse ImportUserTeam([FromBody] object file)
+        {
+            return ApiOk();
+        }
+
+        [HttpPost]
         public ApiResponse Handler(ApiRequestData data)
         {
             return ApiOk();

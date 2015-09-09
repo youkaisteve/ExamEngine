@@ -9,11 +9,14 @@ namespace Exam.Api.Filters
     {
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
-            User user = actionExecutedContext.Response.Content.ReadAsAsync<User>().Result;
-            if (user != null)
+            if (actionExecutedContext.Response != null)
             {
-                actionExecutedContext.Response.Content.Headers.Add("user-authorize",
-                    UserHelper.CreateUserToken(user.UserName));
+                User user = actionExecutedContext.Response.Content.ReadAsAsync<User>().Result;
+                if (user != null)
+                {
+                    actionExecutedContext.Response.Content.Headers.Add("user-authorize",
+                        UserHelper.CreateUserToken(user.UserName));
+                }
             }
         }
     }
