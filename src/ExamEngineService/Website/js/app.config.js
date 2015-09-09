@@ -38,4 +38,9 @@ define({
         , templateUrl: "login.html"
     }]
     , formDependence: {}
+    ,roleMappding:{
+        "0":"partials/default_student.html"
+        ,"1":"partials/default_teacher.html"
+
+    }
 });

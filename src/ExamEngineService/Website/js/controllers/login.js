@@ -17,7 +17,7 @@ define(["app"], function (app) {
                     $scope._goto("/default");
                 }
                 else{
-                    $window.alert(res.Message);
+                    $window.alert(res.ErrorMessage);
                 }
             });
         }
