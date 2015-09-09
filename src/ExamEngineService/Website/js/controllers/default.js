@@ -11,8 +11,8 @@ define(["app"], function (app) {
         //TODO location target page by role
 
 
-        $scope.path = "partials/default_student.html";
-        //$scope.path = "partials/default_teacher.html";
+        //$scope.path = "partials/default_student.html";
+        $scope.path = "partials/default_teacher.html";
         $scope.fixedFooter = true;
 
         $scope.tasks = [];

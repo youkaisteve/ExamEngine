@@ -21,6 +21,7 @@ require.config({
 
         //directive
         , "table-form": "directive/table-form/index"
+        , "team-select": "directive/team-select/index"
     }
     , shim: {
         "angular": ["jquery"]

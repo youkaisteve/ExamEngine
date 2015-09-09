@@ -4,10 +4,13 @@
  * email:mahai_1986@126.com
  *
  */
-define(["app"], function (app) {
+define(["app", "team-select"], function (app) {
 
     app.controller("request_workflow", ["$scope", function ($scope) {
-
+        $scope.teamSource = [{
+            text: "Team1"
+            , value: 1
+        }];
     }]);
 
 });

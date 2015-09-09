@@ -13,13 +13,16 @@
                     </select>
                 </div>
             </form>
+            <div>
+                <team-select ng-model="Model.team1" source="teamSource"></team-select>
+            </div>
             <ul class="list-group">
-                <li class="list-group-item">流程节点<a href="javascript:void(0)" class="pull-right"><i class="fa fa-plus"></i>  添加组</a></li>
-                <li class="list-group-item">流程节点<a href="javascript:void(0)" class="pull-right"><i class="fa fa-plus"></i>  添加组</a></li>
-                <li class="list-group-item">流程节点<a href="javascript:void(0)" class="pull-right"><i class="fa fa-plus"></i>  添加组</a></li>
-                <li class="list-group-item">流程节点<a href="javascript:void(0)" class="pull-right"><i class="fa fa-plus"></i>  添加组</a></li>
-                <li class="list-group-item">流程节点<a href="javascript:void(0)" class="pull-right"><i class="fa fa-plus"></i>  添加组</a></li>
-                <li class="list-group-item">流程节点<a href="javascript:void(0)" class="pull-right"><i class="fa fa-plus"></i>  添加组</a></li>
+                <li class="list-group-item" style="line-height: 30px;">流程节点 <div class="pull-right"><team-select ng-model="Model.team1" source="teamSource"></team-select></div></li>
+                <li class="list-group-item" style="line-height: 30px;">流程节点 <div class="pull-right"><team-select ng-model="Model.team2" source="teamSource"></team-select></div></li>
+                <li class="list-group-item" style="line-height: 30px;">流程节点 <div class="pull-right"><team-select ng-model="Model.team3" source="teamSource"></team-select></div></li>
+                <li class="list-group-item" style="line-height: 30px;">流程节点 <div class="pull-right"><team-select ng-model="Model.team4" source="teamSource"></team-select></div></li>
+                <li class="list-group-item" style="line-height: 30px;">流程节点 <div class="pull-right"><team-select ng-model="Model.team5" source="teamSource"></team-select></div></li>
+                <li class="list-group-item" style="line-height: 30px;">流程节点 <div class="pull-right"><team-select ng-model="Model.team6" source="teamSource"></team-select></div></li>
             </ul>
         </div>
         <div class="panel-footer text-right">
