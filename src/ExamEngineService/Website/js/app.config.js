@@ -9,8 +9,8 @@ define({
     , appDeps: ["ngRoute", /*"ngCookies",*/"ngStorage"]
     , controllerPath: "controllers/"
     , templatePath: "views/"
-    //, api: "http://172.16.70.11:8083/api/Home/Handler"
-    , api: "http://localhost:1567//api/Home/Handler"
+    , api: "http://localhost:8083/api/Home/Handler"
+    //, api: "http://localhost:1567/api/Home/Handler"
     , start: "/default"
     , route: [{
         url: "/default"
@@ -41,6 +41,5 @@ define({
     ,roleMappding:{
         "0":"partials/default_student.html"
         ,"1":"partials/default_teacher.html"
-
     }
 });
