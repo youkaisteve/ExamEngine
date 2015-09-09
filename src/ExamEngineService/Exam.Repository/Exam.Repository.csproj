@@ -67,6 +67,7 @@
     <Compile Include="ExamUnitOfWorkContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repo\ExamRepositoryBase.cs" />
+    <Compile Include="Repo\RoleRepository.cs" />
     <Compile Include="Repo\UserRepository.cs" />
     <Compile Include="Repo\TeamRepository.cs" />
     <Compile Include="Repo\UserTeamRepository.cs" />
