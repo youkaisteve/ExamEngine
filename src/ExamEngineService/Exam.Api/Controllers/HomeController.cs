@@ -7,7 +7,6 @@ using System.Web.Http.Cors;
 
 namespace Exam.Api.Controllers
 {
-    [EnableCors(origins: "http://localhost:57767", headers: "*", methods: "*")]
     public class HomeController : BaseApiController
     {
         [HttpGet]
