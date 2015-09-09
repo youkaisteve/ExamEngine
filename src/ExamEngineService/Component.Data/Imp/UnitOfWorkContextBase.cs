@@ -64,10 +64,10 @@ namespace Component.Data
 
         public void Dispose()
         {
-        //    if (!IsCommited)
-        //    {
-        //        Submit();
-        //    }
+            if (!IsCommited)
+            {
+                Submit();
+            }
             Context.Dispose();
         }
 

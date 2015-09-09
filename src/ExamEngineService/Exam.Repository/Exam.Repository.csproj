@@ -121,6 +121,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ExamSystem.edmx.sql" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Component.Data\Component.Data.csproj">
       <Project>{31049da2-8042-4617-8d93-aeca6dabc5a9}</Project>
       <Name>Component.Data</Name>
@@ -129,9 +132,6 @@
       <Project>{1ae6dcdc-f8a3-400b-a3f6-124caf55b140}</Project>
       <Name>Component.Tools</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="ExamSystem.edmx.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

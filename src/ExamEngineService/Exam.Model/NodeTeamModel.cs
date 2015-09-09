@@ -8,8 +8,7 @@ namespace Exam.Model
 {
     public class NodeTeamModel
     {
-        public string ProcessName { get; set; }
-        public string UserId { get; set; }
-        public string UserName { get; set; }
+        public int TeamSysNo { get; set; }
+        public string NodeName { get; set; }
     }
 }

@@ -4,11 +4,6 @@
 		"Controller":"Account",
 		"Action":"Login"
 	},
-		{
-		"Name":"Login1",
-		"Controller":"Account1",
-		"Action":"Login1"
-	},
 	{
 		"Name":"MyTeamUsers",
 		"Controller":"Account",
@@ -18,5 +13,15 @@
 		"Name":"Tasks",
 		"Controller":"Task",
 		"Action":"GetUserTasks"
+	},
+	{
+		"Name":"BeginExam",
+		"Controller":"Task",
+		"Action":"BeginExam"
+	},
+	{
+		"Name":"InitExam",
+		"Controller":"Task",
+		"Action":"InitExam"
 	}
 ]

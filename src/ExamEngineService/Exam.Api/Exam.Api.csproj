@@ -60,9 +60,6 @@
     </Reference>
     <Reference Include="Microsoft.Build.Tasks.v4.0" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MvcPager">
-      <HintPath>..\Reference\MvcPager.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -142,12 +139,6 @@
       <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="TCSCD.Component.Data">
-      <HintPath>..\Reference\TCSCD.Component.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="TCSCD.Component.Tools">
-      <HintPath>..\Reference\TCSCD.Component.Tools.dll</HintPath>
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
@@ -198,7 +189,6 @@
     <Content Include="Configurations\API_CONFIG\ApiConfig.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Properties\PublishProfiles\ReleasePO.pubxml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
