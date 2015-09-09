@@ -47,11 +47,13 @@ define(["angularAMD", "app.config", "root_scope"], function (angularAMD, config,
             $routeProvider.when(ele.url,
                 angularAMD.route(configRoute(ele["templateUrl"], ele["controllerUrl"], ele["controller"])));
         }
-        $routeProvider.otherwise({
-            redirectTo: config.start
-        });
+        if (config.start && config.start !== "") {
+            $routeProvider.otherwise({
+                redirectTo: config.start
+            });
+        }
         //
-        $httpProvider.defaults.withCredentials = false;
+        //$httpProvider.defaults.withCredentials = false;
         //$httpProvider.interceptors.push(["$q", function ($q) {
         //    return {
         //        request: function (cfg) {

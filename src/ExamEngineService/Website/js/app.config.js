@@ -33,7 +33,9 @@ define({
     }, {
         url: "/team"
         , templateUrl: "setting_team.html"
+    }, {
+        url: "/login"
+        , templateUrl: "login.html"
     }]
-    , formDependence: {
-    }
+    , formDependence: {}
 });
