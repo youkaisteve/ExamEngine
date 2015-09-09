@@ -14,12 +14,12 @@ define(["app"], function (app) {
                 , source: "="
             }
             , link: function (scope, ele, attrs, ctrl) {
-                scope.selectedText = "请选择组";
+                scope.selectedText = "";
                 function findItem(value) {
                     var i = 0, len = scope.source.length;
                     for (; i < len; i++) {
                         if (scope.source[i].value === value) {
-                            return Object.create(scope.source[i]);
+                            return scope.source[i];
                         }
                     }
                     return null;
@@ -35,26 +35,47 @@ define(["app"], function (app) {
                     return false;
                 };
 
+                var tip = {
+                    text: "请选择组"
+                    , value: -1
+                };
+
+                if (scope.source) {
+                    if (scope.source.length > 0) {
+                        if (scope.source[0].value !== tip.value) {
+                            scope.source.splice(0, 0, tip);
+                        }
+                    }
+                    angular.forEach(scope.source, function (ele) {
+                        ele.selected = false;
+                    });
+                }
+
                 if (scope.selectedValue) {
                     var selected = findItem(scope.selectedValue);
                     if (selected) {
                         scope.selectedText = selected.text;
                     }
                 }
-
-                if (scope.source) {
-                    angular.forEach(scope.source, function (ele) {
-                        ele.selected = false;
-                    });
+                else {
+                    scope.selectedText = tip.text;
+                    scope.selectedValue = tip.value;
                 }
 
                 scope.$watch(function () {
                     return scope.selectedValue;
                 }, function (newValue, oldValue) {
                     if (newValue !== oldValue) {
-                        var item = findItem(newValue);
-                        if (item) {
-                            scope.selectedText = item.text;
+                        var newItem = findItem(newValue);
+                        if (newItem) {
+                            scope.selectedText = newItem.text;
+                            if(newItem.value!==tip.value) {
+                                newItem.selected = true;
+                            }
+                        }
+                        var oldItem = findItem(oldValue);
+                        if (oldItem) {
+                            oldItem.selected = false;
                         }
                     }
                 });
