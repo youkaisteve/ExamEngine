@@ -8,15 +8,16 @@ define(["app"], function (app) {
 
     app.controller("default", ["$scope", "$window", function ($scope, $window) {
 
-        //TODO location target page by role
-
-
+        //location target page by role
+        var user=$scope._auth();
         $scope.path = "partials/default_student.html";
+        if($scope.path.indexOf("teacher")>=0){
+            $scope.fixedFooter = true;
+        }
+
+        //$scope.path = "partials/default_student.html";
         //$scope.path = "partials/default_teacher.html";
-        $scope.fixedFooter = true;
-
         $scope.tasks = [];
-
 
         $scope.getTasks = function () {
             $scope._request("Tasks", {
