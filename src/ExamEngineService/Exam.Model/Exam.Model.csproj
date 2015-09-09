@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BeginExamModel.cs" />
+    <Compile Include="InitExamModel.cs" />
+    <Compile Include="NodeTeamModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryFilters\QueryFilter.cs" />
     <Compile Include="QueryFilters\QueryPageInfo.cs" />

@@ -95,7 +95,6 @@
             <PropertyRef Name="SysNo" />
           </Key>
           <Property Name="SysNo" Type="int" Nullable="false" />
-          <Property Name="WorkflowName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="TeamSysNo" Type="int" Nullable="false" />
           <Property Name="InDate" Type="datetime" Nullable="false" />
           <Property Name="InUser" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -208,7 +207,6 @@
             <PropertyRef Name="SysNo" />
           </Key>
           <Property Name="SysNo" Type="Int32" Nullable="false" />
-          <Property Name="WorkflowName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TeamSysNo" Type="Int32" Nullable="false" />
           <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="InUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -331,7 +329,6 @@
           <ScalarProperty Name="NodeName" ColumnName="NodeName" />
                 <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
                 <ScalarProperty Name="SysNo" ColumnName="SysNo" />
-          <ScalarProperty Name="WorkflowName" ColumnName="WorkflowName" />
           <ScalarProperty Name="TeamSysNo" ColumnName="TeamSysNo" />
           <ScalarProperty Name="InDate" ColumnName="InDate" />
           <ScalarProperty Name="InUser" ColumnName="InUser" />

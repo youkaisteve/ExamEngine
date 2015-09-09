@@ -12,10 +12,4 @@ namespace Exam.Model
         public string UserId { get; set; }
         public string UserName { get; set; }
     }
-
-    public class WorkflowNodeTeam
-    {
-        public string NodeName { get; set; }
-        public int TeamId { get; set; }
-    }
 }

@@ -18,6 +18,7 @@ namespace Exam.Service.Implement
         public TeamRepository teamRepo;
         [Import]
         private UserRepository userRepo;
+
         protected override string ModuleName
         {
             get { return "Task"; }
@@ -70,7 +71,18 @@ namespace Exam.Service.Implement
 
                 processInstance = proxy.CreateProcessInstance(processInstance);
             }
+            //}
         }
-        //}
+
+        /// <summary>
+        /// 初始化流程配置
+        /// </summary>
+        public void InitExam(InitExamModel data)
+        {
+            foreach (var nodeTeam in data.NodeTeams)
+            {
+
+            }
+        }
     }
 }

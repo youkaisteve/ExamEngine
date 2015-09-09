@@ -16,7 +16,6 @@ namespace Exam.Repository
     public partial class WorkflowTeamRelation : EntityBase<int>
     {
         public int SysNo { get; set; }
-        public string WorkflowName { get; set; }
         public int TeamSysNo { get; set; }
         public System.DateTime InDate { get; set; }
         public string InUser { get; set; }
