@@ -36,35 +36,41 @@ namespace Exam.Service.Implement
         public void BeginExam(BeginExamModel data)
         {
             WorkflowProxy proxy = new WorkflowProxy();
+
+            var processName = data.ProcessName;
+            //foreach (string processName in data.ProcessNames)
+            //{
             ProcessInstance processInstance = new ProcessInstance
             {
                 Actor = data.UserId,
                 ActorName = data.UserName,
-                ProcessName = data.ProcessName
+                ProcessName = processName
             };
-            foreach (var workflowNodeTeam in data.NodeTeams)
+
+            //获取下一步的NodeName，用于获取该Node对应的Team和用户列表
+            string nodeName = proxy.GetFirstNodeName(processName);
+
+            //获取node对应的用户
+            var users = teamRepo.GetUsersByNodeName(nodeName);
+
+            var choosedUsers = new List<string>();
+
+            foreach (var user in users)
             {
-                var choosedUsers = new List<string>();
-                //TODO:这里需要返回用户角色
-                var teamUsers = userRepo.GetUserByTeamSysNo(workflowNodeTeam.TeamId);
-                User choosenUser = GetRandomUserId(teamUsers, choosedUsers);
+                //TODO:这里需要返回用户角色(目前默认写成Student)
+                User choosenUser = GetRandomUserId(users, choosedUsers);
                 choosedUsers.Add(choosenUser.UserID);
 
-                TaskUser user = new TaskUser();
-                user.UserId = choosenUser.UserID;
-                user.UserName = choosenUser.UserName;
-                //TODO:获取用户的角色
-                user.UserRole = "Student";
-                processInstance.IncludeActors.Add(user);
+                TaskUser taskUser = new TaskUser();
+                taskUser.UserId = choosenUser.UserID;
+                taskUser.UserName = choosenUser.UserName;
+                //TODO:给用户的角色赋值
+                taskUser.UserRole = "Student";
+                processInstance.IncludeActors.Add(taskUser);
 
                 processInstance = proxy.CreateProcessInstance(processInstance);
-
-                if (processInstance != null && processInstance.InstanceID != string.Empty)
-                {
-                    //TODO:获取流程的RouterName
-                    processInstance.RouterName = "提交审核";
-                }
             }
         }
+        //}
     }
 }

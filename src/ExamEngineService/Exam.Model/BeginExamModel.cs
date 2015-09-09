@@ -11,7 +11,6 @@ namespace Exam.Model
         public string ProcessName { get; set; }
         public string UserId { get; set; }
         public string UserName { get; set; }
-        public List<WorkflowNodeTeam> NodeTeams { get; set; }
     }
 
     public class WorkflowNodeTeam

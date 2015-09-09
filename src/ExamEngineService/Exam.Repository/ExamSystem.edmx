@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ExamSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ExamSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="SysNo" />
@@ -101,6 +101,8 @@
           <Property Name="InUser" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EditDate" Type="datetime" />
           <Property Name="EditUser" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProcessName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="NodeName" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityContainer Name="ExamSystemModelStoreContainer">
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
@@ -112,8 +114,7 @@
           <EntitySet Name="UserTeam" EntityType="Self.UserTeam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkflowTeamRelation" EntityType="Self.WorkflowTeamRelation" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ExamSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -213,6 +214,8 @@
           <Property Name="InUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EditDate" Type="DateTime" Precision="3" />
           <Property Name="EditUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NodeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="ExamSystemEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Role" EntityType="Self.Role" />
@@ -228,116 +231,117 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ExamSystemModelStoreContainer" CdmEntityContainer="ExamSystemEntities">
-          <EntitySetMapping Name="Role">
-            <EntityTypeMapping TypeName="ExamSystemModel.Role">
-              <MappingFragment StoreEntitySet="Role">
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ExamSystemModelStoreContainer" CdmEntityContainer="ExamSystemEntities">
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="IsTypeOf(ExamSystemModel.Role)">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="InDate" ColumnName="InDate" />
+          <ScalarProperty Name="InUse" ColumnName="InUse" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleUser">
+      <EntityTypeMapping TypeName="IsTypeOf(ExamSystemModel.RoleUser)">
+        <MappingFragment StoreEntitySet="RoleUser">
+          <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+          <ScalarProperty Name="RoleSysNo" ColumnName="RoleSysNo" />
+          <ScalarProperty Name="UserSysNo" ColumnName="UserSysNo" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="InDate" ColumnName="InDate" />
+          <ScalarProperty Name="InUser" ColumnName="InUser" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditUse" ColumnName="EditUse" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StandardAnwser">
+      <EntityTypeMapping TypeName="IsTypeOf(ExamSystemModel.StandardAnwser)">
+        <MappingFragment StoreEntitySet="StandardAnwser">
+          <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+          <ScalarProperty Name="TemplateData" ColumnName="TemplateData" />
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+          <ScalarProperty Name="InDate" ColumnName="InDate" />
+          <ScalarProperty Name="InUser" ColumnName="InUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Team">
+      <EntityTypeMapping TypeName="IsTypeOf(ExamSystemModel.Team)">
+        <MappingFragment StoreEntitySet="Team">
+          <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+          <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+          <ScalarProperty Name="InDate" ColumnName="InDate" />
+          <ScalarProperty Name="InUser" ColumnName="InUser" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="IsTypeOf(ExamSystemModel.User)">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="InDate" ColumnName="InDate" />
+          <ScalarProperty Name="InUser" ColumnName="InUser" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAnwser">
+      <EntityTypeMapping TypeName="IsTypeOf(ExamSystemModel.UserAnwser)">
+        <MappingFragment StoreEntitySet="UserAnwser">
+          <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+          <ScalarProperty Name="UserSysNo" ColumnName="UserSysNo" />
+          <ScalarProperty Name="TempData" ColumnName="TempData" />
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+          <ScalarProperty Name="NodeName" ColumnName="NodeName" />
+          <ScalarProperty Name="NodeID" ColumnName="NodeID" />
+          <ScalarProperty Name="TokenID" ColumnName="TokenID" />
+          <ScalarProperty Name="ProcessInstanceID" ColumnName="ProcessInstanceID" />
+          <ScalarProperty Name="WorkflowName" ColumnName="WorkflowName" />
+          <ScalarProperty Name="InDate" ColumnName="InDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTeam">
+      <EntityTypeMapping TypeName="IsTypeOf(ExamSystemModel.UserTeam)">
+        <MappingFragment StoreEntitySet="UserTeam">
+          <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+          <ScalarProperty Name="UserSysNo" ColumnName="UserSysNo" />
+          <ScalarProperty Name="TeamSysNo" ColumnName="TeamSysNo" />
+          <ScalarProperty Name="InUser" ColumnName="InUser" />
+          <ScalarProperty Name="InDate" ColumnName="InDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkflowTeamRelation">
+      <EntityTypeMapping TypeName="IsTypeOf(ExamSystemModel.WorkflowTeamRelation)">
+        <MappingFragment StoreEntitySet="WorkflowTeamRelation">
+          <ScalarProperty Name="NodeName" ColumnName="NodeName" />
+                <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
                 <ScalarProperty Name="SysNo" ColumnName="SysNo" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="InDate" ColumnName="InDate" />
-                <ScalarProperty Name="InUse" ColumnName="InUse" />
-                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="EditUser" ColumnName="EditUser" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RoleUser">
-            <EntityTypeMapping TypeName="ExamSystemModel.RoleUser">
-              <MappingFragment StoreEntitySet="RoleUser">
-                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
-                <ScalarProperty Name="RoleSysNo" ColumnName="RoleSysNo" />
-                <ScalarProperty Name="UserSysNo" ColumnName="UserSysNo" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="InDate" ColumnName="InDate" />
-                <ScalarProperty Name="InUser" ColumnName="InUser" />
-                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="EditUse" ColumnName="EditUse" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StandardAnwser">
-            <EntityTypeMapping TypeName="ExamSystemModel.StandardAnwser">
-              <MappingFragment StoreEntitySet="StandardAnwser">
-                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
-                <ScalarProperty Name="TemplateData" ColumnName="TemplateData" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="InDate" ColumnName="InDate" />
-                <ScalarProperty Name="InUser" ColumnName="InUser" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Team">
-            <EntityTypeMapping TypeName="ExamSystemModel.Team">
-              <MappingFragment StoreEntitySet="Team">
-                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
-                <ScalarProperty Name="TeamName" ColumnName="TeamName" />
-                <ScalarProperty Name="InDate" ColumnName="InDate" />
-                <ScalarProperty Name="InUser" ColumnName="InUser" />
-                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="EditUser" ColumnName="EditUser" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="ExamSystemModel.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="InDate" ColumnName="InDate" />
-                <ScalarProperty Name="InUser" ColumnName="InUser" />
-                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="EditUser" ColumnName="EditUser" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserAnwser">
-            <EntityTypeMapping TypeName="ExamSystemModel.UserAnwser">
-              <MappingFragment StoreEntitySet="UserAnwser">
-                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
-                <ScalarProperty Name="UserSysNo" ColumnName="UserSysNo" />
-                <ScalarProperty Name="TempData" ColumnName="TempData" />
-                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-                <ScalarProperty Name="NodeName" ColumnName="NodeName" />
-                <ScalarProperty Name="NodeID" ColumnName="NodeID" />
-                <ScalarProperty Name="TokenID" ColumnName="TokenID" />
-                <ScalarProperty Name="ProcessInstanceID" ColumnName="ProcessInstanceID" />
-                <ScalarProperty Name="WorkflowName" ColumnName="WorkflowName" />
-                <ScalarProperty Name="InDate" ColumnName="InDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserTeam">
-            <EntityTypeMapping TypeName="ExamSystemModel.UserTeam">
-              <MappingFragment StoreEntitySet="UserTeam">
-                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
-                <ScalarProperty Name="UserSysNo" ColumnName="UserSysNo" />
-                <ScalarProperty Name="TeamSysNo" ColumnName="TeamSysNo" />
-                <ScalarProperty Name="InUser" ColumnName="InUser" />
-                <ScalarProperty Name="InDate" ColumnName="InDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="WorkflowTeamRelation">
-            <EntityTypeMapping TypeName="ExamSystemModel.WorkflowTeamRelation">
-              <MappingFragment StoreEntitySet="WorkflowTeamRelation">
-                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
-                <ScalarProperty Name="WorkflowName" ColumnName="WorkflowName" />
-                <ScalarProperty Name="TeamSysNo" ColumnName="TeamSysNo" />
-                <ScalarProperty Name="InDate" ColumnName="InDate" />
-                <ScalarProperty Name="InUser" ColumnName="InUser" />
-                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
-                <ScalarProperty Name="EditUser" ColumnName="EditUser" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+          <ScalarProperty Name="WorkflowName" ColumnName="WorkflowName" />
+          <ScalarProperty Name="TeamSysNo" ColumnName="TeamSysNo" />
+          <ScalarProperty Name="InDate" ColumnName="InDate" />
+          <ScalarProperty Name="InUser" ColumnName="InUser" />
+          <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+          <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -351,7 +355,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
       </DesignerInfoPropertySet>
     </Options>

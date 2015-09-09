@@ -70,6 +70,7 @@
     <Compile Include="Repo\UserRepository.cs" />
     <Compile Include="Repo\TeamRepository.cs" />
     <Compile Include="Repo\UserTeamRepository.cs" />
+    <Compile Include="Repo\WorkflowTeamRepository.cs" />
     <Compile Include="Role.cs">
       <DependentUpon>ExamSystem.tt</DependentUpon>
     </Compile>
@@ -128,6 +129,9 @@
       <Project>{1ae6dcdc-f8a3-400b-a3f6-124caf55b140}</Project>
       <Name>Component.Tools</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ExamSystem.edmx.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
