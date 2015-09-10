@@ -9,7 +9,7 @@ define({
     , appDeps: ["ngRoute", /*"ngCookies",*/"ngStorage"]
     , controllerPath: "controllers/"
     , templatePath: "views/"
-    , api: "http://222.196.244.45/api/Home/Handler"
+    , api: "http://localhost:1567/api/Home/Handler"
     , start: "/default"
     , route: [{
         url: "/default"

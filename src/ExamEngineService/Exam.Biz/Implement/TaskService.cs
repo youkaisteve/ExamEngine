@@ -123,6 +123,7 @@ namespace Exam.Service.Implement
             TaskUser user = new TaskUser {UserId = "007", UserName = "007"};
             processInstance.IncludeActors.Add(user);
 
+            //判断登记表中有没有该人员，如果没有，则写入（需要传入表单Json串）
             VariableInstance item = new VariableInstance();
             if (processInstance.RouterName == "是否参加社会保险")
             {

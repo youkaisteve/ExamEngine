@@ -57,7 +57,7 @@ namespace Exam.Service.Implement
             return result;
         }
 
-        public void ImportTeamUser(TeamUserImportModel data)
+        public void ImportTeamUser(List<TeamUserImportModel> data)
         {
             if (data == null)
             {
