@@ -1,8 +1,9 @@
 ﻿<ng-include src="'partials/header.html'"></ng-include>
 <div class="container">
     <div class="text-right" style="padding:10px;">
-        <button class="btn btn-default">提交</button>
-        <button class="btn btn-default">打回</button>
+        <button ng-repeat="btn in taskDetail.Transitions track by $index" class="btn btn-default" ng-click="handl(btn)">
+            {{btn.TransitionName}}
+        </button>
     </div>
     <ng-include src="path"></ng-include>
 </div>

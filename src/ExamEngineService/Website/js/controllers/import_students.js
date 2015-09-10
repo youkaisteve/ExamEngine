@@ -4,7 +4,7 @@
  * email:mahai_1986@126.com
  *
  */
-define(["app"], function (app) {
+define(["app","file-uploader"], function (app) {
 
     app.controller("import_students", ["$scope", function ($scope) {
         $scope.fixedFooter=true;

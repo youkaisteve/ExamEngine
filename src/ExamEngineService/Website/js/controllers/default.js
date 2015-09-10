@@ -13,32 +13,27 @@ define(["app"], function (app) {
         if (user) {
             $scope.path = user.AuthName;
         }
-        if($scope.path.indexOf("teacher")>=0){
+        if ($scope.path.indexOf("teacher") >= 0) {
             $scope.fixedFooter = true;
         }
+        else {
+            $scope.tasks = [];
 
-        //$scope.path = "partials/default_student.html";
-        //$scope.path = "partials/default_teacher.html";
-        $scope.tasks = [];
+            $scope.getTasks = function () {
+                $scope._request("Tasks", {
+                    UserId: "007"
+                }).success(function (res) {
+                    if (res.Code === 0) {
+                        $scope.tasks = res.Data.Tasks;
+                    }
+                    else {
+                        $window.alert(res.ErrorMessage);
+                    }
+                });
+            };
 
-        $scope.getTasks = function () {
-            $scope._request("Tasks", {
-                UserId: "007"
-                //, PageInfo: {
-                //    PageIndex: 0
-                //    , PageSize: 100
-                //}
-            }).success(function (res) {
-                if (res.Code === 0) {
-                    $scope.tasks = res.Data.Tasks;
-                }
-                else {
-                    $window.alert(res.ErrorMessage);
-                }
-            });
-        };
-
-        $scope.getTasks();
+            $scope.getTasks();
+        }
 
     }]);
 
