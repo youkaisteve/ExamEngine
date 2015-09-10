@@ -4,6 +4,8 @@ using System.Linq;
 using Exam.Repository;
 using Exam.Repository.Repo;
 using Exam.Service.Interface;
+using Exam.Model;
+using Component.Tools.Exceptions;
 
 namespace Exam.Service.Implement
 {
@@ -53,6 +55,14 @@ namespace Exam.Service.Implement
             });
 
             return result;
+        }
+
+        public void ImportTeamUser(TeamUserImportModel data)
+        {
+            if (data == null)
+            {
+                throw new BusinessException("无数据");
+            }
         }
     }
 }
