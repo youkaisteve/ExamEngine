@@ -10,6 +10,9 @@ define(["app", "app.config"], function (app, config) {
         var taskID = $routeParams.id;
         //TODO 根据任务ID获得流程相关的数据,如:对应的表单,按钮,权限等
         //var path = "forms/医疗保险费单位缴费月报表.html";
+
+
+
         taskID = "forms/verifystaff.html";
         var task = config.formDependence[taskID];
         if (task) {

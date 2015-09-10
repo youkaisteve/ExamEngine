@@ -11,6 +11,8 @@ define(["app", "team-select"], function (app) {
             text: "Team1"
             , value: 1
         }];
+
+        $scope.workflows = [];
     }]);
 
 });
