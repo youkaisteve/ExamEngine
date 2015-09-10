@@ -9,13 +9,15 @@ define({
     , appDeps: ["ngRoute", /*"ngCookies",*/"ngStorage"]
     , controllerPath: "controllers/"
     , templatePath: "views/"
-    , api: "http://localhost:1567/api/Home/Handler"
+    //, api: "http://222.196.244.45/api/Home/Handler"
+    , api: "http://localhost:8083/api/Home/Handler"
+    , importStudentUri: ""
     , start: "/default"
     , route: [{
         url: "/default"
         , templateUrl: "default.html"
     }, {
-        url: "/task/:id"
+        url: "/task/:instanceID/:tokenID"
         , templateUrl: "task.html"
     }, {
         url: "/workflow"
@@ -37,8 +39,8 @@ define({
         , templateUrl: "login.html"
     }]
     , formDependence: {}
-    ,roleMappding:{
-        "0":"partials/default_student.html"
-        ,"1":"partials/default_teacher.html"
+    , roleMappding: {
+        "0": "partials/default_student.html"
+        , "1": "partials/default_teacher.html"
     }
 });

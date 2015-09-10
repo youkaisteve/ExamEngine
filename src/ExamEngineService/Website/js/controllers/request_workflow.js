@@ -4,7 +4,7 @@
  * email:mahai_1986@126.com
  *
  */
-define(["app", "team-select"], function (app) {
+define(["app", "team-select", "custom-select"], function (app) {
 
     app.controller("request_workflow", ["$scope", function ($scope) {
         $scope.teamSource = [{
@@ -12,7 +12,11 @@ define(["app", "team-select"], function (app) {
             , value: 1
         }];
 
-        $scope.workflows = [];
+        $scope.workflows = [{
+            text: "sdfdf"
+            , value: 1
+        }];
+
     }]);
 
 });

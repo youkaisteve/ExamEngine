@@ -8,8 +8,8 @@
 
 define(["app.config"], function (config) {
 
-    var extendRootScope = ["$rootScope", "$http", "$sessionStorage",
-        function ($rootScope, $http, $sessionStorage) {
+    var extendRootScope = ["$rootScope", "$http", "$sessionStorage","$window",
+        function ($rootScope, $http, $sessionStorage,$window) {
 
             $rootScope.sessionStorage = $sessionStorage;
             $rootScope.fixedFooter = false;
@@ -58,7 +58,15 @@ define(["app.config"], function (config) {
                     }
                 }).success(function (res) {
                     //if res.Code==401 then location to login
-                    return res;
+                    if(res.Code===0){
+                        return res;
+                    }
+                    else{
+                        $window.alert(res.ErrorMessage);
+                    }
+
+                }).error(function(){
+                    $window.alert("系统错误,请联系管理员");
                 });
             };
 
