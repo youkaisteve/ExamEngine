@@ -2,8 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
+<<<<<<< HEAD
 -- Date Created: 09/09/2015 15:43:12
 -- Generated from EDMX file: E:\Workspace\Sec\ExamEngine\src\ExamEngineService\Exam.Repository\ExamSystem.edmx
+=======
+-- Date Created: 09/09/2015 20:25:49
+-- Generated from EDMX file: E:\Git\ExamEngine\src\ExamEngineService\Exam.Repository\ExamSystem.edmx
+>>>>>>> dd361f481191a9dd1625ca644d9e5be1a29cfa85
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -139,12 +144,21 @@ GO
 -- Creating table 'WorkflowTeamRelation'
 CREATE TABLE [dbo].[WorkflowTeamRelation] (
     [SysNo] int  NOT NULL,
+<<<<<<< HEAD
     [WorkflowName] nvarchar(100)  NOT NULL,
+=======
+>>>>>>> dd361f481191a9dd1625ca644d9e5be1a29cfa85
     [TeamSysNo] int  NOT NULL,
     [InDate] datetime  NOT NULL,
     [InUser] nvarchar(50)  NOT NULL,
     [EditDate] datetime  NULL,
+<<<<<<< HEAD
     [EditUser] nvarchar(50)  NULL
+=======
+    [EditUser] nvarchar(50)  NULL,
+    [ProcessName] nvarchar(100)  NOT NULL,
+    [NodeName] nvarchar(100)  NOT NULL
+>>>>>>> dd361f481191a9dd1625ca644d9e5be1a29cfa85
 );
 GO
 

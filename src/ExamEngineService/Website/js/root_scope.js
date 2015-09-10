@@ -16,7 +16,7 @@ define(["app.config"], function (config) {
             $rootScope._AUTH_KEY = "auth";
 
             function toLogin() {
-                //$rootScope._goto("#/login");
+                $rootScope._goto("#/login");
             }
 
             $rootScope._goto = function (url) {
@@ -29,7 +29,6 @@ define(["app.config"], function (config) {
             };
 
             $rootScope._auth = function (auth) {
-
                 if (auth) {
                     $sessionStorage[$rootScope._AUTH_KEY] = auth;
                 }
@@ -38,7 +37,12 @@ define(["app.config"], function (config) {
                 }
             };
 
-            $rootScope.$on("$routeChangeStart", function (event,next, current) {
+            var user = $rootScope._auth();
+            if (user) {
+                $rootScope.userName = user.UserName;
+            }
+
+            $rootScope.$on("$routeChangeStart", function (event, next, current) {
                 //if not authentication then location to login
                 if (!$rootScope._auth()) {
                     toLogin();
@@ -47,12 +51,12 @@ define(["app.config"], function (config) {
 
             //API method
             $rootScope._request = function (action, data) {
-                return $http.post(config.api, data,{
-					headers :{
-					    "action": action
-					    //,'Access-Control-Allow-Credentials': true
-					}
-				}).success(function (res) {
+                return $http.post(config.api, data, {
+                    headers: {
+                        "action": action
+                        //,'Access-Control-Allow-Credentials': true
+                    }
+                }).success(function (res) {
                     //if res.Code==401 then location to login
                     return res;
                 });

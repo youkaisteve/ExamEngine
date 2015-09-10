@@ -4,6 +4,6 @@ namespace Exam.Service.Interface
 {
     public interface IAccountService
     {
-        User Login(string userName, string password);
+        dynamic Login(string userName, string password);
     }
 }

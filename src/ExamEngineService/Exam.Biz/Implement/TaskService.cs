@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using Component.Tools;
 using Exam.Model;
@@ -15,9 +16,11 @@ namespace Exam.Service.Implement
     public class TaskService : ServiceBase, ITaskService
     {
         [Import]
-        public TeamRepository teamRepo;
+        private TeamRepository teamRepo;
         [Import]
         private UserRepository userRepo;
+        [Import]
+        private WorkflowTeamRepository workflowTeamRepo;
 
         protected override string ModuleName
         {
@@ -74,15 +77,23 @@ namespace Exam.Service.Implement
             //}
         }
 
-        /// <summary>
-        /// 初始化流程配置
-        /// </summary>
         public void InitExam(InitExamModel data)
         {
+            WorkflowTeamRelation wtr;
             foreach (var nodeTeam in data.NodeTeams)
             {
-
+                wtr = new WorkflowTeamRelation()
+                {
+                    InDate = DateTime.Now,
+                    InUser = data.UserId,
+                    NodeName = nodeTeam.NodeName,
+                    ProcessName = data.ProcessName,
+                    TeamSysNo = nodeTeam.TeamSysNo
+                };
+                workflowTeamRepo.Insert(wtr, false);
             }
+
+            UnitOfWork.Submit();
         }
     }
 }

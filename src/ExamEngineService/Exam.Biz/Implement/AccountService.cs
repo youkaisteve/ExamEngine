@@ -11,17 +11,28 @@ namespace Exam.Service.Implement
     public class AccountService : ServiceBase, IAccountService
     {
         [Import] private UserRepository userRepo;
-
+        [Import]
+        private RoleRepository roleRepo;
+        [Import]
+        private RoleUserRepository roleUserRepo;
         protected override string ModuleName
         {
             get { return "Account"; }
         }
 
-        public User Login(string userName, string password)
+        public dynamic Login(string userName, string password)
         {
             if (userRepo.Entities.Any(m => m.UserName == userName && m.Password == password))
             {
-                return userRepo.Entities.FirstOrDefault(m => m.UserName == userName && m.Password == password);
+                //return userRepo.Entities.FirstOrDefault(m => m.UserName == userName && m.Password == password);
+                var query = from user in userRepo.Entities
+                    join roleUser in roleUserRepo.Entities
+                        on user.SysNo equals roleUser.UserSysNo
+                    join role in roleRepo.Entities
+                        on roleUser.RoleSysNo equals role.SysNo
+                    where user.UserName == userName
+                    select new {user.UserID, user.UserName, user.SysNo, user.Status, role.AuthFunction};
+                return query.FirstOrDefault();
             }
             throw new BusinessException("用户名或密码错误");
         }

@@ -4,7 +4,6 @@ using Exam.Api.Filters;
 using Exam.Api.Framework;
 using Exam.Api.Models;
 using System.Web.Http.Cors;
-using Exam.Api.Cors;
 
 namespace Exam.Api.Controllers
 {
@@ -14,6 +13,12 @@ namespace Exam.Api.Controllers
         public ApiResponse Welcome()
         {
             return ApiOk("Welcome to exam");
+        }
+
+        [HttpPost]
+        public ApiResponse ImportUserTeam([FromBody] object file)
+        {
+            return ApiOk();
         }
 
         [HttpPost]

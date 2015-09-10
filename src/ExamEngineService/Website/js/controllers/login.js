@@ -14,6 +14,7 @@ define(["app"], function (app) {
                 if(res.Code==0){
                     //TODO save auth info when login success
                     //auth info contain Role,UserId
+                    $scope._auth(res.Data);
                     $scope._goto("/default");
                 }
                 else{

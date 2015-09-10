@@ -33,5 +33,12 @@ namespace Exam.Api.Controllers
             taskService.BeginExam(data);
             return ApiOk();
         }
+
+        [HttpPost]
+        public ApiResponse InitExam([FromBody] InitExamModel data)
+        {
+            taskService.InitExam(data);
+            return ApiOk();
+        }
     }
 }

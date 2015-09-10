@@ -11,5 +11,11 @@ namespace Exam.Service.Interface
         dynamic GetUserTasks(UserTaskQueryFilter filter);
 
         void BeginExam(BeginExamModel data);
+
+        /// <summary>
+        /// 初始化流程配置
+        /// </summary>
+        /// <param name="data">流程节点和Team的对应实体</param>
+        void InitExam(InitExamModel data);
     }
 }

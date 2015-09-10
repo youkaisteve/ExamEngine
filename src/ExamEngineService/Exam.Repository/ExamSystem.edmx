@@ -16,6 +16,7 @@
           <Property Name="InUse" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="EditDate" Type="datetime" />
           <Property Name="EditUser" Type="nvarchar" MaxLength="100" />
+          <Property Name="AuthFunction" Type="int" />
         </EntityType>
         <EntityType Name="RoleUser">
           <Key>
@@ -128,6 +129,7 @@
           <Property Name="InUse" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EditDate" Type="DateTime" Precision="3" />
           <Property Name="EditUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AuthFunction" Type="Int32" />
         </EntityType>
         <EntityType Name="RoleUser">
           <Key>
@@ -234,7 +236,8 @@
     <EntitySetMapping Name="Role">
       <EntityTypeMapping TypeName="IsTypeOf(ExamSystemModel.Role)">
         <MappingFragment StoreEntitySet="Role">
-          <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+          <ScalarProperty Name="AuthFunction" ColumnName="AuthFunction" />
+                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
           <ScalarProperty Name="RoleName" ColumnName="RoleName" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="InDate" ColumnName="InDate" />
@@ -326,7 +329,7 @@
     <EntitySetMapping Name="WorkflowTeamRelation">
       <EntityTypeMapping TypeName="IsTypeOf(ExamSystemModel.WorkflowTeamRelation)">
         <MappingFragment StoreEntitySet="WorkflowTeamRelation">
-          <ScalarProperty Name="NodeName" ColumnName="NodeName" />
+                <ScalarProperty Name="NodeName" ColumnName="NodeName" />
                 <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
                 <ScalarProperty Name="SysNo" ColumnName="SysNo" />
           <ScalarProperty Name="TeamSysNo" ColumnName="TeamSysNo" />
@@ -334,7 +337,7 @@
           <ScalarProperty Name="InUser" ColumnName="InUser" />
           <ScalarProperty Name="EditDate" ColumnName="EditDate" />
           <ScalarProperty Name="EditUser" ColumnName="EditUser" />
-        </MappingFragment>
+          </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
   </EntityContainerMapping>
