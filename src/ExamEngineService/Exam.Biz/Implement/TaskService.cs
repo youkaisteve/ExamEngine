@@ -103,5 +103,41 @@ namespace Exam.Service.Implement
 
             UnitOfWork.Submit();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="instanceid">流程ID</param>
+        /// <param name="tokenid">节点ID</param>
+        /// <param name="transitionName">按钮名称（离开当前节点的TransitionName）</param>
+        public void Process(string instanceid, string tokenid, string transitionName)
+        {
+            WorkflowProxy proxy = new WorkflowProxy();
+
+            var processInstance = new ProcessInstance();
+            processInstance.InstanceID = instanceid;
+            processInstance.TokenID = tokenid;
+            processInstance.RouterName = transitionName;
+
+            //获取下一步的代办人
+            TaskUser user = new TaskUser {UserId = "007", UserName = "007"};
+            processInstance.IncludeActors.Add(user);
+
+            VariableInstance item = new VariableInstance();
+            if (processInstance.RouterName == "是否参加社会保险")
+            {
+                item.VariableName = "isexit";
+                item.Value = int.Parse(PublicFunc.GetConfigByKey_AppSettings("flag"));
+                processInstance.Variables.Add(item);
+            }
+            else
+            {
+                item.VariableName = "flag";
+                item.Value = int.Parse(PublicFunc.GetConfigByKey_AppSettings("flag"));
+                processInstance.Variables.Add(item);
+            }
+
+            var process = proxy.ProcessExecuter(processInstance);
+        }
     }
 }

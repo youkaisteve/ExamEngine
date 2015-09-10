@@ -6,7 +6,7 @@
 	},
 	{
 		"Name":"MyTeamUsers",
-		"Controller":"Account",
+		"Controller":"User",
 		"Action":"MyTeamUsers"
 	},
 	{
@@ -28,5 +28,15 @@
 		"Name":"TaskDetail",
 		"Controller":"Task",
 		"Action":"GetTaskDetail"
+	},
+	{
+		"Name":"Process",
+		"Controller":"Task",
+		"Action":"Process"
+	},
+	{
+		"Name":"ImportUser",
+		"Controller":"User",
+		"Action":"ImportUser"
 	}
 ]

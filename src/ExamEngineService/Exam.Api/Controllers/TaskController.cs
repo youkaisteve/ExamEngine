@@ -47,5 +47,12 @@ namespace Exam.Api.Controllers
             taskService.InitExam(data);
             return ApiOk();
         }
+
+        [HttpPost]
+        public ApiResponse Process([FromBody] dynamic data)
+        {
+            taskService.Process(data.InstanceId.Value, data.TokenId.Value, data.TransitionName.Value);
+            return ApiOk();
+        }
     }
 }

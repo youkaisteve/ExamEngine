@@ -33,5 +33,7 @@ namespace Exam.Repository
         public DbSet<UserAnwser> UserAnwser { get; set; }
         public DbSet<UserTeam> UserTeam { get; set; }
         public DbSet<WorkflowTeamRelation> WorkflowTeamRelation { get; set; }
+        public DbSet<Functions> Functions { get; set; }
+        public DbSet<RoleFunction> RoleFunction { get; set; }
     }
 }

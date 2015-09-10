@@ -14,7 +14,7 @@ namespace Exam.Api.Controllers
     {
         [Import] private IAccountService _accountService;
 
-        [Import] private IUserService userService;
+
 
         [HttpPost]
         [LoginActionFilter]
@@ -22,13 +22,6 @@ namespace Exam.Api.Controllers
         {
             var returnUser = _accountService.Login(user.UserName, user.Password);
             return ApiOk(returnUser);
-        }
-
-        [HttpPost]
-        public ApiResponse MyTeamUsers([FromUri] int sysNo)
-        {
-            List<User> teamUsers = userService.GetUserByTeamSysNo(sysNo);
-            return ApiOk(teamUsers);
         }
     }
 }

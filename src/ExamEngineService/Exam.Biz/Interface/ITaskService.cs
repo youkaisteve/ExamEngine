@@ -19,5 +19,7 @@ namespace Exam.Service.Interface
         /// </summary>
         /// <param name="data">流程节点和Team的对应实体</param>
         void InitExam(InitExamModel data);
+
+        void Process(string instanceid, string tokenid, string transitionName);
     }
 }

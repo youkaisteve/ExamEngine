@@ -5,6 +5,20 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ExamSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Functions">
+          <Key>
+            <PropertyRef Name="SysNo" />
+          </Key>
+          <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FunctionName" Type="nvarchar" MaxLength="200" />
+          <Property Name="FunctionKey" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Status" Type="int" />
+          <Property Name="InDate" Type="datetime" Nullable="false" />
+          <Property Name="InUser" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EditDate" Type="datetime" />
+          <Property Name="EditUser" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="SysNo" />
@@ -18,6 +32,18 @@
           <Property Name="EditUser" Type="nvarchar" MaxLength="100" />
           <Property Name="AuthName" Type="nvarchar" MaxLength="100" />
           <Property Name="AuthID" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="RoleFunction">
+          <Key>
+            <PropertyRef Name="SysNo" />
+          </Key>
+          <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleSysNo" Type="int" Nullable="false" />
+          <Property Name="FunctionSysNo" Type="int" Nullable="false" />
+          <Property Name="InDate" Type="datetime" Nullable="false" />
+          <Property Name="InUser" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EditDate" Type="datetime" />
+          <Property Name="EditUser" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="RoleUser">
           <Key>
@@ -106,7 +132,9 @@
           <Property Name="NodeName" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityContainer Name="ExamSystemModelStoreContainer">
+          <EntitySet Name="Functions" EntityType="Self.Functions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleFunction" EntityType="Self.RoleFunction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleUser" EntityType="Self.RoleUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StandardAnwser" EntityType="Self.StandardAnwser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
@@ -228,7 +256,35 @@
           <EntitySet Name="UserAnwser" EntityType="Self.UserAnwser" />
           <EntitySet Name="UserTeam" EntityType="Self.UserTeam" />
           <EntitySet Name="WorkflowTeamRelation" EntityType="Self.WorkflowTeamRelation" />
+          <EntitySet Name="Functions" EntityType="ExamSystemModel.Functions" />
+          <EntitySet Name="RoleFunction" EntityType="ExamSystemModel.RoleFunction" />
         </EntityContainer>
+        <EntityType Name="Functions">
+          <Key>
+            <PropertyRef Name="SysNo" />
+          </Key>
+          <Property Name="SysNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FunctionName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FunctionKey" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InUser" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <Property Name="EditUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RoleFunction">
+          <Key>
+            <PropertyRef Name="SysNo" />
+          </Key>
+          <Property Name="SysNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleSysNo" Type="Int32" Nullable="false" />
+          <Property Name="FunctionSysNo" Type="Int32" Nullable="false" />
+          <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InUser" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EditDate" Type="DateTime" Precision="3" />
+          <Property Name="EditUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -343,6 +399,34 @@
           </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+          <EntitySetMapping Name="Functions">
+            <EntityTypeMapping TypeName="ExamSystemModel.Functions">
+              <MappingFragment StoreEntitySet="Functions">
+                <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="InUser" ColumnName="InUser" />
+                <ScalarProperty Name="InDate" ColumnName="InDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FunctionKey" ColumnName="FunctionKey" />
+                <ScalarProperty Name="FunctionName" ColumnName="FunctionName" />
+                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleFunction">
+            <EntityTypeMapping TypeName="ExamSystemModel.RoleFunction">
+              <MappingFragment StoreEntitySet="RoleFunction">
+                <ScalarProperty Name="EditUser" ColumnName="EditUser" />
+                <ScalarProperty Name="EditDate" ColumnName="EditDate" />
+                <ScalarProperty Name="InUser" ColumnName="InUser" />
+                <ScalarProperty Name="InDate" ColumnName="InDate" />
+                <ScalarProperty Name="FunctionSysNo" ColumnName="FunctionSysNo" />
+                <ScalarProperty Name="RoleSysNo" ColumnName="RoleSysNo" />
+                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

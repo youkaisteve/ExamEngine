@@ -65,6 +65,9 @@
       <DependentUpon>ExamSystem.edmx</DependentUpon>
     </Compile>
     <Compile Include="ExamUnitOfWorkContext.cs" />
+    <Compile Include="Functions.cs">
+      <DependentUpon>ExamSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repo\ExamRepositoryBase.cs" />
     <Compile Include="Repo\RoleRepository.cs" />
@@ -73,6 +76,9 @@
     <Compile Include="Repo\UserTeamRepository.cs" />
     <Compile Include="Repo\WorkflowTeamRepository.cs" />
     <Compile Include="Role.cs">
+      <DependentUpon>ExamSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RoleFunction.cs">
       <DependentUpon>ExamSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="RoleUser.cs">
