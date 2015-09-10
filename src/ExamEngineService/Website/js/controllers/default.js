@@ -9,8 +9,10 @@ define(["app"], function (app) {
     app.controller("default", ["$scope", "$window", function ($scope, $window) {
 
         //location target page by role
-        var user=$scope._auth();
-        $scope.path = "partials/default_student.html";
+        var user = $scope._auth();
+        if (user) {
+            $scope.path = user.AuthName;
+        }
         if($scope.path.indexOf("teacher")>=0){
             $scope.fixedFooter = true;
         }
