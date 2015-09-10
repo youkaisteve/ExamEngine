@@ -37,6 +37,14 @@ namespace Exam.Service.Implement
             return queryTasks;
         }
 
+        public dynamic GetTaskDetail(string instanceId, string tokenId)
+        {
+            var proxy = new WorkflowProxy();
+            List<Transition> transitions = proxy.GetTransitions(instanceId, tokenId);
+            VariableInstance page = proxy.GetCurrentTaskSetPage(instanceId, tokenId);
+            return new { Transitions = transitions, Page = page.Value };
+        }
+
         public void BeginExam(BeginExamModel data)
         {
             WorkflowProxy proxy = new WorkflowProxy();

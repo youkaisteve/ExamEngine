@@ -22,6 +22,7 @@ namespace Exam.Repository
         public string InUse { get; set; }
         public Nullable<System.DateTime> EditDate { get; set; }
         public string EditUser { get; set; }
-        public Nullable<int> AuthFunction { get; set; }
+        public string AuthName { get; set; }
+        public string AuthID { get; set; }
     }
 }

@@ -31,7 +31,7 @@ namespace Exam.Service.Implement
                     join role in roleRepo.Entities
                         on roleUser.RoleSysNo equals role.SysNo
                     where user.UserName == userName
-                    select new {user.UserID, user.UserName, user.SysNo, user.Status, role.AuthFunction};
+                    select new {user.UserID, user.UserName, user.SysNo, user.Status, role.AuthID,role.AuthName};
                 return query.FirstOrDefault();
             }
             throw new BusinessException("用户名或密码错误");

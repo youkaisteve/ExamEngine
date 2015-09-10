@@ -28,6 +28,13 @@ namespace Exam.Api.Controllers
         }
 
         [HttpPost]
+        public ApiResponse GetTaskDetail([FromBody] dynamic data)
+        {
+            var result = taskService.GetTaskDetail(data.InstanceId.Value, data.TokenId.Value);
+            return ApiOk(result);
+        }
+
+        [HttpPost]
         public ApiResponse BeginExam([FromBody] BeginExamModel data)
         {
             taskService.BeginExam(data);

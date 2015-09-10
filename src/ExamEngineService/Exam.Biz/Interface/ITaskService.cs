@@ -10,6 +10,8 @@ namespace Exam.Service.Interface
     {
         dynamic GetUserTasks(UserTaskQueryFilter filter);
 
+        dynamic GetTaskDetail(string instanceId, string tokenId);
+
         void BeginExam(BeginExamModel data);
 
         /// <summary>
