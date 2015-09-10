@@ -8,9 +8,7 @@
             <form>
                 <div class="form-group">
                     <label >流程名称</label>
-                    <select ng-model="Model.selectedWorkflow">
-                        <option>1</option>
-                    </select>
+                    <custom-select ng-model="Model.workflow" source="workflows"></custom-select>
                 </div>
             </form>
             <ul class="list-group">

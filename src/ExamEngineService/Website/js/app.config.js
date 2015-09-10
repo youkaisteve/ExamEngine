@@ -15,7 +15,7 @@ define({
         url: "/default"
         , templateUrl: "default.html"
     }, {
-        url: "/task/:id"
+        url: "/task/:instanceID/:tokenID"
         , templateUrl: "task.html"
     }, {
         url: "/workflow"
