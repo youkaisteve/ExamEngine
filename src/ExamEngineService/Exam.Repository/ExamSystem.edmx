@@ -5,6 +5,29 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ExamSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2005" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“ExamSystem.dbo.AssignedUser”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="AssignedUser">
+          <Key>
+            <PropertyRef Name="SysNo" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ProcessName" />
+            <PropertyRef Name="Nodename" />
+            <PropertyRef Name="InDate" />
+            <PropertyRef Name="InUser" />
+            <PropertyRef Name="InstanceID" />
+            <PropertyRef Name="TokenID" />
+          </Key>
+          <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProcessName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="InstanceID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TokenID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TokenName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Nodename" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="InDate" Type="datetime" Nullable="false" />
+          <Property Name="InUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Functions">
           <Key>
             <PropertyRef Name="SysNo" />
@@ -104,10 +127,10 @@
           <Property Name="TemplateName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="TransitionName" Type="nvarchar" MaxLength="100" />
           <Property Name="TransitionID" Type="int" />
-          <Property Name="TokenID" Type="int" />
-          <Property Name="ProcessInstanceID" Type="int" />
+          <Property Name="TokenID" Type="varchar" MaxLength="50" />
           <Property Name="ProcessName" Type="nvarchar" MaxLength="100" />
           <Property Name="InDate" Type="datetime" Nullable="false" />
+          <Property Name="InstanceID" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="UserTeam">
           <Key>
@@ -143,6 +166,19 @@
           <EntitySet Name="UserAnwser" EntityType="Self.UserAnwser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTeam" EntityType="Self.UserTeam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkflowTeamRelation" EntityType="Self.WorkflowTeamRelation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssignedUser" EntityType="Self.AssignedUser" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[AssignedUser].[SysNo] AS [SysNo], 
+[AssignedUser].[UserID] AS [UserID], 
+[AssignedUser].[ProcessName] AS [ProcessName], 
+[AssignedUser].[InstanceID] AS [InstanceID], 
+[AssignedUser].[TokenID] AS [TokenID], 
+[AssignedUser].[TokenName] AS [TokenName], 
+[AssignedUser].[Nodename] AS [Nodename], 
+[AssignedUser].[InDate] AS [InDate], 
+[AssignedUser].[InUser] AS [InUser]
+FROM [dbo].[AssignedUser] AS [AssignedUser]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -219,12 +255,12 @@
           <Property Name="UserSysNo" Type="Int32" Nullable="false" />
           <Property Name="TempData" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TemplateName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TokenID" Type="Int32" />
-          <Property Name="ProcessInstanceID" Type="Int32" />
+          <Property Name="TokenID" Type="String" />
           <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="TransitionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="TransitionID" Type="Int32" />
           <Property Name="ProcessName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="InstanceID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="UserTeam">
           <Key>
@@ -260,6 +296,7 @@
           <EntitySet Name="WorkflowTeamRelation" EntityType="Self.WorkflowTeamRelation" />
           <EntitySet Name="Functions" EntityType="ExamSystemModel.Functions" />
           <EntitySet Name="RoleFunction" EntityType="ExamSystemModel.RoleFunction" />
+          <EntitySet Name="AssignedUser" EntityType="ExamSystemModel.AssignedUser" />
         </EntityContainer>
         <EntityType Name="Functions">
           <Key>
@@ -286,6 +323,27 @@
           <Property Name="InUser" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="EditDate" Type="DateTime" Precision="3" />
           <Property Name="EditUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AssignedUser">
+          <Key>
+            <PropertyRef Name="SysNo" />
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="ProcessName" />
+            <PropertyRef Name="InstanceID" />
+            <PropertyRef Name="TokenID" />
+            <PropertyRef Name="Nodename" />
+            <PropertyRef Name="InDate" />
+            <PropertyRef Name="InUser" />
+          </Key>
+          <Property Name="SysNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="InstanceID" Type="String" Nullable="false" />
+          <Property Name="TokenID" Type="String" Nullable="false" />
+          <Property Name="TokenName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Nodename" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -364,7 +422,8 @@
     <EntitySetMapping Name="UserAnwser">
       <EntityTypeMapping TypeName="IsTypeOf(ExamSystemModel.UserAnwser)">
         <MappingFragment StoreEntitySet="UserAnwser">
-          <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
+          <ScalarProperty Name="InstanceID" ColumnName="InstanceID" />
+                <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
                 <ScalarProperty Name="TransitionID" ColumnName="TransitionID" />
                 <ScalarProperty Name="TransitionName" ColumnName="TransitionName" />
                 <ScalarProperty Name="SysNo" ColumnName="SysNo" />
@@ -372,7 +431,6 @@
           <ScalarProperty Name="TempData" ColumnName="TempData" />
           <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
           <ScalarProperty Name="TokenID" ColumnName="TokenID" />
-          <ScalarProperty Name="ProcessInstanceID" ColumnName="ProcessInstanceID" />
           <ScalarProperty Name="InDate" ColumnName="InDate" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -426,6 +484,21 @@
                 <ScalarProperty Name="InDate" ColumnName="InDate" />
                 <ScalarProperty Name="FunctionSysNo" ColumnName="FunctionSysNo" />
                 <ScalarProperty Name="RoleSysNo" ColumnName="RoleSysNo" />
+                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssignedUser">
+            <EntityTypeMapping TypeName="ExamSystemModel.AssignedUser">
+              <MappingFragment StoreEntitySet="AssignedUser">
+                <ScalarProperty Name="InUser" ColumnName="InUser" />
+                <ScalarProperty Name="InDate" ColumnName="InDate" />
+                <ScalarProperty Name="Nodename" ColumnName="Nodename" />
+                <ScalarProperty Name="TokenName" ColumnName="TokenName" />
+                <ScalarProperty Name="TokenID" ColumnName="TokenID" />
+                <ScalarProperty Name="InstanceID" ColumnName="InstanceID" />
+                <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="SysNo" ColumnName="SysNo" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -1,24 +1,26 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
+using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using Exam.Api.Framework;
-using Exam.Repository;
-using Exam.Model;
-using System.Web;
-using System;
 using Exam.Api.Models;
+using Exam.Model;
+using Exam.Repository;
 
 namespace Exam.Api.Filters
 {
     public class LoginActionFilter : ActionFilterAttribute
     {
-        LoginUser _user;
-        public override void OnActionExecuting(System.Web.Http.Controllers.HttpActionContext actionContext)
+        private LoginUser _user;
+
+        public override void OnActionExecuting(HttpActionContext actionContext)
         {
             if (actionContext.Request != null)
             {
                 _user = actionContext.Request.Content.ReadAsAsync<LoginUser>().Result;
             }
         }
+
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
             if (actionExecutedContext.Response != null)
@@ -27,7 +29,7 @@ namespace Exam.Api.Filters
                 if (user != null)
                 {
                     UserHelper.SetUserSession(
-                        new UserInfo()
+                        new UserInfo
                         {
                             UserID = user.UserID,
                             UserSysNo = user.SysNo,

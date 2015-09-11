@@ -7,16 +7,15 @@ using Exam.Service.Interface;
 
 namespace Exam.Api.Controllers
 {
-    [Export(typeof(TaskController))]
+    [Export(typeof (TaskController))]
     public class TaskController : BaseApiController
     {
-        [Import]
-        public ITaskService taskService;
+        [Import] public ITaskService taskService;
 
         [HttpPost]
         public ApiResponse GetUserTasks([FromBody] UserTaskQueryFilter filter)
         {
-            filter.PageInfo = new QueryPageInfo()
+            filter.PageInfo = new QueryPageInfo
             {
                 PageIndex = 0,
                 PageSize = 10000
@@ -30,7 +29,7 @@ namespace Exam.Api.Controllers
         [HttpPost]
         public ApiResponse GetTaskDetail([FromBody] dynamic data)
         {
-            var result = taskService.GetTaskDetail(data.InstanceId.Value, data.TokenId.Value);
+            dynamic result = taskService.GetTaskDetail(data.InstanceId.Value, data.TokenId.Value);
             return ApiOk(result);
         }
 
@@ -51,7 +50,8 @@ namespace Exam.Api.Controllers
         [HttpPost]
         public ApiResponse Process([FromBody] dynamic data)
         {
-            taskService.Process(data.InstanceId.Value, data.TokenId.Value, data.TransitionName.Value, data.FormData.Value);
+            taskService.Process(data.InstanceId.Value, data.TokenId.Value, data.TransitionName.Value,
+                data.FormData.Value);
             return ApiOk();
         }
     }

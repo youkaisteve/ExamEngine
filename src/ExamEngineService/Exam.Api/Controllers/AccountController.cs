@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 using System.Web.Http;
 using Exam.Api.Filters;
 using Exam.Api.Framework;
 using Exam.Api.Models;
-using Exam.Repository;
 using Exam.Service.Interface;
 
 namespace Exam.Api.Controllers
@@ -15,12 +13,11 @@ namespace Exam.Api.Controllers
         [Import] private IAccountService _accountService;
 
 
-
         [HttpPost]
         [LoginActionFilter]
         public ApiResponse Login([FromBody] LoginUser user)
         {
-            var returnUser = _accountService.Login(user.UserID, user.Password);
+            dynamic returnUser = _accountService.Login(user.UserID, user.Password);
             return ApiOk(returnUser);
         }
     }

@@ -1,28 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+using Component.Data;
+using Component.Tools;
+using Component.Tools.Exceptions;
+using Exam.Model;
 using Exam.Repository;
 using Exam.Repository.Repo;
 using Exam.Service.Interface;
-using Exam.Model;
-using Component.Tools.Exceptions;
-using Component.Data;
-using System;
-using Component.Tools;
 
 namespace Exam.Service.Implement
 {
-    [Export(typeof(IUserService))]
+    [Export(typeof (IUserService))]
     public class UserService : ServiceBase, IUserService
     {
-        [Import]
-        private TeamRepository teamRepo;
-        [Import]
-        private UserRepository userRepo;
-        [Import]
-        private UserTeamRepository userTeamRepo;
-        [Import]
-        private IAdoNetWrapper adonetWrapper;
+        [Import] private IAdoNetWrapper adonetWrapper;
+        [Import] private TeamRepository teamRepo;
+        [Import] private UserRepository userRepo;
+        [Import] private UserTeamRepository userTeamRepo;
 
         protected override string ModuleName
         {
@@ -37,11 +33,11 @@ namespace Exam.Service.Implement
         public List<dynamic> GetAllTeamsWithUser()
         {
             var query = from user in userRepo.Entities
-                        join ut in userTeamRepo.Entities
-                            on user.UserID equals ut.UserID
-                        join t in teamRepo.Entities
-                            on ut.TeamName equals t.TeamName
-                        select new { t, user };
+                join ut in userTeamRepo.Entities
+                    on user.UserID equals ut.UserID
+                join t in teamRepo.Entities
+                    on ut.TeamName equals t.TeamName
+                select new {t, user};
             var result = new List<dynamic>();
             query.ToList().ForEach(item =>
             {
@@ -76,18 +72,32 @@ namespace Exam.Service.Implement
                                     DELETE FROM dbo.User WHERE UserType = 0;
                                     DELETE FROM dbo.UserTeam";
             adonetWrapper.ExecuteSqlCommand(sqlStr);
-            var pwd = PublicFunc.GetConfigByKey_AppSettings("DefaultPWD");
+            string pwd = PublicFunc.GetConfigByKey_AppSettings("DefaultPWD");
 
-            var now = DateTime.Now;
+            DateTime now = DateTime.Now;
 
-            var groupList = data.GroupBy(m => m.TeamName);
+            IEnumerable<IGrouping<string, TeamUserImportModel>> groupList = data.GroupBy(m => m.TeamName);
             foreach (var group in groupList)
             {
-                teamRepo.Insert(new Team() { TeamName = group.Key, InDate = now, InUser = "001" });
-                foreach (var user in group.ToList())
+                teamRepo.Insert(new Team {TeamName = group.Key, InDate = now, InUser = "001"});
+                foreach (TeamUserImportModel user in group.ToList())
                 {
-                    userRepo.Insert(new User() { UserID = user.UserId, UserName = user.UserName, Password = pwd, Status = 1, InUser = "001", InDate = now });
-                    userTeamRepo.Insert(new UserTeam() { TeamName = user.TeamName, UserID = user.UserId, InDate = now, InUser = "001" });
+                    userRepo.Insert(new User
+                    {
+                        UserID = user.UserId,
+                        UserName = user.UserName,
+                        Password = pwd,
+                        Status = 1,
+                        InUser = "001",
+                        InDate = now
+                    });
+                    userTeamRepo.Insert(new UserTeam
+                    {
+                        TeamName = user.TeamName,
+                        UserID = user.UserId,
+                        InDate = now,
+                        InUser = "001"
+                    });
                 }
             }
         }

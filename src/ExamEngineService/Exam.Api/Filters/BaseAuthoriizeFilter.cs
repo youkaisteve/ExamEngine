@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using Component.Tools.Exceptions;
 using Exam.Api.Framework;
-using System.Web;
-using System;
+using Exam.Model;
 
 namespace Exam.Api.Filters
 {
@@ -29,7 +29,7 @@ namespace Exam.Api.Filters
                 throw new UnAuthorizedException();
             }
 
-            var userInfo = UserHelper.GetUserSession(array[0]);
+            UserInfo userInfo = UserHelper.GetUserSession(array[0]);
 
             if (userInfo == null || userInfo.ExpiredDate < DateTime.Now)
             {

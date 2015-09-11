@@ -1,7 +1,6 @@
-﻿using Component.Tools;
+﻿using System.Web;
+using Component.Tools;
 using Exam.Model;
-using System;
-using System.Web;
 
 namespace Exam.Api.Framework
 {
@@ -9,7 +8,8 @@ namespace Exam.Api.Framework
     {
         public static string CreateUserToken(string userId, string password)
         {
-            string text = string.Format("{0}:{1}:{2}", userId, password, PublicFunc.GetConfigByKey_AppSettings("EncryptKey"));
+            string text = string.Format("{0}:{1}:{2}", userId, password,
+                PublicFunc.GetConfigByKey_AppSettings("EncryptKey"));
             return SymmetricEncryption.Encrypt(text);
         }
 

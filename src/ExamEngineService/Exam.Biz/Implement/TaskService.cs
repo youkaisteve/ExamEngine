@@ -12,15 +12,13 @@ using WorkflowCallWapper.Models;
 
 namespace Exam.Service.Implement
 {
-    [Export(typeof(ITaskService))]
+    [Export(typeof (ITaskService))]
     public class TaskService : ServiceBase, ITaskService
     {
-        [Import]
-        private TeamRepository teamRepo;
-        [Import]
-        private UserRepository userRepo;
-        [Import]
-        private WorkflowTeamRepository workflowTeamRepo;
+        [Import] private AssignedUserRepository assignedUserRepo;
+        [Import] private TeamRepository teamRepo;
+        [Import] private UserRepository userRepo;
+        [Import] private WorkflowTeamRepository workflowTeamRepo;
 
         protected override string ModuleName
         {
@@ -30,9 +28,10 @@ namespace Exam.Service.Implement
         public dynamic GetUserTasks(UserTaskQueryFilter filter)
         {
             var proxy = new WorkflowProxy();
-            QueryTaskView queryTasks = proxy.GetUnProcessTaskByUser(filter.UserId ?? PublicFunc.GetConfigByKey_AppSettings("mock_user"),
-                filter.PageInfo.PageIndex,
-                filter.PageInfo.PageSize);
+            QueryTaskView queryTasks =
+                proxy.GetUnProcessTaskByUser(filter.UserId ?? PublicFunc.GetConfigByKey_AppSettings("mock_user"),
+                    filter.PageInfo.PageIndex,
+                    filter.PageInfo.PageSize);
 
             return queryTasks;
         }
@@ -42,17 +41,17 @@ namespace Exam.Service.Implement
             var proxy = new WorkflowProxy();
             List<Transition> transitions = proxy.GetTransitions(instanceId, tokenId);
             VariableInstance page = proxy.GetCurrentTaskSetPage(instanceId, tokenId);
-            return new { Transitions = transitions, Page = page.Value };
+            return new {Transitions = transitions, Page = page.Value};
         }
 
         public void BeginExam(BeginExamModel data)
         {
-            WorkflowProxy proxy = new WorkflowProxy();
+            var proxy = new WorkflowProxy();
 
-            var processName = data.ProcessName;
+            string processName = data.ProcessName;
             //foreach (string processName in data.ProcessNames)
             //{
-            ProcessInstance processInstance = new ProcessInstance
+            var processInstance = new ProcessInstance
             {
                 Actor = data.UserId,
                 ActorName = data.UserName,
@@ -63,17 +62,17 @@ namespace Exam.Service.Implement
             string nodeName = proxy.GetFirstNodeName(processName);
 
             //获取node对应的用户
-            var users = teamRepo.GetUsersByNodeName(nodeName);
+            List<User> users = teamRepo.GetUsersByNodeName(processName, nodeName);
 
             var choosedUsers = new List<string>();
 
-            foreach (var user in users)
+            foreach (User user in users)
             {
                 //TODO:这里需要返回用户角色(目前默认写成Student)
                 User choosenUser = GetRandomUserId(users, choosedUsers);
                 choosedUsers.Add(choosenUser.UserID);
 
-                TaskUser taskUser = new TaskUser();
+                var taskUser = new TaskUser();
                 taskUser.UserId = choosenUser.UserID;
                 taskUser.UserName = choosenUser.UserName;
                 //TODO:给用户的角色赋值
@@ -88,9 +87,9 @@ namespace Exam.Service.Implement
         public void InitExam(InitExamModel data)
         {
             WorkflowTeamRelation wtr;
-            foreach (var nodeTeam in data.NodeTeams)
+            foreach (NodeTeamModel nodeTeam in data.NodeTeams)
             {
-                wtr = new WorkflowTeamRelation()
+                wtr = new WorkflowTeamRelation
                 {
                     InDate = DateTime.Now,
                     InUser = data.UserId,
@@ -105,27 +104,22 @@ namespace Exam.Service.Implement
         }
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="instanceid">流程ID</param>
         /// <param name="tokenid">节点ID</param>
         /// <param name="transitionName">按钮名称（离开当前节点的TransitionName）</param>
-        public void Process(string instanceid, string tokenid, string transitionName,string templateData)
+        public void Process(string instanceid, string tokenid, string transitionName, string templateData)
         {
             //TODO:还需要processName，TemplateName（模板名称）
-            WorkflowProxy proxy = new WorkflowProxy();
+            var proxy = new WorkflowProxy();
 
             var processInstance = new ProcessInstance();
             processInstance.InstanceID = instanceid;
             processInstance.TokenID = tokenid;
             processInstance.RouterName = transitionName;
 
-            //获取下一步的代办人
-            TaskUser user = new TaskUser {UserId = "007", UserName = "007"};
-            processInstance.IncludeActors.Add(user);
-
             //判断登记表中有没有该人员，如果没有，则写入（需要传入表单Json串）
-            VariableInstance item = new VariableInstance();
+            var item = new VariableInstance();
             if (processInstance.RouterName == "是否参加社会保险")
             {
                 item.VariableName = "isexit";
@@ -138,7 +132,32 @@ namespace Exam.Service.Implement
                 item.Value = int.Parse(PublicFunc.GetConfigByKey_AppSettings("flag"));
                 processInstance.Variables.Add(item);
             }
-            var process = proxy.ProcessExecuter(processInstance);
+
+            //获取下一个节点名并启动流程
+            string nodeName = ""; //TODO:还需要调用service获取nodename
+            string processName = ""; //TODO:还需要调用service获取processName
+            string tokenName = ""; //TODO:还需要获取TokenName
+            string actionName = ""; //TODO:还需要获取ActionName
+
+            nodeName = proxy.GetTransitionNextNodeRoles(processName, tokenName, actionName)[0];
+            List<User> users = teamRepo.GetUsersByNodeName(processName, nodeName);
+            User choosenUser = GetRandomUserId(users);
+            assignedUserRepo.Insert(new AssignedUser
+            {
+                InDate = DateTime.Now,
+                InstanceID = instanceid,
+                TokenID = tokenid,
+                TokenName = tokenName,
+                UserID = choosenUser.UserID,
+                Nodename = nodeName,
+                ProcessName = processName
+            });
+
+            var user = new TaskUser {UserId = "007", UserName = "007"};
+            processInstance.IncludeActors.Add(user);
+
+            ProcessInstance process = proxy.ProcessExecuter(processInstance);
+
 
             if (!string.IsNullOrEmpty(templateData))
             {

@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssignedUser.cs">
+      <DependentUpon>ExamSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="ExamAdoNetWrapper.cs" />
     <Compile Include="ExamEntitiesExtend.cs" />
     <Compile Include="ExamSystem.Context.cs">
@@ -69,6 +72,7 @@
       <DependentUpon>ExamSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repo\AssignedUserRepository.cs" />
     <Compile Include="Repo\ExamRepositoryBase.cs" />
     <Compile Include="Repo\RoleRepository.cs" />
     <Compile Include="Repo\UserRepository.cs" />

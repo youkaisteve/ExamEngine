@@ -1,6 +1,4 @@
-﻿using Exam.Repository;
-
-namespace Exam.Service.Interface
+﻿namespace Exam.Service.Interface
 {
     public interface IAccountService
     {

@@ -13,17 +13,16 @@ namespace Exam.Repository
     using System;
     using System.Collections.Generic;
     
-    public partial class UserAnwser : EntityBase<int>
+    public partial class AssignedUser : EntityBase<int>
     {
         public int SysNo { get; set; }
-        public int UserSysNo { get; set; }
-        public string TempData { get; set; }
-        public string TemplateName { get; set; }
-        public string TokenID { get; set; }
-        public System.DateTime InDate { get; set; }
-        public string TransitionName { get; set; }
-        public Nullable<int> TransitionID { get; set; }
+        public string UserID { get; set; }
         public string ProcessName { get; set; }
         public string InstanceID { get; set; }
+        public string TokenID { get; set; }
+        public string TokenName { get; set; }
+        public string Nodename { get; set; }
+        public System.DateTime InDate { get; set; }
+        public string InUser { get; set; }
     }
 }
