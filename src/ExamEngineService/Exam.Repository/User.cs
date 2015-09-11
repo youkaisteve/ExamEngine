@@ -24,5 +24,6 @@ namespace Exam.Repository
         public string InUser { get; set; }
         public Nullable<System.DateTime> EditDate { get; set; }
         public string EditUser { get; set; }
+        public byte UserType { get; set; }
     }
 }

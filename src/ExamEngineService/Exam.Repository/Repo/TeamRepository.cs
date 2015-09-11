@@ -23,9 +23,9 @@ namespace Exam.Repository.Repo
         {
             var query = from user in userRepo.Entities
                         join userTeam in userTeamRepo.Entities
-                        on user.SysNo equals userTeam.UserSysNo
+                        on user.UserID equals userTeam.UserID
                         join wTeam in workflowTeamRepo.Entities
-                        on userTeam.TeamSysNo equals wTeam.TeamSysNo
+                        on userTeam.TeamName equals wTeam.TeamName
                         where wTeam.NodeName == nodeName
                         select user;
             return query.Distinct().ToList();

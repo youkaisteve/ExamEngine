@@ -92,6 +92,7 @@
           <Property Name="InUser" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="EditDate" Type="datetime" />
           <Property Name="EditUser" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserType" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="UserAnwser">
           <Key>
@@ -101,11 +102,11 @@
           <Property Name="UserSysNo" Type="int" Nullable="false" />
           <Property Name="TempData" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="TemplateName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="NodeName" Type="nvarchar" MaxLength="100" />
-          <Property Name="NodeID" Type="int" />
+          <Property Name="TransitionName" Type="nvarchar" MaxLength="100" />
+          <Property Name="TransitionID" Type="int" />
           <Property Name="TokenID" Type="int" />
           <Property Name="ProcessInstanceID" Type="int" />
-          <Property Name="WorkflowName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProcessName" Type="nvarchar" MaxLength="100" />
           <Property Name="InDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="UserTeam">
@@ -113,23 +114,23 @@
             <PropertyRef Name="SysNo" />
           </Key>
           <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserSysNo" Type="int" Nullable="false" />
-          <Property Name="TeamSysNo" Type="int" Nullable="false" />
           <Property Name="InUser" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="InDate" Type="datetime" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeamName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="WorkflowTeamRelation">
           <Key>
             <PropertyRef Name="SysNo" />
           </Key>
           <Property Name="SysNo" Type="int" Nullable="false" />
-          <Property Name="TeamSysNo" Type="int" Nullable="false" />
           <Property Name="InDate" Type="datetime" Nullable="false" />
           <Property Name="InUser" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EditDate" Type="datetime" />
           <Property Name="EditUser" Type="nvarchar" MaxLength="50" />
           <Property Name="ProcessName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="NodeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TeamName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityContainer Name="ExamSystemModelStoreContainer">
           <EntitySet Name="Functions" EntityType="Self.Functions" Schema="dbo" store:Type="Tables" />
@@ -208,6 +209,7 @@
           <Property Name="InUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EditDate" Type="DateTime" Precision="3" />
           <Property Name="EditUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserType" Type="Byte" Nullable="false" />
         </EntityType>
         <EntityType Name="UserAnwser">
           <Key>
@@ -217,35 +219,35 @@
           <Property Name="UserSysNo" Type="Int32" Nullable="false" />
           <Property Name="TempData" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TemplateName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NodeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="NodeID" Type="Int32" />
           <Property Name="TokenID" Type="Int32" />
           <Property Name="ProcessInstanceID" Type="Int32" />
-          <Property Name="WorkflowName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TransitionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TransitionID" Type="Int32" />
+          <Property Name="ProcessName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UserTeam">
           <Key>
             <PropertyRef Name="SysNo" />
           </Key>
           <Property Name="SysNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserSysNo" Type="Int32" Nullable="false" />
-          <Property Name="TeamSysNo" Type="Int32" Nullable="false" />
           <Property Name="InUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeamName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="WorkflowTeamRelation">
           <Key>
             <PropertyRef Name="SysNo" />
           </Key>
           <Property Name="SysNo" Type="Int32" Nullable="false" />
-          <Property Name="TeamSysNo" Type="Int32" Nullable="false" />
           <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="InUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EditDate" Type="DateTime" Precision="3" />
           <Property Name="EditUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ProcessName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="NodeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TeamName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="ExamSystemEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Role" EntityType="Self.Role" />
@@ -346,7 +348,8 @@
     <EntitySetMapping Name="User">
       <EntityTypeMapping TypeName="IsTypeOf(ExamSystemModel.User)">
         <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="Password" ColumnName="Password" />
@@ -361,15 +364,15 @@
     <EntitySetMapping Name="UserAnwser">
       <EntityTypeMapping TypeName="IsTypeOf(ExamSystemModel.UserAnwser)">
         <MappingFragment StoreEntitySet="UserAnwser">
-          <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+          <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
+                <ScalarProperty Name="TransitionID" ColumnName="TransitionID" />
+                <ScalarProperty Name="TransitionName" ColumnName="TransitionName" />
+                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
           <ScalarProperty Name="UserSysNo" ColumnName="UserSysNo" />
           <ScalarProperty Name="TempData" ColumnName="TempData" />
           <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
-          <ScalarProperty Name="NodeName" ColumnName="NodeName" />
-          <ScalarProperty Name="NodeID" ColumnName="NodeID" />
           <ScalarProperty Name="TokenID" ColumnName="TokenID" />
           <ScalarProperty Name="ProcessInstanceID" ColumnName="ProcessInstanceID" />
-          <ScalarProperty Name="WorkflowName" ColumnName="WorkflowName" />
           <ScalarProperty Name="InDate" ColumnName="InDate" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -377,9 +380,9 @@
     <EntitySetMapping Name="UserTeam">
       <EntityTypeMapping TypeName="IsTypeOf(ExamSystemModel.UserTeam)">
         <MappingFragment StoreEntitySet="UserTeam">
-          <ScalarProperty Name="SysNo" ColumnName="SysNo" />
-          <ScalarProperty Name="UserSysNo" ColumnName="UserSysNo" />
-          <ScalarProperty Name="TeamSysNo" ColumnName="TeamSysNo" />
+          <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
           <ScalarProperty Name="InUser" ColumnName="InUser" />
           <ScalarProperty Name="InDate" ColumnName="InDate" />
         </MappingFragment>
@@ -388,10 +391,10 @@
     <EntitySetMapping Name="WorkflowTeamRelation">
       <EntityTypeMapping TypeName="IsTypeOf(ExamSystemModel.WorkflowTeamRelation)">
         <MappingFragment StoreEntitySet="WorkflowTeamRelation">
+                <ScalarProperty Name="TeamName" ColumnName="TeamName" />
                 <ScalarProperty Name="NodeName" ColumnName="NodeName" />
                 <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
                 <ScalarProperty Name="SysNo" ColumnName="SysNo" />
-          <ScalarProperty Name="TeamSysNo" ColumnName="TeamSysNo" />
           <ScalarProperty Name="InDate" ColumnName="InDate" />
           <ScalarProperty Name="InUser" ColumnName="InUser" />
           <ScalarProperty Name="EditDate" ColumnName="EditDate" />

@@ -10,12 +10,12 @@ namespace Exam.Repository.Repo
         [Import]
         private UserTeamRepository userTeamRepo;
 
-        public List<User> GetUserByTeamSysNo(int sysNo)
+        public List<User> GetUserByTeamName(string name)
         {
             var query = from user in this.Entities
                         join ut in userTeamRepo.Entities
-                            on user.SysNo equals ut.UserSysNo
-                        where ut.TeamSysNo == sysNo
+                            on user.UserID equals ut.UserID
+                        where ut.TeamName == name
                         select user;
             return query.ToList();
         }

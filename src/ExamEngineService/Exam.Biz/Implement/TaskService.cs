@@ -96,7 +96,7 @@ namespace Exam.Service.Implement
                     InUser = data.UserId,
                     NodeName = nodeTeam.NodeName,
                     ProcessName = data.ProcessName,
-                    TeamSysNo = nodeTeam.TeamSysNo
+                    TeamName = nodeTeam.TeamName
                 };
                 workflowTeamRepo.Insert(wtr, false);
             }

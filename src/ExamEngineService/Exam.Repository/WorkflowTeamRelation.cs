@@ -16,12 +16,12 @@ namespace Exam.Repository
     public partial class WorkflowTeamRelation : EntityBase<int>
     {
         public int SysNo { get; set; }
-        public int TeamSysNo { get; set; }
         public System.DateTime InDate { get; set; }
         public string InUser { get; set; }
         public Nullable<System.DateTime> EditDate { get; set; }
         public string EditUser { get; set; }
         public string ProcessName { get; set; }
         public string NodeName { get; set; }
+        public string TeamName { get; set; }
     }
 }

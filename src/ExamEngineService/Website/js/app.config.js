@@ -10,7 +10,7 @@ define({
     , controllerPath: "controllers/"
     , templatePath: "views/"
     //, api: "http://222.196.244.45/api/Home/Handler"
-    , api: "http://localhost:8083/api/Home/Handler"
+    , api: "http://172.16.70.8/api/Home/Handler"
     , importStudentUri: ""
     , start: "/default"
     , route: [{

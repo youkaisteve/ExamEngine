@@ -11,7 +11,7 @@ namespace Exam.Model
     /// </summary>
     public class TeamUserImportModel
     {
-        public string TeamId { get; set; }
+        public string TeamName { get; set; }
         public string UserId { get; set; }
         public string UserName { get; set; }
     }

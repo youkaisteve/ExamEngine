@@ -19,11 +19,11 @@ namespace Exam.Repository
         public int UserSysNo { get; set; }
         public string TempData { get; set; }
         public string TemplateName { get; set; }
-        public string NodeName { get; set; }
-        public Nullable<int> NodeID { get; set; }
         public Nullable<int> TokenID { get; set; }
         public Nullable<int> ProcessInstanceID { get; set; }
-        public string WorkflowName { get; set; }
         public System.DateTime InDate { get; set; }
+        public string TransitionName { get; set; }
+        public Nullable<int> TransitionID { get; set; }
+        public string ProcessName { get; set; }
     }
 }

@@ -7,11 +7,11 @@ namespace Exam.Service.Interface
     public interface IUserService
     {
         /// <summary>
-        ///     根据小组sysno获取用户
+        ///     根据小组名获取用户
         /// </summary>
-        /// <param name="sysNo">小组sysno</param>
+        /// <param name="name">小组名</param>
         /// <returns></returns>
-        List<User> GetUserByTeamSysNo(int sysNo);
+        List<User> GetUserByTeamName(string name);
 
         /// <summary>
         ///     获取所有小组，包括用户信息

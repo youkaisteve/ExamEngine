@@ -16,9 +16,9 @@ namespace Exam.Repository
     public partial class UserTeam : EntityBase<int>
     {
         public int SysNo { get; set; }
-        public int UserSysNo { get; set; }
-        public int TeamSysNo { get; set; }
         public string InUser { get; set; }
         public System.DateTime InDate { get; set; }
+        public string UserID { get; set; }
+        public string TeamName { get; set; }
     }
 }

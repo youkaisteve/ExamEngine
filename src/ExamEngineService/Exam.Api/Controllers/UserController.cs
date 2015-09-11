@@ -21,9 +21,9 @@ namespace Exam.Api.Controllers
         private IUserService userService;
 
         [HttpPost]
-        public ApiResponse MyTeamUsers([FromUri] int sysNo)
+        public ApiResponse MyTeamUsers([FromUri] string name)
         {
-            List<User> teamUsers = userService.GetUserByTeamSysNo(sysNo);
+            List<User> teamUsers = userService.GetUserByTeamName(name);
             return ApiOk(teamUsers);
         }
 
@@ -44,7 +44,7 @@ namespace Exam.Api.Controllers
                     var splitValues = lineContent.Split('\t');
                     list.Add(new TeamUserImportModel()
                     {
-                        TeamId = splitValues[0],
+                        TeamName = splitValues[0],
                         UserId = splitValues[1],
                         UserName = splitValues[2]
                     });
