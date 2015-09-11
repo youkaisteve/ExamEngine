@@ -13,7 +13,7 @@ namespace Exam.Api.Filters
             var response = new ApiResponse();
             if (actionExecutedContext.Exception is BusinessException)
             {
-                response.Code = 1;
+                response.Code = (actionExecutedContext.Exception as BusinessException).ExceptionCode;
             }
             else
             {

@@ -20,7 +20,7 @@ namespace Exam.Api.Controllers
         [LoginActionFilter]
         public ApiResponse Login([FromBody] LoginUser user)
         {
-            var returnUser = _accountService.Login(user.UserName, user.Password);
+            var returnUser = _accountService.Login(user.UserID, user.Password);
             return ApiOk(returnUser);
         }
     }

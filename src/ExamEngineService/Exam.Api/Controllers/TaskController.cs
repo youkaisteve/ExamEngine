@@ -51,7 +51,7 @@ namespace Exam.Api.Controllers
         [HttpPost]
         public ApiResponse Process([FromBody] dynamic data)
         {
-            taskService.Process(data.InstanceId.Value, data.TokenId.Value, data.TransitionName.Value);
+            taskService.Process(data.InstanceId.Value, data.TokenId.Value, data.TransitionName.Value, data.FormData.Value);
             return ApiOk();
         }
     }

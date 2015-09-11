@@ -12,6 +12,14 @@ namespace Component.Tools.Exceptions
 {
     public class BusinessException : ApplicationException
     {
+        public virtual int ExceptionCode
+        {
+            get
+            {
+                return 1;
+            }
+        }
+
         public BusinessException()
         {
         }

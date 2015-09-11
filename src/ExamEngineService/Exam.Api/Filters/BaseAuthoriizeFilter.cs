@@ -4,6 +4,8 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using Component.Tools.Exceptions;
 using Exam.Api.Framework;
+using System.Web;
+using System;
 
 namespace Exam.Api.Filters
 {
@@ -27,8 +29,15 @@ namespace Exam.Api.Filters
                 throw new UnAuthorizedException();
             }
 
+            var userInfo = UserHelper.GetUserSession(array[0]);
 
-            base.OnAuthorization(actionContext);
+            if (userInfo == null || userInfo.ExpiredDate < DateTime.Now)
+            {
+                throw new AuthorizeExpiredException();
+            }
+
+            userInfo.ExpiredDate = DateTime.Now;
+            UserHelper.SetUserSession(userInfo);
         }
     }
 }

@@ -69,6 +69,7 @@
     <Compile Include="Configurations\IConfiguration.cs" />
     <Compile Include="Configurations\SQL_CONFIG\SqlConfiguration.cs" />
     <Compile Include="EntityBase.cs" />
+    <Compile Include="Exceptions\AuthorizeExpiredException.cs" />
     <Compile Include="Exceptions\BusinessException.cs" />
     <Compile Include="Exceptions\UnAuthorizedException.cs" />
     <Compile Include="Extensions\CollectionExtensions.cs" />

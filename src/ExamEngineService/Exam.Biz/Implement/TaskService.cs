@@ -110,8 +110,9 @@ namespace Exam.Service.Implement
         /// <param name="instanceid">流程ID</param>
         /// <param name="tokenid">节点ID</param>
         /// <param name="transitionName">按钮名称（离开当前节点的TransitionName）</param>
-        public void Process(string instanceid, string tokenid, string transitionName)
+        public void Process(string instanceid, string tokenid, string transitionName,string templateData)
         {
+            //TODO:还需要processName，TemplateName（模板名称）
             WorkflowProxy proxy = new WorkflowProxy();
 
             var processInstance = new ProcessInstance();
@@ -137,8 +138,12 @@ namespace Exam.Service.Implement
                 item.Value = int.Parse(PublicFunc.GetConfigByKey_AppSettings("flag"));
                 processInstance.Variables.Add(item);
             }
-
             var process = proxy.ProcessExecuter(processInstance);
+
+            if (!string.IsNullOrEmpty(templateData))
+            {
+                //TODO:存放json数据
+            }
         }
     }
 }

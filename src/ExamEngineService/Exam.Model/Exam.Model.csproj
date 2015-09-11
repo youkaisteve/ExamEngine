@@ -41,13 +41,16 @@
   <ItemGroup>
     <Compile Include="BeginExamModel.cs" />
     <Compile Include="InitExamModel.cs" />
+    <Compile Include="ModelBase.cs" />
     <Compile Include="NodeTeamModel.cs" />
+    <Compile Include="ProcessModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryFilters\QueryFilter.cs" />
     <Compile Include="QueryFilters\QueryPageInfo.cs" />
     <Compile Include="QueryFilters\UserTaskQueryFilter.cs" />
     <Compile Include="QueryFilters\WorkfolowQueryFilter.cs" />
     <Compile Include="TeamUserImportModel.cs" />
+    <Compile Include="UserInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
