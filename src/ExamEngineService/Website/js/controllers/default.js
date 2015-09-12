@@ -27,7 +27,14 @@ define(["app","disabled-when-click"], function (app) {
                 });
             };
 
+            $scope.gotoDetail=function(task){
+                $scope.sessionStorage.currentTask=task;
+                $scope._goto("/task/"+task.InstanceId+"/"+task.TokenID);
+            };
+
             $scope.getTasks();
+
+
         }
 
     }]);

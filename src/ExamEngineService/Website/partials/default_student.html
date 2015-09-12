@@ -16,7 +16,7 @@
             </thead>
             <tbody ng-if="tasks.length>0">
                 <tr ng-repeat="task in tasks track by $index">
-                    <td><a ng-href="#/task/{{task.InstanceId}}/{{task.TokenID}}">{{task.TokenName}}</a></td>
+                    <td><a href="javascript:void(0)" ng-click="gotoDetail(task)">{{task.TokenName}}</a></td>
                 </tr>
             </tbody>
             <tbody ng-if="tasks.length<=0">
