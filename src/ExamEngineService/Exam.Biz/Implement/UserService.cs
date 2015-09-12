@@ -12,13 +12,17 @@ using Exam.Service.Interface;
 
 namespace Exam.Service.Implement
 {
-    [Export(typeof (IUserService))]
+    [Export(typeof(IUserService))]
     public class UserService : ServiceBase, IUserService
     {
-        [Import] private IAdoNetWrapper adonetWrapper;
-        [Import] private TeamRepository teamRepo;
-        [Import] private UserRepository userRepo;
-        [Import] private UserTeamRepository userTeamRepo;
+        [Import("Exam")]
+        private IAdoNetWrapper adonetWrapper;
+        [Import]
+        private TeamRepository teamRepo;
+        [Import]
+        private UserRepository userRepo;
+        [Import]
+        private UserTeamRepository userTeamRepo;
 
         protected override string ModuleName
         {
@@ -33,11 +37,11 @@ namespace Exam.Service.Implement
         public List<dynamic> GetAllTeamsWithUser()
         {
             var query = from user in userRepo.Entities
-                join ut in userTeamRepo.Entities
-                    on user.UserID equals ut.UserID
-                join t in teamRepo.Entities
-                    on ut.TeamName equals t.TeamName
-                select new {t, user};
+                        join ut in userTeamRepo.Entities
+                            on user.UserID equals ut.UserID
+                        join t in teamRepo.Entities
+                            on ut.TeamName equals t.TeamName
+                        select new { t, user };
             var result = new List<dynamic>();
             query.ToList().ForEach(item =>
             {
@@ -69,8 +73,8 @@ namespace Exam.Service.Implement
             }
 
             string sqlStr = @" DELETE FROM dbo.Team;
-                                    DELETE FROM dbo.User WHERE UserType = 0;
-                                    DELETE FROM dbo.UserTeam";
+                                    DELETE FROM dbo.[User] WHERE UserType = 0;
+                                    DELETE FROM dbo.UserTeam;";
             adonetWrapper.ExecuteSqlCommand(sqlStr);
             string pwd = PublicFunc.GetConfigByKey_AppSettings("DefaultPWD");
 
@@ -79,7 +83,7 @@ namespace Exam.Service.Implement
             IEnumerable<IGrouping<string, TeamUserImportModel>> groupList = data.GroupBy(m => m.TeamName);
             foreach (var group in groupList)
             {
-                teamRepo.Insert(new Team {TeamName = group.Key, InDate = now, InUser = "001"});
+                teamRepo.Insert(new Team { TeamName = group.Key, InDate = now, InUser = "001" });
                 foreach (TeamUserImportModel user in group.ToList())
                 {
                     userRepo.Insert(new User

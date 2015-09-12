@@ -74,7 +74,7 @@
           </Key>
           <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoleSysNo" Type="int" Nullable="false" />
-          <Property Name="UserSysNo" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
           <Property Name="InDate" Type="datetime" Nullable="false" />
           <Property Name="InUser" Type="nvarchar" MaxLength="100" Nullable="false" />
@@ -217,12 +217,12 @@ FROM [dbo].[AssignedUser] AS [AssignedUser]</DefiningQuery>
           </Key>
           <Property Name="SysNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleSysNo" Type="Int32" Nullable="false" />
-          <Property Name="UserSysNo" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="InUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EditDate" Type="DateTime" Precision="3" />
           <Property Name="EditUse" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="StandardAnwser">
           <Key>
@@ -395,9 +395,9 @@ FROM [dbo].[AssignedUser] AS [AssignedUser]</DefiningQuery>
     <EntitySetMapping Name="RoleUser">
       <EntityTypeMapping TypeName="IsTypeOf(ExamSystemModel.RoleUser)">
         <MappingFragment StoreEntitySet="RoleUser">
-          <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
           <ScalarProperty Name="RoleSysNo" ColumnName="RoleSysNo" />
-          <ScalarProperty Name="UserSysNo" ColumnName="UserSysNo" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="InDate" ColumnName="InDate" />
           <ScalarProperty Name="InUser" ColumnName="InUser" />

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using Application.Framework.Common;
 using Component.Tools;
 using Exam.Model;
 using Exam.Model.QueryFilters;
@@ -143,6 +144,11 @@ namespace Exam.Service.Implement
             string nodeName = proxy.GetTransitionNextNodeRoles(data.DefineName, data.TokenName, data.TransitionName)[0];
             List<User> users = teamRepo.GetUsersByNodeName(data.DefineName, nodeName);
             User choosenUser = GetRandomUserId(users);
+            if (choosenUser == null)
+            {
+                throw new BusinessException("找不到下一步处理人");
+            }
+
             assignedUserRepo.Insert(new AssignedUser
             {
                 InDate = DateTime.Now,

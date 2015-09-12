@@ -17,11 +17,11 @@ namespace Exam.Repository
     {
         public int SysNo { get; set; }
         public int RoleSysNo { get; set; }
-        public int UserSysNo { get; set; }
         public int Status { get; set; }
         public System.DateTime InDate { get; set; }
         public string InUser { get; set; }
         public Nullable<System.DateTime> EditDate { get; set; }
         public string EditUse { get; set; }
+        public string UserID { get; set; }
     }
 }

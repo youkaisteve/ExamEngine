@@ -17,21 +17,24 @@ namespace Exam.Api.Filters
             {
                 ApiResponse response = actionExecutedContext.Response.Content.ReadAsAsync<ApiResponse>().Result;
                 dynamic user = response.Data;
-                var sysNo = user.GetType().GetProperty("SysNo").GetValue(user);
-                if (sysNo != null && sysNo > 0)
+                if (user != null)
                 {
-                    var userInfo = new UserInfo
+                    var sysNo = user.GetType().GetProperty("SysNo").GetValue(user);
+                    if (sysNo != null && sysNo > 0)
+                    {
+                        var userInfo = new UserInfo
                         {
                             UserID = user.GetType().GetProperty("UserID").GetValue(user),
                             UserSysNo = sysNo,
                             UserName = user.GetType().GetProperty("UserName").GetValue(user),
                             ExpiredDate = DateTime.Now.AddHours(1)
                         };
-                    UserHelper.SetUserSession(userInfo);
+                        UserHelper.SetUserSession(userInfo);
 
-                    actionExecutedContext.Response.Content.Headers.Add("user-authorize",
-                        UserHelper.CreateUserToken(userInfo.UserID,
-                            user.GetType().GetProperty("Password").GetValue(user).ToString()));
+                        actionExecutedContext.Response.Content.Headers.Add("user-authorize",
+                            UserHelper.CreateUserToken(userInfo.UserID,
+                                user.GetType().GetProperty("Password").GetValue(user).ToString()));
+                    }
                 }
             }
         }

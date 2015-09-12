@@ -35,6 +35,10 @@ namespace Exam.Service
         /// <returns></returns>
         protected User GetRandomUserId(List<User> userList)
         {
+            if (userList == null || userList.Count == 0)
+            {
+                return null;
+            }
             int randomIndex = new Random().Next(0, userList.Count() - 1);
             return userList[randomIndex];
         }

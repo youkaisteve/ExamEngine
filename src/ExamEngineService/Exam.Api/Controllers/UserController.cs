@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
+using System.Text;
 using System.Web;
 using System.Web.Http;
 using Component.Tools;
@@ -14,7 +15,8 @@ namespace Exam.Api.Controllers
     [Export]
     public class UserController : BaseApiController
     {
-        [Import] private IUserService userService;
+        [Import]
+        private IUserService userService;
 
         [HttpPost]
         public ApiResponse MyTeamUsers([FromUri] string name)
@@ -31,13 +33,12 @@ namespace Exam.Api.Controllers
             file.SaveAs(strPath);
 
             var list = new List<TeamUserImportModel>();
-            using (var sr = new StreamReader(strPath))
+            using (var sr = new StreamReader(strPath, Encoding.ASCII))
             {
-                sr.ReadLine();
-                string lineContent = "";
-                while ((lineContent = sr.ReadLine()) != "") ;
+                string lineContent = sr.ReadLine();
+                while (!string.IsNullOrEmpty(lineContent = sr.ReadLine()))
                 {
-                    string[] splitValues = lineContent.Split('\t');
+                    string[] splitValues = lineContent.Split(',');
                     list.Add(new TeamUserImportModel
                     {
                         TeamName = splitValues[0],

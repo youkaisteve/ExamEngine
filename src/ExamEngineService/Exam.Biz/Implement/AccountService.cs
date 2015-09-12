@@ -28,7 +28,7 @@ namespace Exam.Service.Implement
                 //return userRepo.Entities.FirstOrDefault(m => m.UserName == userName && m.Password == password);
                 var query = from user in userRepo.Entities
                             join roleUser in roleUserRepo.Entities
-                                on user.SysNo equals roleUser.UserSysNo
+                                on user.UserID equals roleUser.UserID
                             join role in roleRepo.Entities
                                 on roleUser.RoleSysNo equals role.SysNo
                             where user.UserID == userID
