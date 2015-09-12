@@ -8,8 +8,8 @@
 
 define(["app.config"], function (config) {
 
-    var extendRootScope = ["$rootScope", "$http", "$sessionStorage","$window",
-        function ($rootScope, $http, $sessionStorage,$window) {
+    var extendRootScope = ["$rootScope", "$http", "$sessionStorage", "$window","$q",
+        function ($rootScope, $http, $sessionStorage, $window,$q) {
 
             $rootScope.sessionStorage = $sessionStorage;
             $rootScope.fixedFooter = false;
@@ -51,33 +51,36 @@ define(["app.config"], function (config) {
 
             //API method
             $rootScope._request = function (action, data) {
-                return $http.post(config.api, data, {
+                var deferred=$q.defer();
+                $http.post(config.api, data, {
                     headers: {
                         "action": action
-                        //,'Access-Control-Allow-Credentials': true
                     }
-                }).success(function (res) {
-                    //if res.Code==401 then location to login
+                }).success(function(res){
                     if(res.Code===0){
-                        return res;
+                        deferred.resolve(res);
                     }
                     else{
                         $window.alert(res.ErrorMessage);
+                        deferred.reject(res);
                     }
-
-                }).error(function(){
+                }).error(function () {
                     $window.alert("系统错误,请联系管理员");
                 });
+                return deferred.promise;
             };
 
             $rootScope._logout = function () {
-                return $rootScope._request("Logout", {}).success(function (res) {
+                return $rootScope._request("Logout", {}).then(function (res) {
                     //if success remove authentication then location to login
                     $sessionStorage.$reset();
                     toLogin();
                 });
             };
 
+            $rootScope._notify=function(message){
+
+            };
 
         }];
 

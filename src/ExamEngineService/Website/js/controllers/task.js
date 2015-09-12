@@ -17,7 +17,7 @@ define(["app", "app.config"], function (app, config) {
             return $scope._request("TaskDetail", {
                 InstanceId: instanceID
                 , TokenId: tokenID
-            }).success(function (res) {
+            }).then(function (res) {
                 $scope.path = res.Data.Page;
                 $scope.taskDetail = res.Data;
                 return res;

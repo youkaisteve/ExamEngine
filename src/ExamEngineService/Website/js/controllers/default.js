@@ -22,13 +22,8 @@ define(["app"], function (app) {
             $scope.getTasks = function () {
                 $scope._request("Tasks", {
                     UserId: "007"
-                }).success(function (res) {
-                    if (res.Code === 0) {
-                        $scope.tasks = res.Data.Tasks;
-                    }
-                    else {
-                        $window.alert(res.ErrorMessage);
-                    }
+                }).then(function (res) {
+                    $scope.tasks = res.Data.Tasks;
                 });
             };
 
