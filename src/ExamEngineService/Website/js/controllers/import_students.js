@@ -4,10 +4,21 @@
  * email:mahai_1986@126.com
  *
  */
-define(["app","file-uploader"], function (app) {
+define(["app", "file-uploader"], function (app) {
 
-    app.controller("import_students", ["$scope", function ($scope) {
-        $scope.fixedFooter=true;
-    }]);
+    app.controller("import_students", ["$scope", "$window",
+        function ($scope, $window) {
+            $scope.fixedFooter = true;
+            $scope.students=[];
+            $scope.uploadComplete = function (res) {
+                if (res.Code === 0) {
+                    $scope.students = res.Data;
+                    $scope.$apply();
+                }
+                else {
+                    $window.alert(res.ErrorMessage);
+                }
+            };
+        }]);
 
 });
