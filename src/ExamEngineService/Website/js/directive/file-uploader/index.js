@@ -30,6 +30,10 @@ define(["app", "app.config"], function (app, config) {
                     scope.running = false;
                 }, false);
 
+                //xhr.upload.addEventListener("error",function(){
+                //    scope.running = false;
+                //},false);
+
                 scope.sendFile = function () {
 
                     if (eleFile.files.length <= 0) {
@@ -44,6 +48,8 @@ define(["app", "app.config"], function (app, config) {
                         if (xhr.readyState == 4 && xhr.status == 200) {
                             // Handle response.
                             alert(xhr.responseText); // handle response.
+                            scope.running = false;
+                            scope.$apply();
                         }
                     };
                     fd.append('file', eleFile.files[0]);

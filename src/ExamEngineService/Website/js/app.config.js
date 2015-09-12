@@ -13,7 +13,7 @@ define({
     //, api: "http://192.168.0.103/api/Home/Handler"
     //, api: "http://172.16.70.8/api/Home/Handler"
     , api: "http://127.0.0.1:8083/api/Home/Handler"
-    , importStudentUri: ""
+    , importStudentUri: "http://127.0.0.1:8083/api/User/ImportUser"
     , start: "/default"
     , route: [{
         url: "/default"
