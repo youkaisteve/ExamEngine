@@ -11,33 +11,27 @@ namespace Exam.Api.Filters
 {
     public class LoginActionFilter : ActionFilterAttribute
     {
-        private LoginUser _user;
-
-        public override void OnActionExecuting(HttpActionContext actionContext)
-        {
-            if (actionContext.Request != null)
-            {
-                _user = actionContext.Request.Content.ReadAsAsync<LoginUser>().Result;
-            }
-        }
-
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
             if (actionExecutedContext.Response != null)
             {
-                User user = actionExecutedContext.Response.Content.ReadAsAsync<User>().Result;
-                if (user != null)
+                ApiResponse response = actionExecutedContext.Response.Content.ReadAsAsync<ApiResponse>().Result;
+                dynamic user = response.Data;
+                var sysNo = user.GetType().GetProperty("SysNo").GetValue(user);
+                if (sysNo != null && sysNo > 0)
                 {
-                    UserHelper.SetUserSession(
-                        new UserInfo
+                    var userInfo = new UserInfo
                         {
-                            UserID = user.UserID,
-                            UserSysNo = user.SysNo,
-                            UserName = user.UserName,
+                            UserID = user.GetType().GetProperty("UserID").GetValue(user),
+                            UserSysNo = sysNo,
+                            UserName = user.GetType().GetProperty("UserName").GetValue(user),
                             ExpiredDate = DateTime.Now.AddHours(1)
-                        });
+                        };
+                    UserHelper.SetUserSession(userInfo);
+
                     actionExecutedContext.Response.Content.Headers.Add("user-authorize",
-                        UserHelper.CreateUserToken(_user.UserID, _user.Password));
+                        UserHelper.CreateUserToken(userInfo.UserID,
+                            user.GetType().GetProperty("Password").GetValue(user).ToString()));
                 }
             }
         }

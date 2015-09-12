@@ -88,6 +88,9 @@
     <Compile Include="RoleUser.cs">
       <DependentUpon>ExamSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="SocialSecurityPersonnel.cs">
+      <DependentUpon>ExamSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="StandardAnwser.cs">
       <DependentUpon>ExamSystem.tt</DependentUpon>
     </Compile>

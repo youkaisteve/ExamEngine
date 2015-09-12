@@ -81,6 +81,19 @@
           <Property Name="EditDate" Type="datetime" />
           <Property Name="EditUse" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="SocialSecurityPersonnel">
+          <Key>
+            <PropertyRef Name="SysNo" />
+          </Key>
+          <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDCardNumber" Type="varchar" MaxLength="18" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="Sex" Type="nchar" MaxLength="1" />
+          <Property Name="InDate" Type="datetime" />
+          <Property Name="InUser" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExtendInfo" Type="nvarchar" MaxLength="4000" />
+        </EntityType>
         <EntityType Name="StandardAnwser">
           <Key>
             <PropertyRef Name="SysNo" />
@@ -160,6 +173,7 @@
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleFunction" EntityType="Self.RoleFunction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleUser" EntityType="Self.RoleUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SocialSecurityPersonnel" EntityType="Self.SocialSecurityPersonnel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StandardAnwser" EntityType="Self.StandardAnwser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
@@ -255,7 +269,7 @@ FROM [dbo].[AssignedUser] AS [AssignedUser]</DefiningQuery>
           <Property Name="UserSysNo" Type="Int32" Nullable="false" />
           <Property Name="TempData" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TemplateName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="TokenID" Type="String" />
+          <Property Name="TokenID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="TransitionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="TransitionID" Type="Int32" />
@@ -297,6 +311,7 @@ FROM [dbo].[AssignedUser] AS [AssignedUser]</DefiningQuery>
           <EntitySet Name="Functions" EntityType="ExamSystemModel.Functions" />
           <EntitySet Name="RoleFunction" EntityType="ExamSystemModel.RoleFunction" />
           <EntitySet Name="AssignedUser" EntityType="ExamSystemModel.AssignedUser" />
+          <EntitySet Name="SocialSecurityPersonnel" EntityType="ExamSystemModel.SocialSecurityPersonnel" />
         </EntityContainer>
         <EntityType Name="Functions">
           <Key>
@@ -338,12 +353,25 @@ FROM [dbo].[AssignedUser] AS [AssignedUser]</DefiningQuery>
           <Property Name="SysNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ProcessName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="InstanceID" Type="String" Nullable="false" />
-          <Property Name="TokenID" Type="String" Nullable="false" />
+          <Property Name="InstanceID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="TokenID" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="TokenName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Nodename" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="InUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SocialSecurityPersonnel">
+          <Key>
+            <PropertyRef Name="SysNo" />
+          </Key>
+          <Property Name="SysNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDCardNumber" Type="String" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Sex" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="InDate" Type="DateTime" Precision="3" />
+          <Property Name="InUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExtendInfo" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -499,6 +527,20 @@ FROM [dbo].[AssignedUser] AS [AssignedUser]</DefiningQuery>
                 <ScalarProperty Name="InstanceID" ColumnName="InstanceID" />
                 <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SocialSecurityPersonnel">
+            <EntityTypeMapping TypeName="ExamSystemModel.SocialSecurityPersonnel">
+              <MappingFragment StoreEntitySet="SocialSecurityPersonnel">
+                <ScalarProperty Name="ExtendInfo" ColumnName="ExtendInfo" />
+                <ScalarProperty Name="InUser" ColumnName="InUser" />
+                <ScalarProperty Name="InDate" ColumnName="InDate" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="IDCardNumber" ColumnName="IDCardNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="SysNo" ColumnName="SysNo" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
+using System.Web.SessionState;
 using Exam.Api.Framework;
 
 namespace Exam.Api
@@ -34,6 +35,17 @@ namespace Exam.Api
             config.Services.Replace(typeof (IHttpActionSelector), new ExamHttpActionSelector());
             //GlobalConfiguration.Configuration.Services.Remove(typeof(IHttpActionInvoker), GlobalConfiguration.Configuration.Services.GetActionInvoker());
             //GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpActionInvoker), new AuthorizeHandler());
+        }
+
+        public override void Init()
+        {
+            PostAuthenticateRequest += MvcApplication_PostAuthenticateRequest;
+            base.Init();
+        }
+
+        void MvcApplication_PostAuthenticateRequest(object sender, EventArgs e)
+        {
+            HttpContext.Current.SetSessionStateBehavior(SessionStateBehavior.Required);
         }
     }
 }
