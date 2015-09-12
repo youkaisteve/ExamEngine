@@ -4,7 +4,7 @@
  * email:mahai_1986@126.com
  *
  */
-define(["app"], function (app) {
+define(["app","disabled-when-click"], function (app) {
 
     app.controller("default", ["$scope", "$window", function ($scope, $window) {
 
@@ -20,7 +20,7 @@ define(["app"], function (app) {
             $scope.tasks = [];
 
             $scope.getTasks = function () {
-                $scope._request("Tasks", {
+                return $scope._request("Tasks", {
                     UserId: "007"
                 }).then(function (res) {
                     $scope.tasks = res.Data.Tasks;
