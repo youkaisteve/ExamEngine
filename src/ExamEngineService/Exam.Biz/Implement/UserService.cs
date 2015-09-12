@@ -9,6 +9,7 @@ using Exam.Model;
 using Exam.Repository;
 using Exam.Repository.Repo;
 using Exam.Service.Interface;
+using WorkflowCallWapper;
 
 namespace Exam.Service.Implement
 {
@@ -35,6 +36,19 @@ namespace Exam.Service.Implement
         public List<User> GetUserByTeamName(string name)
         {
             return userRepo.GetUserByTeamName(name);
+        }
+
+        public dynamic GetAllProcess()
+        {
+            var proxy = new WorkflowProxy();
+            var allProcess = proxy.GetAllProcessDefinitions();
+
+            var result = allProcess.Select(p => new ProcessWithNodeModel
+            {
+                ProcessName = p.ProcessName, Tasks = proxy.GetProcessAllTask(p.ProcessName)
+            }).ToList();
+
+            return new { AllProcess = result, Teams = teamRepo.Entities.Select(m => m.TeamName).ToList() };
         }
 
         public List<dynamic> GetAllTeamsWithUser()

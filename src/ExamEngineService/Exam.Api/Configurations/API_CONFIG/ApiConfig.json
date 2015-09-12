@@ -38,5 +38,10 @@
 		"Name":"ImportUser",
 		"Controller":"User",
 		"Action":"ImportUser"
+	},
+	{
+		"Name":"AllProcess",
+		"Controller":"User",
+		"Action":"GetAllProcess"
 	}
 ]

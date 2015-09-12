@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Composition;
 using System.Web.Http;
+using Exam.Api.Filters;
 using Exam.Api.Framework;
 using Exam.Model;
 using Exam.Model.QueryFilters;
@@ -14,6 +15,7 @@ namespace Exam.Api.Controllers
         public ITaskService taskService;
 
         [HttpPost]
+        [BaseAuthoriizeFilter]
         public ApiResponse GetUserTasks([FromBody] UserTaskQueryFilter filter)
         {
             filter.PageInfo = new QueryPageInfo

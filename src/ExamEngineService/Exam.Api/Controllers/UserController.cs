@@ -62,5 +62,11 @@ namespace Exam.Api.Controllers
             }
             return ApiOk(list);
         }
+
+        public ApiResponse GetAllProcess()
+        {
+            var result = userService.GetAllProcess();
+            return ApiOk(result);
+        }
     }
 }

@@ -13,7 +13,8 @@ namespace Exam.Api.Filters
     {
         public override void OnAuthorization(HttpActionContext actionContext)
         {
-            IEnumerable<string> auth = actionContext.Request.Headers.GetValues("user-authorize");
+            IEnumerable<string> auth;
+            actionContext.Request.Headers.TryGetValues("user-authorize", out auth);
             if (auth == null || !auth.Any())
             {
                 throw new UnAuthorizedException();

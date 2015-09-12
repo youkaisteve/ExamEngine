@@ -20,5 +20,7 @@ namespace Exam.Service.Interface
         List<dynamic> GetAllTeamsWithUser();
 
         void ImportTeamUser(List<TeamUserImportModel> data);
+
+        dynamic GetAllProcess();
     }
 }
