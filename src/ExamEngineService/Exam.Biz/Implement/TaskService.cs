@@ -126,7 +126,7 @@ namespace Exam.Service.Implement
 
             //判断登记表中有没有该人员，如果没有，则写入（需要传入表单Json串）
             var item = new VariableInstance();
-            if (processInstance.RouterName == "是否参加社会保险")
+            if (processInstance.RouterName == "到是否参加社会保险")
             {
                 item.VariableName = "isexit";
                 item.Value = int.Parse(PublicFunc.GetConfigByKey_AppSettings("flag"));
@@ -141,28 +141,27 @@ namespace Exam.Service.Implement
 
             //获取下一个节点名并启动流程
             string nodeName = proxy.GetTransitionNextNodeRoles(data.DefineName, data.TokenName, data.TransitionName)[0];
-            //List<User> users = teamRepo.GetUsersByNodeName(data.DefineName, nodeName);
-            //User choosenUser = GetRandomUserId(users);
-            //if (choosenUser == null)
-            //{
-            //    throw new BusinessException("找不到下一步处理人");
-            //}
+            List<User> users = teamRepo.GetUsersByNodeName(data.DefineName, nodeName, data.InstanceId);
+            User choosenUser = GetRandomUserId(users);
+            if (choosenUser == null)
+            {
+                throw new BusinessException("找不到下一步处理人");
+            }
 
-            //assignedUserRepo.Insert(new AssignedUser
-            //{
-            //    InDate = DateTime.Now,
-            //    InstanceID = data.InstanceId,
-            //    TokenID = data.TokenId,
-            //    TokenName = data.TokenName,
-            //    UserID = choosenUser.UserID,
-            //    Nodename = nodeName,
-            //    ProcessName = data.DefineName
-            //});
+            assignedUserRepo.Insert(new AssignedUser
+            {
+                InDate = DateTime.Now,
+                InstanceID = data.InstanceId,
+                UserID = choosenUser.UserID,
+                Nodename = nodeName,
+                ProcessName = data.DefineName,
+                InUser = "001"
+            });
 
-            var user = new TaskUser { UserId = "007", UserName = "007" };
+            var user = new TaskUser { UserId = choosenUser.UserID, UserName = choosenUser.UserName };
             processInstance.IncludeActors.Add(user);
 
-            ProcessInstance process = proxy.ProcessExecuter(processInstance);
+            proxy.ProcessExecuter(processInstance);
 
 
             if (!string.IsNullOrEmpty(data.TemplateData))

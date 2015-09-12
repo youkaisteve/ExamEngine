@@ -19,8 +19,6 @@ namespace Exam.Repository
         public string UserID { get; set; }
         public string ProcessName { get; set; }
         public string InstanceID { get; set; }
-        public string TokenID { get; set; }
-        public string TokenName { get; set; }
         public string Nodename { get; set; }
         public System.DateTime InDate { get; set; }
         public string InUser { get; set; }

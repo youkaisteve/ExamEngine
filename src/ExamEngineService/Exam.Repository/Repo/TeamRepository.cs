@@ -22,6 +22,24 @@ namespace Exam.Repository.Repo
         [Import]
         private AssignedUserRepository assignedUserRepo;
 
+        public List<User> GetUsersByNodeName(string processName, string nodeName, string instanceId)
+        {
+            var query = from user in userRepo.Entities
+                join userTeam in userTeamRepo.Entities
+                    on user.UserID equals userTeam.UserID
+                join wTeam in workflowTeamRepo.Entities
+                    on userTeam.TeamName equals wTeam.TeamName
+                where wTeam.NodeName == nodeName && wTeam.ProcessName == processName
+                select user;
+
+            var choosedUserIds = from assign in assignedUserRepo.Entities
+                where assign.ProcessName == processName && assign.Nodename == nodeName
+                      && assign.InstanceID == instanceId
+                select assign.UserID;
+
+            return query.Where(m => !choosedUserIds.Contains(m.UserID)).Distinct().ToList();
+        }
+
         public List<User> GetUsersByNodeName(string processName, string nodeName)
         {
             var query = from user in userRepo.Entities
