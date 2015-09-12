@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
+using System.Net.Mime;
 using System.Text;
 using System.Web;
 using System.Web.Http;
@@ -28,7 +29,9 @@ namespace Exam.Api.Controllers
         [HttpPost]
         public ApiResponse ImportUser()
         {
-            string uploadPath = PublicFunc.GetConfigByKey_AppSettings("upload_path");
+            string uploadPath = Path.Combine(
+                PublicFunc.GetCurrentDirectory(),
+                PublicFunc.GetConfigByKey_AppSettings("upload_path"));
             HttpPostedFile file = HttpContext.Current.Request.Files[0];
             string strPath = Path.Combine(uploadPath, file.FileName);
             if (!Directory.Exists(uploadPath))

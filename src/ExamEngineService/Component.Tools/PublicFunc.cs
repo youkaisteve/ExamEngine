@@ -31,13 +31,13 @@ namespace Component.Tools
         /// <returns></returns>
         public static DataTable ToDataTable<T>(IList<T> data)
         {
-            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(typeof (T));
+            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(typeof(T));
             var table = new DataTable();
             foreach (PropertyDescriptor prop in properties)
                 table.Columns.Add(prop.Name,
                     (prop.PropertyType.IsGenericType &&
                      prop.PropertyType.GetGenericTypeDefinition() ==
-                     typeof (Nullable<>))
+                     typeof(Nullable<>))
                         ? Nullable.GetUnderlyingType(
                             prop.PropertyType)
                         : prop.PropertyType);
@@ -74,6 +74,14 @@ namespace Component.Tools
             return string.IsNullOrEmpty(ConfigurationManager.ConnectionStrings[key].ConnectionString)
                 ? string.Empty
                 : ConfigurationManager.ConnectionStrings[key].ConnectionString;
+        }
+
+        public static string GetCurrentDirectory()
+        {
+            return AppDomain.CurrentDomain.BaseDirectory.TrimEnd(new[] { '\\' }) ==
+                    Environment.CurrentDirectory.TrimEnd(new[] { '\\' })
+                    ? AppDomain.CurrentDomain.BaseDirectory.TrimEnd(new[] { '\\' }) + "\\"
+                    : AppDomain.CurrentDomain.BaseDirectory.TrimEnd(new[] { '\\' }) + "\\bin\\";
         }
     }
 }
