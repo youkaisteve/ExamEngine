@@ -24,6 +24,9 @@ namespace Exam.Service.Implement
         [Import]
         private UserTeamRepository userTeamRepo;
 
+        [Import]
+        private RoleUserRepository roleUserRepo;
+
         protected override string ModuleName
         {
             get { return "User"; }
@@ -79,7 +82,7 @@ namespace Exam.Service.Implement
             string pwd = PublicFunc.GetConfigByKey_AppSettings("DefaultPWD");
 
             DateTime now = DateTime.Now;
-
+            int studentRoleSysNo = int.Parse(PublicFunc.GetConfigByKey_AppSettings("StudentRoleSysNo"));
             IEnumerable<IGrouping<string, TeamUserImportModel>> groupList = data.GroupBy(m => m.TeamName);
             foreach (var group in groupList)
             {
@@ -101,6 +104,15 @@ namespace Exam.Service.Implement
                         UserID = user.UserId,
                         InDate = now,
                         InUser = "001"
+                    });
+
+                    roleUserRepo.Insert(new RoleUser()
+                    {
+                        InDate = now,
+                        InUser = "001",
+                        Status = 1,
+                        UserID = user.UserId,
+                        RoleSysNo = studentRoleSysNo
                     });
                 }
             }
