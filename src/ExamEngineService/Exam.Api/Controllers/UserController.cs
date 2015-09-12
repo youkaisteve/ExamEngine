@@ -28,8 +28,13 @@ namespace Exam.Api.Controllers
         [HttpPost]
         public ApiResponse ImportUser()
         {
+            string uploadPath = PublicFunc.GetConfigByKey_AppSettings("upload_path");
             HttpPostedFile file = HttpContext.Current.Request.Files[0];
-            string strPath = Path.Combine(PublicFunc.GetConfigByKey_AppSettings("upload_path"), file.FileName);
+            string strPath = Path.Combine(uploadPath, file.FileName);
+            if (!Directory.Exists(uploadPath))
+            {
+                Directory.CreateDirectory(uploadPath);
+            }
             file.SaveAs(strPath);
 
             var list = new List<TeamUserImportModel>();
