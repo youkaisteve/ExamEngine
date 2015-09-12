@@ -38,7 +38,7 @@ namespace Exam.Api.Controllers
             file.SaveAs(strPath);
 
             var list = new List<TeamUserImportModel>();
-            using (var sr = new StreamReader(strPath, Encoding.ASCII))
+            using (var sr = new StreamReader(strPath, Encoding.UTF8))
             {
                 string lineContent = sr.ReadLine();
                 while (!string.IsNullOrEmpty(lineContent = sr.ReadLine()))
