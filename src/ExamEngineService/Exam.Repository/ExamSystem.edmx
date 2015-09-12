@@ -135,15 +135,14 @@
             <PropertyRef Name="SysNo" />
           </Key>
           <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserSysNo" Type="int" Nullable="false" />
-          <Property Name="TempData" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TemplateData" Type="nvarchar" MaxLength="4000" Nullable="false" />
           <Property Name="TemplateName" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="TransitionName" Type="nvarchar" MaxLength="100" />
-          <Property Name="TransitionID" Type="int" />
-          <Property Name="TokenID" Type="varchar" MaxLength="50" />
+          <Property Name="NodeName" Type="nvarchar" MaxLength="100" />
           <Property Name="ProcessName" Type="nvarchar" MaxLength="100" />
           <Property Name="InDate" Type="datetime" Nullable="false" />
           <Property Name="InstanceID" Type="varchar" MaxLength="50" />
+          <Property Name="TokenID" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="UserTeam">
           <Key>
@@ -266,15 +265,14 @@ FROM [dbo].[AssignedUser] AS [AssignedUser]</DefiningQuery>
             <PropertyRef Name="SysNo" />
           </Key>
           <Property Name="SysNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserSysNo" Type="Int32" Nullable="false" />
-          <Property Name="TempData" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TemplateName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="TokenID" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="TransitionName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="TransitionID" Type="Int32" />
           <Property Name="ProcessName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="InstanceID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TemplateData" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="NodeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UserTeam">
           <Key>
@@ -450,13 +448,12 @@ FROM [dbo].[AssignedUser] AS [AssignedUser]</DefiningQuery>
     <EntitySetMapping Name="UserAnwser">
       <EntityTypeMapping TypeName="IsTypeOf(ExamSystemModel.UserAnwser)">
         <MappingFragment StoreEntitySet="UserAnwser">
-          <ScalarProperty Name="InstanceID" ColumnName="InstanceID" />
+          <ScalarProperty Name="NodeName" ColumnName="NodeName" />
+                <ScalarProperty Name="TemplateData" ColumnName="TemplateData" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="InstanceID" ColumnName="InstanceID" />
                 <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
-                <ScalarProperty Name="TransitionID" ColumnName="TransitionID" />
-                <ScalarProperty Name="TransitionName" ColumnName="TransitionName" />
                 <ScalarProperty Name="SysNo" ColumnName="SysNo" />
-          <ScalarProperty Name="UserSysNo" ColumnName="UserSysNo" />
-          <ScalarProperty Name="TempData" ColumnName="TempData" />
           <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
           <ScalarProperty Name="TokenID" ColumnName="TokenID" />
           <ScalarProperty Name="InDate" ColumnName="InDate" />

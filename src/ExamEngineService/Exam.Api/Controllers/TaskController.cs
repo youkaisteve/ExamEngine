@@ -7,10 +7,11 @@ using Exam.Service.Interface;
 
 namespace Exam.Api.Controllers
 {
-    [Export(typeof (TaskController))]
+    [Export(typeof(TaskController))]
     public class TaskController : BaseApiController
     {
-        [Import] public ITaskService taskService;
+        [Import]
+        public ITaskService taskService;
 
         [HttpPost]
         public ApiResponse GetUserTasks([FromBody] UserTaskQueryFilter filter)
@@ -48,10 +49,9 @@ namespace Exam.Api.Controllers
         }
 
         [HttpPost]
-        public ApiResponse Process([FromBody] dynamic data)
+        public ApiResponse Process([FromBody] ProcessModel data)
         {
-            taskService.Process(data.InstanceId.Value, data.TokenId.Value, data.TransitionName.Value,
-                data.FormData.Value);
+            taskService.Process(data);
             return ApiOk();
         }
     }

@@ -12,13 +12,19 @@ using WorkflowCallWapper.Models;
 
 namespace Exam.Service.Implement
 {
-    [Export(typeof (ITaskService))]
+    [Export(typeof(ITaskService))]
     public class TaskService : ServiceBase, ITaskService
     {
-        [Import] private AssignedUserRepository assignedUserRepo;
-        [Import] private TeamRepository teamRepo;
-        [Import] private UserRepository userRepo;
-        [Import] private WorkflowTeamRepository workflowTeamRepo;
+        [Import]
+        private AssignedUserRepository assignedUserRepo;
+        [Import]
+        private TeamRepository teamRepo;
+        [Import]
+        private UserRepository userRepo;
+        [Import]
+        private WorkflowTeamRepository workflowTeamRepo;
+        [Import]
+        private UserAnswerRepository userAnswerRepo;
 
         protected override string ModuleName
         {
@@ -41,7 +47,7 @@ namespace Exam.Service.Implement
             var proxy = new WorkflowProxy();
             List<Transition> transitions = proxy.GetTransitions(instanceId, tokenId);
             VariableInstance page = proxy.GetCurrentTaskSetPage(instanceId, tokenId);
-            return new {Transitions = transitions, Page = page.Value};
+            return new { Transitions = transitions, Page = page.Value };
         }
 
         public void BeginExam(BeginExamModel data)
@@ -108,15 +114,15 @@ namespace Exam.Service.Implement
         /// <param name="instanceid">流程ID</param>
         /// <param name="tokenid">节点ID</param>
         /// <param name="transitionName">按钮名称（离开当前节点的TransitionName）</param>
-        public void Process(string instanceid, string tokenid, string transitionName, string templateData)
+        public void Process(ProcessModel data)
         {
             //TODO:还需要processName，TemplateName（模板名称）
             var proxy = new WorkflowProxy();
 
             var processInstance = new ProcessInstance();
-            processInstance.InstanceID = instanceid;
-            processInstance.TokenID = tokenid;
-            processInstance.RouterName = transitionName;
+            processInstance.InstanceID = data.InstanceId;
+            processInstance.TokenID = data.TokenId;
+            processInstance.RouterName = data.TransitionName;
 
             //判断登记表中有没有该人员，如果没有，则写入（需要传入表单Json串）
             var item = new VariableInstance();
@@ -134,34 +140,39 @@ namespace Exam.Service.Implement
             }
 
             //获取下一个节点名并启动流程
-            string nodeName = ""; //TODO:还需要调用service获取nodename
-            string processName = ""; //TODO:还需要调用service获取processName
-            string tokenName = ""; //TODO:还需要获取TokenName
-            string actionName = ""; //TODO:还需要获取ActionName
-
-            nodeName = proxy.GetTransitionNextNodeRoles(processName, tokenName, actionName)[0];
-            List<User> users = teamRepo.GetUsersByNodeName(processName, nodeName);
+            string nodeName = proxy.GetTransitionNextNodeRoles(data.DefineName, data.TokenName, data.TransitionName)[0];
+            List<User> users = teamRepo.GetUsersByNodeName(data.DefineName, nodeName);
             User choosenUser = GetRandomUserId(users);
             assignedUserRepo.Insert(new AssignedUser
             {
                 InDate = DateTime.Now,
-                InstanceID = instanceid,
-                TokenID = tokenid,
-                TokenName = tokenName,
+                InstanceID = data.InstanceId,
+                TokenID = data.TokenId,
+                TokenName = data.TokenName,
                 UserID = choosenUser.UserID,
                 Nodename = nodeName,
-                ProcessName = processName
+                ProcessName = data.DefineName
             });
 
-            var user = new TaskUser {UserId = "007", UserName = "007"};
+            var user = new TaskUser { UserId = "007", UserName = "007" };
             processInstance.IncludeActors.Add(user);
 
             ProcessInstance process = proxy.ProcessExecuter(processInstance);
 
 
-            if (!string.IsNullOrEmpty(templateData))
+            if (!string.IsNullOrEmpty(data.TemplateData))
             {
-                //TODO:存放json数据
+                userAnswerRepo.Insert(new UserAnwser()
+                {
+                    TemplateData = data.TemplateData,
+                    TemplateName = data.TemplateName,
+                    InDate = DateTime.Now,
+                    ProcessName = data.DefineName,
+                    NodeName = nodeName,
+                    UserID = data.User.UserID,
+                    InstanceID = data.InstanceId,
+                    TokenID = data.TokenId
+                });
             }
         }
     }
