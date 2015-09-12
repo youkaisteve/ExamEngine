@@ -24,6 +24,7 @@ require.config({
         , "team-select": "directive/team-select/index"
         , "custom-select": "directive/custom-select/index"
         , "file-uploader": "directive/file-uploader/index"
+        , "disabled-when-click": "directive/disabled_when_click"
     }
     , shim: {
         "angular": ["jquery"]

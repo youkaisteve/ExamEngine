@@ -1,7 +1,7 @@
 ﻿<ng-include src="'partials/header.html'"></ng-include>
 <div class="container">
     <div class="text-right" style="padding:10px;">
-        <button ng-repeat="btn in taskDetail.Transitions track by $index" class="btn btn-default" ng-click="handl(btn)">
+        <button ng-repeat="btn in taskDetail.Transitions track by $index" class="btn btn-default" disabled-when-click="handle(btn)">
             {{btn.TransitionName}}
         </button>
     </div>

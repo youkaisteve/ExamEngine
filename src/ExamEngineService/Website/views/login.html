@@ -11,12 +11,13 @@
                 </div>
                 <div class="form-group">
                     <label>密码</label>
-                    <input class="form-control" type="password" placeholder="密码" required ng-model="Model.Password" ng-keypress="($event.which === 13)?login($event,Model):0"/>
+                    <input class="form-control" type="password" placeholder="密码" required ng-model="Model.Password"
+                           ng-keypress="($event.which === 13)?login($event,Model):0"/>
                 </div>
             </form>
         </div>
         <div class="panel-footer">
-            <button style="width:100%;" class="btn btn-primary" ng-click="login($event,Model)">登陆</button>
+            <button style="width:100%;" class="btn btn-primary" disabled-when-click="login($event,Model)">登录</button>
         </div>
     </div>
 </div>

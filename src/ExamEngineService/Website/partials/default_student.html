@@ -4,7 +4,7 @@
         <h3 class="panel-title pull-left" style="padding-top:8px;">
             任务列表
         </h3>
-        <button class="btn btn-default pull-right" ng-click="getTasks()"><i class="glyphicon glyphicon-refresh"></i></button>
+        <button class="btn btn-default pull-right" disabled-when-click="getTasks()"><i class="glyphicon glyphicon-refresh"></i></button>
         <div class="clearfix"></div>
     </div>
     <div class="panel-body">
@@ -16,7 +16,7 @@
             </thead>
             <tbody ng-if="tasks.length>0">
                 <tr ng-repeat="task in tasks track by $index">
-                    <td><a ng-href="#/task/{{task.InstanceId}}/{{task.TokenID}}">{{task.TokenName}}</a></td>
+                    <td><a href="javascript:void(0)" ng-click="gotoDetail(task)">{{task.TokenName}}</a></td>
                 </tr>
             </tbody>
             <tbody ng-if="tasks.length<=0">

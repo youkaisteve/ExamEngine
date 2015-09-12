@@ -4,7 +4,7 @@
  * email:mahai_1986@126.com
  *
  */
-define(["app"], function (app) {
+define(["app","disabled-when-click"], function (app) {
 
     app.controller("default", ["$scope", "$window", function ($scope, $window) {
 
@@ -20,19 +20,21 @@ define(["app"], function (app) {
             $scope.tasks = [];
 
             $scope.getTasks = function () {
-                $scope._request("Tasks", {
+                return $scope._request("Tasks", {
                     UserId: "007"
-                }).success(function (res) {
-                    if (res.Code === 0) {
-                        $scope.tasks = res.Data.Tasks;
-                    }
-                    else {
-                        $window.alert(res.ErrorMessage);
-                    }
+                }).then(function (res) {
+                    $scope.tasks = res.Data.Tasks;
                 });
             };
 
+            $scope.gotoDetail=function(task){
+                $scope.sessionStorage.currentTask=task;
+                $scope._goto("/task/"+task.InstanceId+"/"+task.TokenID);
+            };
+
             $scope.getTasks();
+
+
         }
 
     }]);
