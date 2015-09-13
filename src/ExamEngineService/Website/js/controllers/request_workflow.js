@@ -12,6 +12,14 @@ define(["app", "team-select", "custom-select"], function (app) {
             , value: 1
         }];
 
+        $scope.getAllWorkflows=function(){
+            return $scope._request("AllProcess").then(function(res){
+
+            });
+        };
+
+        $scope.getAllWorkflows();
+
         $scope.workflows = [{
             text: "sdfdf"
             , value: 1
