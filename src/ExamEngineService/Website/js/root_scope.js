@@ -64,6 +64,10 @@ define(["app.config"], function (config) {
                         }
                         deferred.resolve(res);
                     }
+                    else if(res.Code===3){
+                        $window.alert(res.ErrorMessage);
+                        $rootScope._goto("/login");
+                    }
                     else{
                         $window.alert(res.ErrorMessage);
                         deferred.reject(res);
