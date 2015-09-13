@@ -19,7 +19,7 @@ namespace Exam.Service.Interface
         /// <returns></returns>
         List<dynamic> GetAllTeamsWithUser();
 
-        void ImportTeamUser(List<TeamUserImportModel> data);
+        void ImportTeamUser(TramUserImportListModel data);
 
         dynamic GetAllProcess();
     }

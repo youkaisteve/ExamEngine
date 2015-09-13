@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
+using System.Linq;
 using System.Net.Mime;
 using System.Text;
 using System.Web;
 using System.Web.Http;
 using Component.Tools;
+using Exam.Api.Filters;
 using Exam.Api.Framework;
 using Exam.Model;
 using Exam.Repository;
@@ -20,6 +22,7 @@ namespace Exam.Api.Controllers
         private IUserService userService;
 
         [HttpPost]
+        [BaseAuthoriizeFilter]
         public ApiResponse MyTeamUsers([FromUri] string name)
         {
             List<User> teamUsers = userService.GetUserByTeamName(name);
@@ -27,6 +30,7 @@ namespace Exam.Api.Controllers
         }
 
         [HttpPost]
+        [BaseAuthoriizeFilter]
         public ApiResponse ImportUser()
         {
             string uploadPath = Path.Combine(
@@ -40,7 +44,17 @@ namespace Exam.Api.Controllers
             }
             file.SaveAs(strPath);
 
-            var list = new List<TeamUserImportModel>();
+            var model = new TramUserImportListModel()
+            {
+                Lists = new List<TeamUserImportModel>(),
+                User = new UserInfo()
+                {
+                    //上传文件时，body为空，在ApiJsonMediaTypeFormatter中ReadFromStreamAsync时要出错
+                    //在解决该问题之前，现在这里设置一下登录用户的UserID
+                    UserID = ActionContext.Request.Content.Headers.GetValues("UserID").FirstOrDefault()
+                }
+            };
+            var list = model.Lists;
             using (var sr = new StreamReader(strPath, Encoding.UTF8))
             {
                 string lineContent = sr.ReadLine();
@@ -58,9 +72,9 @@ namespace Exam.Api.Controllers
 
             if (list.Count > 0)
             {
-                userService.ImportTeamUser(list);
+                userService.ImportTeamUser(model);
             }
-            return ApiOk(list);
+            return ApiOk();
         }
 
         public ApiResponse GetAllProcess()

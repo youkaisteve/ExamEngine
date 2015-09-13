@@ -14,12 +14,13 @@ namespace Exam.Api.Filters
             if (actionExecutedContext.Exception is BusinessException)
             {
                 response.Code = (actionExecutedContext.Exception as BusinessException).ExceptionCode;
+                response.ErrorMessage = actionExecutedContext.Exception.Message;
             }
             else
             {
                 response.Code = 2;
+                response.ErrorMessage = actionExecutedContext.Exception.Message + System.Environment.NewLine + actionExecutedContext.Exception.StackTrace;
             }
-            response.ErrorMessage = actionExecutedContext.Exception.Message;
             actionExecutedContext.Response = actionExecutedContext.Request.CreateResponse(HttpStatusCode.OK, response);
         }
     }

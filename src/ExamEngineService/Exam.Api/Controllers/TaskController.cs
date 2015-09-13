@@ -30,6 +30,7 @@ namespace Exam.Api.Controllers
         }
 
         [HttpPost]
+        [BaseAuthoriizeFilter]
         public ApiResponse GetTaskDetail([FromBody] dynamic data)
         {
             dynamic result = taskService.GetTaskDetail(data.InstanceId.Value, data.TokenId.Value);
@@ -37,6 +38,7 @@ namespace Exam.Api.Controllers
         }
 
         [HttpPost]
+        [BaseAuthoriizeFilter]
         public ApiResponse BeginExam([FromBody] BeginExamModel data)
         {
             taskService.BeginExam(data);
@@ -44,6 +46,7 @@ namespace Exam.Api.Controllers
         }
 
         [HttpPost]
+        [BaseAuthoriizeFilter]
         public ApiResponse InitExam([FromBody] InitExamModel data)
         {
             taskService.InitExam(data);
@@ -51,6 +54,7 @@ namespace Exam.Api.Controllers
         }
 
         [HttpPost]
+        [BaseAuthoriizeFilter]
         public ApiResponse Process([FromBody] ProcessModel data)
         {
             taskService.Process(data);

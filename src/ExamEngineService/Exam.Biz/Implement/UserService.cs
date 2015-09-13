@@ -45,7 +45,8 @@ namespace Exam.Service.Implement
 
             var result = allProcess.Select(p => new ProcessWithNodeModel
             {
-                ProcessName = p.ProcessName, Tasks = proxy.GetProcessAllTask(p.ProcessName)
+                ProcessName = p.ProcessName,
+                Tasks = proxy.GetProcessAllTask(p.ProcessName)
             }).ToList();
 
             return new { AllProcess = result, Teams = teamRepo.Entities.Select(m => m.TeamName).ToList() };
@@ -82,7 +83,7 @@ namespace Exam.Service.Implement
             return result;
         }
 
-        public void ImportTeamUser(List<TeamUserImportModel> data)
+        public void ImportTeamUser(TramUserImportListModel data)
         {
             if (data == null)
             {
@@ -97,10 +98,10 @@ namespace Exam.Service.Implement
 
             DateTime now = DateTime.Now;
             int studentRoleSysNo = int.Parse(PublicFunc.GetConfigByKey_AppSettings("StudentRoleSysNo"));
-            IEnumerable<IGrouping<string, TeamUserImportModel>> groupList = data.GroupBy(m => m.TeamName);
+            IEnumerable<IGrouping<string, TeamUserImportModel>> groupList = data.Lists.GroupBy(m => m.TeamName);
             foreach (var group in groupList)
             {
-                teamRepo.Insert(new Team { TeamName = group.Key, InDate = now, InUser = "001" });
+                teamRepo.Insert(new Team { TeamName = group.Key, InDate = now, InUser = data.User.UserID });
                 foreach (TeamUserImportModel user in group.ToList())
                 {
                     userRepo.Insert(new User
@@ -109,7 +110,7 @@ namespace Exam.Service.Implement
                         UserName = user.UserName,
                         Password = pwd,
                         Status = 1,
-                        InUser = "001",
+                        InUser = data.User.UserID,
                         InDate = now
                     });
                     userTeamRepo.Insert(new UserTeam
@@ -117,13 +118,13 @@ namespace Exam.Service.Implement
                         TeamName = user.TeamName,
                         UserID = user.UserId,
                         InDate = now,
-                        InUser = "001"
+                        InUser = data.User.UserID
                     });
 
                     roleUserRepo.Insert(new RoleUser()
                     {
                         InDate = now,
-                        InUser = "001",
+                        InUser = data.User.UserID,
                         Status = 1,
                         UserID = user.UserId,
                         RoleSysNo = studentRoleSysNo

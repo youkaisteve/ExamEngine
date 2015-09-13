@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace Exam.Model
 {
-    public class InitExamModel
+    public class InitExamModel : ModelBase
     {
         public string ProcessName { get; set; }
-
-        public string UserId { get; set; }
-        public string UserName { get; set; }
 
         public List<NodeTeamModel> NodeTeams { get; set; } 
     }

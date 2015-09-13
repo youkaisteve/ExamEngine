@@ -99,7 +99,7 @@ namespace Exam.Service.Implement
                 wtr = new WorkflowTeamRelation
                 {
                     InDate = DateTime.Now,
-                    InUser = data.UserId,
+                    InUser = data.User.UserID,
                     NodeName = nodeTeam.NodeName,
                     ProcessName = data.ProcessName,
                     TeamName = nodeTeam.TeamName
@@ -155,7 +155,7 @@ namespace Exam.Service.Implement
                 UserID = choosenUser.UserID,
                 Nodename = nodeName,
                 ProcessName = data.DefineName,
-                InUser = "001"
+                InUser = data.User.UserID
             });
 
             var user = new TaskUser { UserId = choosenUser.UserID, UserName = choosenUser.UserName };
