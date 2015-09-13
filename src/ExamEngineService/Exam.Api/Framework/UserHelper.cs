@@ -17,10 +17,7 @@ namespace Exam.Api.Framework
 
         public static void SetUserSession(UserInfo user)
         {
-            if (_userCache.GetMyCachedItem(user.UserID) == null)
-            {
-                _userCache.AddToCache(user.UserID,user,MyCachePriority.Default);
-            }
+            _userCache.AddToCache(user.UserID, user, MyCachePriority.Default, user.ExpiredDate);
             //if (HttpContext.Current.Session[user.UserID] == null)
             //{
             //    HttpContext.Current.Session.Add(user.UserID, user);

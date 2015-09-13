@@ -29,10 +29,10 @@ namespace Exam.Api
             //GlobalConfiguration.Configuration.MessageHandlers.Add(new CorsMessageHandler());
             GlobalConfiguration.Configuration.MessageHandlers.Add(new RequestTransHandler());
 
-            HttpConfiguration config = GlobalConfiguration.Configuration;
-            config.Services.Replace(typeof (IHttpControllerSelector), new ExamHttpControllerSelector(config));
+            //HttpConfiguration config = GlobalConfiguration.Configuration;
+            //config.Services.Replace(typeof (IHttpControllerSelector), new ExamHttpControllerSelector(config));
 
-            config.Services.Replace(typeof (IHttpActionSelector), new ExamHttpActionSelector());
+            //config.Services.Replace(typeof (IHttpActionSelector), new ExamHttpActionSelector());
             //GlobalConfiguration.Configuration.Services.Remove(typeof(IHttpActionInvoker), GlobalConfiguration.Configuration.Services.GetActionInvoker());
             //GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpActionInvoker), new AuthorizeHandler());
         }

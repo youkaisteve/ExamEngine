@@ -13,8 +13,7 @@ namespace Exam.Api.Framework
 
         public override string GetControllerName(HttpRequestMessage request)
         {
-            string str = base.GetControllerName(request);
-            return str;
+            return base.GetControllerName(request);
         }
     }
 }
