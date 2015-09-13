@@ -55,9 +55,13 @@ define(["app.config"], function (config) {
                 $http.post(config.api, data, {
                     headers: {
                         "action": action
+                        ,"user-authorize":$sessionStorage.token
                     }
-                }).success(function(res){
+                }).success(function(res,status,headers){
                     if(res.Code===0){
+                        if(!$sessionStorage.token) {
+                            $sessionStorage.token = headers("user-authorize");
+                        }
                         deferred.resolve(res);
                     }
                     else{
