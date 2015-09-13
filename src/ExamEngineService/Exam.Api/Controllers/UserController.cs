@@ -74,7 +74,7 @@ namespace Exam.Api.Controllers
             {
                 userService.ImportTeamUser(model);
             }
-            return ApiOk();
+            return ApiOk(list);
         }
 
         [HttpPost]
