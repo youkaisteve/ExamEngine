@@ -77,6 +77,7 @@ namespace Exam.Api.Controllers
             return ApiOk();
         }
 
+        [HttpPost]
         public ApiResponse GetAllProcess()
         {
             var result = userService.GetAllProcess();
