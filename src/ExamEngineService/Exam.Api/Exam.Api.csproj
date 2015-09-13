@@ -184,7 +184,9 @@
     <Compile Include="Framework\SystemErrorCollection.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="cache.txt" />
+    <Content Include="cache.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Global.asax" />
     <None Include="Configurations\API_CONFIG\ApiConfig.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

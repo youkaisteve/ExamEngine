@@ -36,13 +36,12 @@ namespace Exam.Api.Filters
             {
                 throw new AuthorizeExpiredException();
             }
+            userInfo.ExpiredDate = DateTime.Now;
+            UserHelper.SetUserSession(userInfo);
 
             actionContext.Request.Content.Headers.Add("UserID", userInfo.UserID);
             actionContext.Request.Content.Headers.Add("UserName", userInfo.UserName);
             actionContext.Request.Content.Headers.Add("UserSysNo", userInfo.UserSysNo.ToString());
-
-            userInfo.ExpiredDate = DateTime.Now;
-            UserHelper.SetUserSession(userInfo);
         }
     }
 }
