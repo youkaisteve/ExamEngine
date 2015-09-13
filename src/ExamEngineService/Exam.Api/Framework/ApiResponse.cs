@@ -7,7 +7,7 @@
         ///     0-成功
         ///     1-业务异常
         ///     2-系统异常
-        ///     3-Token失效
+        ///     3-Token失效或未授权
         /// </summary>
         public int Code { get; set; }
 
