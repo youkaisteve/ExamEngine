@@ -36,7 +36,7 @@ namespace Exam.Api.Filters
             {
                 throw new AuthorizeExpiredException();
             }
-            userInfo.ExpiredDate = DateTime.Now;
+            userInfo.ExpiredDate = DateTime.Now.AddHours(1);
             UserHelper.SetUserSession(userInfo);
 
             actionContext.Request.Content.Headers.Add("UserID", userInfo.UserID);
