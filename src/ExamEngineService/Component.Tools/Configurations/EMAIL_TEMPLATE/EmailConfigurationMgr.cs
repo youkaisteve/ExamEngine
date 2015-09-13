@@ -35,28 +35,22 @@ namespace Component.Tools.Configurations.EMAIL_TEMPLATE
             }
         }
 
-        protected override List<Email> Configurations { get; set; }
-
         public Email GetMail(string mailType)
         {
-            return Configurations.FirstOrDefault(m => m.Type == mailType);
+            return _Configurations.FirstOrDefault(m => m.Type == mailType);
         }
 
         protected override void Init()
         {
-            var serializer = new XmlSerializer(typeof (MailTemplate));
-            string baseFolder = AppDomain.CurrentDomain.BaseDirectory.TrimEnd(new[] {'\\'}) ==
-                                Environment.CurrentDirectory.TrimEnd(new[] {'\\'})
-                ? AppDomain.CurrentDomain.BaseDirectory.TrimEnd(new[] {'\\'}) + "\\" + BasePath
-                : AppDomain.CurrentDomain.BaseDirectory.TrimEnd(new[] {'\\'}) + "\\bin\\" + BasePath;
-            var directoryInfo = new DirectoryInfo(Path.Combine(baseFolder, ConfigPath));
+            var serializer = new XmlSerializer(typeof(Email));
+            var directoryInfo = new DirectoryInfo(Path.Combine(BaseFolder, ConfigPath));
             FileInfo[] files = directoryInfo.GetFiles("*.xml", SearchOption.TopDirectoryOnly);
             if (files.Length <= 0)
             {
                 return;
             }
 
-            Configurations = new List<Email>();
+            _Configurations = new List<Email>();
 
 
             foreach (FileInfo fileInfo in files)
@@ -67,7 +61,7 @@ namespace Component.Tools.Configurations.EMAIL_TEMPLATE
 
                     foreach (Email item in sc.Emails)
                     {
-                        Configurations.Add(item);
+                        _Configurations.Add(item);
                     }
                 }
             }

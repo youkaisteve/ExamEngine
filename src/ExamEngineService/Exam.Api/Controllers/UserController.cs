@@ -31,7 +31,7 @@ namespace Exam.Api.Controllers
         {
             string uploadPath = Path.Combine(
                 PublicFunc.GetCurrentDirectory(),
-                PublicFunc.GetConfigByKey_AppSettings("upload_path"));
+                PublicFunc.GetConfigByKey_AppSettings("Upload_Path"));
             HttpPostedFile file = HttpContext.Current.Request.Files[0];
             string strPath = Path.Combine(uploadPath, file.FileName);
             if (!Directory.Exists(uploadPath))

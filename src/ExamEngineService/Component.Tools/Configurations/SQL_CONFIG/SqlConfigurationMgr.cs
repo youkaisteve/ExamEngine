@@ -14,7 +14,7 @@ namespace Component.Tools.Configurations
     //[PartCreationPolicy(CreationPolicy.Shared)]
     public class SqlConfigurationMgr : ConfigurationBase<Command>, ISqlConfiguration
     {
-        private static readonly object cmgrLocker = new object();
+        private static readonly object CmgrLocker = new object();
         private static SqlConfigurationMgr _instanse;
 
         private SqlConfigurationMgr()
@@ -26,13 +26,11 @@ namespace Component.Tools.Configurations
             get { return "SQL_CONFIG"; }
         }
 
-        protected override List<Command> Configurations { get; set; }
-
         public static SqlConfigurationMgr Instanse
         {
             get
             {
-                lock (cmgrLocker)
+                lock (CmgrLocker)
                 {
                     if (_instanse == null)
                     {
@@ -49,19 +47,14 @@ namespace Component.Tools.Configurations
         protected override void Init()
         {
             var serializer = new XmlSerializer(typeof (SqlConfiguration));
-            string baseFolder;
-            baseFolder = AppDomain.CurrentDomain.BaseDirectory.TrimEnd(new[] {'\\'}) ==
-                         Environment.CurrentDirectory.TrimEnd(new[] {'\\'})
-                ? AppDomain.CurrentDomain.BaseDirectory.TrimEnd(new[] {'\\'}) + "\\" + BasePath
-                : AppDomain.CurrentDomain.BaseDirectory.TrimEnd(new[] {'\\'}) + "\\bin\\" + BasePath;
-            var directoryInfo = new DirectoryInfo(Path.Combine(baseFolder, ConfigPath));
+            var directoryInfo = new DirectoryInfo(Path.Combine(BaseFolder, ConfigPath));
             FileInfo[] files = directoryInfo.GetFiles("*.xml", SearchOption.TopDirectoryOnly);
             if (files.Length <= 0)
             {
                 return;
             }
 
-            Configurations = new List<Command>();
+            _Configurations = new List<Command>();
 
             foreach (FileInfo fileInfo in files)
             {
@@ -70,7 +63,7 @@ namespace Component.Tools.Configurations
 
                 foreach (Command item in sc.Commands)
                 {
-                    Configurations.Add(item);
+                    _Configurations.Add(item);
                 }
                 fs.Dispose();
             }
@@ -80,7 +73,7 @@ namespace Component.Tools.Configurations
 
         public string GetCommandTextByKey(string key)
         {
-            Command config = Configurations.FirstOrDefault(m => m.Name == key);
+            Command config = _Configurations.FirstOrDefault(m => m.Name == key);
             if (config == null)
             {
                 throw new BusinessException(string.Format("key:{0} is not found in SQL_CONFIG", key));

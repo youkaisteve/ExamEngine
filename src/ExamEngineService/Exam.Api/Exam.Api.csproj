@@ -181,15 +181,14 @@
     <Compile Include="Framework\ExamHttpControllerSelector.cs" />
     <Compile Include="Filters\BaseAuthoriizeFilter.cs" />
     <Compile Include="Framework\MefDependencySolver.cs" />
-    <Compile Include="Framework\CacheWrapper.cs" />
     <Compile Include="Framework\SystemErrorCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="cache.txt" />
     <Content Include="Global.asax" />
-    <Content Include="Configurations\API_CONFIG\ApiConfig.json">
+    <None Include="Configurations\API_CONFIG\ApiConfig.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
