@@ -19,9 +19,9 @@ define(["app", "app.config"], function (app, config) {
 
                     var eleFile = ele.find("#file").get(0);
 
-                    scope.selectFile = function (event) {
-                        console.log(event);
-                    };
+                    //scope.selectFile = function (event) {
+                    //    console.log(event);
+                    //};
 
                     var xhr = new XMLHttpRequest();
                     //xhr.addEventListener("progress", function (e) {

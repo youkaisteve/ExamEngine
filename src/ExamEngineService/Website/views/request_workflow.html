@@ -7,21 +7,23 @@
         <div class="panel-body">
             <form>
                 <div class="form-group">
-                    <label >流程名称</label>
-                    <custom-select ng-model="Model.workflow" source="workflows"></custom-select>
+                    <label>流程名称</label>
+                    <custom-select ng-model="Model.ProcessName"
+                                   source="workflows"
+                                   onchange="changeWorkflow($event)"></custom-select>
                 </div>
             </form>
-            <ul class="list-group">
-                <li class="list-group-item" style="line-height: 30px;">流程节点 <div class="pull-right"><team-select ng-model="Model.team1" source="teamSource"></team-select></div></li>
-                <li class="list-group-item" style="line-height: 30px;">流程节点 <div class="pull-right"><team-select ng-model="Model.team2" source="teamSource"></team-select></div></li>
-                <li class="list-group-item" style="line-height: 30px;">流程节点 <div class="pull-right"><team-select ng-model="Model.team3" source="teamSource"></team-select></div></li>
-                <li class="list-group-item" style="line-height: 30px;">流程节点 <div class="pull-right"><team-select ng-model="Model.team4" source="teamSource"></team-select></div></li>
-                <li class="list-group-item" style="line-height: 30px;">流程节点 <div class="pull-right"><team-select ng-model="Model.team5" source="teamSource"></team-select></div></li>
-                <li class="list-group-item" style="line-height: 30px;">流程节点 <div class="pull-right"><team-select ng-model="Model.team6" source="teamSource"></team-select></div></li>
+            <ul class="list-group" ng-show="selectedWorkflow">
+                <li class="list-group-item" style="line-height: 30px;" ng-repeat="node in selectedWorkflow.Tasks">
+                    {{node}}
+                    <div class="pull-right">
+                        <team-select ng-model="Model.NodeTeams[node]" source="teamSource"></team-select>
+                    </div>
+                </li>
             </ul>
         </div>
-        <div class="panel-footer text-right">
-            <button class="btn btn-default"><i class="fa fa-flag-o"></i>  开始</button>
+        <div class="panel-footer text-right" ng-show="selectedWorkflow">
+            <button class="btn btn-default" ng-click="initExam(Model)"><i class="fa fa-flag-o"></i> 开始</button>
         </div>
     </div>
 </div>
