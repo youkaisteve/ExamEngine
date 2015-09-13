@@ -141,7 +141,7 @@ namespace Exam.Service.Implement
 
             //获取下一个节点名并启动流程
             string nodeName = proxy.GetTransitionNextNodeRoles(data.DefineName, data.TokenName, data.TransitionName)[0];
-            List<User> users = teamRepo.GetUsersByNodeName(data.DefineName, nodeName, data.InstanceId);
+            List<User> users = teamRepo.GetUsersByNodeName(data.DefineName, nodeName);
             User choosenUser = GetRandomUserId(users);
             if (choosenUser == null)
             {
@@ -162,7 +162,6 @@ namespace Exam.Service.Implement
             processInstance.IncludeActors.Add(user);
 
             proxy.ProcessExecuter(processInstance);
-
 
             if (!string.IsNullOrEmpty(data.TemplateData))
             {
