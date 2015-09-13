@@ -18,33 +18,21 @@ define(["app", "app.config"], function (app, config) {
                     scope.selectedFile = null;
 
                     var eleFile = ele.find("#file").get(0);
-
-                    //scope.selectFile = function (event) {
-                    //    console.log(event);
-                    //};
-
                     var xhr = new XMLHttpRequest();
-                    //xhr.addEventListener("progress", function (e) {
-                    //    console.log("process");
-                    //    //if (e.lengthComputable) {
-                    //    //    scope.process = Math.round((e.loaded * 100) / e.total);
-                    //    //}
-                    //}, false);
-                    //xhr.upload.addEventListener("load", function (e) {
-                    //    scope.process = 100;
-                    //    scope.running = false;
-                    //}, false);
+
+                    var onComplete=$parse(attrs.oncomplete);;
 
                     xhr.addEventListener("readystatechange",function(){
                         if (this.readyState == 4 && this.status == 200) {
                             scope.running = false;
                             scope.$apply();
-                            var fn = $parse(attrs.oncomplete);
-                            fn(scope, {
+                            onComplete(scope, {
                                 $result: JSON.parse(this.responseText)
                             });
                         }
                     },false);
+
+
 
                     scope.sendFile = function () {
 
@@ -56,7 +44,7 @@ define(["app", "app.config"], function (app, config) {
                         var fd = new FormData();
 
                         xhr.open("POST", config.importStudentUri, true);
-
+                        xhr.setRequestHeader("user-authorize",scope.sessionStorage.token);
                         fd.append('file', eleFile.files[0]);
                         // Initiate a multipart/form-data upload
                         xhr.send(fd);
