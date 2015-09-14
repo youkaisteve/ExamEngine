@@ -63,28 +63,30 @@ namespace Exam.Service.Implement
             //获取node对应的用户
             List<User> users = teamRepo.GetUsersByNodeName(processName, nodeName);
 
-            var processInstance = new ProcessInstance
-            {
-                ProcessName = processName
-            };
-
             foreach (User user in users)
             {
-                processInstance.Actor = user.UserID;
-                processInstance.ActorName = user.UserName;
+                var processInstance = new ProcessInstance
+                {
+                    ProcessName = processName,
+                    Actor = user.UserID,
+                    ActorName = user.UserName
+                };
 
                 var taskUser = new TaskUser();
                 taskUser.UserId = user.UserID;
                 taskUser.UserName = user.UserName;
                 taskUser.UserRole = "Student";
                 processInstance.IncludeActors.Add(taskUser);
-                LogHelper.Instanse.WriteInfo(string.Format("发起流程，用户-{0}",taskUser.UserId));
                 processInstance = proxy.CreateProcessInstance(processInstance);
+                LogHelper.Instanse.WriteInfo(
+                    string.Format("发起流程，用户-{0},InstanceID-{1}", taskUser.UserId, processInstance.InstanceID));
             }
         }
 
         public void InitExam(InitExamModel data)
         {
+            workflowTeamRepo.Delete(m => m.ProcessName == data.ProcessName);
+            var list = new List<WorkflowTeamRelation>();
             WorkflowTeamRelation wtr;
             foreach (NodeTeamModel nodeTeam in data.NodeTeams)
             {
@@ -96,10 +98,10 @@ namespace Exam.Service.Implement
                     ProcessName = data.ProcessName,
                     TeamName = nodeTeam.TeamName
                 };
-                workflowTeamRepo.Insert(wtr, false);
+                list.Add(wtr);
             }
 
-            UnitOfWork.Submit();
+            workflowTeamRepo.Insert(list);
         }
 
         /// <summary>
@@ -159,6 +161,8 @@ namespace Exam.Service.Implement
 
             proxy.ProcessExecuter(processInstance);
 
+            LogHelper.Instanse.WriteInfo(
+                    string.Format("TemplateData:-{0}", data.TemplateData));
             if (!string.IsNullOrEmpty(data.TemplateData))
             {
                 userAnswerRepo.Insert(new UserAnwser()
