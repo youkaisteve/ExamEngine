@@ -15,7 +15,7 @@ define(["app", "app.config", "disabled-when-click"], function (app, config) {
             delete $scope.sessionStorage.currentTask;
             var tokenID = $routeParams.tokenID;
             var instanceID = $routeParams.instanceID;
-            //TODO 根据任务ID获得流程相关的数据,如:对应的表单,按钮,权限等
+            //根据任务ID获得流程相关的数据,如:对应的表单,按钮,权限等
             //var path = "forms/医疗保险费单位缴费月报表.html";
 
             $scope.getDetail = function (tokenID, instanceID) {
