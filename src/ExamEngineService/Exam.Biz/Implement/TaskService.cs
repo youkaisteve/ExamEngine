@@ -140,26 +140,31 @@ namespace Exam.Service.Implement
             }
 
             //获取下一个节点名并启动流程
-            string nodeName = proxy.GetTransitionNextNodeRoles(data.DefineName, data.TokenName, data.TransitionName)[0];
-            List<User> users = teamRepo.GetUsersByNodeName(data.DefineName, nodeName);
-            User choosenUser = GetRandomUserId(users);
-            if (choosenUser == null)
+            var list = proxy.GetTransitionNextNodeRoles(data.DefineName, data.TokenName, data.TransitionName);
+            if (list != null && list.Count > 0)
             {
-                throw new BusinessException("找不到下一步处理人");
+
+                string nodeName = list[0];
+                List<User> users = teamRepo.GetUsersByNodeName(data.DefineName, nodeName);
+                User choosenUser = GetRandomUserId(users);
+                if (choosenUser == null)
+                {
+                    throw new BusinessException("找不到下一步处理人");
+                }
+
+                assignedUserRepo.Insert(new AssignedUser
+                {
+                    InDate = DateTime.Now,
+                    InstanceID = data.InstanceId,
+                    UserID = choosenUser.UserID,
+                    Nodename = nodeName,
+                    ProcessName = data.DefineName,
+                    InUser = data.User.UserID
+                });
+
+                var user = new TaskUser { UserId = choosenUser.UserID, UserName = choosenUser.UserName };
+                processInstance.IncludeActors.Add(user);
             }
-
-            assignedUserRepo.Insert(new AssignedUser
-            {
-                InDate = DateTime.Now,
-                InstanceID = data.InstanceId,
-                UserID = choosenUser.UserID,
-                Nodename = nodeName,
-                ProcessName = data.DefineName,
-                InUser = data.User.UserID
-            });
-
-            var user = new TaskUser { UserId = choosenUser.UserID, UserName = choosenUser.UserName };
-            processInstance.IncludeActors.Add(user);
 
             proxy.ProcessExecuter(processInstance);
 
