@@ -58,10 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
-    <Content Include="forms\社会保险单位信息登记表.html" />
-    <Content Include="forms\社会保险参保人员增加表.html" />
-    <Content Include="forms\社会保险个人信息登记表.html" />
-    <Content Include="forms\医疗保险费单位缴费月报表.html" />
+    <Content Include="forms\Registrationstaff.html" />
+    <Content Include="forms\staffadd.html" />
+    <Content Include="forms\staffInformation.html" />
+    <Content Include="forms\RegistrationDemp.html" />
     <Content Include="img\logo.png" />
     <Content Include="favicon.ico" />
     <Content Include="index.html" />
