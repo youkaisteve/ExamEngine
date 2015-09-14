@@ -4,7 +4,7 @@
         <span class="caret"></span>
     </button>
     <ul class="dropdown-menu">
-        <li ng-repeat="item in source track by $index" ng-show="!item.selected">
+        <li ng-repeat="item in source track by $index">
             <a href="javascript:void(0)"
                ng-click="$parent.selectedValue=item.value;">{{item.text}}</a>
         </li>

@@ -21,7 +21,7 @@ define(["app","disabled-when-click"], function (app) {
 
             $scope.getTasks = function () {
                 return $scope._request("Tasks", {
-                    UserId: "007"
+                    UserId: user.UserID
                 }).then(function (res) {
                     $scope.tasks = res.Data.Tasks;
                 });

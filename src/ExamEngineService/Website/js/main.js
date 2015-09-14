@@ -36,4 +36,5 @@ require.config({
         , "app": ["angular-storage", /*"angular-cookie",*/"bootstrap"]
     }
     , deps: ["app"]
+    , waitSeconds: 60
 });
