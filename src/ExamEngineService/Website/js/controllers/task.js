@@ -8,6 +8,7 @@ define(["app", "app.config", "disabled-when-click"], function (app, config) {
 
     app.controller("task", ["$scope", "$routeParams", function ($scope, $routeParams) {
         $scope.taskDetail = $scope.sessionStorage.currentTask;
+        $scope.Model={};
         if (!$scope.taskDetail) {
             $scope._goto("/default");
         }
@@ -31,7 +32,10 @@ define(["app", "app.config", "disabled-when-click"], function (app, config) {
 
             $scope.getDetail(tokenID, instanceID);
 
+
+
             $scope.handle = function (data) {
+                debugger;
                 return $scope._request("Process", {
                     InstanceId: $scope.taskDetail.InstanceId
                     , TokenId: $scope.taskDetail.TokenID
