@@ -11,7 +11,8 @@ namespace UnitTest
         {
             WorkflowCallWapper.WorkflowProxy proxy = new WorkflowCallWapper.WorkflowProxy();
             //var data = proxy.GetUnProcessTaskByUser("007", 0, 100);
-            proxy.GetTransitionNextNodeRoles("参保人员新增", "", "");
+            var data = proxy.GetUnProcessTaskByUser("007", 0, 1);
+            Console.Write(data);
         }
     }
 }

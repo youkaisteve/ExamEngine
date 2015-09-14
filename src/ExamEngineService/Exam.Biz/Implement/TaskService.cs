@@ -56,12 +56,6 @@ namespace Exam.Service.Implement
             var proxy = new WorkflowProxy();
 
             string processName = data.ProcessName;
-            var processInstance = new ProcessInstance
-            {
-                Actor = data.UserId,
-                ActorName = data.UserName,
-                ProcessName = processName
-            };
 
             //获取下一步的NodeName，用于获取该Node对应的Team和用户列表
             string nodeName = proxy.GetFirstNodeName(processName);
@@ -69,14 +63,22 @@ namespace Exam.Service.Implement
             //获取node对应的用户
             List<User> users = teamRepo.GetUsersByNodeName(processName, nodeName);
 
+            var processInstance = new ProcessInstance
+            {
+                ProcessName = processName
+            };
+
             foreach (User user in users)
             {
+                processInstance.Actor = user.UserID;
+                processInstance.ActorName = user.UserName;
+
                 var taskUser = new TaskUser();
                 taskUser.UserId = user.UserID;
                 taskUser.UserName = user.UserName;
                 taskUser.UserRole = "Student";
                 processInstance.IncludeActors.Add(taskUser);
-
+                LogHelper.Instanse.WriteInfo(string.Format("发起流程，用户-{0}",taskUser.UserId));
                 processInstance = proxy.CreateProcessInstance(processInstance);
             }
         }
@@ -114,11 +116,10 @@ namespace Exam.Service.Implement
             processInstance.TokenID = data.TokenId;
             processInstance.RouterName = data.TransitionName;
 
-            //判断登记表中有没有该人员，如果没有，则写入（需要传入表单Json串）
             var item = new VariableInstance();
             if (processInstance.RouterName == "到是否参加社会保险")
             {
-                item.VariableName = "isexit";
+                item.VariableName = "flag";
                 item.Value = int.Parse(PublicFunc.GetConfigByKey_AppSettings("flag"));
                 processInstance.Variables.Add(item);
             }
