@@ -4,7 +4,7 @@
  * email:mahai_1986@126.com
  *
  */
-define(["app", "team-select", "custom-select"], function (app) {
+define(["app", "team-select", "custom-select","disabled-when-click"], function (app) {
 
     app.controller("request_workflow", ["$scope", "$window",
         function ($scope, $window) {
