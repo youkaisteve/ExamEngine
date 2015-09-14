@@ -70,6 +70,7 @@ define(["app.config"], function (config) {
                         $rootScope._goto("/login");
                     }
                     else{
+                        $sessionStorage.$reset();
                         $window.alert(res.ErrorMessage);
                         deferred.reject(res);
                     }

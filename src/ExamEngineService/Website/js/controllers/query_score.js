@@ -6,8 +6,8 @@
  */
 define(["app"], function (app) {
 
-    app.controller("query_score", ["$scope", function ($scope) {
+    app.controller("query_score", ["$scope", "$window",
+        function ($scope, $window) {
 
-    }]);
-
+        }]);
 });
