@@ -30,6 +30,7 @@ define(["app.config"], function (config) {
 
             $rootScope._auth = function (auth) {
                 if (auth) {
+                    $rootScope.userName = auth.UserName;
                     $sessionStorage[$rootScope._AUTH_KEY] = auth;
                 }
                 else {
