@@ -66,11 +66,11 @@ define(["app.config"], function (config) {
                         deferred.resolve(res);
                     }
                     else if(res.Code===3){
+                        $sessionStorage.$reset();
                         $window.alert(res.ErrorMessage);
                         $rootScope._goto("/login");
                     }
                     else{
-                        $sessionStorage.$reset();
                         $window.alert(res.ErrorMessage);
                         deferred.reject(res);
                     }
