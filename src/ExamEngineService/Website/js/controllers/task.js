@@ -35,7 +35,6 @@ define(["app", "app.config", "disabled-when-click"], function (app, config) {
 
 
             $scope.handle = function (data) {
-                debugger;
                 return $scope._request("Process", {
                     InstanceId: $scope.taskDetail.InstanceId
                     , TokenId: $scope.taskDetail.TokenID
