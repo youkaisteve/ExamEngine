@@ -176,7 +176,7 @@ namespace Exam.Service.Implement
                     TemplateName = data.TemplateName,
                     InDate = DateTime.Now,
                     ProcessName = data.DefineName,
-                    NodeName = nodeName,
+                    NodeName = data.TokenName,
                     UserID = data.User.UserID,
                     InstanceID = data.InstanceId,
                     TokenID = data.TokenId
