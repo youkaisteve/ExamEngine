@@ -22,6 +22,12 @@ namespace Exam.Repository.Repo
         [Import]
         private AssignedUserRepository assignedUserRepo;
 
+        [Import]
+        private RoleUserRepository roleUserRepository;
+
+        [Import]
+        private RoleRepository roleRepository;
+
         public List<User> GetUsersByNodeName(string processName, string nodeName)
         {
             var query = from user in userRepo.Entities
@@ -29,6 +35,10 @@ namespace Exam.Repository.Repo
                     on user.UserID equals userTeam.UserID
                 join wTeam in workflowTeamRepo.Entities
                     on userTeam.TeamName equals wTeam.TeamName
+                //join roleUser in roleUserRepository.Entities
+                //on user.UserID equals roleUser.UserID
+                //join role in roleRepository.Entities
+                //on roleUser.RoleSysNo equals role.SysNo
                 where wTeam.NodeName == nodeName && wTeam.ProcessName == processName
                 select user;
 

@@ -56,8 +56,6 @@ namespace Exam.Service.Implement
             var proxy = new WorkflowProxy();
 
             string processName = data.ProcessName;
-            //foreach (string processName in data.ProcessNames)
-            //{
             var processInstance = new ProcessInstance
             {
                 Actor = data.UserId,
@@ -71,24 +69,16 @@ namespace Exam.Service.Implement
             //获取node对应的用户
             List<User> users = teamRepo.GetUsersByNodeName(processName, nodeName);
 
-            var choosedUsers = new List<string>();
-
             foreach (User user in users)
             {
-                //TODO:这里需要返回用户角色(目前默认写成Student)
-                User choosenUser = GetRandomUserId(users, choosedUsers);
-                choosedUsers.Add(choosenUser.UserID);
-
                 var taskUser = new TaskUser();
-                taskUser.UserId = choosenUser.UserID;
-                taskUser.UserName = choosenUser.UserName;
-                //TODO:给用户的角色赋值
+                taskUser.UserId = user.UserID;
+                taskUser.UserName = user.UserName;
                 taskUser.UserRole = "Student";
                 processInstance.IncludeActors.Add(taskUser);
 
                 processInstance = proxy.CreateProcessInstance(processInstance);
             }
-            //}
         }
 
         public void InitExam(InitExamModel data)
