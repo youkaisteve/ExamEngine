@@ -30,10 +30,6 @@ define(["app", "app.config", "disabled-when-click"], function (app, config) {
                 });
             };
 
-            $scope.getDetail(tokenID, instanceID);
-
-
-
             $scope.handle = function (data) {
                 return $scope._request("Process", {
                     InstanceId: $scope.taskDetail.InstanceId
@@ -42,12 +38,15 @@ define(["app", "app.config", "disabled-when-click"], function (app, config) {
                     , TokenName: $scope.taskDetail.TokenName
                     , TransitionName: $scope.taskDetail.TransitionName
                     , TemplateName: $scope.taskDetail.Page
-                    , TemplateData: $scope.Model
+                    , TemplateData: JSON.stringify($scope.Model)
                     , TransitionName: data.TransitionName
                 }).then(function (res) {
                     $scope._goto("/default");
                 });
             };
+
+            $scope.getDetail(tokenID, instanceID);
+
         }
     }]);
 });
