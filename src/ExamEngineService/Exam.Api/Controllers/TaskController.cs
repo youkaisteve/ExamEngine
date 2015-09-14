@@ -50,6 +50,14 @@ namespace Exam.Api.Controllers
         public ApiResponse InitExam([FromBody] InitExamModel data)
         {
             taskService.InitExam(data);
+            BeginExamModel begin = new BeginExamModel()
+            {
+                ProcessName = data.ProcessName,
+                UserId = data.User.UserID,
+                UserName = data.User.UserName
+            };
+           taskService.BeginExam(begin);
+
             return ApiOk();
         }
 
