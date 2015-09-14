@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Linq;
 using Application.Framework.Common;
 using Component.Tools;
 using Exam.Model;
@@ -133,13 +134,14 @@ namespace Exam.Service.Implement
             }
 
             //获取下一个节点名并启动流程
+            var userId = "";
             var list = proxy.GetTransitionNextNodeRoles(data.DefineName, data.TokenName, data.TransitionName);
             if (list != null && list.Count > 0)
             {
 
                 string nodeName = list[0];
                 List<User> users = teamRepo.GetUsersByNodeName(data.DefineName, nodeName);
-                User choosenUser = GetRandomUserId(users);
+                var choosenUser = GetRandomUserId(users);
                 if (choosenUser == null)
                 {
                     throw new BusinessException("找不到下一步处理人");
@@ -156,13 +158,15 @@ namespace Exam.Service.Implement
                 });
 
                 var user = new TaskUser { UserId = choosenUser.UserID, UserName = choosenUser.UserName };
+                userId = choosenUser.UserID;
                 processInstance.IncludeActors.Add(user);
             }
-
             proxy.ProcessExecuter(processInstance);
 
             LogHelper.Instanse.WriteInfo(
-                    string.Format("TemplateData:-{0}", data.TemplateData));
+                string.Format("流程名:-{0},InstanceID:-{1},TokenID:-{2},推动给了-{3}",
+                processInstance.ProcessName, processInstance.InstanceID, processInstance.TokenID, userId));
+
             if (!string.IsNullOrEmpty(data.TemplateData))
             {
                 userAnswerRepo.Insert(new UserAnwser()
