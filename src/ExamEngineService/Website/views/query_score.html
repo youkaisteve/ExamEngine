@@ -14,25 +14,24 @@
                     <th>正确题数</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>23243</td>
-                    <td>23243</td>
-                    <td>23243</td>
-                    <td>23243</td>
+                <tbody ng-if="scores.length>0">
+                <tr ng-repeat="score in scores">
+                    <td>score.UserID</td>
+                    <td>score.UserName</td>
+                    <td>score.Count</td>
+                    <td>score.ErrorCount</td>
                 </tr>
+                </tbody>
+                <tbody ng-if="scores.length<=0">
                 <tr>
-                    <td>23243</td>
-                    <td>23243</td>
-                    <td>23243</td>
-                    <td>23243</td>
+                    <td colspan="4">没有数据</td>
                 </tr>
                 </tbody>
             </table>
         </div>
-        <div class="panel-footer text-right hidden-print">
-            <button class="btn btn-default hidden"><i class="fa fa-mail-forward"></i>  导出</button>
-            <button class="btn btn-default" onclick="window.print()"><i class="fa fa-print"></i>  打印</button>
+        <div class="panel-footer text-right hidden-print" ng-if="scores.length>0">
+            <button class="btn btn-default hidden"><i class="fa fa-mail-forward"></i> 导出</button>
+            <button class="btn btn-default" onclick="window.print()"><i class="fa fa-print"></i> 打印</button>
         </div>
     </div>
 </div>
