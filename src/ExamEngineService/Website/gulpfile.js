@@ -59,7 +59,8 @@ gulp.task("release", ["clean-dist"], function () {
     };
     gulp.src("js/directive/**/*.html").pipe(minifyHTML(htmlOps)).pipe(gulp.dest("dist/js/directive"));
     gulp.src("views/**/*.html").pipe(minifyHTML(htmlOps)).pipe(gulp.dest("dist/views"));
-    gulp.src("partials/**.html").pipe(minifyHTML(htmlOps)).pipe(gulp.dest("dist/partials"));
+    gulp.src("partials/**/*.html").pipe(minifyHTML(htmlOps)).pipe(gulp.dest("dist/partials"));
+    gulp.src("forms/**/*.html").pipe(gulp.dest("dist/forms"));
     gulp.src("index.html").pipe(minifyHTML(htmlOps)).pipe(gulp.dest("dist"));
 
     //compress & dest image
