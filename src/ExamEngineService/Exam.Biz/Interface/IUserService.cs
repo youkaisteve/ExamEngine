@@ -22,5 +22,6 @@ namespace Exam.Service.Interface
         void ImportTeamUser(TramUserImportListModel data);
 
         dynamic GetAllProcess();
+        dynamic GetScoreStatistics();
     }
 }

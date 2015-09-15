@@ -28,6 +28,12 @@ namespace Exam.Service.Implement
         [Import]
         private RoleUserRepository roleUserRepo;
 
+        [Import]
+        private UserAnswerRepository userAnswerRepository;
+
+        [Import]
+        private StandardAnwserRepository standardAnwserRepository;
+
         protected override string ModuleName
         {
             get { return "User"; }
@@ -131,6 +137,28 @@ namespace Exam.Service.Implement
                     });
                 }
             }
+        }
+
+        public dynamic GetScoreStatistics()
+        {
+            var userAnswer = from user in userRepo.Entities
+                             join answer in userAnswerRepository.Entities
+                                 on user.UserID equals answer.UserID
+                             group new { user, answer } by new { user.UserID, user.UserName }
+                                 into g
+                                 select new
+                                 {
+                                     User = new
+                                     {
+                                         g.Key.UserID,
+                                         g.Key.UserName,
+                                         Answer = g.Where(r => r.user.UserID == g.Key.UserID).Select(t => new { t.answer.TemplateName, t.answer.TemplateData })
+                                     },
+                                 };
+
+            var standardAnswer = standardAnwserRepository.Entities.Select(m => new { m.TemplateName, m.TemplateData });
+
+            return new { UserAnswers = userAnswer.ToList(), StandardAnswers = standardAnswer.ToList() };
         }
     }
 }

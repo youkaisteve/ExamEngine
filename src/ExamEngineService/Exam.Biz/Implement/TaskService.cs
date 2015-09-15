@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Dynamic;
 using System.Linq;
 using Application.Framework.Common;
 using Component.Tools;
@@ -27,6 +28,9 @@ namespace Exam.Service.Implement
         private WorkflowTeamRepository workflowTeamRepo;
         [Import]
         private UserAnswerRepository userAnswerRepo;
+
+        [Import]
+        private SocialSPRepository socialSpRepo;
 
         protected override string ModuleName
         {
@@ -122,9 +126,26 @@ namespace Exam.Service.Implement
             var item = new VariableInstance();
             if (processInstance.RouterName == "到是否参加社会保险")
             {
-                //TODO:判断是否存在已填写的身份证，如果有，设置flag为true，否则为false
+                int flag = 0;
+                if (!string.IsNullOrWhiteSpace(data.TemplateData))
+                {
+                    dynamic jsonObj = Newtonsoft.Json.JsonConvert.DeserializeObject<object>(data.TemplateData);
+                    string idCardNumber = jsonObj.ShenFenZhengHaoMa;
+                    if (socialSpRepo.Entities.Any(m => m.IDCardNumber == idCardNumber))
+                    {
+                        flag = 0;
+                    }
+                    else
+                    {
+                        flag = 1;
+                        socialSpRepo.Insert(new SocialSecurityPersonnel()
+                        {
+                            IDCardNumber = idCardNumber
+                        });
+                    }
+                }
                 item.VariableName = "flag";
-                item.Value = int.Parse(PublicFunc.GetConfigByKey_AppSettings("flag"));
+                item.Value = flag;
                 processInstance.Variables.Add(item);
             }
 
@@ -159,8 +180,8 @@ namespace Exam.Service.Implement
             proxy.ProcessExecuter(processInstance);
 
             LogHelper.Instanse.WriteInfo(
-                string.Format("流程名:-{0},InstanceID:-{1},TokenID:-{2},推动给了-{3}",
-                processInstance.ProcessName, processInstance.InstanceID, processInstance.TokenID, userId));
+                string.Format("InstanceID:-{0},TokenID:-{1},推给了-{2}",
+                    processInstance.InstanceID, processInstance.TokenID, userId));
 
             if (!string.IsNullOrEmpty(data.TemplateData))
             {

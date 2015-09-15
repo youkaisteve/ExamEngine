@@ -43,5 +43,10 @@
 		"Name":"AllProcess",
 		"Controller":"User",
 		"Action":"GetAllProcess"
+	},
+	{
+		"Name":"Score",
+		"Controller":"User",
+		"Action":"GetScoreStatistics"
 	}
 ]

@@ -83,5 +83,12 @@ namespace Exam.Api.Controllers
             var result = userService.GetAllProcess();
             return ApiOk(result);
         }
+
+        [HttpPost]
+        public ApiResponse GetScoreStatistics()
+        {
+            var data = userService.GetScoreStatistics();
+            return ApiOk(data);
+        }
     }
 }
