@@ -2,7 +2,14 @@ var gulp = require("gulp");
 var less = require("gulp-less");
 var livereload = require("gulp-livereload");
 var autoprefixer = require("gulp-autoprefixer");
-
+var minifyCss = require('gulp-minify-css');
+var uglify = require('gulp-uglify');
+var minifyHTML = require('gulp-minify-html');
+var rimraf = require('gulp-rimraf');
+var imagemin = require('gulp-imagemin');
+var gulpIgnore = require('gulp-ignore');
+var gulpif = require('gulp-if');
+var rename = require("gulp-rename");
 
 gulp.task("less", function () {
     return gulp.src("less/**/*.less")
@@ -37,5 +44,44 @@ gulp.task("watcher", function () {
 
 });
 
+gulp.task("clean-dist", function () {
+    return gulp.src("dist").pipe(rimraf());
+});
+
+gulp.task("release", ["clean-dist"], function () {
+    //compress css & dest
+    gulp.src("less/**/*.less").pipe(less()).pipe(autoprefixer()).pipe(minifyCss()).pipe(gulp.dest("dist/css"));
+
+    //compress & dest html
+    var htmlOps = {
+        conditionals: true,
+        spare: true
+    };
+    gulp.src("js/directive/**/*.html").pipe(minifyHTML(htmlOps)).pipe(gulp.dest("dist/js/directive"));
+    gulp.src("views/**/*.html").pipe(minifyHTML(htmlOps)).pipe(gulp.dest("dist/views"));
+    gulp.src("partials/**.html").pipe(minifyHTML(htmlOps)).pipe(gulp.dest("dist/partials"));
+    gulp.src("index.html").pipe(minifyHTML(htmlOps)).pipe(gulp.dest("dist"));
+
+    //compress & dest image
+    gulp.src("img/**/*").pipe(imagemin({
+        progressive: true
+    })).pipe(gulp.dest("dist/img"));
+
+    //compress & dest js
+    gulp.src("js/controllers/*.js").pipe(uglify()).pipe(gulp.dest("dist/js/controllers"));
+    gulp.src(["js/*.js","!js/main.js","!js/main.release.js","!js/app.config.js","!js/app.release.config.js"]).pipe(uglify()).pipe(gulp.dest("dist/js"));
+    gulp.src(["js/app.release.config.js"]).pipe(rename("app.config.js")).pipe(uglify()).pipe(gulp.dest("dist/js"));
+    gulp.src(["js/main.release.js"]).pipe(rename("main.js")).pipe(uglify()).pipe(gulp.dest("dist/js"));
+    gulp.src("js/directive/**/*.js").pipe(uglify()).pipe(gulp.dest("dist/js/directive"));
+
+    //dest lib
+    gulp.src(["js/lib/**/*"]).pipe(gulp.dest("dist/js/lib"));
+
+    //other
+    gulp.src("favicon.ico").pipe(gulp.dest("dist"));
+
+
+
+});
 
 gulp.task("default", ["less", "watcher"]);

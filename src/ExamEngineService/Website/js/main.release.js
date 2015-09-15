@@ -8,15 +8,15 @@
 require.config({
     baseUrl: "js/"
     , paths: {
-        "angular": "lib/angular/angular"
-        , "jquery": "lib/jquery/dist/jquery"
-        , "bootstrap": "lib/bootstrap/dist/js/bootstrap"
-        , "angularAMD": "lib/angularAMD/angularAMD"
+        "angular": "lib/angular/angular.min"
+        , "jquery": "lib/jquery/dist/jquery.min"
+        , "bootstrap": "lib/bootstrap/dist/js/bootstrap.min"
+        , "angularAMD": "lib/angularAMD/angularAMD.min"
         , "app": "app"
         , "app.config": "app.config"
-        , "angular-route": "lib/angular-route/angular-route"
-        , "angular-cookie": "lib/angular-cookies/angular-cookies"
-        , "angular-storage": "lib/ngstorage/ngStorage"
+        , "angular-route": "lib/angular-route/angular-route.min"
+        , "angular-cookie": "lib/angular-cookies/angular-cookies.min"
+        , "angular-storage": "lib/ngstorage/ngStorage.min"
         , "root_scope": "root_scope"
 
         //directive

@@ -9,9 +9,6 @@ define(["app", "app.config"], function (app, config) {
             return {
                 restrict: "E"
                 , templateUrl: "js/directive/file-uploader/template.html"
-                //, scope: {
-                //    complete: "&oncomplete"
-                //}
                 , link: function (scope, ele, attrs, ctrl) {
                     scope.running = false;
                     scope.process = "上传中...";
@@ -46,7 +43,6 @@ define(["app", "app.config"], function (app, config) {
                         xhr.open("POST", config.importStudentUri, true);
                         xhr.setRequestHeader("user-authorize",scope.sessionStorage.token);
                         fd.append('file', eleFile.files[0]);
-                        // Initiate a multipart/form-data upload
                         xhr.send(fd);
                     }
 

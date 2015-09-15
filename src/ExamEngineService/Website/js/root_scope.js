@@ -44,13 +44,11 @@ define(["app.config"], function (config) {
             }
 
             $rootScope.$on("$routeChangeStart", function (event, next, current) {
-                //if not authentication then location to login
                 if (!$rootScope._auth()) {
                     toLogin();
                 }
             });
 
-            //API method
             $rootScope._request = function (action, data) {
                 var deferred=$q.defer();
                 $http.post(config.api, data, {
@@ -82,7 +80,6 @@ define(["app.config"], function (config) {
 
             $rootScope._logout = function () {
                 return $rootScope._request("Logout", {}).then(function (res) {
-                    //if success remove authentication then location to login
                     $sessionStorage.$reset();
                     toLogin();
                 });

@@ -8,7 +8,6 @@ define(["app","disabled-when-click"], function (app) {
 
     app.controller("default", ["$scope", "$window", function ($scope, $window) {
 
-        //location target page by role
         var user = $scope._auth();
         if (user) {
             $scope.path = user.AuthName;
