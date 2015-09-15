@@ -28,25 +28,42 @@ namespace Exam.Repository.Repo
         [Import]
         private RoleRepository roleRepository;
 
-        public List<User> GetUsersByNodeName(string processName, string nodeName)
+        public User GetNextUserByNodeName(string processName, string nodeName)
         {
             var query = from user in userRepo.Entities
-                join userTeam in userTeamRepo.Entities
-                    on user.UserID equals userTeam.UserID
-                join wTeam in workflowTeamRepo.Entities
-                    on userTeam.TeamName equals wTeam.TeamName
-                //join roleUser in roleUserRepository.Entities
-                //on user.UserID equals roleUser.UserID
-                //join role in roleRepository.Entities
-                //on roleUser.RoleSysNo equals role.SysNo
-                where wTeam.NodeName == nodeName && wTeam.ProcessName == processName
-                select user;
+                        join userTeam in userTeamRepo.Entities
+                            on user.UserID equals userTeam.UserID
+                        join wTeam in workflowTeamRepo.Entities
+                            on userTeam.TeamName equals wTeam.TeamName
+                        join roleUser in roleUserRepository.Entities
+                        on user.UserID equals roleUser.UserID
+                        join role in roleRepository.Entities
+                        on roleUser.RoleSysNo equals role.SysNo
+                        where wTeam.NodeName == nodeName && wTeam.ProcessName == processName
+                        select user;
 
-            var choosedUserIds = from assign in assignedUserRepo.Entities
-                where assign.ProcessName == processName && assign.Nodename == nodeName
-                select assign.UserID;
+            var choosedUsers = assignedUserRepo.Entities.GroupBy(m => m.UserID).Select(g => new { g.Key, Count = g.Count() });
 
-            return query.Where(m => !choosedUserIds.Contains(m.UserID)).Distinct().ToList();
+            var joinQuery = from q in query
+                            join c in choosedUsers
+                            on q.UserID equals c.Key
+                            orderby c.Count
+                            select q;
+
+            return joinQuery.FirstOrDefault();
+        }
+
+        public List<User> GetAllUsersByNodeName(string processName, string nodeName)
+        {
+            var query = from user in userRepo.Entities
+                        join userTeam in userTeamRepo.Entities
+                            on user.UserID equals userTeam.UserID
+                        join wTeam in workflowTeamRepo.Entities
+                            on userTeam.TeamName equals wTeam.TeamName
+                        where wTeam.NodeName == nodeName && wTeam.ProcessName == processName
+                        select user;
+
+            return query.ToList();
         }
     }
 }

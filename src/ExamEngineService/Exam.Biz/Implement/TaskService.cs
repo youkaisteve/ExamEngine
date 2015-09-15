@@ -62,7 +62,7 @@ namespace Exam.Service.Implement
             string nodeName = proxy.GetFirstNodeName(processName);
 
             //获取node对应的用户
-            List<User> users = teamRepo.GetUsersByNodeName(processName, nodeName);
+            List<User> users = teamRepo.GetAllUsersByNodeName(processName, nodeName);
 
             foreach (User user in users)
             {
@@ -122,12 +122,7 @@ namespace Exam.Service.Implement
             var item = new VariableInstance();
             if (processInstance.RouterName == "到是否参加社会保险")
             {
-                item.VariableName = "flag";
-                item.Value = int.Parse(PublicFunc.GetConfigByKey_AppSettings("flag"));
-                processInstance.Variables.Add(item);
-            }
-            else
-            {
+                //TODO:判断是否存在已填写的身份证，如果有，设置flag为true，否则为false
                 item.VariableName = "flag";
                 item.Value = int.Parse(PublicFunc.GetConfigByKey_AppSettings("flag"));
                 processInstance.Variables.Add(item);
@@ -140,8 +135,8 @@ namespace Exam.Service.Implement
             {
 
                 string nodeName = list[0];
-                List<User> users = teamRepo.GetUsersByNodeName(data.DefineName, nodeName);
-                var choosenUser = GetRandomUserId(users);
+                User choosenUser = teamRepo.GetNextUserByNodeName(data.DefineName, nodeName);
+                //var choosenUser = GetRandomUserId(users);
                 if (choosenUser == null)
                 {
                     throw new BusinessException("找不到下一步处理人");

@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Web.Http.Filters;
 using Component.Tools.Exceptions;
 using Exam.Api.Framework;
+using Component.Tools;
 
 namespace Exam.Api.Filters
 {
@@ -19,7 +20,9 @@ namespace Exam.Api.Filters
             else
             {
                 response.Code = 2;
-                response.ErrorMessage = actionExecutedContext.Exception.Message + System.Environment.NewLine + actionExecutedContext.Exception.StackTrace;
+                response.ErrorMessage = "系统错误，请联系管理员";
+                var message = actionExecutedContext.Exception.Message + System.Environment.NewLine + actionExecutedContext.Exception.StackTrace;
+                LogHelper.Instanse.WriteError(message);
             }
             actionExecutedContext.Response = actionExecutedContext.Request.CreateResponse(HttpStatusCode.OK, response);
         }
