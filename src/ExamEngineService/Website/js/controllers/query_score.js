@@ -12,9 +12,6 @@ define(["app"], function (app) {
             $scope.scores=[];
 
             function compareObject(source, target) {
-                console.log("source:",source);
-                console.log("target:",target);
-
                 var count = 0;
                 var errorCount = 0;
 
