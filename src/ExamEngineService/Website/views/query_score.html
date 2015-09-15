@@ -16,10 +16,10 @@
                 </thead>
                 <tbody ng-if="scores.length>0">
                 <tr ng-repeat="score in scores">
-                    <td>score.UserID</td>
-                    <td>score.UserName</td>
-                    <td>score.Count</td>
-                    <td>score.ErrorCount</td>
+                    <td>{{score.User.UserID}}</td>
+                    <td>{{score.User.UserName}}</td>
+                    <td>{{score.Count}}</td>
+                    <td>{{score.ErrorCount}}</td>
                 </tr>
                 </tbody>
                 <tbody ng-if="scores.length<=0">

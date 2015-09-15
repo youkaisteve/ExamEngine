@@ -12,7 +12,9 @@ define(["app"], function (app) {
             $scope.scores=[];
 
             function compareObject(source, target) {
-                //var result = true;
+                console.log("source:",source);
+                console.log("target:",target);
+
                 var count = 0;
                 var errorCount = 0;
 
@@ -57,9 +59,8 @@ define(["app"], function (app) {
 
             $scope._request("Score").then(function (res) {
                 if(res.Data) {
-                    var standarAnswers = res.Data.StandarAnswers;
+                    var standarAnswers = res.Data.StandardAnswers;
                     var students = res.Data.UserAnswers;
-
                     function getStandarAnswer(formName) {
                         for (var i = 0; i < standarAnswers.length; i++) {
                             if (formName == standarAnswers[i].TemplateName) {
@@ -72,16 +73,15 @@ define(["app"], function (app) {
                     angular.forEach(students, function (ele) {
                         ele.Count = 0;
                         ele.ErrorCount = 0;
-                        angular.forEach(ele.Answer, function (el) {
+                        angular.forEach(ele.User.Answer, function (el) {
                             var standar = getStandarAnswer(el.TemplateName);
                             if (standar) {
-                                var result = compareObject(standar, el.TemplateData);
+                                var result = compareObject(JSON.parse(standar), JSON.parse(el.TemplateData));
                                 ele.Count += result.count;
                                 ele.ErrorCount += result.errorCount;
                             }
                         });
                     });
-
                     $scope.scores = students;
                 }
 
