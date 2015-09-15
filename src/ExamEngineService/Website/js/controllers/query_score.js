@@ -9,8 +9,12 @@ define(["app"], function (app) {
     app.controller("query_score", ["$scope", "$window",
         function ($scope, $window) {
 
+            $scope.scores=[];
+
             function compareObject(source, target) {
-                var result = true;
+                //var result = true;
+                var count = 0;
+                var errorCount = 0;
 
                 function getTargetValue(data, path) {
                     if (!data) data = target;
@@ -35,8 +39,9 @@ define(["app"], function (app) {
                             compare(obj[name], path);
                         }
                         else {
+                            count++;
                             if (obj[name] != getTargetValue(target, angular.copy(path))) {
-                                result = false;
+                                errorCount++;
                             }
                         }
                         path.pop();
@@ -44,22 +49,42 @@ define(["app"], function (app) {
                 }
 
                 compare(source, []);
-                return result;
+                return {
+                    count: count
+                    , errorCount: errorCount
+                };
             }
 
-            //test
-            //var source = {
-            //    test: {
-            //        a: 1,
-            //        b:3
-            //    }
-            //};
-            //var target = {
-            //    test: {
-            //        a: 2
-            //    }
-            //}
-            //
-            //console.log(compareObject(source, target));
+            $scope._request("Score").then(function (res) {
+                if(res.Data) {
+                    var standarAnswers = res.Data.StandarAnswers;
+                    var students = res.Data.UserAnswers;
+
+                    function getStandarAnswer(formName) {
+                        for (var i = 0; i < standarAnswers.length; i++) {
+                            if (formName == standarAnswers[i].TemplateName) {
+                                return standarAnswers[i].TemplateData;
+                            }
+                        }
+                        return null;
+                    }
+
+                    angular.forEach(students, function (ele) {
+                        ele.Count = 0;
+                        ele.ErrorCount = 0;
+                        angular.forEach(ele.Answer, function (el) {
+                            var standar = getStandarAnswer(el.TemplateName);
+                            if (standar) {
+                                var result = compareObject(standar, el.TemplateData);
+                                ele.Count += result.count;
+                                ele.ErrorCount += result.errorCount;
+                            }
+                        });
+                    });
+
+                    $scope.scores = students;
+                }
+
+            });
         }]);
 });
