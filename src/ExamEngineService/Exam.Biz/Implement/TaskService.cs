@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Dynamic;
 using System.Linq;
-using Application.Framework.Common;
 using Component.Tools;
 using Exam.Model;
 using Exam.Model.QueryFilters;
@@ -12,6 +11,7 @@ using Exam.Repository.Repo;
 using Exam.Service.Interface;
 using WorkflowCallWapper;
 using WorkflowCallWapper.Models;
+using Component.Tools.Exceptions;
 
 namespace Exam.Service.Implement
 {
