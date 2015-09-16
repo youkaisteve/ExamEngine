@@ -51,3 +51,4 @@ log/
 *.log
 *.DotSettings
 *.user
+TestResults/
