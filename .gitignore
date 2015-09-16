@@ -47,4 +47,7 @@ obj/
 bin/
 packages/
 *.suo
-
+log/
+*.log
+*.DotSettings
+*.user
