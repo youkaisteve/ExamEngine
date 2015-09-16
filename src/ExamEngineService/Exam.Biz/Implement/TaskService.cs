@@ -133,11 +133,11 @@ namespace Exam.Service.Implement
                     string idCardNumber = jsonObj.ShenFenZhengHaoMa;
                     if (socialSpRepo.Entities.Any(m => m.IDCardNumber == idCardNumber))
                     {
-                        flag = 0;
+                        flag = 1;
                     }
                     else
                     {
-                        flag = 1;
+                        flag = 0;
                         socialSpRepo.Insert(new SocialSecurityPersonnel()
                         {
                             IDCardNumber = idCardNumber
