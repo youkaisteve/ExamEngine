@@ -46,8 +46,9 @@ namespace Exam.Repository.Repo
 
             var joinQuery = from q in query
                             join c in choosedUsers
-                            on q.UserID equals c.Key
-                            orderby c.Count
+                            on q.UserID equals c.Key into temp
+                            from t in temp.DefaultIfEmpty()
+                            orderby t.Count
                             select q;
 
             return joinQuery.FirstOrDefault();
