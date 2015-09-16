@@ -10,6 +10,7 @@ var imagemin = require('gulp-imagemin');
 var rename = require("gulp-rename");
 var zip = require('gulp-zip');
 var merge = require('merge-stream');
+var dateFmt = require("dateformat");
 
 gulp.task("less", function () {
     return gulp.src("less/**/*.less")
@@ -77,7 +78,10 @@ gulp.task("release", ["clean-dist"], function () {
         , gulp.src("favicon.ico").pipe(gulp.dest("dist"))
         //, gulp.src("dist/css/*").pipe(zip("app.zip")).pipe(gulp.dest("dist"))
     ).on("end", function () {
-            gulp.src("dist/**/*").pipe(zip("app.zip")).pipe(gulp.dest("dist"));
+            var suffix = "-" + dateFmt(new Date(), "yyyymmddHMs");
+            gulp.src("dist/**/*", {base: process.cwd()}).pipe(zip("app.zip")).pipe(rename({
+                suffix: suffix
+            })).pipe(gulp.dest("dist"));
         });
 
 });
