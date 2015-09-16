@@ -9,8 +9,6 @@ var rimraf = require('gulp-rimraf');
 var imagemin = require('gulp-imagemin');
 var rename = require("gulp-rename");
 var zip = require('gulp-zip');
-var logger = require('gulp-logger');
-var pipe = require("gulp-pipe");
 var merge = require('merge-stream');
 
 gulp.task("less", function () {
@@ -77,8 +75,10 @@ gulp.task("release", ["clean-dist"], function () {
         , gulp.src(["js/lib/**/*"]).pipe(gulp.dest("dist/js/lib"))
         //other
         , gulp.src("favicon.ico").pipe(gulp.dest("dist"))
-        , gulp.src("dist/css/*").pipe(zip("app.zip")).pipe(gulp.dest("dist"))
-    );
+        //, gulp.src("dist/css/*").pipe(zip("app.zip")).pipe(gulp.dest("dist"))
+    ).on("end", function () {
+            gulp.src("dist/**/*").pipe(zip("app.zip")).pipe(gulp.dest("dist"));
+        });
 
 });
 
