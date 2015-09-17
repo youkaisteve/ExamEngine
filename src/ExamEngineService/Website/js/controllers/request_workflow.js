@@ -17,8 +17,8 @@ define(["app", "team-select", "custom-select","disabled-when-click"], function (
 
             $scope.selectedWorkflow = "";
 
-            $scope.getAllWorkflows = function () {
-                return $scope._request("AllProcess").then(function (res) {
+            $scope.getAllWorkflows = function (loading) {
+                return $scope._request("AllProcess",null,loading).then(function (res) {
                     angular.forEach(res.Data.AllProcess, function (ele) {
                         $scope.workflows.push({
                             text: ele.ProcessName
@@ -61,7 +61,7 @@ define(["app", "team-select", "custom-select","disabled-when-click"], function (
                 });
             };
 
-            $scope.getAllWorkflows();
+            $scope.getAllWorkflows(true);
 
 
         }]);

@@ -8,8 +8,8 @@
 
 define(["app.config"], function (config) {
 
-    var extendRootScope = ["$rootScope", "$http", "$sessionStorage", "$window","$q",
-        function ($rootScope, $http, $sessionStorage, $window,$q) {
+    var extendRootScope = ["$rootScope", "$http", "$sessionStorage", "$window", "$q",
+        function ($rootScope, $http, $sessionStorage, $window, $q) {
 
             $rootScope.sessionStorage = $sessionStorage;
             $rootScope.fixedFooter = false;
@@ -49,31 +49,39 @@ define(["app.config"], function (config) {
                 }
             });
 
-            $rootScope._request = function (action, data) {
-                var deferred=$q.defer();
+            $rootScope._request = function (action, data, loading) {
+                var deferred = $q.defer();
+                var eleLoading;
+                if (loading) {
+                    eleLoading = $rootScope._notify("加载中...");
+                }
                 $http.post(config.api, data, {
                     headers: {
                         "action": action
-                        ,"user-authorize":$sessionStorage.token
+                        , "user-authorize": $sessionStorage.token
                     }
-                }).success(function(res,status,headers){
-                    if(res.Code===0){
-                        if(!$sessionStorage.token) {
+                }).success(function (res, status, headers) {
+                    if (res.Code === 0) {
+                        if (!$sessionStorage.token) {
                             $sessionStorage.token = headers("user-authorize");
                         }
                         deferred.resolve(res);
                     }
-                    else if(res.Code===3){
+                    else if (res.Code === 3) {
                         $sessionStorage.$reset();
                         $window.alert(res.ErrorMessage);
                         $rootScope._goto("/login");
                     }
-                    else{
+                    else {
                         $window.alert(res.ErrorMessage);
                         deferred.reject(res);
                     }
                 }).error(function () {
                     $window.alert("系统错误,请联系管理员");
+                }).done(function () {
+                    if (eleLoading) {
+                        eleLoading.remove();
+                    }
                 });
                 return deferred.promise;
             };
@@ -85,8 +93,13 @@ define(["app.config"], function (config) {
                 });
             };
 
-            $rootScope._notify=function(message){
-
+            $rootScope._notify = function (message, type) {
+                if (!type) {
+                    type = "alert-info";
+                }
+                var div = $("<div>").addClass("notify alert").addClass(type).text(message);
+                div.appendTo(document.body);
+                return div;
             };
 
         }];

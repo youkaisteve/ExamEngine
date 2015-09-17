@@ -16,11 +16,11 @@ define(["app", "app.config", "disabled-when-click"], function (app, config) {
             delete $scope.sessionStorage.currentTask;
             var tokenID = $routeParams.tokenID;
             var instanceID = $routeParams.instanceID;
-            $scope.getDetail = function (tokenID, instanceID) {
+            $scope.getDetail = function (tokenID, instanceID,loading) {
                 return $scope._request("TaskDetail", {
                     InstanceId: instanceID
                     , TokenId: tokenID
-                }).then(function (res) {
+                },loading).then(function (res) {
                     $scope.path = res.Data.Page;
                     angular.extend($scope.taskDetail, res.Data);
                     return res;
@@ -42,7 +42,7 @@ define(["app", "app.config", "disabled-when-click"], function (app, config) {
                 });
             };
 
-            $scope.getDetail(tokenID, instanceID);
+            $scope.getDetail(tokenID, instanceID,true);
 
         }
     }]);

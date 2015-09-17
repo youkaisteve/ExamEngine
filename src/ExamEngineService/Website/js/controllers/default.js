@@ -18,10 +18,10 @@ define(["app","disabled-when-click"], function (app) {
         else {
             $scope.tasks = [];
 
-            $scope.getTasks = function () {
+            $scope.getTasks = function (loading) {
                 return $scope._request("Tasks", {
                     UserId: user.UserID
-                }).then(function (res) {
+                },loading).then(function (res) {
                     $scope.tasks = res.Data.Tasks;
                 });
             };
@@ -31,7 +31,7 @@ define(["app","disabled-when-click"], function (app) {
                 $scope._goto("/task/"+task.InstanceId+"/"+task.TokenID);
             };
 
-            $scope.getTasks();
+            $scope.getTasks(true);
 
 
         }

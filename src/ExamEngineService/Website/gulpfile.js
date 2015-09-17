@@ -69,7 +69,7 @@ gulp.task("release", ["clean-dist"], function () {
         //compress & dest js
         , gulp.src("js/controllers/*.js").pipe(uglify()).pipe(gulp.dest("dist/js/controllers"))
         , gulp.src(["js/*.js", "!js/main.js", "!js/main.release.js", "!js/app.config.js", "!js/app.release.config.js"]).pipe(uglify()).pipe(gulp.dest("dist/js"))
-        , gulp.src(["js/app.release.config.js"]).pipe(rename("app.config.js")).pipe(uglify()).pipe(gulp.dest("dist/js"))
+        , gulp.src(["js/app.config.release.js"]).pipe(rename("app.config.js")).pipe(uglify()).pipe(gulp.dest("dist/js"))
         , gulp.src(["js/main.release.js"]).pipe(rename("main.js")).pipe(uglify()).pipe(gulp.dest("dist/js"))
         , gulp.src("js/directive/**/*.js").pipe(uglify()).pipe(gulp.dest("dist/js/directive"))
         //dest lib

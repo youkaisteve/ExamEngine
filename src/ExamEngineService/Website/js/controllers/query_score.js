@@ -54,7 +54,7 @@ define(["app"], function (app) {
                 };
             }
 
-            $scope._request("Score").then(function (res) {
+            $scope._request("Score",null,true).then(function (res) {
                 if(res.Data) {
                     var standarAnswers = res.Data.StandardAnswers;
                     var students = res.Data.UserAnswers;

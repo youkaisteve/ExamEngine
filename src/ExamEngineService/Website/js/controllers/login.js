@@ -8,12 +8,13 @@ define(["app","disabled-when-click"], function (app) {
 
     app.controller("login", ["$scope", "$window", function ($scope, $window) {
 
-        $scope.login = function ($event, model) {
-            return $scope._request("Login", model).then(function (res) {
+        $scope.login = function ($event, model,loading) {
+            return $scope._request("Login", model,loading).then(function (res) {
                 $scope._auth(res.Data);
                 $scope._goto("/default");
             });
-        }
+        };
+
     }]);
 
 });
