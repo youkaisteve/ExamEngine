@@ -79,7 +79,7 @@ define(["app.config"], function (config) {
                     }
                 }).error(function () {
                     $window.alert("系统错误,请联系管理员");
-                }).done(function () {
+                }).finally(function () {
                     if (eleLoading) {
                         eleLoading.remove();
                     }
