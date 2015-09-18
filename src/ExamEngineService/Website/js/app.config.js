@@ -6,12 +6,10 @@
  */
 define({
     appName: "app"
+    , environment: "develop"
     , appDeps: ["ngRoute", /*"ngCookies",*/"ngStorage"]
     , controllerPath: "controllers/"
     , templatePath: "views/"
-    //, api: "http://222.196.244.45/api/Home/Handler"
-    //, api: "http://192.168.0.103/api/Home/Handler"
-    //, api: "http://172.16.70.8/api/Home/Handler"
     , api: "http://127.0.0.1:8083/api/Home/Handler"
     , importStudentUri: "http://127.0.0.1:8083/api/User/ImportUser"
     , start: "/default"

@@ -18,6 +18,8 @@ require.config({
         , "angular-cookie": "lib/angular-cookies/angular-cookies.min"
         , "angular-storage": "lib/ngstorage/ngStorage.min"
         , "root_scope": "root_scope"
+        , "cryptojs.core": "lib/cryptojslib/core.min"
+        , "cryptojs.md5": "lib/cryptojslib/md5.min"
 
         //directive
         , "table-form": "directive/table-form/index"
@@ -33,6 +35,13 @@ require.config({
         , "angular-storage": ["angular"]
         , "angularAMD": ["angular-route"]
         , "bootstrap": ["jquery"]
+        , "cryptojs.core": {
+            exports: "CryptoJS"
+        }
+        , "cryptojs.md5": {
+            deps: ["cryptojs.core"]
+            , exports: "CryptoJS"
+        }
         , "app": ["angular-storage", /*"angular-cookie",*/"bootstrap"]
     }
     , deps: ["app"]

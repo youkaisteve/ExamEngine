@@ -13,6 +13,7 @@ define(["app.config"], function (config) {
 
             $rootScope.sessionStorage = $sessionStorage;
             $rootScope.fixedFooter = false;
+            $rootScope.environment = config.environment;
             $rootScope._AUTH_KEY = "auth";
 
             function toLogin() {
