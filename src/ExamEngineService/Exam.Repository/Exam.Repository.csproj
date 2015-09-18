@@ -77,6 +77,7 @@
     <Compile Include="Repo\RoleRepository.cs" />
     <Compile Include="Repo\SocialSPRepository.cs" />
     <Compile Include="Repo\StandardAnswerRepository.cs" />
+    <Compile Include="Repo\StAnswerRepository.cs" />
     <Compile Include="Repo\UserAnswerRepository.cs" />
     <Compile Include="Repo\UserRepository.cs" />
     <Compile Include="Repo\TeamRepository.cs" />

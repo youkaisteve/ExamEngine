@@ -12,6 +12,7 @@ using Exam.Api.Framework;
 using Exam.Model;
 using Exam.Repository;
 using Exam.Service.Interface;
+using Exam.Service.Interfave;
 
 namespace Exam.Api.Controllers
 {
@@ -20,6 +21,9 @@ namespace Exam.Api.Controllers
     {
         [Import]
         private IUserService userService;
+
+        [Import]
+        private ISettingService settingService;
 
         [HttpPost]
         [BaseAuthoriizeFilter]
@@ -89,6 +93,12 @@ namespace Exam.Api.Controllers
         {
             var data = userService.GetScoreStatistics();
             return ApiOk(data);
+        }
+
+        public ApiResponse SaveStandardAnwser(StandardAnwserModel model)
+        {
+            settingService.SaveStandardAnswer(model);
+            return ApiOk();
         }
     }
 }

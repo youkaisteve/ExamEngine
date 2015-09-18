@@ -50,6 +50,7 @@
     <Compile Include="QueryFilters\QueryPageInfo.cs" />
     <Compile Include="QueryFilters\UserTaskQueryFilter.cs" />
     <Compile Include="QueryFilters\WorkfolowQueryFilter.cs" />
+    <Compile Include="StandardAnwserModel.cs" />
     <Compile Include="TeamUserImportModel.cs" />
     <Compile Include="UserInfo.cs" />
   </ItemGroup>

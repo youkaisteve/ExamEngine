@@ -50,6 +50,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implement\AccountService.cs" />
+    <Compile Include="Interface\ISettingService.cs" />
+    <Compile Include="Implement\SettingService.cs" />
     <Compile Include="Implement\TaskService.cs" />
     <Compile Include="Implement\UserService.cs" />
     <Compile Include="Interface\IAccountService.cs" />

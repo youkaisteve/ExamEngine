@@ -92,6 +92,7 @@
           <Property Name="TemplateName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="InDate" Type="datetime" Nullable="false" />
           <Property Name="InUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TemplateDesc" Type="nvarchar" MaxLength="4000" />
         </EntityType>
         <EntityType Name="Team">
           <Key>
@@ -210,6 +211,7 @@
           <Property Name="TemplateName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="InUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TemplateDesc" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Team">
           <Key>
@@ -377,7 +379,8 @@
     <EntitySetMapping Name="StandardAnwser">
       <EntityTypeMapping TypeName="IsTypeOf(ExamSystemModel.StandardAnwser)">
         <MappingFragment StoreEntitySet="StandardAnwser">
-          <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+          <ScalarProperty Name="TemplateDesc" ColumnName="TemplateDesc" />
+                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
           <ScalarProperty Name="TemplateData" ColumnName="TemplateData" />
           <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
           <ScalarProperty Name="InDate" ColumnName="InDate" />

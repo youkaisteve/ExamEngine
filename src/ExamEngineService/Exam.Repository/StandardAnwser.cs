@@ -20,5 +20,6 @@ namespace Exam.Repository
         public string TemplateName { get; set; }
         public System.DateTime InDate { get; set; }
         public string InUser { get; set; }
+        public string TemplateDesc { get; set; }
     }
 }
