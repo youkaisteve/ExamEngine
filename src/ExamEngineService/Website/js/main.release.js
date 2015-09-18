@@ -46,4 +46,5 @@ require.config({
     }
     , deps: ["app"]
     , waitSeconds: 60
+    , urlArgs: "v=#VERSION#"
 });

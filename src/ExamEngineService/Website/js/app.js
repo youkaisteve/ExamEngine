@@ -40,37 +40,23 @@ define(["angularAMD", "app.config", "root_scope"], function (angularAMD, config,
         return cfg;
     }
 
-    app.config(["$routeProvider", "$httpProvider", function ($routeProvider, $httpProvider) {
-        var ele;
-        for (var i = 0; i < config.route.length; i++) {
-            ele = config.route[i];
-            $routeProvider.when(ele.url,
-                angularAMD.route(configRoute(ele["templateUrl"], ele["controllerUrl"], ele["controller"])));
-        }
-        if (config.start && config.start !== "") {
-            $routeProvider.otherwise({
-                redirectTo: config.start
-            });
-        }
-        //
-        //$httpProvider.defaults.withCredentials = false;
-        //$httpProvider.interceptors.push(["$q", function ($q) {
-        //    return {
-        //        request: function (cfg) {
-        //            return cfg;
-        //        }
-        //        , requestError: function (rejection) {
-        //            return $q.reject(rejection);
-        //        }
-        //        , response: function (response) {
-        //            return response;
-        //        }
-        //        , responseError: function (rejection) {
-        //            return $q.reject(rejection);
-        //        }
-        //    };
-        //}]);
-    }]);
+    app.config(["$routeProvider", "$httpProvider", "$logProvider",
+        function ($routeProvider, $httpProvider, $logProvider) {
+            var ele;
+            for (var i = 0; i < config.route.length; i++) {
+                ele = config.route[i];
+                $routeProvider.when(ele.url,
+                    angularAMD.route(configRoute(ele["templateUrl"], ele["controllerUrl"], ele["controller"])));
+            }
+            if (config.start && config.start !== "") {
+                $routeProvider.otherwise({
+                    redirectTo: config.start
+                });
+            }
+
+            $logProvider.debugEnabled(config.environment === "develop");
+
+        }]);
 
     app.run(initRootScope);
 

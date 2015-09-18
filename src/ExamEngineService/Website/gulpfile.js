@@ -11,6 +11,8 @@ var rename = require("gulp-rename");
 var zip = require('gulp-zip');
 var merge = require('merge-stream');
 var dateFmt = require("dateformat");
+var replace = require('gulp-replace');
+var md5 = require('md5');
 
 gulp.task("less", function () {
     return gulp.src("less/**/*.less")
@@ -68,9 +70,9 @@ gulp.task("release", ["clean-dist"], function () {
         , gulp.src("img/**/*").pipe(imagemin({progressive: true})).pipe(gulp.dest("dist/img"))
         //compress & dest js
         , gulp.src("js/controllers/*.js").pipe(uglify()).pipe(gulp.dest("dist/js/controllers"))
-        , gulp.src(["js/*.js", "!js/main.js", "!js/main.release.js", "!js/app.config.js", "!js/app.release.config.js"]).pipe(uglify()).pipe(gulp.dest("dist/js"))
+        , gulp.src(["js/*.js", "!js/main.js", "!js/main.release.js", "!js/app.config.js", "!js/app.config.release.js"]).pipe(uglify()).pipe(gulp.dest("dist/js"))
         , gulp.src(["js/app.config.release.js"]).pipe(rename("app.config.js")).pipe(uglify()).pipe(gulp.dest("dist/js"))
-        , gulp.src(["js/main.release.js"]).pipe(rename("main.js")).pipe(uglify()).pipe(gulp.dest("dist/js"))
+        , gulp.src(["js/main.release.js"]).pipe(rename("main.js")).pipe(replace("#VERSION#",md5(Date.now()))).pipe(uglify()).pipe(gulp.dest("dist/js"))
         , gulp.src("js/directive/**/*.js").pipe(uglify()).pipe(gulp.dest("dist/js/directive"))
         //dest lib
         , gulp.src(["js/lib/**/*"]).pipe(gulp.dest("dist/js/lib"))

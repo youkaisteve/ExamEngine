@@ -8,7 +8,7 @@
 
 define(["app.config"], function (config) {
 
-    var extendRootScope = ["$rootScope", "$http", "$sessionStorage", "$window", "$q",
+    return ["$rootScope", "$http", "$sessionStorage", "$window", "$q",
         function ($rootScope, $http, $sessionStorage, $window, $q) {
 
             $rootScope.sessionStorage = $sessionStorage;
@@ -104,8 +104,5 @@ define(["app.config"], function (config) {
             };
 
         }];
-
-
-    return extendRootScope;
 
 });
