@@ -22,8 +22,20 @@ Function Install-SolutionPackages() {
 }
 
 Function Deploy-Api() {
-    iex -Command "& '$global_msBuildPath' /p:WebAppPublishDir='C:\ExamApi\' /p:Configuration=Release '$global_deployApiProject'"
+    iex -Command "& '$global_msBuildPath' /p:WebAppPublishDir='C:\ExamApi\' /p:Configuration=Debug '$global_deployApiProject'"
 }
+
+#=======================================  
+# Shutdown Web Application
+#=======================================  
+Write-Host "being Shutdown Web Application...";  
+iisreset /stop;  
 
 Install-SolutionPackages
 Deploy-Api
+
+#=======================================  
+# Reset IIS on the server  
+#=======================================  
+Write-Host "Restarting IIS Services...";  
+iisreset /start;  

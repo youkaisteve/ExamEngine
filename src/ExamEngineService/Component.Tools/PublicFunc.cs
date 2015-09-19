@@ -83,5 +83,10 @@ namespace Component.Tools
                     ? AppDomain.CurrentDomain.BaseDirectory.TrimEnd(new[] { '\\' }) + "\\"
                     : AppDomain.CurrentDomain.BaseDirectory.TrimEnd(new[] { '\\' }) + "\\bin\\";
         }
+
+        public static string GetDeployDirectory()
+        {
+            return AppDomain.CurrentDomain.BaseDirectory;
+        }
     }
 }

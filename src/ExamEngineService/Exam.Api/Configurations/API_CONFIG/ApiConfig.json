@@ -48,5 +48,20 @@
 		"Name":"Score",
 		"Controller":"User",
 		"Action":"GetScoreStatistics"
+	},
+	{
+		"Name":"SaveAnswer",
+		"Controller":"User",
+		"Action":"SaveStandardAnswer"
+	},
+	{
+		"Name":"FormList",
+		"Controller":"User",
+		"Action":"LoadFormList"
+	},
+	{
+		"Name":"FormData",
+		"Controller":"User",
+		"Action":"LoadForm"
 	}
 ]

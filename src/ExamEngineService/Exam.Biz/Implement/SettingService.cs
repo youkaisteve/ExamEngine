@@ -1,4 +1,5 @@
-﻿using Exam.Model;
+﻿using System.ComponentModel.Composition;
+using Exam.Model;
 using Exam.Repository;
 using Exam.Repository.Repo;
 using Exam.Service.Interfave;
@@ -10,8 +11,10 @@ using System.Threading.Tasks;
 
 namespace Exam.Service.Implement
 {
+    [Export(typeof(ISettingService))]
     public class SettingService : ISettingService
     {
+        [Import]
         private StAnswerRepository stAnswerRepo;
         public void SaveStandardAnswer(StandardAnwserModel model)
         {
@@ -24,6 +27,13 @@ namespace Exam.Service.Implement
                 TemplateDesc = model.TemplateName
             };
             stAnswerRepo.Insert(data);
+        }
+
+        public dynamic LoadForm(string formName)
+        {
+            return
+                stAnswerRepo.Entities.Select(n => new { n.TemplateName, n.TemplateData, n.TemplateDesc })
+                    .FirstOrDefault(m => m.TemplateName == formName);
         }
     }
 }

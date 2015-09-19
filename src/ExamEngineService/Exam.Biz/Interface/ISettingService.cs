@@ -9,5 +9,7 @@ namespace Exam.Service.Interfave
     public interface ISettingService
     {
         void SaveStandardAnswer(StandardAnwserModel model);
+
+        dynamic LoadForm(string formName);
     }
 }

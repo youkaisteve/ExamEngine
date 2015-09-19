@@ -13,6 +13,7 @@ using Exam.Model;
 using Exam.Repository;
 using Exam.Service.Interface;
 using Exam.Service.Interfave;
+using WebGrease.Css.Extensions;
 
 namespace Exam.Api.Controllers
 {
@@ -95,10 +96,30 @@ namespace Exam.Api.Controllers
             return ApiOk(data);
         }
 
-        public ApiResponse SaveStandardAnwser(StandardAnwserModel model)
+        [HttpPost]
+        public ApiResponse SaveStandardAnswer(StandardAnwserModel model)
         {
             settingService.SaveStandardAnswer(model);
             return ApiOk();
+        }
+
+        [HttpPost]
+        public ApiResponse LoadFormList()
+        {
+            var returnFiles = new List<string>();
+            var formDir = Path.Combine(PublicFunc.GetDeployDirectory(), PublicFunc.GetConfigByKey_AppSettings("Form_Path"));
+            if (!string.IsNullOrEmpty(formDir) && Directory.Exists(formDir))
+            {
+                var files = Directory.GetFiles(formDir, "*.html", SearchOption.AllDirectories);
+                files.ForEach(m => returnFiles.Add(Path.GetFileName(m)));
+            }
+            return ApiOk(returnFiles);
+        }
+
+        [HttpPost]
+        public ApiResponse LoadForm([FromBody] string formName)
+        {
+            return ApiOk(settingService.LoadForm(formName));
         }
     }
 }
