@@ -5,7 +5,9 @@
             {{btn.TransitionName}}
         </button>
     </div>
-    <div>描述信息</div>
+    <div class="alert alert-info" ng-if="taskDetail.PageDesc">
+        {{taskDetail.PageDesc}}
+    </div>
     <ng-include src="path"></ng-include>
 </div>
 <ng-include src="'partials/footer.html'"></ng-include>
