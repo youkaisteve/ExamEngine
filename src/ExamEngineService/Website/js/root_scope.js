@@ -70,6 +70,7 @@ define(["app.config"], function (config) {
                     }
                     else if (res.Code === 3) {
                         $sessionStorage.$reset();
+                        $rootScope.userName=null;
                         $window.alert(res.ErrorMessage);
                         $rootScope._goto("/login");
                     }

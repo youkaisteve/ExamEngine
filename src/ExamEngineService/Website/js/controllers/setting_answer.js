@@ -9,7 +9,7 @@ define(["app", "custom-select", "disabled-when-click"], function (app) {
     app.controller("setting_answer", ["$scope", "$window",
         function ($scope, $window) {
 
-            $scope.Model={};
+            $scope.Model = {};
             $scope.formPath = "";
             $scope.forms = [];
 
@@ -25,12 +25,14 @@ define(["app", "custom-select", "disabled-when-click"], function (app) {
             };
 
             $scope.loadForm = function ($event, loading) {
-                $scope.formPath = $scope.formName;
+                $scope.formPath ="forms/"+ $scope.formName;
                 return $scope._request("FormData", {
                     TemplateName: $scope.formName
                 }, loading).then(function (res) {
-                    $scope.Model = JSON.parse(res.Data.TemplateData);
-                    $scope.templateDesc = res.Data.TemplateDesc;
+                    if (res.Data) {
+                        $scope.Model = JSON.parse(res.Data.TemplateData);
+                        $scope.templateDesc = res.Data.TemplateDesc;
+                    }
                 });
             };
 
