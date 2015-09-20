@@ -15,7 +15,7 @@ define(["app", "custom-select", "disabled-when-click"], function (app) {
 
             function getFileName(path) {
                 var last = path.lastIndexOf("/");
-                return path.substring(last+1);
+                return path.substring(last + 1);
             }
 
             $scope.getFormList = function (loading) {
@@ -29,8 +29,21 @@ define(["app", "custom-select", "disabled-when-click"], function (app) {
                 });
             };
 
+            $scope.getRows = function (model) {
+                var arr = [];
+                if (model) {
+                    for (var p in model) {
+                        arr.push(arr.length);
+                    }
+                }
+                else {
+                    arr = [0];
+                }
+                return arr;
+            };
+
             $scope.loadForm = function ($event, loading) {
-                $scope.formPath = $scope.formName;
+
                 return $scope._request("FormData", {
                     TemplateName: $scope.formName
                 }, loading).then(function (res) {
@@ -38,6 +51,7 @@ define(["app", "custom-select", "disabled-when-click"], function (app) {
                         $scope.Model = JSON.parse(res.Data.TemplateData);
                         $scope.templateDesc = res.Data.TemplateDesc;
                     }
+                    $scope.formPath = $scope.formName;
                 });
             };
 
