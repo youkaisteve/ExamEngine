@@ -32,6 +32,9 @@ namespace Exam.Service.Implement
         [Import]
         private SocialSPRepository socialSpRepo;
 
+        [Import]
+        private StAnswerRepository stAnswerRepo;
+
         protected override string ModuleName
         {
             get { return "Task"; }
@@ -53,7 +56,15 @@ namespace Exam.Service.Implement
             var proxy = new WorkflowProxy();
             List<Transition> transitions = proxy.GetTransitions(instanceId, tokenId);
             VariableInstance page = proxy.GetCurrentTaskSetPage(instanceId, tokenId);
-            return new { Transitions = transitions, Page = page.Value };
+            //获取page desc
+            var firstOrDefault = stAnswerRepo.Entities.FirstOrDefault(m => m.TemplateName == (string)page.Value);
+            var pageDesc = "";
+            if (firstOrDefault != null)
+            {
+                pageDesc = firstOrDefault.TemplateDesc;
+            }
+
+            return new { Transitions = transitions, Page = page.Value, PageDesc = pageDesc };
         }
 
         public void BeginExam(BeginExamModel data)

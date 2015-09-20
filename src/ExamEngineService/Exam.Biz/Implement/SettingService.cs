@@ -24,7 +24,7 @@ namespace Exam.Service.Implement
                 InDate = DateTime.Now,
                 InUser = model.User.UserID,
                 TemplateName = model.TemplateName,
-                TemplateDesc = model.TemplateName
+                TemplateDesc = model.TemplateDesc
             };
             stAnswerRepo.Insert(data);
         }
