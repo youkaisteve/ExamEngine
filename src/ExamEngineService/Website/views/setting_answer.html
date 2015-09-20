@@ -7,14 +7,18 @@
         <div class="panel-body">
             <form>
                 <div class="form-group">
-                    <label >表单名称</label>
-                    <custom-select ng-model="Model.formName" source="forms"></custom-select>
+                    <label>表单名称</label>
+                    <custom-select ng-model="formName" source="forms" onchange="loadForm($event,true)"></custom-select>
+                </div>
+                <div class="form-group" ng-show="formPath">
+                    <label>描述</label>
+                    <textarea class="form-control" ng-model="templateDesc"></textarea>
                 </div>
             </form>
-            <ng-include src="'forms/医疗保险费单位缴费月报表.html'"></ng-include>
+            <ng-include src="formPath"></ng-include>
         </div>
-        <div class="panel-footer text-right">
-            <button class="btn btn-default"><i class="fa fa-save"></i>  保存正确答案</button>
+        <div class="panel-footer text-right" ng-show="formPath">
+            <button class="btn btn-default" disabled-when-click="save()"><i class="fa fa-save"></i> 保存正确答案</button>
         </div>
     </div>
 </div>
