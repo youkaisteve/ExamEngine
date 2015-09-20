@@ -13,11 +13,16 @@ define(["app", "custom-select", "disabled-when-click"], function (app) {
             $scope.formPath = "";
             $scope.forms = [];
 
+            function getFileName(path) {
+                var last = path.lastIndexOf("/");
+                return path.substring(last+1);
+            }
+
             $scope.getFormList = function (loading) {
                 return $scope._request("FormList", null, loading).then(function (res) {
                     angular.forEach(res.Data, function (ele) {
                         $scope.forms.push({
-                            text: ele
+                            text: getFileName(ele)
                             , value: ele
                         });
                     });
@@ -25,7 +30,7 @@ define(["app", "custom-select", "disabled-when-click"], function (app) {
             };
 
             $scope.loadForm = function ($event, loading) {
-                $scope.formPath ="forms/"+ $scope.formName;
+                $scope.formPath = $scope.formName;
                 return $scope._request("FormData", {
                     TemplateName: $scope.formName
                 }, loading).then(function (res) {
