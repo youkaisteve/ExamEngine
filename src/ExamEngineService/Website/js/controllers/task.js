@@ -13,7 +13,7 @@ define(["app", "app.config", "disabled-when-click"], function (app, config) {
             $scope._goto("/default");
         }
         else {
-            delete $scope.sessionStorage.currentTask;
+            //delete $scope.sessionStorage.currentTask;
             var tokenID = $routeParams.tokenID;
             var instanceID = $routeParams.instanceID;
             $scope.getDetail = function (tokenID, instanceID,loading) {

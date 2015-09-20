@@ -20,6 +20,11 @@ define(["app.config"], function (config) {
                 $rootScope._goto("#/login");
             }
 
+            function clear(){
+                $sessionStorage.$reset();
+                $rootScope.userName=null;
+            };
+
             $rootScope._goto = function (url) {
                 if (url.indexOf("#") === 0) {
                     window.location.href = url;
@@ -69,8 +74,7 @@ define(["app.config"], function (config) {
                         deferred.resolve(res);
                     }
                     else if (res.Code === 3) {
-                        $sessionStorage.$reset();
-                        $rootScope.userName=null;
+                        clear();
                         $window.alert(res.ErrorMessage);
                         $rootScope._goto("/login");
                     }
@@ -90,14 +94,14 @@ define(["app.config"], function (config) {
 
             $rootScope._logout = function () {
                 return $rootScope._request("Logout", {}).then(function (res) {
-                    $sessionStorage.$reset();
+                    clear();
                     toLogin();
                 });
             };
 
             $rootScope._notify = function (message, type) {
                 if (!type) {
-                    type = "alert-info";
+                    type = "alert-warning";
                 }
                 var div = $("<div>").addClass("notify alert").addClass(type).text(message);
                 div.appendTo(document.body);
