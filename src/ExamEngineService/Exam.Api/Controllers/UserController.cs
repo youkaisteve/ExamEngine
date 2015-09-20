@@ -97,6 +97,7 @@ namespace Exam.Api.Controllers
         }
 
         [HttpPost]
+        [BaseAuthoriizeFilter]
         public ApiResponse SaveStandardAnswer(StandardAnwserModel model)
         {
             settingService.SaveStandardAnswer(model);
@@ -117,9 +118,10 @@ namespace Exam.Api.Controllers
         }
 
         [HttpPost]
-        public ApiResponse LoadForm([FromBody] string formName)
+        [BaseAuthoriizeFilter]
+        public ApiResponse LoadForm([FromBody] StandardAnwserModel model)
         {
-            return ApiOk(settingService.LoadForm(formName));
+            return ApiOk(settingService.LoadForm(model.TemplateName));
         }
     }
 }
