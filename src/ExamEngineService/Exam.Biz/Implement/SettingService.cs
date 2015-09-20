@@ -33,7 +33,7 @@ namespace Exam.Service.Implement
                     TemplateData = model.TemplateData,
                     InDate = DateTime.Now,
                     InUser = model.User.UserID,
-                    TemplateName = PublicFunc.GetConfigByKey_AppSettings("TemplatePrefix") + model.TemplateName,
+                    TemplateName = model.TemplateName,
                     TemplateDesc = model.TemplateDesc
                 };
                 stAnswerRepo.Insert(data);
