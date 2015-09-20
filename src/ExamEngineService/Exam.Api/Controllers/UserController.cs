@@ -112,7 +112,7 @@ namespace Exam.Api.Controllers
             if (!string.IsNullOrEmpty(formDir) && Directory.Exists(formDir))
             {
                 var files = Directory.GetFiles(formDir, "*.html", SearchOption.AllDirectories);
-                files.ForEach(m => returnFiles.Add(Path.GetFileName(m)));
+                files.ForEach(m => returnFiles.Add(PublicFunc.GetConfigByKey_AppSettings("TemplatePrefix") + Path.GetFileName(m)));
             }
             return ApiOk(returnFiles);
         }
