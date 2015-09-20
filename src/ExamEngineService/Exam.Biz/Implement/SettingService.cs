@@ -18,15 +18,26 @@ namespace Exam.Service.Implement
         private StAnswerRepository stAnswerRepo;
         public void SaveStandardAnswer(StandardAnwserModel model)
         {
-            var data = new StandardAnwser()
+            var existData = stAnswerRepo.Entities.FirstOrDefault(m => m.TemplateName == model.TemplateName);
+            if (existData != null)
             {
-                TemplateData = model.TemplateData,
-                InDate = DateTime.Now,
-                InUser = model.User.UserID,
-                TemplateName = model.TemplateName,
-                TemplateDesc = model.TemplateDesc
-            };
-            stAnswerRepo.Insert(data);
+                existData.TemplateData = model.TemplateData;
+                existData.TemplateDesc = model.TemplateDesc;
+                stAnswerRepo.Update(existData);
+            }
+            else
+            {
+                var data = new StandardAnwser()
+                {
+                    TemplateData = model.TemplateData,
+                    InDate = DateTime.Now,
+                    InUser = model.User.UserID,
+                    TemplateName = model.TemplateName,
+                    TemplateDesc = model.TemplateDesc
+                };
+                stAnswerRepo.Insert(data);
+            }
+
         }
 
         public dynamic LoadForm(string formName)
