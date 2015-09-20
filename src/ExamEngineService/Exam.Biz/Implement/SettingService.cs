@@ -32,7 +32,7 @@ namespace Exam.Service.Implement
                     TemplateData = model.TemplateData,
                     InDate = DateTime.Now,
                     InUser = model.User.UserID,
-                    TemplateName = model.TemplateName,
+                    TemplateName = "forms/" + model.TemplateName,
                     TemplateDesc = model.TemplateDesc
                 };
                 stAnswerRepo.Insert(data);
