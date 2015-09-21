@@ -52,7 +52,6 @@ define(["app", "custom-select", "disabled-when-click"], function (app) {
                         $scope.templateDesc = res.Data.TemplateDesc;
                     }
                     $scope.formPath = $scope.formName;
-                    $scope.templateDesc="";
                 });
             };
 
