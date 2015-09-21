@@ -4,10 +4,10 @@
  * email:mahai_1986@126.com
  *
  */
-define(["app", "team-select", "custom-select","disabled-when-click"], function (app) {
+define(["app", "team-select", "custom-select","disabled-when-click","process"], function (app) {
 
-    app.controller("request_workflow", ["$scope", "$window",
-        function ($scope, $window) {
+    app.controller("request_workflow", ["$scope", "$window","Process",
+        function ($scope, $window,Process) {
             $scope.teamSource = [];
 
             $scope.workflows = [{
@@ -18,14 +18,8 @@ define(["app", "team-select", "custom-select","disabled-when-click"], function (
             $scope.selectedWorkflow = "";
 
             $scope.getAllWorkflows = function (loading) {
-                return $scope._request("AllProcess",null,loading).then(function (res) {
-                    angular.forEach(res.Data.AllProcess, function (ele) {
-                        $scope.workflows.push({
-                            text: ele.ProcessName
-                            , value: ele
-                        });
-                    });
-
+                return Process.getAllProcess(loading).then(function (res) {
+                    $scope.workflows=Process.convertToKV(res.Data.AllProcess);
                     angular.forEach(res.Data.Teams, function (ele) {
                         $scope.teamSource.push({
                             text: ele

@@ -27,6 +27,9 @@ require.config({
         , "custom-select": "directive/custom-select/index"
         , "file-uploader": "directive/file-uploader/index"
         , "disabled-when-click": "directive/disabled_when_click"
+
+        //servie
+        ,"process":"service/process"
     }
     , shim: {
         "angular": ["jquery"]

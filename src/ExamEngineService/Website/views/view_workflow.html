@@ -1,0 +1,17 @@
+﻿<ng-include src="'partials/header.html'"></ng-include>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            流程查看
+        </div>
+        <div class="panel-body">
+            <form>
+                <div class="form-group">
+                    <label>流程名称</label>
+                    <custom-select ng-model="definedName" source="allProcess" onchange="loadProcessImage($event,true)"></custom-select>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<ng-include src="'partials/footer.html'"></ng-include>

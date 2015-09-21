@@ -37,6 +37,9 @@ define({
     }, {
         url: "/login"
         , templateUrl: "login.html"
+    }, {
+        url: "/workflow/view"
+        , templateUrl: "view_workflow.html"
     }]
     , formDependence: {}
     , roleMappding: {

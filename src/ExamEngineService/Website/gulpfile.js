@@ -74,6 +74,7 @@ gulp.task("release", ["clean-dist"], function () {
         , gulp.src(["js/app.config.release.js"]).pipe(rename("app.config.js")).pipe(uglify()).pipe(gulp.dest("dist/js"))
         , gulp.src(["js/main.release.js"]).pipe(rename("main.js")).pipe(replace("#VERSION#",md5(Date.now()))).pipe(uglify()).pipe(gulp.dest("dist/js"))
         , gulp.src("js/directive/**/*.js").pipe(uglify()).pipe(gulp.dest("dist/js/directive"))
+        , gulp.src("js/service/**/*.js").pipe(uglify()).pipe(gulp.dest("dist/js/service"))
         //dest lib
         , gulp.src(["js/lib/**/*"]).pipe(gulp.dest("dist/js/lib"))
         //other

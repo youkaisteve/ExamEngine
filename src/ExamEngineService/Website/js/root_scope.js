@@ -108,6 +108,19 @@ define(["app.config"], function (config) {
                 return div;
             };
 
+            $rootScope.getRows = function (model) {
+                var arr = [];
+                if (model) {
+                    for (var p in model) {
+                        arr.push(arr.length);
+                    }
+                }
+                else {
+                    arr = [0];
+                }
+                return arr;
+            };
+
         }];
 
 });
