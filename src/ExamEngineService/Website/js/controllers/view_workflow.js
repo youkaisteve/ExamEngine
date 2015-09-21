@@ -4,22 +4,22 @@
  * email:mahai_1986@126.com
  *
  */
-define(["app", "custom-select", "disabled-when-click","process"], function (app) {
+define(["app", "custom-select", "disabled-when-click", "process"], function (app) {
 
-    app.controller("view_workflow", ["$scope", "$window","Process",
-        function ($scope, $window,Process) {
+    app.controller("view_workflow", ["$scope", "$window", "Process",
+        function ($scope, $window, Process) {
 
-            $scope.imageBase64="";
-            $scope.allProcess=[];
+            $scope.imageBase64 = "";
+            $scope.allProcess = [];
 
-            $scope.loadProcessImage=function($event,loading){
-                return Process.getProcessImage($scope.definedName.ProcessName,loading).then(function(res){
-                    //$scope.imageBase64==res.
+            $scope.loadProcessImage = function ($event, loading) {
+                return Process.getProcessImage($scope.definedName.ProcessName, loading).then(function (res) {
+                    $scope.imageBase64 =  res.Data.Image;
                 });
             };
 
-            Process.getAllProcess(true).then(function(res){
-                $scope.allProcess=Process.convertToKV(res.Data.AllProcess);
+            Process.getAllProcess(true).then(function (res) {
+                $scope.allProcess = Process.convertToKV(res.Data.AllProcess);
             });
 
         }]);

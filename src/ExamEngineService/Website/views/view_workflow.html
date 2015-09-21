@@ -11,6 +11,7 @@
                     <custom-select ng-model="definedName" source="allProcess" onchange="loadProcessImage($event,true)"></custom-select>
                 </div>
             </form>
+            <div><img ng-if="imageBase64" data-ng-src="data:image/png;base64,{{imageBase64}}"></div>
         </div>
     </div>
 </div>
