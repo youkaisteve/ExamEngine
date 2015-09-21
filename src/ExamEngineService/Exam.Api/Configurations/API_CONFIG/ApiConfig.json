@@ -63,5 +63,15 @@
 		"Name":"FormData",
 		"Controller":"User",
 		"Action":"LoadForm"
+	},
+	{
+		"Name":"ProcessImage",
+		"Controller":"User",
+		"Action":"GetProcessImage"
+	},
+	{
+		"Name":"TokenImage",
+		"Controller":"User",
+		"Action":"GetCurrentTokenImage"
 	}
 ]

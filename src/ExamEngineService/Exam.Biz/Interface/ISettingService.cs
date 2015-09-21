@@ -11,5 +11,9 @@ namespace Exam.Service.Interfave
         void SaveStandardAnswer(StandardAnwserModel model);
 
         dynamic LoadForm(string formName);
+
+        string GetProcessImage(string processName);
+
+        string GetCurrentTokenImage(string instanceId, string tokenId);
     }
 }

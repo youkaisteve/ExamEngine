@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WorkflowCallWapper;
 
 namespace Exam.Service.Implement
 {
@@ -46,6 +47,20 @@ namespace Exam.Service.Implement
             return
                 stAnswerRepo.Entities.Select(n => new { n.TemplateName, n.TemplateData, n.TemplateDesc })
                     .FirstOrDefault(m => m.TemplateName == formName);
+        }
+
+        public string GetProcessImage(string processName)
+        {
+            var proxy = new WorkflowProxy();
+            var imageData = proxy.GetProcessPictureToByte(processName);
+            return Convert.ToBase64String(imageData);
+        }
+
+        public string GetCurrentTokenImage(string instanceId, string tokenId)
+        {
+            var proxy = new WorkflowProxy();
+            var imageData = proxy.GetCurrentTokenPictureToByte(instanceId, tokenId);
+            return Convert.ToBase64String(imageData);
         }
     }
 }

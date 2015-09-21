@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Linq;
@@ -122,6 +123,20 @@ namespace Exam.Api.Controllers
         public ApiResponse LoadForm([FromBody] StandardAnwserModel model)
         {
             return ApiOk(settingService.LoadForm(model.TemplateName));
+        }
+
+        [HttpPost]
+        public ApiResponse GetProcessImage(ProcessModel process)
+        {
+            var imageData = settingService.GetProcessImage(process.DefineName);
+            return ApiOk(imageData);
+        }
+
+        [HttpPost]
+        public ApiResponse GetCurrentTokenImage(ProcessModel process)
+        {
+            var imageData = settingService.GetCurrentTokenImage(process.InstanceId, process.TokenId);
+            return ApiOk(imageData);
         }
     }
 }
