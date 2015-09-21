@@ -126,17 +126,19 @@ namespace Exam.Api.Controllers
         }
 
         [HttpPost]
+        [BaseAuthoriizeFilter]
         public ApiResponse GetProcessImage(ProcessModel process)
         {
             var imageData = settingService.GetProcessImage(process.DefineName);
-            return ApiOk(imageData);
+            return ApiOk(new { Image = imageData });
         }
 
         [HttpPost]
+        [BaseAuthoriizeFilter]
         public ApiResponse GetCurrentTokenImage(ProcessModel process)
         {
             var imageData = settingService.GetCurrentTokenImage(process.InstanceId, process.TokenId);
-            return ApiOk(imageData);
+            return ApiOk(new { Image = imageData });
         }
     }
 }
