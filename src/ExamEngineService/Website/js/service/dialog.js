@@ -2,8 +2,8 @@
  * Created by hai.ma on 2015/9/23 0023.
  */
 define(["app"], function (app) {
-    app.factory("Dialog", ["$rootScope", "$http", "$templateCache", "$q", "$timeout", "$compile",
-        function ($rootScope, $http, $templateCache, $q, $timeout, $compile) {
+    app.factory("Dialog", ["$rootScope", "$http", "$templateCache", "$q", "$timeout", "$interpolate",
+        function ($rootScope, $http, $templateCache, $q, $timeout, $interpolate) {
             var methods = {
                 KEY_TMP: "template_dialog.html"
             };
@@ -31,7 +31,7 @@ define(["app"], function (app) {
             * */
             methods.open = function (context) {
                 return methods.getTemplate().then(function (tmp) {
-                    return $compile(tmp)(context);
+                    return $($interpolate(tmp)(context));
                 });
             };
 
