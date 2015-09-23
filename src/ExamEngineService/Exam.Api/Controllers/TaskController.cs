@@ -68,5 +68,14 @@ namespace Exam.Api.Controllers
             taskService.Process(data);
             return ApiOk();
         }
+
+        [HttpPost]
+        [BaseAuthoriizeFilter]
+        public ApiResponse UnFinishProcess([FromBody] QueryFilter filter)
+        {
+            taskService.GetUnFinishProcess(filter);
+            return ApiOk();
+        }
+
     }
 }

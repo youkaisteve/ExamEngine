@@ -44,11 +44,21 @@ namespace Exam.Service.Implement
         {
             var proxy = new WorkflowProxy();
             QueryTaskView queryTasks =
-                proxy.GetUnProcessTaskByUser(filter.UserId ?? PublicFunc.GetConfigByKey_AppSettings("mock_user"),
+                proxy.GetUnProcessTaskByUser(filter.UserId,
                     filter.PageInfo.PageIndex,
                     filter.PageInfo.PageSize);
 
             return queryTasks;
+        }
+
+        public dynamic GetUnFinishProcess(QueryFilter filter)
+        {
+            var proxy = new WorkflowProxy();
+            QueryInstanceView queryProcesses =
+                proxy.GetFinishedProcess(filter.PageInfo.PageIndex,
+                    filter.PageInfo.PageSize);
+
+            return new { queryProcesses.TotalCount, Processes = queryProcesses.Historys };
         }
 
         public dynamic GetTaskDetail(string instanceId, string tokenId)

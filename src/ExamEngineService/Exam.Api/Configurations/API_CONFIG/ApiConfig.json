@@ -73,5 +73,10 @@
 		"Name":"TokenImage",
 		"Controller":"User",
 		"Action":"GetCurrentTokenImage"
+	},
+	{
+		"Name":"UnFinishProcess",
+		"Controller":"Task",
+		"Action":"UnFinishProcess"
 	}
 ]
