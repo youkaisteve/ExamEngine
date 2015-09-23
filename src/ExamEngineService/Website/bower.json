@@ -17,6 +17,7 @@
     "angular": "~1.4.5",
     "angular-cookies": "~1.4.5",
     "angular-route": "~1.4.5",
+    "angular-sanitize": "~1.4.6",
     "angularAMD": "~0.2.1",
     "bootstrap": "~3.3.5",
     "cryptojslib": "~3.1.2",

@@ -9,8 +9,16 @@ define(["app", "dialog"], function (app) {
     app.controller("test", ["$scope", "$window", "Dialog",
         function ($scope, $window, Dialog) {
 
-            Dialog.open({
+
+            Dialog.open($scope,{
                 title: "test"
+                , body: "<p>message</p>"
+                , buttons: [{
+                    text: "close"
+                    , click: function () {
+                        alert("click");
+                    }
+                }]
             }).then(function (ele) {
                 $(document.body).append(ele);
             });

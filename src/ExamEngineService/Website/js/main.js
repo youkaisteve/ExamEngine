@@ -17,6 +17,7 @@ require.config({
         , "angular-route": "lib/angular-route/angular-route"
         , "angular-cookie": "lib/angular-cookies/angular-cookies"
         , "angular-storage": "lib/ngstorage/ngStorage"
+        , "angular-sanitize": "lib/angular-sanitize/angular-sanitize"
         , "root_scope": "root_scope"
         , "cryptojs.core": "lib/cryptojslib/core"
         , "cryptojs.md5": "lib/cryptojslib/md5"
@@ -29,14 +30,15 @@ require.config({
         , "disabled-when-click": "directive/disabled_when_click"
 
         //servie
-        ,"process":"service/process"
-        ,"dialog":"service/dialog"
+        , "process": "service/process"
+        , "dialog": "service/dialog"
     }
     , shim: {
         "angular": ["jquery"]
         , "angular-route": ["angular"]
         , "angular-cookie": ["angular"]
         , "angular-storage": ["angular"]
+        , "angular-sanitize": ["angular"]
         , "angularAMD": ["angular-route"]
         , "bootstrap": ["jquery"]
         , "cryptojs.core": {
@@ -46,7 +48,7 @@ require.config({
             deps: ["cryptojs.core"]
             , exports: "CryptoJS"
         }
-        , "app": ["angular-storage", /*"angular-cookie",*/"bootstrap"]
+        , "app": ["angular-storage", /*"angular-cookie",*/"bootstrap", "angular-sanitize"]
     }
     , deps: ["app"]
     , waitSeconds: 60

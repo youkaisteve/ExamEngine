@@ -2,17 +2,15 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close">
+                <button type="button" class="close" ng-click="close($event)">
                     <span>&times;</span>
                 </button>
                 <h4 class="modal-title">{{title}}</h4>
             </div>
-            <div class="modal-body">
-                {{body}}
+            <div class="modal-body" ng-bind-html="body">
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+            <div class="modal-footer" ng-show="buttons">
+                <button ng-repeat="btn in buttons track by $index" type="button" class="btn btn-default" ng-click="btn.click($event)">{{btn.text}}</button>
             </div>
         </div>
         <!-- /.modal-content -->
