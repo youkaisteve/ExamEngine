@@ -20,9 +20,9 @@ define(["app.config"], function (config) {
                 $rootScope._goto("#/login");
             }
 
-            function clear(){
+            function clear() {
                 $sessionStorage.$reset();
-                $rootScope.userName=null;
+                $rootScope.userName = null;
             };
 
             $rootScope._goto = function (url) {
@@ -50,8 +50,14 @@ define(["app.config"], function (config) {
             }
 
             $rootScope.$on("$routeChangeStart", function (event, next, current) {
-                if (!$rootScope._auth()) {
-                    toLogin();
+                if (next && next.$$route) {
+                    var url = next.$$route.originalPath;
+                    var route = config.route[url];
+                    if (route.ssl) {
+                        if (!$rootScope._auth()) {
+                            toLogin();
+                        }
+                    }
                 }
             });
 

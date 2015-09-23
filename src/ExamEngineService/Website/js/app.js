@@ -43,9 +43,9 @@ define(["angularAMD", "app.config", "root_scope"], function (angularAMD, config,
     app.config(["$routeProvider", "$httpProvider", "$logProvider",
         function ($routeProvider, $httpProvider, $logProvider) {
             var ele;
-            for (var i = 0; i < config.route.length; i++) {
-                ele = config.route[i];
-                $routeProvider.when(ele.url,
+            for (var url in config.route) {
+                ele = config.route[url];
+                $routeProvider.when(url,
                     angularAMD.route(configRoute(ele["templateUrl"], ele["controllerUrl"], ele["controller"])));
             }
             if (config.start && config.start !== "") {
