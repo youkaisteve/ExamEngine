@@ -19,8 +19,8 @@ namespace UnitTest
         public void PlayTest()
         {
             WorkflowCallWapper.WorkflowProxy proxy = new WorkflowCallWapper.WorkflowProxy();
-            var imageData = proxy.GetProcessPictureToByte("参保人员新增");
-            CompressImageData(imageData);
+            var data = proxy.GetFinishedProcess(0,10);
+            Console.Write(data);
         }
 
         public void CompressImageData(byte[] data)

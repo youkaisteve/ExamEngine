@@ -58,7 +58,12 @@ namespace Exam.Service.Implement
                 proxy.GetFinishedProcess(filter.PageInfo.PageIndex,
                     filter.PageInfo.PageSize);
 
-            return new { queryProcesses.TotalCount, Processes = queryProcesses.Historys };
+            if (queryProcesses != null)
+            {
+                return new { queryProcesses.TotalCount, Processes = queryProcesses.Historys };
+            }
+
+            return queryProcesses;
         }
 
         public dynamic GetTaskDetail(string instanceId, string tokenId)
