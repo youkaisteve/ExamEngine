@@ -4,10 +4,10 @@
  * email:mahai_1986@126.com
  *
  */
-define(["app", "team-select", "custom-select","disabled-when-click","process"], function (app) {
+define(["app", "team-select", "custom-select", "disabled-when-click", "process", "dialog"], function (app) {
 
-    app.controller("request_workflow", ["$scope", "$window","Process",
-        function ($scope, $window,Process) {
+    app.controller("request_workflow", ["$scope", "$window", "Process", "Dialog",
+        function ($scope, $window, Process, Dialog) {
             $scope.teamSource = [];
 
             $scope.workflows = [{
@@ -19,7 +19,7 @@ define(["app", "team-select", "custom-select","disabled-when-click","process"], 
 
             $scope.getAllWorkflows = function (loading) {
                 return Process.getAllProcess(loading).then(function (res) {
-                    $scope.workflows=Process.convertToKV(res.Data.AllProcess);
+                    $scope.workflows = Process.convertToKV(res.Data.AllProcess);
                     angular.forEach(res.Data.Teams, function (ele) {
                         $scope.teamSource.push({
                             text: ele
@@ -53,6 +53,21 @@ define(["app", "team-select", "custom-select","disabled-when-click","process"], 
                     $window.alert("发起流程成功");
                     $scope._goto("/default");
                 });
+            };
+
+            $scope.showImage = function () {
+                return Process.getProcessImage($scope.Model.ProcessName.ProcessName, true).then(function (res) {
+                    var base64 = res.Data.Image;
+                    var html = '<div><img style="max-width:100%;" src="data:image/png;base64,' + base64 + '"/></div>';
+                    return Dialog.open($scope, {
+                        title: $scope.Model.ProcessName.ProcessName
+                        , body: html
+                        , style: {
+                            width: "800px"
+                        }
+                    });
+                });
+
             };
 
             $scope.getAllWorkflows(true);

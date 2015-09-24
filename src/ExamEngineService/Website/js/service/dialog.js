@@ -24,11 +24,11 @@ define(["app"], function (app) {
                 return deferred.promise;
             };
             /*
-            * {
-            *   title:{string},
-            *   body:{html}
-            * }
-            * */
+             * {
+             *   title:{string},
+             *   body:{html}
+             * }
+             * */
             methods.open = function ($scope, context) {
                 var scope = $scope.$new(true, $scope);
                 angular.extend(scope, context);
@@ -36,7 +36,10 @@ define(["app"], function (app) {
                     $(event.target).parents(".modal").remove();
                 };
                 return methods.getTemplate().then(function (tmp) {
-                    return $($compile(tmp)(scope));
+                    var ele = $compile(tmp)(scope);
+                    console.log(ele);
+                    $(document.body).append(ele);
+                    return ele;
                 });
             };
 

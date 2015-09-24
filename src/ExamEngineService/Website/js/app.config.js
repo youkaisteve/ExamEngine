@@ -12,7 +12,7 @@ define({
     , templatePath: "views/"
     , api: "http://127.0.0.1:8083/api/Home/Handler"
     , importStudentUri: "http://127.0.0.1:8083/api/User/ImportUser"
-    , start: "/test"
+    , start: "/default"
     , route: {
         "/default": {
             templateUrl: "default.html"
