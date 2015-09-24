@@ -1,0 +1,47 @@
+﻿接口
+
+获取模板列表 FormList
+	request ：无
+	response ： {"Code":0,"Message":null,"ErrorMessage":null,"Data":["1.html"]}
+	
+保存标准答案 SaveAnswer
+	request ：{TemplateName:"test",TemplateData:"test",TemplateDesc:"test"}
+	response ：void
+获取模板内容 FormData
+	request ：{TemplateName:"test"}
+	response ：{"Code":0,"Message":null,"ErrorMessage":null,"Data":{"TemplateName":"test","TemplateData":"test","TemplateDesc":"test"}}
+
+获取流程图：ProcessImage
+	request ：{DefineName:"参保人员新增"}
+	response ：{"Code":0,"Message":null,"ErrorMessage":null,"Data":{"Image":"/9j/4A..."}}
+
+获取流程节点图：TokenImage
+	request ：{InstanceId:"1",TokenId:"1"}
+	response ：{"Code":0,"Message":null,"ErrorMessage":null,"Data":{"Image":"/9j/4A..."}}
+
+获取未完成的流程：
+	request : {PageInfo:{PageIndex:0,PageSize:10}}
+	response : {
+				  "Code": 0,
+				  "Message": null,
+				  "ErrorMessage": null,
+				  "Data": {
+					"TotalCount": 15,
+					"Processes": [
+					  {
+						"FinishTime": null,
+						"CreateDate": "2015-09-24T12:24:02.1Z",
+						"CreaterId": "009",
+						"CreaterName": "009",
+						"DefineId": 1,
+						"DefineName": "参保人员新增",
+						"OwnerId": "009",
+						"OwnerName": "",
+						"NodeId": 3,
+						"NodeName": "人员新增验证",
+						"Status": "运行中",
+						"InstanceId": 23
+					  }
+					]
+				  }
+				}

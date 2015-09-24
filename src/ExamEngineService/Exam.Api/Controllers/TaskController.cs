@@ -73,8 +73,8 @@ namespace Exam.Api.Controllers
         [BaseAuthoriizeFilter]
         public ApiResponse UnFinishProcess([FromBody] QueryFilter filter)
         {
-            taskService.GetUnFinishProcess(filter);
-            return ApiOk();
+            var data = taskService.GetUnFinishProcess(filter);
+            return ApiOk(data);
         }
 
     }
