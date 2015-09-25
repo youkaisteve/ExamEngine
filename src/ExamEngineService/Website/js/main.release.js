@@ -31,6 +31,7 @@ require.config({
 
         //servie
         ,"process":"service/process"
+        , "dialog": "service/dialog"
     }
     , shim: {
         "angular": ["jquery"]
