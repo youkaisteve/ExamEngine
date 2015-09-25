@@ -1,0 +1,20 @@
+﻿<ng-include src="'partials/header.html'"></ng-include>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            选择表单
+        </div>
+        <div class="panel-body">
+            <div><input type="text" ng-model="formName" class="form-control" placeholder="请输入筛选条件"></div>
+            <table class="table">
+                <tbody>
+                <tr ng-repeat="frm in forms | filter:formName">
+                    <td><a href="#/answer?name={{frm.value | ENCODE_URI}}">{{frm.text}}</a></td>
+                </tr>
+                </tbody>
+            </table>
+            <ng-include src="formPath"></ng-include>
+        </div>
+    </div>
+</div>
+<ng-include src="'partials/footer.html'"></ng-include>

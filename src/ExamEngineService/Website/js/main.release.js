@@ -29,8 +29,11 @@ require.config({
         , "disabled-when-click": "directive/disabled_when_click"
 
         //servie
-        ,"process":"service/process"
+        , "process": "service/process"
         , "dialog": "service/dialog"
+
+        //filters
+        , "filters": "filters"
     }
     , shim: {
         "angular": ["jquery"]

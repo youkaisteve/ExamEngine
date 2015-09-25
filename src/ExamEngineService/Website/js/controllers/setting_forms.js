@@ -4,10 +4,10 @@
  * email:mahai_1986@126.com
  *
  */
-define(["app", "custom-select", "disabled-when-click"], function (app) {
+define(["app", "custom-select", "disabled-when-click","filters"], function (app) {
 
-    app.controller("setting_answer", ["$scope", "$window","$routeParams",
-        function ($scope, $window,$routeParams) {
+    app.controller("setting_forms", ["$scope", "$window",
+        function ($scope, $window) {
 
             $scope.Model = {};
             $scope.formPath = "";

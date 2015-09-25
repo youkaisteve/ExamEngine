@@ -5,14 +5,7 @@
             答案设置
         </div>
         <div class="panel-body">
-            <div><input type="text" ng-model="formName" class="form-control" placeholder="请输入筛选条件"></div>
-            <table class="table">
-                <tbody>
-                <tr ng-repeat="frm in forms | filter:formName">
-                    <td><a>{{frm.text}}</a></td>
-                </tr>
-                </tbody>
-            </table>
+
             <ng-include src="formPath"></ng-include>
         </div>
     </div>

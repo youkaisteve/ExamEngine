@@ -26,6 +26,10 @@ define({
             templateUrl: "request_workflow.html"
             , ssl: "true"
         }
+        , "/forms": {
+            templateUrl: "setting_forms.html"
+            , ssl: "true"
+        }
         , "/answer": {
             templateUrl: "setting_answer.html"
             , ssl: "true"
