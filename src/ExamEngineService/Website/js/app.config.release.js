@@ -7,7 +7,7 @@
 define({
     appName: "app"
     , environment: "develop"
-    , appDeps: ["ngRoute", /*"ngCookies",*/"ngStorage","ngSanitize"]
+    , appDeps: ["ngRoute", /*"ngCookies",*/"ngStorage"]
     , controllerPath: "controllers/"
     , templatePath: "views/"
     , api: "http://222.196.244.45/api/Home/Handler"
