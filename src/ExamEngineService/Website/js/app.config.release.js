@@ -6,41 +6,54 @@
  */
 define({
     appName: "app"
-    , environment: "production"
-    , appDeps: ["ngRoute", /*"ngCookies",*/"ngStorage"]
+    , environment: "develop"
+    , appDeps: ["ngRoute", /*"ngCookies",*/"ngStorage","ngSanitize"]
     , controllerPath: "controllers/"
     , templatePath: "views/"
     , api: "http://222.196.244.45/api/Home/Handler"
     , importStudentUri: "http://222.196.244.45/api/User/ImportUser"
     , start: "/default"
-    , route: [{
-        url: "/default"
-        , templateUrl: "default.html"
-    }, {
-        url: "/task/:instanceID/:tokenID"
-        , templateUrl: "task.html"
-    }, {
-        url: "/workflow"
-        , templateUrl: "request_workflow.html"
-    }, {
-        url: "/answer"
-        , templateUrl: "setting_answer.html"
-    }, {
-        url: "/scores"
-        , templateUrl: "query_score.html"
-    }, {
-        url: "/import"
-        , templateUrl: "import_students.html"
-    }, {
-        url: "/team"
-        , templateUrl: "setting_team.html"
-    }, {
-        url: "/login"
-        , templateUrl: "login.html"
-    }, {
-        url: "/workflow/view"
-        , templateUrl: "view_workflow.html"
-    }]
+    , route: {
+        "/default": {
+            templateUrl: "default.html"
+            , ssl: "true"
+        },
+        "/task/:instanceID/:tokenID": {
+            templateUrl: "task.html"
+            , ssl: "true"
+        },
+        "/workflow": {
+            templateUrl: "request_workflow.html"
+            , ssl: "true"
+        }
+        , "/answer": {
+            templateUrl: "setting_answer.html"
+            , ssl: "true"
+        }
+        , "/scores": {
+            templateUrl: "query_score.html"
+            , ssl: "true"
+        }
+        , "/import": {
+            templateUrl: "import_students.html"
+            , ssl: "true"
+        }
+        , "/team": {
+            templateUrl: "setting_team.html"
+            , ssl: "true"
+        }
+        , "/login": {
+            templateUrl: "login.html"
+            , ssl: "true"
+        }
+        , "/workflow/view": {
+            templateUrl: "view_workflow.html"
+            , ssl: "true"
+        }
+        , "/test": {
+            templateUrl: "test.html"
+        }
+    }
     , formDependence: {}
     , roleMappding: {
         "0": "partials/default_student.html"
