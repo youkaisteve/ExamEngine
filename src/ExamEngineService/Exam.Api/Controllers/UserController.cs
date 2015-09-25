@@ -80,6 +80,10 @@ namespace Exam.Api.Controllers
             {
                 userService.ImportTeamUser(model);
             }
+            if (File.Exists(strPath))
+            {
+                File.Delete(strPath);
+            }
             return ApiOk(list);
         }
 
@@ -139,6 +143,27 @@ namespace Exam.Api.Controllers
         {
             var imageData = settingService.GetCurrentTokenImage(process.InstanceId, process.TokenId);
             return ApiOk(new { Image = imageData });
+        }
+
+        [HttpPost]
+        public ApiResponse UploadForm()
+        {
+            string uploadPath = Path.Combine(
+                PublicFunc.GetCurrentDirectory(),
+                PublicFunc.GetConfigByKey_AppSettings("Form_Path"));
+            HttpFileCollection files = HttpContext.Current.Request.Files;
+            if (!Directory.Exists(uploadPath))
+            {
+                Directory.CreateDirectory(uploadPath);
+            }
+
+            foreach (HttpPostedFile file in files)
+            {
+                string strPath = Path.Combine(uploadPath, file.FileName);
+                file.SaveAs(strPath);
+            }
+            
+            return ApiOk();
         }
     }
 }

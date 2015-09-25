@@ -78,5 +78,10 @@
 		"Name":"UnFinishProcess",
 		"Controller":"Task",
 		"Action":"UnFinishProcess"
+	},
+	{
+		"Name":"UploadForm",
+		"Controller":"User",
+		"Action":"UploadForm"
 	}
 ]
