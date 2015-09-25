@@ -10,18 +10,31 @@ define(["app", "dialog"], function (app) {
         function ($scope, $window, Dialog) {
 
 
-            Dialog.open($scope,{
-                title: "test"
-                , body: "<p>message</p>"
-                , buttons: [{
-                    text: "close"
-                    , click: function () {
-                        alert("click");
-                    }
-                }]
-            }).then(function (ele) {
-                $(document.body).append(ele);
-            });
+            $scope.alert = function () {
+                Dialog.open($scope, {
+                    title: "test"
+                    , body: "<p style=\"color:red;\">message</p>"
+                    , buttons: [{
+                        text: "close"
+                        , click: function () {
+                            alert("click");
+                        }
+                    }]
+                });
+            };
+
+            $scope.showForm= function () {
+                Dialog.open($scope, {
+                    title: "test"
+                    , body: "<p style=\"color:red;\">message<input type='text' ng-model='abc'/>{{abc}}</p>"
+                    , buttons: [{
+                        text: "close"
+                        , click: function () {
+                            alert("click");
+                        }
+                    }]
+                });
+            };
 
         }]);
 

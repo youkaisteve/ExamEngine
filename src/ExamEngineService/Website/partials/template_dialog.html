@@ -7,7 +7,8 @@
                 </button>
                 <h4 class="modal-title">{{title}}</h4>
             </div>
-            <div class="modal-body" ng-bind-html="body">
+            <div class="modal-body">
+                #BODY#
             </div>
             <div class="modal-footer" ng-show="buttons">
                 <button ng-repeat="btn in buttons track by $index" type="button" class="btn btn-default" ng-click="btn.click($event)">{{btn.text}}</button>

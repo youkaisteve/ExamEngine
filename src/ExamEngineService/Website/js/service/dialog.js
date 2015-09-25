@@ -36,8 +36,8 @@ define(["app"], function (app) {
                     $(event.target).parents(".modal").remove();
                 };
                 return methods.getTemplate().then(function (tmp) {
+                    tmp = tmp.replace("#BODY#", context.body || "");
                     var ele = $compile(tmp)(scope);
-                    console.log(ele);
                     $(document.body).append(ele);
                     return ele;
                 });
