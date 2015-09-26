@@ -9,11 +9,8 @@ define(["app", "custom-select", "disabled-when-click"], function (app) {
     app.controller("setting_answer", ["$scope", "$window", "$routeParams",
         function ($scope, $window, $routeParams) {
             $scope.Model = {};
-            $scope.formPath = decodeURI($routeParams.name);
+            $scope.formPath = "";
             $scope.formName = "";
-            if (!$scope.formPath) {
-                $scope._goto("/default");
-            }
             $scope.workflowName = "";
 
             function getFileName(path) {
@@ -52,6 +49,7 @@ define(["app", "custom-select", "disabled-when-click"], function (app) {
             $scope.loadForm = function (loading) {
                 var path = decodeURI($routeParams.name);
                 var fileName = getFileName(path);
+                $scope.formName = fileName;
                 var workflowName = getWorkflowName(fileName);
                 $scope.workflowName = workflowName;
                 return $scope._request("FormData", {
