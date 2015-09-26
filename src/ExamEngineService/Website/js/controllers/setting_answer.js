@@ -6,28 +6,30 @@
  */
 define(["app", "custom-select", "disabled-when-click"], function (app) {
 
-    app.controller("setting_answer", ["$scope", "$window","$routeParams",
-        function ($scope, $window,$routeParams) {
-
+    app.controller("setting_answer", ["$scope", "$window", "$routeParams",
+        function ($scope, $window, $routeParams) {
             $scope.Model = {};
-            $scope.formPath = "";
-            $scope.forms = [];
+            $scope.formPath = decodeURI($routeParams.name);
+            $scope.formName = "";
+            if (!$scope.formPath) {
+                $scope._goto("/default");
+            }
+            $scope.workflowName = "";
 
             function getFileName(path) {
                 var last = path.lastIndexOf("/");
                 return path.substring(last + 1);
             }
 
-            $scope.getFormList = function (loading) {
-                return $scope._request("FormList", null, loading).then(function (res) {
-                    angular.forEach(res.Data, function (ele) {
-                        $scope.forms.push({
-                            text: getFileName(ele)
-                            , value: ele
-                        });
-                    });
-                });
-            };
+            function getWorkflowName(fleName) {
+                var index = fleName.indexOf("_");
+                if (index >= 0) {
+                    return fleName.substring(0, index);
+                }
+                else {
+                    return "";
+                }
+            }
 
             $scope.getRows = function (model) {
                 var arr = [];
@@ -39,19 +41,28 @@ define(["app", "custom-select", "disabled-when-click"], function (app) {
                 else {
                     arr = [0];
                 }
+
+                if (arr.length <= 0) {
+                    arr = [0];
+                }
+
                 return arr;
             };
 
-            $scope.loadForm = function ($event, loading) {
-
+            $scope.loadForm = function (loading) {
+                var path = decodeURI($routeParams.name);
+                var fileName = getFileName(path);
+                var workflowName = getWorkflowName(fileName);
+                $scope.workflowName = workflowName;
                 return $scope._request("FormData", {
-                    TemplateName: $scope.formName
+                    TemplateName: fileName
                 }, loading).then(function (res) {
                     if (res.Data) {
                         $scope.Model = JSON.parse(res.Data.TemplateData);
                         $scope.templateDesc = res.Data.TemplateDesc;
                     }
-                    $scope.formPath = $scope.formName;
+                    $scope.formPath = path;
+
                 });
             };
 
@@ -62,10 +73,12 @@ define(["app", "custom-select", "disabled-when-click"], function (app) {
                     , TemplateData: JSON.stringify($scope.Model)
                 }).then(function (res) {
                     $window.alert("保存成功");
+                    $scope._goto("/forms");
                 });
             };
 
-            $scope.getFormList(true);
+            $scope.loadForm(true);
+
         }]);
 
 });
