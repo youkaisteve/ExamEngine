@@ -27,6 +27,10 @@ define(["app"], function (app) {
             return result;
         };
 
+        methods.getUnfinshedTask = function (filter, loading) {
+            return $rootScope._request("UnFinishProcess", filter, loading);
+        };
+
         return methods;
     }]);
 });
