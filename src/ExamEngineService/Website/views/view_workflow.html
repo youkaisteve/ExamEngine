@@ -10,7 +10,7 @@
                 <tr>
                     <th>流程名称</th>
                     <th>任务名称</th>
-                    <th>代办人</th>
+                    <th>待办人</th>
                     <th>状态</th>
                     <th>创建时间</th>
                 </tr>
@@ -19,7 +19,7 @@
                 <tr ng-repeat="t in unfinshedTasks">
                     <td>{{t.DefineName}}</td>
                     <td>{{t.NodeName}}</td>
-                    <td>{{t.CreaterName}}</td>
+                    <td>{{t.OwnerName}}</td>
                     <td>{{t.Status}}</td>
                     <td>{{t.CreateDate}}</td>
                 </tr>
