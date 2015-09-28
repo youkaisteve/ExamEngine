@@ -5,14 +5,7 @@
             流程查看
         </div>
         <div class="panel-body">
-            <form>
-                <div class="form-group">
-                    <label>流程名称</label>
-                    <custom-select ng-model="definedName" source="allProcess"
-                                   onchange="getTasks(filter,true)"></custom-select>
-                </div>
-            </form>
-            <table class="table" ng-if="definedName!=-1">
+            <table class="table">
                 <thead>
                 <tr>
                     <th>流程名称</th>

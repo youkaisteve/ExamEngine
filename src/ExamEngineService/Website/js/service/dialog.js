@@ -38,6 +38,8 @@ define(["app"], function (app) {
                 return methods.getTemplate().then(function (tmp) {
                     tmp = tmp.replace("#BODY#", context.body || "");
                     var ele = $compile(tmp)(scope);
+                    var $ele=$(ele);
+                    $ele.find(".modal-body").height($(window).height()*0.7);
                     $(document.body).append(ele);
                     return ele;
                 });

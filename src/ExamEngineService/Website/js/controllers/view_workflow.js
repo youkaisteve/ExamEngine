@@ -10,7 +10,7 @@ define(["app", "custom-select", "disabled-when-click", "process", "filters"], fu
         function ($scope, $window, Process) {
 
             //$scope.imageBase64 = "";
-            $scope.allProcess = [];
+            //$scope.allProcess = [];
             $scope.unfinshedTasks = [];
             $scope.totalPage = 0;
             $scope.filter = {
@@ -30,9 +30,9 @@ define(["app", "custom-select", "disabled-when-click", "process", "filters"], fu
             //    });
             //};
 
-            Process.getAllProcess(true).then(function (res) {
-                $scope.allProcess = Process.convertToKV(res.Data.AllProcess);
-            });
+            //Process.getAllProcess(true).then(function (res) {
+            //    $scope.allProcess = Process.convertToKV(res.Data.AllProcess);
+            //});
 
 
             $scope.getTasks = function (filter, loading) {
@@ -41,7 +41,7 @@ define(["app", "custom-select", "disabled-when-click", "process", "filters"], fu
                     $scope.totalPage = Math.floor(res.Data.TotalCount / filter.PageInfo.PageSize);
                 });
             };
-
+            $scope.getTasks($scope.filter, true);
         }]);
 
 });
