@@ -12,6 +12,7 @@ using Exam.Service.Interface;
 using WorkflowCallWapper;
 using WorkflowCallWapper.Models;
 using Component.Tools.Exceptions;
+using System.IO;
 
 namespace Exam.Service.Implement
 {
@@ -71,8 +72,10 @@ namespace Exam.Service.Implement
             var proxy = new WorkflowProxy();
             List<Transition> transitions = proxy.GetTransitions(instanceId, tokenId);
             VariableInstance page = proxy.GetCurrentTaskSetPage(instanceId, tokenId);
+
+            var shortName = Path.GetFileName(page.Value.ToString());
             //获取page desc
-            var firstOrDefault = stAnswerRepo.Entities.FirstOrDefault(m => m.TemplateName == (string)page.Value);
+            var firstOrDefault = stAnswerRepo.Entities.FirstOrDefault(m => m.TemplateName == shortName);
             var pageDesc = "";
             if (firstOrDefault != null)
             {
