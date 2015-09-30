@@ -56,7 +56,8 @@ footer {
 }
 
 .menu-container{
-  margin-top:15%;
+  @borderBaseColor:#8ccbe8;
+  margin-top:10%;
   padding:20px;
   text-align: center;
   .menu-button{
@@ -75,7 +76,21 @@ footer {
     border-radius: 4px;
     padding:10px;
     margin:0 10px;
+    i{color:#054c3e;}
   }
+  .menu-item{
+    border: 1px dotted gray;
+    border-left: 10px solid @borderBaseColor;
+    padding:10px;
+    margin:5px;
+    text-align: left;
+    dl{margin: 0;}
+    dt,dd{display:inline-block;}
+    dt{writing-mode: vertical-rl;vertical-align: middle;letter-spacing: 3px; font-size:20px;padding:0 10px;}
+
+  }
+  .menu-item:nth-child(2){border-left-color:@borderBaseColor+20;}
+  .menu-item:nth-child(3){border-left-color:@borderBaseColor+40;}
 }
 
 .notify{
