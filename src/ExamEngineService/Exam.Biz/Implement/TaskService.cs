@@ -69,20 +69,28 @@ namespace Exam.Service.Implement
 
         public dynamic GetTaskDetail(string instanceId, string tokenId)
         {
+            string pageDesc = "";
+            string pageValue = "";
             var proxy = new WorkflowProxy();
             List<Transition> transitions = proxy.GetTransitions(instanceId, tokenId);
             VariableInstance page = proxy.GetCurrentTaskSetPage(instanceId, tokenId);
-
-            var shortName = Path.GetFileName(page.Value.ToString());
-            //获取page desc
-            var firstOrDefault = stAnswerRepo.Entities.FirstOrDefault(m => m.TemplateName == shortName);
-            var pageDesc = "";
-            if (firstOrDefault != null)
+            if (page != null)
             {
-                pageDesc = firstOrDefault.TemplateDesc;
+                //获取当前流程实例的所有变量，查找和当前节点的pageName相同的变量，取出变量值，该值就是表单的数据
+                List<VariableInstance> vars = proxy.GetVariables(instanceId, "");
+                var findVar = vars.FirstOrDefault(m => m.VariableName == page.Value);
+                pageValue = findVar == null ? page.Value.ToString() : findVar.Value.ToString();
+
+                var shortName = Path.GetFileName(page.Value.ToString());
+                //获取page desc
+                var firstOrDefault = stAnswerRepo.Entities.FirstOrDefault(m => m.TemplateName == shortName);
+                if (firstOrDefault != null)
+                {
+                    pageDesc = firstOrDefault.TemplateDesc;
+                }
             }
 
-            return new { Transitions = transitions, Page = page.Value, PageDesc = pageDesc };
+            return new { Transitions = transitions, Page = pageValue, PageDesc = pageDesc };
         }
 
         public void BeginExam(BeginExamModel data)
@@ -178,8 +186,18 @@ namespace Exam.Service.Implement
                 processInstance.Variables.Add(item);
             }
 
+            //将表单数据保存至流程的变量中，以便在审核环节能够读出表单的数据(变量值不能超过2000)
+            if (!string.IsNullOrWhiteSpace(data.TemplateData))
+            {
+                VariableInstance pageUrl = proxy.GetCurrentTaskSetPage(processInstance.InstanceID, processInstance.TokenID);
+                item = new VariableInstance();
+                item.Value = data.TemplateData;
+                item.VariableName = pageUrl.Value.ToString();
+                processInstance.Variables.Add(item);
+            }
+
             //获取下一个节点名并启动流程
-            var userId = "";
+            string userId = "";
             var list = proxy.GetTransitionNextNodeRoles(data.DefineName, data.TokenName, data.TransitionName);
             if (list != null && list.Count > 0)
             {
