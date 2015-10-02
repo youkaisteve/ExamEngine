@@ -165,5 +165,12 @@ namespace Exam.Api.Controllers
             
             return ApiOk();
         }
+
+        [HttpPost]
+        public ApiResponse TerminateAllUnFinishProcess()
+        {
+            userService.TerminateAllUnFinishProcess();
+            return ApiOk();
+        }
     }
 }

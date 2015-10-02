@@ -161,5 +161,11 @@ namespace Exam.Service.Implement
 
             return new { UserAnswers = userAnswer.ToList(), StandardAnswers = standardAnswer.ToList() };
         }
+
+        public void TerminateAllUnFinishProcess()
+        {
+            var proxy = new WorkflowProxy();
+            proxy.SetFinishProcess();
+        }
     }
 }

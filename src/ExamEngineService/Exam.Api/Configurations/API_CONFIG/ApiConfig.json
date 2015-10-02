@@ -83,5 +83,10 @@
 		"Name":"UploadForm",
 		"Controller":"User",
 		"Action":"UploadForm"
+	},
+	{
+		"Name":"TerminateAllUnFinishProcess",
+		"Controller":"User",
+		"Action":"TerminateAllUnFinishProcess"
 	}
 ]

@@ -23,5 +23,10 @@ namespace Exam.Service.Interface
 
         dynamic GetAllProcess();
         dynamic GetScoreStatistics();
+
+        /// <summary>
+        /// 终止所有未结束的流程
+        /// </summary>
+        void TerminateAllUnFinishProcess();
     }
 }
