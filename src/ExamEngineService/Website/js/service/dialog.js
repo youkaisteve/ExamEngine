@@ -38,11 +38,38 @@ define(["app"], function (app) {
                 return methods.getTemplate().then(function (tmp) {
                     tmp = tmp.replace("#BODY#", context.body || "");
                     var ele = $compile(tmp)(scope);
-                    var $ele=$(ele);
-                    $ele.find(".modal-body").height($(window).height()*0.7);
+                    var $ele = $(ele);
+                    if(scope.heightPercent) {
+                        $ele.find(".modal-body").height($(window).height() * scope.heightPercent);
+                    }
                     $(document.body).append(ele);
                     return ele;
                 });
+            };
+
+            methods.confirm = function ($scope, message,fnOk,fnCancel) {
+                var context = {
+                    title: "提示"
+                    , body: message
+                    ,buttons:[{
+                        text:"确定"
+                        ,click:function(event){
+                            if(fnOk){
+                                fnOk();
+                            }
+                            $(event.target).parents(".modal").remove();
+                        }
+                    },{
+                        text:"取消"
+                        ,click:function(event){
+                            $(event.target).parents(".modal").remove();
+                            if(fnCancel){
+                                fnCancel();
+                            }
+                        }
+                    }]
+                };
+                return methods.open($scope, context);
             };
 
             //load dialog template

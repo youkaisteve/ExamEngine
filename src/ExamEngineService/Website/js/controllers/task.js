@@ -38,7 +38,7 @@ define(["app", "app.config", "disabled-when-click", "process", "dialog"], functi
                         , TemplateName: $scope.taskDetail.Page
                         , TemplateData: JSON.stringify($scope.Model)
                         , TransitionName: data.TransitionName
-                    },true).then(function (res) {
+                    }, true).then(function (res) {
                         $scope._goto("/default");
                     });
                 }
@@ -53,6 +53,7 @@ define(["app", "app.config", "disabled-when-click", "process", "dialog"], functi
                         return Dialog.open($scope, {
                             title: $scope.taskDetail.DefineName
                             , body: html
+                            , heightPercent: 0.7
                             , style: {
                                 width: "800px"
                             }

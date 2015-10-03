@@ -62,6 +62,7 @@ define(["app", "team-select", "custom-select", "disabled-when-click", "process",
                     return Dialog.open($scope, {
                         title: $scope.Model.ProcessName.ProcessName
                         , body: html
+                        , heightPercent: 0.7
                         , style: {
                             width: "800px"
                         }

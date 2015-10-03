@@ -9,6 +9,15 @@ define(["app", "dialog"], function (app) {
     app.controller("test", ["$scope", "$window", "Dialog",
         function ($scope, $window, Dialog) {
 
+            $scope.Dialog=Dialog;
+
+            $scope.confirm=function(){
+                Dialog.confirm($scope,"test",function(){
+                    $window.alert("OK");
+                },function(){
+                    $window.alert("Cancel");
+                });
+            };
 
             $scope.alert = function () {
                 Dialog.open($scope, {
