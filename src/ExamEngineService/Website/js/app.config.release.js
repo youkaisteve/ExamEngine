@@ -12,6 +12,7 @@ define({
     , templatePath: "views/"
     , api: "http://222.196.244.45/api/Home/Handler"
     , importStudentUri: "http://222.196.244.45/api/User/ImportUser"
+    , uploadFormUri: "http://222.196.244.45/api/User/UploadForm"
     , start: "/default"
     , route: {
         "/default": {

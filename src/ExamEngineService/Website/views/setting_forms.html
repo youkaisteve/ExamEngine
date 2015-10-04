@@ -1,11 +1,12 @@
 ﻿<ng-include src="'partials/header.html'"></ng-include>
 <div class="container">
     <div class="panel panel-default">
-        <div class="panel-heading">
-            选择表单
+        <div class="panel-heading clearfix">
+            <span style="margin-top: 6px;display:inline-block;">选择表单</span>
+            <button class="btn btn-default pull-right" ng-click="showUploadForm()">上传表单 <i class="fa fa-upload"></i></button>
         </div>
         <div class="panel-body">
-            <div><input type="text" ng-model="formName" class="form-control" placeholder="请输入筛选条件"></div>
+            <div><input type="text" ng-model="formName" class="form-control" placeholder="请输入流程名称或表单名称"></div>
             <table class="table">
                 <tbody>
                 <tr ng-repeat="frm in forms | filter:formName">

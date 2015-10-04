@@ -15,7 +15,7 @@
             <dd>
                 <a href="#/workflow" class="menu-button"><i class="fa fa-check fa-3x"></i><br>发起流程</a>
                 <a href="#/workflow/view" class="menu-button"><i class="fa fa-building-o fa-3x"></i><br>流程查看</a>
-                <a class="menu-button"><i class="fa fa-stop fa-3x"></i><br>业务关闭</a>
+                <a class="menu-button" ng-click="doneAll()"><i class="fa fa-stop fa-3x"></i><br>业务关闭</a>
 
             </dd>
         </dl>
@@ -25,7 +25,7 @@
             <dt>评阅</dt>
             <dd>
                 <a href="#/scores" class="menu-button"><i class="fa fa-sticky-note-o fa-3x"></i><br>成绩查看</a>
-                <a class="menu-button"><i class="fa fa-remove fa-3x"></i><br>清除数据</a>
+                <a class="menu-button" ng-click="clearData()"><i class="fa fa-remove fa-3x"></i><br>清除数据</a>
             </dd>
         </dl>
     </div>

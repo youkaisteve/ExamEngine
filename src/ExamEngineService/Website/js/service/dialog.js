@@ -30,7 +30,7 @@ define(["app"], function (app) {
              * }
              * */
             methods.open = function ($scope, context) {
-                var scope = $scope.$new(true, $scope);
+                var scope = $scope.$new(false, $scope);
                 angular.extend(scope, context);
                 scope.close = function (event) {
                     $(event.target).parents(".modal").remove();
@@ -39,7 +39,7 @@ define(["app"], function (app) {
                     tmp = tmp.replace("#BODY#", context.body || "");
                     var ele = $compile(tmp)(scope);
                     var $ele = $(ele);
-                    if(scope.heightPercent) {
+                    if (scope.heightPercent) {
                         $ele.find(".modal-body").height($(window).height() * scope.heightPercent);
                     }
                     $(document.body).append(ele);
@@ -47,23 +47,34 @@ define(["app"], function (app) {
                 });
             };
 
-            methods.confirm = function ($scope, message,fnOk,fnCancel) {
+            methods.openUri = function ($scope, context, uri) {
+                return $http({
+                    method: "get"
+                    , url: uri
+                    , cache: true
+                }).then(function (res) {
+                    context.body = res.data;
+                    return methods.open($scope, context);
+                })
+            };
+
+            methods.confirm = function ($scope, message, fnOk, fnCancel) {
                 var context = {
                     title: "提示"
                     , body: message
-                    ,buttons:[{
-                        text:"确定"
-                        ,click:function(event){
-                            if(fnOk){
+                    , buttons: [{
+                        text: "确定"
+                        , click: function (event) {
+                            if (fnOk) {
                                 fnOk();
                             }
                             $(event.target).parents(".modal").remove();
                         }
-                    },{
-                        text:"取消"
-                        ,click:function(event){
+                    }, {
+                        text: "取消"
+                        , click: function (event) {
                             $(event.target).parents(".modal").remove();
-                            if(fnCancel){
+                            if (fnCancel) {
                                 fnCancel();
                             }
                         }

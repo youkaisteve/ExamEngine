@@ -31,6 +31,10 @@ define(["app"], function (app) {
             return $rootScope._request("UnFinishProcess", filter, loading);
         };
 
+        methods.doneAllProcess = function (loading) {
+            return $rootScope._request("TerminateAllUnFinishProcess", null, loading);
+        };
+
         return methods;
     }]);
 });

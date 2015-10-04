@@ -10,8 +10,9 @@ define({
     , appDeps: ["ngRoute", /*"ngCookies",*/"ngStorage"]
     , controllerPath: "controllers/"
     , templatePath: "views/"
-    , api: "http://127.0.0.1:8083/api/Home/Handler"
-    , importStudentUri: "http://127.0.0.1:8083/api/User/ImportUser"
+    , api: "http://222.196.244.45/api/Home/Handler"
+    , importStudentUri: "http://222.196.244.45/api/User/ImportUser"
+    , uploadFormUri: "http://222.196.244.45/api/User/UploadForm"
     , start: "/default"
     , route: {
         "/default": {

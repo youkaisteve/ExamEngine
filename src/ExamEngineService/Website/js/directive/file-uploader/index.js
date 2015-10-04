@@ -4,47 +4,82 @@
 "use strict";
 define(["app", "app.config"], function (app, config) {
 
-    app.directive("fileUploader", ["$timeout", "$window", "$parse",
-        function ($timeout, $window, $parse) {
+    app.directive("fileUploader", ["$timeout", "$window", "$parse", "$sessionStorage", "$q",
+        function ($timeout, $window, $parse, $sessionStorage, $q) {
             return {
                 restrict: "E"
                 , templateUrl: "js/directive/file-uploader/template.html"
                 , link: function (scope, ele, attrs, ctrl) {
                     scope.running = false;
                     scope.process = "上传中...";
-                    scope.selectedFile = null;
+                    scope.multiple = attrs.multiple;
+                    scope.fileIndex = 0;
+                    scope.fileCount = 0;
 
-                    var eleFile = ele.find("#file").get(0);
-                    var xhr = new XMLHttpRequest();
+                    var eleFile = $(ele).find("[sid=file]").get(0);
+                    //var xhr = new XMLHttpRequest();
 
-                    var onComplete=$parse(attrs.oncomplete);;
+                    var onComplete = $parse(attrs.oncomplete);
+                    var url = $parse(attrs.url);
 
-                    xhr.addEventListener("readystatechange",function(){
-                        if (this.readyState == 4 && this.status == 200) {
-                            scope.running = false;
-                            scope.$apply();
-                            onComplete(scope, {
-                                $result: JSON.parse(this.responseText)
-                            });
-                        }
-                    },false);
-
-
+                    var fileTexts = [];
 
                     scope.sendFile = function () {
+                        if (!eleFile) {
+                            eleFile = ele.find("[sid=file]").get(0);
+                        }
 
                         if (eleFile.files.length <= 0) {
                             $window.alert("请选择文件");
                             return;
                         }
                         scope.running = true;
-                        var fd = new FormData();
+                        scope.fileCount = eleFile.files.length;
 
-                        xhr.open("POST", config.importStudentUri, true);
-                        xhr.setRequestHeader("user-authorize",scope.sessionStorage.token);
-                        fd.append('file', eleFile.files[0]);
+                        console.log("start upload : ", scope.fileIndex);
+                        //send file one by one
+                        if (scope.fileIndex < eleFile.files.length) {
+                            return scope.send(eleFile.files[scope.fileIndex]).then(function (data) {
+                                console.log("上传完成");
+                                scope.fileIndex++;
+                                scope.$apply();
+                                fileTexts.push(data);
+                                return scope.sendFile();
+                            }).catch(function () {
+                                scope.running = false;
+                                scope.fileIndex = 0;
+                                //scope.$apply();
+                            });
+                        }
+                        else {
+                            scope.running = false;
+                            scope.fileIndex = 0;
+                            scope.$apply();
+                            onComplete(scope, {
+                                $result: fileTexts
+                            });
+                        }
+                    };
+
+                    //var xhr;
+                    scope.send = function (file) {
+                        var deferred = $q.defer();
+                        var xhr = new XMLHttpRequest();
+                        xhr.addEventListener("readystatechange", function () {
+                            if (this.readyState == 4 && this.status == 200) {
+                                deferred.resolve(this.responseText);
+                            }
+                            else {
+                                deferred.reject(this, file);
+                            }
+                        }, false);
+                        var fd = new FormData();
+                        xhr.open("POST", url(scope), true);
+                        xhr.setRequestHeader("user-authorize", $sessionStorage.token);
+                        fd.append('file', file);
                         xhr.send(fd);
-                    }
+                        return deferred.promise;
+                    };
 
 
                 }
