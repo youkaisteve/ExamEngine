@@ -80,7 +80,6 @@ namespace Exam.Api.Controllers
             var ds = Utility.ExcelToDataSet(strPath, "select * from [Sheet1$]");
             if (ds != null && ds.Tables[0] != null)
             {
-                var index = 0;
                 foreach (DataRow row in ds.Tables[0].Rows)
                 {
                     list.Add(new TeamUserImportModel
