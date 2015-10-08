@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net.Mime;
@@ -61,18 +62,33 @@ namespace Exam.Api.Controllers
                 }
             };
             var list = model.Lists;
-            using (var sr = new StreamReader(strPath, Encoding.UTF8))
+            //using (var sr = new StreamReader(strPath, Encoding.UTF8))
+            //{
+            //    string lineContent = sr.ReadLine();
+            //    while (!string.IsNullOrEmpty(lineContent = sr.ReadLine()))
+            //    {
+            //        string[] splitValues = lineContent.Split(',');
+            //        list.Add(new TeamUserImportModel
+            //        {
+            //            TeamName = splitValues[0],
+            //            UserId = splitValues[1],
+            //            UserName = splitValues[2]
+            //        });
+            //    }
+            //}
+
+            var ds = Utility.ExcelToDataSet(strPath, "select * from [Sheet1$]");
+            if (ds != null && ds.Tables[0] != null)
             {
-                string lineContent = sr.ReadLine();
-                while (!string.IsNullOrEmpty(lineContent = sr.ReadLine()))
+                var index = 0;
+                foreach (DataRow row in ds.Tables[0].Rows)
                 {
-                    string[] splitValues = lineContent.Split(',');
                     list.Add(new TeamUserImportModel
-                    {
-                        TeamName = splitValues[0],
-                        UserId = splitValues[1],
-                        UserName = splitValues[2]
-                    });
+                                {
+                                    TeamName = row[0].ToString(),
+                                    UserId = row[1].ToString(),
+                                    UserName = row[2].ToString()
+                                });
                 }
             }
 
@@ -162,7 +178,7 @@ namespace Exam.Api.Controllers
                 string strPath = Path.Combine(uploadPath, file.FileName);
                 file.SaveAs(strPath);
             }
-            
+
             return ApiOk();
         }
 

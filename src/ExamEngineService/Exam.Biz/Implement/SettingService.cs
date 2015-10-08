@@ -20,8 +20,8 @@ namespace Exam.Service.Implement
         [Import]
         private StAnswerRepository stAnswerRepo;
 
-        [Import]
-        private IAdoNetWrapper AdoNetWrapper;
+        [Import("Exam")]
+        private IAdoNetWrapper adonetWrapper;
 
         public void SaveStandardAnswer(StandardAnwserModel model)
         {
@@ -84,7 +84,7 @@ namespace Exam.Service.Implement
                             DELETE FROM dbo.[User] WHERE UserType = 0
                             DELETE FROM dbo.AssignedUser
                             ";
-            AdoNetWrapper.ExecuteSqlCommand(sql);
+            adonetWrapper.ExecuteSqlCommand(sql);
         }
     }
 }

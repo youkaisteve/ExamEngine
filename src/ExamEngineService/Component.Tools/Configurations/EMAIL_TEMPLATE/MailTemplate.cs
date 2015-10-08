@@ -22,15 +22,4 @@ namespace Component.Tools.Configurations.EMAIL_TEMPLATE
         [XmlElement("Content")]
         public string Content { get; set; }
     }
-
-    public enum EMailTemplateType
-    {
-        [Description("为他人报障")] RequestForOther,
-        [Description("派单通知处理人")] Assign,
-        [Description("换人通知新处理人")] Change_NewOne,
-        [Description("换人通知原处理人")] Change_OldOne,
-        [Description("评论为未解决")] Comment_NotDone,
-        [Description("评论为不满意")] Comment_NotSatisfy,
-        [Description("完成通知报障人")] Finish
-    }
 }
