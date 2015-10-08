@@ -88,5 +88,10 @@
 		"Name":"TerminateAllUnFinishProcess",
 		"Controller":"User",
 		"Action":"TerminateAllUnFinishProcess"
+	},
+	{
+		"Name":"CleanData",
+		"Controller":"User",
+		"Action":"CleanData"
 	}
 ]

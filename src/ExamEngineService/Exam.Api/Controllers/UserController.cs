@@ -172,5 +172,11 @@ namespace Exam.Api.Controllers
             userService.TerminateAllUnFinishProcess();
             return ApiOk();
         }
+
+        public ApiResponse CleanData()
+        {
+            settingService.CleanData();
+            return ApiOk();
+        }
     }
 }

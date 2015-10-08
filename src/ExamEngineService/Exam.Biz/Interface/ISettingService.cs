@@ -15,5 +15,9 @@ namespace Exam.Service.Interfave
         string GetProcessImage(string processName);
 
         string GetCurrentTokenImage(string instanceId, string tokenId);
+        /// <summary>
+        /// 清洗数据
+        /// </summary>
+        void CleanData();
     }
 }

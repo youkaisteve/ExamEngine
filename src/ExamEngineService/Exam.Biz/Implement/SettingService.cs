@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WorkflowCallWapper;
+using Component.Data;
 
 namespace Exam.Service.Implement
 {
@@ -18,6 +19,10 @@ namespace Exam.Service.Implement
     {
         [Import]
         private StAnswerRepository stAnswerRepo;
+
+        [Import]
+        private IAdoNetWrapper AdoNetWrapper;
+
         public void SaveStandardAnswer(StandardAnwserModel model)
         {
             var existData = stAnswerRepo.Entities.FirstOrDefault(m => m.TemplateName == model.TemplateName);
@@ -61,6 +66,25 @@ namespace Exam.Service.Implement
             var proxy = new WorkflowProxy();
             var imageData = proxy.GetCurrentTokenPictureToByte(instanceId, tokenId);
             return Convert.ToBase64String(imageData);
+        }
+
+        public void CleanData()
+        {
+            string sql = @"
+                            DELETE A
+                            FROM dbo.RoleUser A
+                            INNER JOIN dbo.Role B
+                            ON A.RoleSysNo = B.SysNo
+                            WHERE B.RoleName = 'Student'
+
+                            DELETE FROM dbo.UserAnwser
+                            DELETE FROM dbo.Team
+                            DELETE FROM dbo.UserTeam
+                            DELETE FROM dbo.WorkflowTeamRelation
+                            DELETE FROM dbo.[User] WHERE UserType = 0
+                            DELETE FROM dbo.AssignedUser
+                            ";
+            AdoNetWrapper.ExecuteSqlCommand(sql);
         }
     }
 }
