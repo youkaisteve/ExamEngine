@@ -48,6 +48,7 @@ define(["app", "app.config"], function (app, config) {
                             }).catch(function () {
                                 scope.running = false;
                                 scope.fileIndex = 0;
+                                console.log("upload error");
                                 //scope.$apply();
                             });
                         }
@@ -69,15 +70,18 @@ define(["app", "app.config"], function (app, config) {
                             if (this.readyState == 4 && this.status == 200) {
                                 deferred.resolve(this.responseText);
                             }
-                            else {
-                                deferred.reject(this, file);
-                            }
+                        }, false);
+                        xhr.addEventListener("error", function () {
+                            console.log("error",this);
+                            deferred.reject(this, file);
                         }, false);
                         var fd = new FormData();
                         xhr.open("POST", url(scope), true);
                         xhr.setRequestHeader("user-authorize", $sessionStorage.token);
                         fd.append('file', file);
+
                         xhr.send(fd);
+                        console.log("sent")
                         return deferred.promise;
                     };
 
