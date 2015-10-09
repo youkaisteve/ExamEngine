@@ -40,7 +40,7 @@ namespace Exam.Api.Controllers
         public ApiResponse ImportUser()
         {
             string uploadPath = Path.Combine(
-                PublicFunc.GetCurrentDirectory(),
+                PublicFunc.GetDeployDirectory(),
                 PublicFunc.GetConfigByKey_AppSettings("Upload_Path"));
             HttpPostedFile file = HttpContext.Current.Request.Files[0];
             string strPath = Path.Combine(uploadPath, file.FileName);
@@ -163,7 +163,7 @@ namespace Exam.Api.Controllers
         public ApiResponse UploadForm()
         {
             string uploadPath = Path.Combine(
-                PublicFunc.GetCurrentDirectory(),
+                PublicFunc.GetDeployDirectory(),
                 PublicFunc.GetConfigByKey_AppSettings("Form_Path"));
             HttpFileCollection files = HttpContext.Current.Request.Files;
             if (!Directory.Exists(uploadPath))
@@ -171,10 +171,14 @@ namespace Exam.Api.Controllers
                 Directory.CreateDirectory(uploadPath);
             }
 
-            foreach (HttpPostedFile file in files)
+            foreach (string fileName in files)
             {
-                string strPath = Path.Combine(uploadPath, file.FileName);
-                file.SaveAs(strPath);
+                HttpPostedFile file = files[fileName];
+                if (file != null)
+                {
+                    string strPath = Path.Combine(uploadPath, file.FileName);
+                    file.SaveAs(strPath);
+                }
             }
 
             return ApiOk();
