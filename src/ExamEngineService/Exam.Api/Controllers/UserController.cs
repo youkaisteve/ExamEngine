@@ -37,7 +37,6 @@ namespace Exam.Api.Controllers
         }
 
         [HttpPost]
-        [BaseAuthoriizeFilter]
         public ApiResponse ImportUser()
         {
             string uploadPath = Path.Combine(
