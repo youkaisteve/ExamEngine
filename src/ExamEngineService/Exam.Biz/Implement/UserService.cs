@@ -97,9 +97,9 @@ namespace Exam.Service.Implement
             }
 
             string sqlStr = @" DELETE FROM dbo.Team;
+                                DELETE A FROM dbo.RoleUser A INNER JOIN dbo.[User] B ON A.UserID = B.UserID WHERE B.UserType = 0;
                                     DELETE FROM dbo.[User] WHERE UserType = 0;
-                                    DELETE FROM dbo.UserTeam;
-                                    DELETE A FROM dbo.RoleUser A INNER JOIN dbo.[User] B ON A.UserID = B.UserID WHERE B.UserType = 0;";
+                                    DELETE FROM dbo.UserTeam;";
             adonetWrapper.ExecuteSqlCommand(sqlStr);
             string pwd = PublicFunc.GetConfigByKey_AppSettings("DefaultPWD");
 

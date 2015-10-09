@@ -58,7 +58,7 @@ namespace Exam.Api.Controllers
                 {
                     //上传文件时，body为空，在ApiJsonMediaTypeFormatter中ReadFromStreamAsync时要出错
                     //在解决该问题之前，现在这里设置一下登录用户的UserID
-                    UserID = ActionContext.Request.Content.Headers.GetValues("UserID").FirstOrDefault()
+                    UserID = "0"//ActionContext.Request.Content.Headers.GetValues("UserID").FirstOrDefault()
                 }
             };
             var list = model.Lists;
