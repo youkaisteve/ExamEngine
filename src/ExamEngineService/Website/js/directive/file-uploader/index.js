@@ -36,26 +36,26 @@ define(["app", "app.config"], function (app, config) {
                         scope.running = true;
                         scope.fileCount = eleFile.files.length;
 
-                        console.log("start upload : ", scope.fileIndex);
+                        //console.log("start upload : ", scope.fileIndex);
                         //send file one by one
                         if (scope.fileIndex < eleFile.files.length) {
                             return scope.send(eleFile.files[scope.fileIndex]).then(function (data) {
-                                console.log("上传完成");
+                                //console.log("上传完成");
                                 scope.fileIndex++;
-                                scope.$apply();
+                                //scope.$apply();
                                 fileTexts.push(data);
                                 return scope.sendFile();
                             }).catch(function () {
                                 scope.running = false;
                                 scope.fileIndex = 0;
-                                console.log("upload error");
+                                //console.log("upload error");
                                 //scope.$apply();
                             });
                         }
                         else {
                             scope.running = false;
                             scope.fileIndex = 0;
-                            scope.$apply();
+                            //scope.$apply();
                             onComplete(scope, {
                                 $result: fileTexts
                             });
@@ -72,7 +72,6 @@ define(["app", "app.config"], function (app, config) {
                             }
                         }, false);
                         xhr.addEventListener("error", function () {
-                            console.log("error",this);
                             deferred.reject(this, file);
                         }, false);
                         var fd = new FormData();
@@ -81,7 +80,6 @@ define(["app", "app.config"], function (app, config) {
                         fd.append('file', file);
 
                         xhr.send(fd);
-                        console.log("sent")
                         return deferred.promise;
                     };
 
