@@ -66,7 +66,7 @@ define(["app", "custom-select", "disabled-when-click"], function (app) {
 
             $scope.save = function () {
                 return $scope._request("SaveAnswer", {
-                    TemplateName: $scope.formName
+                    TemplateName: $scope.formPath
                     , TemplateDesc: $scope.templateDesc
                     , TemplateData: JSON.stringify($scope.Model)
                 }).then(function (res) {
