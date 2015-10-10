@@ -167,5 +167,26 @@ namespace Exam.Service.Implement
             var proxy = new WorkflowProxy();
             proxy.SetFinishProcess();
         }
+
+        public List<dynamic> GetAllStudent()
+        {
+            var result = new List<dynamic>();
+            var query = from user in userRepo.Entities
+                        join userTeam in userTeamRepo.Entities
+                        on user.UserID equals userTeam.UserID
+                        where user.UserType == 0 && user.Status == 1
+                        select new
+                        {
+                            userTeam.TeamName,
+                            user.UserID,
+                            user.UserName
+                        };
+            query.ToList().ForEach(item =>
+            {
+                result.Add(item);
+            });
+
+            return result;
+        }
     }
 }

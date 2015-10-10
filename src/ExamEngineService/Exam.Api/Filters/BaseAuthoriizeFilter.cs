@@ -24,20 +24,21 @@ namespace Exam.Api.Filters
             {
                 throw new UnAuthorizedException();
             }
-            string[] array = UserHelper.GetCredentials(userToken);
-            if (array == null || array.Length == 0)
+
+            UserInfo userInfo = UserHelper.GetCredentialsToUserInfo(userToken);
+            if (userInfo == null)
             {
                 throw new UnAuthorizedException();
             }
 
-            UserInfo userInfo = UserHelper.GetUserSession(array[0]);
+            //UserInfo userInfo = UserHelper.GetUserSession(array[0]);
 
-            if (userInfo == null || userInfo.ExpiredDate < DateTime.Now)
-            {
-                throw new AuthorizeExpiredException();
-            }
-            userInfo.ExpiredDate = DateTime.Now.AddHours(1);
-            UserHelper.SetUserSession(userInfo);
+            //if (userInfo == null || userInfo.ExpiredDate < DateTime.Now)
+            //{
+            //    throw new AuthorizeExpiredException();
+            //}
+            //userInfo.ExpiredDate = DateTime.Now.AddHours(1);
+            //UserHelper.SetUserSession(userInfo);
 
             actionContext.Request.Content.Headers.Add("UserID", userInfo.UserID);
             actionContext.Request.Content.Headers.Add("UserName", userInfo.UserName);

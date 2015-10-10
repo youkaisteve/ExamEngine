@@ -93,5 +93,10 @@
 		"Name":"CleanData",
 		"Controller":"User",
 		"Action":"CleanData"
+	},
+	{
+		"Name":"GetAllStudent",
+		"Controller":"User",
+		"Action":"GetAllStudent"
 	}
 ]

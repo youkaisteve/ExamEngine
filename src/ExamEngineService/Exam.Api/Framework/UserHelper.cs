@@ -8,10 +8,13 @@ namespace Exam.Api.Framework
     public class UserHelper
     {
         private static GlobalCacheWrapper _userCache = new GlobalCacheWrapper();
-        public static string CreateUserToken(string userId, string password)
+        public static string CreateUserToken(UserInfo userInfo)
         {
-            string text = string.Format("{0}:{1}:{2}", userId, password,
-                PublicFunc.GetConfigByKey_AppSettings("EncryptKey"));
+            string text = string.Format("{0}-{1}-{2}-{3}",
+                userInfo.UserID,
+                userInfo.UserName,
+                userInfo.UserSysNo,
+                userInfo.ExpiredDate.ToString("yyyy/MM/dd HH:mm:ss"));
             return SymmetricEncryption.Encrypt(text);
         }
 
@@ -36,7 +39,25 @@ namespace Exam.Api.Framework
         public static string[] GetCredentials(string token)
         {
             string str = SymmetricEncryption.Decrypt(token);
-            return str.Split(':');
+            return str.Split('-');
+        }
+
+        public static UserInfo GetCredentialsToUserInfo(string token)
+        {
+            string str = SymmetricEncryption.Decrypt(token);
+            string[] strs = str.Split('-');
+            if (strs.Length == 0)
+            {
+                return null;
+            }
+
+            return new UserInfo()
+            {
+                UserSysNo = int.Parse(strs[2]),
+                UserID = strs[0],
+                UserName = strs[1],
+                ExpiredDate = System.DateTime.Parse(strs[3])
+            };
         }
     }
 }

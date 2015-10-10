@@ -191,10 +191,19 @@ namespace Exam.Api.Controllers
             return ApiOk();
         }
 
+        [HttpPost]
         public ApiResponse CleanData()
         {
             settingService.CleanData();
             return ApiOk();
+        }
+
+        [HttpPost]
+        [BaseAuthoriizeFilter]
+        public ApiResponse GetAllStudent()
+        {
+            var data = userService.GetAllStudent();
+            return ApiOk(data);
         }
     }
 }

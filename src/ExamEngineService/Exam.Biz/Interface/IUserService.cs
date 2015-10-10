@@ -28,5 +28,11 @@ namespace Exam.Service.Interface
         /// 终止所有未结束的流程
         /// </summary>
         void TerminateAllUnFinishProcess();
+
+        /// <summary>
+        /// 获取已导入的学生
+        /// </summary>
+        /// <returns></returns>
+        List<dynamic> GetAllStudent();
     }
 }

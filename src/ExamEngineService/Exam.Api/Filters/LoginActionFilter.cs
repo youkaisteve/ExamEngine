@@ -29,11 +29,10 @@ namespace Exam.Api.Filters
                             UserName = user.GetType().GetProperty("UserName").GetValue(user),
                             ExpiredDate = DateTime.Now.AddHours(1)
                         };
-                        UserHelper.SetUserSession(userInfo);
+                        //UserHelper.SetUserSession(userInfo);
 
                         actionExecutedContext.Response.Content.Headers.Add("user-authorize",
-                            UserHelper.CreateUserToken(userInfo.UserID,
-                                user.GetType().GetProperty("Password").GetValue(user).ToString()));
+                            UserHelper.CreateUserToken(userInfo));
                     }
                 }
             }
