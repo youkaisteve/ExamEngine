@@ -34,6 +34,12 @@ define(["app.config"], function (config) {
                 }
             };
 
+            $rootScope.showBack = function () {
+                if ($rootScope.url == "/default") return false;
+                if ($rootScope.url == "/login") return false;
+                return true;
+            };
+
             $rootScope._auth = function (auth) {
                 if (auth) {
                     $rootScope.userName = auth.UserName;
@@ -52,6 +58,7 @@ define(["app.config"], function (config) {
             $rootScope.$on("$routeChangeStart", function (event, next, current) {
                 if (next && next.$$route) {
                     var url = next.$$route.originalPath;
+                    $rootScope.url = url;
                     var route = config.route[url];
                     if (route.ssl) {
                         if (!$rootScope._auth()) {

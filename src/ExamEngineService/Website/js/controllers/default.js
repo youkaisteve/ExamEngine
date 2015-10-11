@@ -23,7 +23,9 @@ define(["app", "disabled-when-click", "process", "dialog"]
                     };
                     $scope.clearData = function () {
                         return Dialog.confirm($scope, "是否要清除所有业务数据?", function () {
-                            //TODO
+                            $scope._request("CleanData").then(function (res) {
+                                $window.alert("清除完毕");
+                            });
                         });
                     };
                 }

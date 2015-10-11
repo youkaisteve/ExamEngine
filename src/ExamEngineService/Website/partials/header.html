@@ -1,10 +1,15 @@
 ﻿<header class="hidden-print">
     <div class="container">
         <img src="img/logo.png">
+
         <h1>川大政务</h1>
+        <a ng-if="showBack()" href="javascript:window.history.back()"><i class="fa fa-arrow-circle-left fa-2x"
+                                                                               style="color:white;"></i></a>
+
         <div class="btn-group pull-right" style="margin-top:20px;" ng-if="userName">
             <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;<span class="hidden-sm hidden-xs">{{userName}}</span>
+                <i class="glyphicon glyphicon-user"></i>&nbsp;&nbsp;<span
+                    class="hidden-sm hidden-xs">{{userName}}</span>
                 <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">

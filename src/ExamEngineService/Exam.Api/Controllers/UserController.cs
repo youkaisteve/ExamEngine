@@ -84,7 +84,7 @@ namespace Exam.Api.Controllers
                     list.Add(new TeamUserImportModel
                                 {
                                     TeamName = row[0].ToString(),
-                                    UserId = row[1].ToString(),
+                                    UserID = row[1].ToString(),
                                     UserName = row[2].ToString()
                                 });
                 }

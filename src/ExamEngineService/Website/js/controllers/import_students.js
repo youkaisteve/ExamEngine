@@ -23,6 +23,12 @@ define(["app", "app.config", "file-uploader"], function (app, config) {
                     }
                 }
             };
+            $scope.getStudents=function(){
+                return $scope._request("GetAllStudent",null,true).then(function(res){
+                    $scope.students = res.Data;
+                });
+            };
+            $scope.getStudents();
         }]);
 
 });

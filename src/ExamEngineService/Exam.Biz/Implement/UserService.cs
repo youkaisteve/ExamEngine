@@ -113,7 +113,7 @@ namespace Exam.Service.Implement
                 {
                     userRepo.Insert(new User
                     {
-                        UserID = user.UserId,
+                        UserID = user.UserID,
                         UserName = user.UserName,
                         Password = pwd,
                         Status = 1,
@@ -123,7 +123,7 @@ namespace Exam.Service.Implement
                     userTeamRepo.Insert(new UserTeam
                     {
                         TeamName = user.TeamName,
-                        UserID = user.UserId,
+                        UserID = user.UserID,
                         InDate = now,
                         InUser = data.User.UserID
                     });
@@ -133,7 +133,7 @@ namespace Exam.Service.Implement
                         InDate = now,
                         InUser = data.User.UserID,
                         Status = 1,
-                        UserID = user.UserId,
+                        UserID = user.UserID,
                         RoleSysNo = studentRoleSysNo
                     });
                 }

@@ -2,10 +2,10 @@
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
-            导入学生<a href="template.csv" class="pull-right">模板下载</a>
+            导入学生<a href="template.xls" class="pull-right">模板下载</a>
         </div>
         <div class="panel-body">
-            <file-uploader oncomplete="uploadComplete($result)" url="config.importStudentUri"></file-uploader>
+            <file-uploader ng-if="students.length<=0" oncomplete="uploadComplete($result)" url="config.importStudentUri"></file-uploader>
             <table class="table">
                 <thead>
                 <tr>
@@ -17,7 +17,7 @@
                 <tbody ng-if="students.length>0">
                 <tr ng-repeat="student in students">
                     <td>{{student.TeamName}}</td>
-                    <td>{{student.UserId}}</td>
+                    <td>{{student.UserID}}</td>
                     <td>{{student.UserName}}</td>
                 </tr>
                 </tbody>
