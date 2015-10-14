@@ -1,3 +1,5 @@
+.idea
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -53,3 +55,14 @@ log/
 *.user
 TestResults/
 *.user
+
+node_modules/
+**/*.log
+logs/**
+dist
+.tern-project
+.idea
+.settings
+gen
+*.swp
+.DS_Store
