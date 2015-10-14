@@ -135,13 +135,13 @@ define(["app.config"], function (config) {
             };
 
             $rootScope.formatStr = function (fmt, arr) {
-                var index=0;
-                return  fmt.replace(/%s/g, function () {
+                var index = 0;
+                return fmt.replace(/%s/g, function () {
                     return arr[index++];
                 });
             };
 
-            $rootScope._generateRest = function (config) {
+            $rootScope._generateRest = function (config, other) {
                 var methods = {};
 
                 for (var conf in config) {
@@ -149,7 +149,7 @@ define(["app.config"], function (config) {
                         return function () {
                             angular.forEach(arguments, function (ele) {
                                 if (ele instanceof Array) {
-                                    conf.url = $rootScope.formatStr(conf.url,ele);
+                                    conf.url = $rootScope.formatStr(conf.url, ele);
                                 }
                                 else if (ele instanceof Object) {
                                     angular.extend(conf, {
@@ -167,6 +167,9 @@ define(["app.config"], function (config) {
                     })(config[conf], $http, $sessionStorage);
                 }
 
+                if (other) {
+                    angular.extend(methods, other);
+                }
                 return methods;
             };
 
