@@ -1,6 +1,0 @@
-
----2015-10-14---
-> route 切换时,如果当前的请求没有完成,需要cancel掉当前route的所有请求.
-> 所有的action按照业务进行配置,动态生成对应业务的方法.业务按照文件进行分类,做成angular service 对应的配置也放在对应的service文件中.
-  action配置支持get,post.
-> 规范directive

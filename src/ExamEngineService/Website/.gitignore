@@ -1,7 +1,0 @@
-.idea
-lib
-dist
-node_modules
-app/css
-css
-less/*.css
