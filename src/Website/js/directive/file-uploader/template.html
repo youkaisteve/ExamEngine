@@ -1,0 +1,10 @@
+<form class="form-inline">
+    <div class="form-group">
+        <label>文件</label>
+        <input ng-if="multiple" multiple sid="file"  type="file" class="form-control" placeholder="请选择需要上传的文件">
+        <input ng-if="!multiple" sid="file"  type="file" class="form-control" placeholder="请选择需要上传的文件">
+        <button class="btn btn-primary" ng-disabled="running" ng-click="sendFile()"><i class="fa fa-upload"></i> <span
+                ng-show="!running">上传</span><span ng-show="running">{{process}} 正在上传第{{fileIndex+1}}个/{{fileCount}}个</span></button>
+
+    </div>
+</form>

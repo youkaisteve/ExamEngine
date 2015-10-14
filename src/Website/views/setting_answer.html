@@ -1,0 +1,19 @@
+﻿<ng-include src="'partials/header.html'"></ng-include>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            答案设置&nbsp;&gt;&nbsp;{{workflowName}}
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label>描述</label>
+                <textarea ng-model="templateDesc" class="form-control" style="height:170px;"></textarea>
+            </div>
+            <ng-include src="formPath"></ng-include>
+        </div>
+        <div class="panel-footer clearfix">
+            <button disabled-when-click="save()" class="btn btn-primary pull-right"><i class="fa fa-save"></i> 保存</button>
+        </div>
+    </div>
+</div>
+<ng-include src="'partials/footer.html'"></ng-include>

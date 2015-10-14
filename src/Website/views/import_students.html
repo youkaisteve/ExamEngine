@@ -1,0 +1,33 @@
+﻿<ng-include src="'partials/header.html'"></ng-include>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            导入学生<a href="template.xls" class="pull-right">模板下载</a>
+        </div>
+        <div class="panel-body">
+            <file-uploader ng-if="students.length<=0" oncomplete="uploadComplete($result)" url="config.importStudentUri"></file-uploader>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>组名</th>
+                    <th>学号</th>
+                    <th>姓名</th>
+                </tr>
+                </thead>
+                <tbody ng-if="students.length>0">
+                <tr ng-repeat="student in students">
+                    <td>{{student.TeamName}}</td>
+                    <td>{{student.UserID}}</td>
+                    <td>{{student.UserName}}</td>
+                </tr>
+                </tbody>
+                <tbody ng-if="students.length<=0">
+                <tr>
+                    <td colspan="3">请上传学生数据</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<ng-include src="'partials/footer.html'"></ng-include>
