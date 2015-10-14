@@ -134,6 +134,42 @@ define(["app.config"], function (config) {
                 return arr;
             };
 
+            $rootScope.formatStr = function (fmt, arr) {
+                var index=0;
+                return  fmt.replace(/%s/g, function () {
+                    return arr[index++];
+                });
+            };
+
+            $rootScope._generateRest = function (config) {
+                var methods = {};
+
+                for (var conf in config) {
+                    methods[conf] = (function (conf, http, storage) {
+                        return function () {
+                            angular.forEach(arguments, function (ele) {
+                                if (ele instanceof Array) {
+                                    conf.url = $rootScope.formatStr(conf.url,ele);
+                                }
+                                else if (ele instanceof Object) {
+                                    angular.extend(conf, {
+                                        data: ele
+                                    });
+                                }
+                            });
+                            angular.extend(conf, {
+                                headers: {
+                                    "user-authorize": storage.token
+                                }
+                            });
+                            return http(conf);
+                        };
+                    })(config[conf], $http, $sessionStorage);
+                }
+
+                return methods;
+            };
+
         }];
 
 });
