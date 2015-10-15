@@ -53,3 +53,7 @@ log/
 *.user
 TestResults/
 *.user
+
+.idea
+Website
+node_modules
