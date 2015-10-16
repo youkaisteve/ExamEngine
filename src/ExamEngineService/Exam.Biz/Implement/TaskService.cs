@@ -90,7 +90,7 @@ namespace Exam.Service.Implement
                 }
             }
 
-            return new { Transitions = transitions, Page = pageValue, PageDesc = pageDesc };
+            return new { Transitions = transitions, Page = page.Value, PageDesc = pageDesc, PageData = pageValue };
         }
 
         public void BeginExam(BeginExamModel data)
