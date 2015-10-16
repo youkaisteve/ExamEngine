@@ -24,6 +24,9 @@ define(["app", "app.config", "disabled-when-click", "process", "dialog"], functi
                     }, loading).then(function (res) {
                         $scope.path = res.Data.Page;
                         angular.extend($scope.taskDetail, res.Data);
+                        if (res.Data.PageData) {
+                            $scope.Model = JSON.parse(res.Data.PageData);
+                        }
                         return res;
                     });
                 };
