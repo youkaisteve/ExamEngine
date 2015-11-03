@@ -5,30 +5,51 @@
             <tbody>
             <tr>
                 <td rowspan="2">失业人员姓名<br/>原工作单位</td>
-                <td><input type="text"/></td>
+                <td><input type="text" ng-model="Model.Name"/></td>
                 <td>性别</td>
-                <td><input type="text"/></td>
+                <td><input type="text" ng-model="Model.Sex"/></td>
                 <td>出生年月</td>
-                <td><input type="text" placeholder="年  月  日"/></td>
+                <td><input type="text" ng-model="Model.BirthDay" placeholder="年  月  日"/></td>
                 <td>参加工作日期</td>
-                <td><input type="text" placeholder="年  月  日"/></td>
+                <td><input type="text" ng-model="Model.WorkDate" placeholder="年  月  日"/></td>
             </tr>
             <tr>
                 <td colspan="5"></td>
                 <td>本次失业时间</td>
-                <td><input type="text" placeholder="  年  月  日"/></td>
+                <td><input type="text" ng-model="Model.CurUnemployedDate" placeholder="  年  月  日"/></td>
             </tr>
             <tr>
-                <td colspan="1">第几次失业</td>
-                <td colspan="5"></td>
-                <td>视同缴费年限</td>
-                <td><input type="text" placeholder="    年    月"/></td>
+                <td colspan="2">第几次失业</td>
+                <td colspan="2"><input type="text" ng-model="Model.UnemployedCount"/></td>
+                <td colspan="2">视同缴费年限</td>
+                <td colspan="2"><input type="text" ng-model="Model.AsPayPeriod" placeholder="    年    月"/></td>
             </tr>
             <tr>
-                <td>正式缴费年限</td>
-                <td><input type="text" placeholder="    年   月"/></td>
-                <td>累计缴费时间</td>
-                <td><input type="text" placeholder="    年   月"/></td>
+                <td colspan="2">正式缴费年限</td>
+                <td colspan="2"><input type="text" ng-model="Model.PayPeriod" placeholder="    年   月"/></td>
+                <td colspan="2">累计缴费时间</td>
+                <td colspan="2"><input type="text" ng-model="Model.TotalPayPeriod" placeholder="    年   月"/></td>
+            </tr>
+            <tr>
+                <td colspan="2">失业原因</td>
+                <td colspan="2"><input type="text" ng-model="Model.UnemployedReason" placeholder="    年   月"/></td>
+                <td colspan="2">失业登记时间</td>
+                <td colspan="2"><input type="text" ng-model="Model.UnemployedTime" placeholder="  年  月  日"/></td>
+            </tr>
+            <tr>
+                <td colspan="2">户口所在区（县）</td>
+                <td colspan="2"><input type="text" ng-model="Model.District"/></td>
+                <td colspan="2">户口所在街道（镇）</td>
+                <td colspan="2"><input type="text" ng-model="Model.Town"/></td>
+            </tr>
+            <tr>
+                <td colspan="2">户口所在地</td>
+                <td colspan="6"><input type="text" ng-model="Model.Address" /></td>
+            </tr>
+            <tr>
+                <td colspan="8">
+                    <p>根据</p>
+                </td>
             </tr>
             </tbody>
         </table>
