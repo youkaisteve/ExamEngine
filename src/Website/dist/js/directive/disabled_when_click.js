@@ -1,0 +1,1 @@
+"use strict";define(["app"],function(i){i.directive("disabledWhenClick",["$timeout","$parse",function(i,e){return function(i,n,t,d){var c=e(t.disabledWhenClick);n.on("click",function(){n.attr("disabled","disabled"),c(i)["finally"](function(){n.removeAttr("disabled")})})}}])});

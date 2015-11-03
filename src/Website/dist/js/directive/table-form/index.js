@@ -1,0 +1,1 @@
+"use strict";define(["app"],function(e){e.directive("tableForm",["$timeout",function(e){return{restrict:"EA",templateUrl:"js/directive/table-form/template.html",require:"?ngModel",scope:{defined:"=",modelName:"@ngModel",ngModel:"="},link:function(e,t,l,n){e.ngModel||(e.ngModel={});var o=e.modelName.lastIndexOf(".");e.modelName=e.modelName.substring(o+1),e.rows=[0]}}}])});

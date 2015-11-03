@@ -1,0 +1,1 @@
+define(["app","file-uploader"],function(e){e.controller("import_students",["$scope","$window",function(e,o){e.fixedFooter=!0,e.students=[],e.uploadComplete=function(t){0===t.Code?(e.students=t.Data,e.$apply()):o.alert(t.ErrorMessage)}}])});
