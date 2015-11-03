@@ -55,5 +55,4 @@ TestResults/
 *.user
 
 .idea
-Website
 node_modules
