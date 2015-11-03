@@ -1,0 +1,106 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">养老保险个人账户退休清算单</div>
+    <div class="panel-body">
+        <table class="table table-style">
+            <thead>
+            <tr>
+                <th>公民身份号码</th>
+                <th>电脑序号</th>
+                <th>姓名</th>
+                <th>职工身份</th>
+                <th>缴费人员类别</th>
+                <th>缴费截止日期</th>
+                <th>清算原因</th>
+                <th>清算日期</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="text" ng-model="Model.r0c0"/></td>
+                <td><input type="text" ng-model="Model.r0c1"/></td>
+                <td><input type="text" ng-model="Model.r0c2"/></td>
+                <td><input type="text" ng-model="Model.r0c3"/></td>
+                <td><input type="text" ng-model="Model.r0c4"/></td>
+                <td><input type="text" ng-model="Model.r0c5"/></td>
+                <td><input type="text" ng-model="Model.r0c6"/></td>
+                <td><input type="text" ng-model="Model.r0c7"/></td>
+            </tr>
+            <tr>
+                <td>视同缴费年限</td>
+                <td><input type="text" ng-model="Model.r1c1"/></td>
+                <td>实际缴费年限</td>
+                <td><input type="text" ng-model="Model.r1c3"/></td>
+                <td>趸缴年限</td>
+                <td><input type="text" ng-model="Model.r1c5"/></td>
+                <td>N值</td>
+                <td><input type="text" ng-model="Model.r1c7"/></td>
+            </tr>
+            <tr>
+                <td rowspan="6"></td>
+                <td colspan="7">至上年末个人账户存储额:<input ng-model="Model.r2c1"></td>
+            </tr>
+            <tr>
+                <td>合计</td>
+                <td>个人缴费</td>
+                <td>累计个人利息</td>
+                <td colspan="2">单位划转</td>
+                <td colspan="2">累计划转利息</td>
+            </tr>
+            <tr>
+                <td><input ng-model="Model.r5c0"></td>
+                <td><input ng-model="Model.r5c1"></td>
+                <td><input ng-model="Model.r5c2"></td>
+                <td colspan="2"><input ng-model="Model.r5c3"></td>
+                <td colspan="2"><input ng-model="Model.r5c4"></td>
+            </tr>
+            <tr>
+                <td colspan="7">当年个人账户</td>
+            </tr>
+            <tr>
+                <td>合计</td>
+                <td>个人缴费</td>
+                <td>个人利息</td>
+                <td colspan="2">单位划转</td>
+                <td colspan="2">划转利息</td>
+            </tr>
+            <tr>
+                <td><input ng-model="Model.r8c0"></td>
+                <td><input ng-model="Model.r8c1"></td>
+                <td><input ng-model="Model.r8c2"></td>
+                <td colspan="2"><input ng-model="Model.r8c3"></td>
+                <td colspan="2"><input ng-model="Model.r8c4"></td>
+            </tr>
+            <tr>
+                <td>补偿原因</td>
+                <td>补缴年限</td>
+                <td>补缴基数</td>
+                <td>补缴金额</td>
+                <td>单位缴费</td>
+                <td>个人缴费</td>
+                <td>单位划转</td>
+                <td>个人比例</td>
+            </tr>
+            <tr>
+                <td><input ng-model="Model.r10c0"></td>
+                <td><input ng-model="Model.r10c1"></td>
+                <td><input ng-model="Model.r10c2"></td>
+                <td><input ng-model="Model.r10c3"></td>
+                <td><input ng-model="Model.r10c4"></td>
+                <td><input ng-model="Model.r10c5"></td>
+                <td><input ng-model="Model.r10c6"></td>
+                <td><input ng-model="Model.r10c7"></td>
+            </tr>
+            <tr>
+                <td>个人账户总计</td>
+                <td colspan="3"><input ng-model="Model.r11c1"></td>
+                <td>个人账户养<br>老金(1/139)</td>
+                <td><input ng-model="Model.r11c3"></td>
+                <td><input ng-model="Model.r11c4"></td>
+                <td><input ng-model="Model.r11c5"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
