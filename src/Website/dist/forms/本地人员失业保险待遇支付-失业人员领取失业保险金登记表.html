@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-    <div class="panel-heading">医疗保险费单位缴费月报表</div>
+    <div class="panel-heading">失业人员领取失业保险金登记表</div>
     <div class="panel-body">
         <table class="table table-style">
             <tbody>
@@ -14,7 +14,7 @@
                 <td><input type="text" ng-model="Model.WorkDate" placeholder="年  月  日"/></td>
             </tr>
             <tr>
-                <td colspan="5"></td>
+                <td colspan="5"><input type="text" ng-model="Model.OriCompany"/></td>
                 <td>本次失业时间</td>
                 <td><input type="text" ng-model="Model.CurUnemployedDate" placeholder="  年  月  日"/></td>
             </tr>
@@ -44,7 +44,7 @@
             </tr>
             <tr>
                 <td colspan="2">户口所在地</td>
-                <td colspan="6"><input type="text" ng-model="Model.Address" /></td>
+                <td colspan="6"><input type="text" ng-model="Model.Address"/></td>
             </tr>
             <tr>
                 <td colspan="8">
