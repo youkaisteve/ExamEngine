@@ -1,0 +1,191 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">基本养老保险待遇核准表</div>
+    <div class="panel-body">
+        <p><label>单位名称</label><input ng-model="Model.danweimingcheng"></p>
+        <table class="table table-style">
+            <tr>
+                <td>姓名</td>
+                <td><input ng-model="Model.r0c1"></td>
+                <td>社会保障号</td>
+                <td colspan="3"><input ng-model="Model.r0c3"></td>
+            </tr>
+            <tr>
+                <td>年龄</td>
+                <td><input ng-model="Model.r1c1"></td>
+                <td>参保年月</td>
+                <td><input ng-model="Model.r1c3"></td>
+                <td>退休类别</td>
+                <td><input ng-model="Model.r1c5"></td>
+            </tr>
+            <tr>
+                <td>姓名</td>
+                <td><input ng-model="Model.r2c1"></td>
+                <td>参保原因</td>
+                <td><input ng-model="Model.r2c3"></td>
+                <td>特殊工种名称</td>
+                <td><input ng-model="Model.r2c5"></td>
+            </tr>
+            <tr>
+                <td>民族</td>
+                <td><input ng-model="Model.r3c1"></td>
+                <td>参加工作时间</td>
+                <td><input ng-model="Model.r3c3"></td>
+                <td>从事年限</td>
+                <td><input ng-model="Model.r3c5"></td>
+            </tr>
+            <tr>
+                <td>出生年月</td>
+                <td><input ng-model="Model.r4c1"></td>
+                <td>退休时间</td>
+                <td><input ng-model="Model.r4c3"></td>
+                <td>因病退休鉴定级别</td>
+                <td><input ng-model="Model.r4c5"></td>
+            </tr>
+            <tr>
+                <td>户口性质</td>
+                <td><input ng-model="Model.r5c1"></td>
+                <td>应缴费年限</td>
+                <td><input ng-model="Model.r5c3"></td>
+                <td>劳动能力鉴定号</td>
+                <td><input ng-model="Model.r5c5"></td>
+            </tr>
+            <tr>
+                <td>职工身份</td>
+                <td><input ng-model="Model.r6c1"></td>
+                <td>视同缴费年限</td>
+                <td><input ng-model="Model.r6c3"></td>
+                <td>N实98值</td>
+                <td><input ng-model="Model.r6c5"></td>
+            </tr>
+            <tr>
+                <td>专业技术职务</td>
+                <td><input ng-model="Model.r7c1"></td>
+                <td>实际缴费年限</td>
+                <td><input ng-model="Model.r7c3"></td>
+                <td>Z实指数</td>
+                <td><input ng-model="Model.r7c5"></td>
+            </tr>
+            <tr>
+                <td>是否高级技师</td>
+                <td><input ng-model="Model.r8c1"></td>
+                <td>趸缴年限</td>
+                <td><input ng-model="Model.r8c3"></td>
+                <td rowspan="2">N值(至98年6月缴费年限)</td>
+                <td rowspan="2"><input ng-model="Model.r8c5"></td>
+            </tr>
+            <tr>
+                <td>个人账户储存额</td>
+                <td><input ng-model="Model.r9c1"></td>
+                <td>全部缴费年限</td>
+                <td><input ng-model="Model.r9c3"></td>
+            </tr>
+            <tr>
+                <td>上年职工平均工资</td>
+                <td><input ng-model="Model.r10c1"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="3">现办法</td>
+                <td colspan="3">原2号令办法</td>
+            </tr>
+            <tr>
+                <td rowspan="3">基础养老金</td>
+                <td>计发基数</td>
+                <td><input ng-model="Model.r11c1"></td>
+                <td rowspan="3">基础养老金</td>
+                <td>计发基数</td>
+                <td><input ng-model="Model.r11c2"></td>
+            </tr>
+            <tr>
+                <td>计发比例</td>
+                <td><input ng-model="Model.r12c1"></td>
+                <td>计发比例</td>
+                <td><input ng-model="Model.r12c2"></td>
+            </tr>
+            <tr>
+                <td>计发金额</td>
+                <td><input ng-model="Model.r13c1"></td>
+                <td>计发金额</td>
+                <td><input ng-model="Model.r13c2"></td>
+            </tr>
+            <tr>
+                <td rowspan="2">个人账户养老金</td>
+                <td>计发月数</td>
+                <td><input ng-model="Model.r14c1"></td>
+                <td>个人账户养老金</td>
+                <td>计发金额</td>
+                <td><input ng-model="Model.r14c2"></td>
+            </tr>
+            <tr>
+                <td>计发金额</td>
+                <td><input ng-model="Model.r15c1"></td>
+                <td>过渡性养老金</td>
+                <td>G=(S*N*1%)*2.98</td>
+                <td><input ng-model="Model.r15c2"></td>
+            </tr>
+            <tr>
+                <td rowspan="3">
+                    过渡性养老金
+                </td>
+                <td>G视同</td>
+                <td><input ng-model="Model.r16c1"></td>
+                <td>综合补贴</td>
+                <td>计发金额</td>
+                <td><input ng-model="Model.r16c2"></td>
+            </tr>
+            <tr>
+                <td>G实际</td>
+                <td><input ng-model="Model.r17c1"></td>
+                <td rowspan="2">因病退休</td>
+                <td>减发比例</td>
+                <td><input ng-model="Model.r17c2"></td>
+            </tr>
+            <tr>
+                <td>计发金额</td>
+                <td><input ng-model="Model.r18c1"></td>
+                <td>减发金额</td>
+                <td><input ng-model="Model.r18c2"></td>
+            </tr>
+            <tr>
+                <td colspan="2">养老金合计</td>
+                <td><input ng-model="Model.r19c1"></td>
+                <td colspan="2">养老金合计</td>
+                <td><input ng-model="Model.r19c2"></td>
+            </tr>
+            <tr>
+                <td>过度比例(%)</td>
+                <td colspan="2"><input ng-model="Model.r20c1"></td>
+                <td>统筹支付金额</td>
+                <td colspan="2"><input ng-model="Model.r20c2"></td>
+            </tr>
+            <tr>
+                <td colspan="6">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="2">参统单位申报意见</td>
+                <td colspan="2">主管部门意见</td>
+                <td colspan="2">劳动保障行政部门核准意见</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    同意(盖章)<br>
+                    签字<input ng-model="Model.r23c1"><input ng-model="Model.r23c2" placeholder="   年   月   日">
+                </td>
+                <td colspan="2">
+                    签字(章)<input ng-model="Model.r23c3"><input ng-model="Model.r23c4" placeholder="   年   月   日">
+                </td>
+                <td colspan="2">
+                    起始支付年月<input ng-model="Model.r23c5"><br>
+                    签字(章)<input ng-model="Model.r23c6"><input ng-model="Model.r23c7" placeholder="   年   月   日">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">备注<textarea ng-model="Model.r24c1"></textarea></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
