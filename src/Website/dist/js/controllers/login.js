@@ -1,1 +1,0 @@
-define(["app","disabled-when-click"],function(n){n.controller("login",["$scope","$window",function(n,o){n.login=function(o,t,e){return n._request("Login",t,e).then(function(o){n._auth(o.Data),n._goto("/default")})}}])});

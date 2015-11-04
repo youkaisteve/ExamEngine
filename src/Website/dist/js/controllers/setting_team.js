@@ -1,1 +1,0 @@
-define(["app"],function(n){n.controller("setting_team",["$scope",function(n){}])});
