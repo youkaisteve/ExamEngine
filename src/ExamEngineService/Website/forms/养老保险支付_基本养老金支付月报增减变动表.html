@@ -1,0 +1,93 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">基本养老金支付月报增减变动表</div>
+    <div class="panel-body">
+        <p><label>报表日期</label><input ng-model="Model.date"></p>
+
+        <p><label>组织机构代码</label><input ng-model="Model.zuzhijigoudaima"></p>
+
+        <p><label>单位名称(章)</label><input ng-model="Model.danweimingcheng"><span>单位:人、元（保留两位小数）</span></p>
+        <table class="table table-style">
+            <tr>
+                <td colspan="3"></td>
+                <td><input ng-model="Model.r0c1"></td>
+                <td><input ng-model="Model.r0c2"></td>
+            </tr>
+            <tr>
+                <td rowspan="4">支付人数</td>
+                <td colspan="2">本月人数</td>
+                <td><input ng-model="Model.r1c2"></td>
+                <td><input ng-model="Model.r1c3"></td>
+            </tr>
+            <tr>
+                <td colspan="2">上月人数</td>
+                <td><input ng-model="Model.r2c1"></td>
+                <td><input ng-model="Model.r2c2"></td>
+            </tr>
+            <tr>
+                <td colspan="2">本月增加</td>
+                <td><input ng-model="Model.r3c1"></td>
+                <td><input ng-model="Model.r3c2"></td>
+            </tr>
+            <tr>
+                <td colspan="2">本月减少</td>
+                <td><input ng-model="Model.r4c1"></td>
+                <td><input ng-model="Model.r4c2"></td>
+            </tr>
+            <tr>
+                <td rowspan="7">支付金额</td>
+                <td colspan="2">本月金额</td>
+                <td><input ng-model="Model.r5c2"></td>
+                <td><input ng-model="Model.r5c3"></td>
+            </tr>
+            <tr>
+                <td colspan="2">上月金额</td>
+                <td><input ng-model="Model.r6c1"></td>
+                <td><input ng-model="Model.r6c2"></td>
+            </tr>
+            <tr>
+                <td colspan="2">本月增加</td>
+                <td><input ng-model="Model.r7c1"></td>
+                <td><input ng-model="Model.r7c2"></td>
+            </tr>
+            <tr>
+                <td rowspan="3">其中</td>
+                <td>新中国成立前补贴</td>
+                <td><input ng-model="Model.r8c2"></td>
+                <td><input ng-model="Model.r8c3"></td>
+            </tr>
+            <tr>
+                <td>正常调整机制金额</td>
+                <td><input ng-model="Model.r9c1"></td>
+                <td><input ng-model="Model.r9c2"></td>
+            </tr>
+            <tr>
+                <td>表十七变更金额</td>
+                <td><input ng-model="Model.r10c1"></td>
+                <td><input ng-model="Model.r10c2"></td>
+            </tr>
+            <tr>
+                <td colspan="2">本月减少</td>
+                <td><input ng-model="Model.r11c1"></td>
+                <td><input ng-model="Model.r11c2"></td>
+            </tr>
+            <tr>
+                <td rowspan="2">补充</td>
+                <td rowspan="2">本月增加</td>
+                <td>新中国成立前补贴人数</td>
+                <td><input ng-model="Model.r12c3"></td>
+                <td><input ng-model="Model.r12c4"></td>
+            </tr>
+            <tr>
+                <td>正常调整机制人数</td>
+                <td><input ng-model="Model.r13c3"></td>
+                <td><input ng-model="Model.r13c4"></td>
+            </tr>
+        </table>
+        <p><label>单位负责人</label><input ng-model="Model.danweifuzeren"></p>
+
+        <p><label>填报人</label><input ng-model="Model.tianbaoren"></p>
+
+        <p><label>填报日期</label><input ng-model="Model.tianbaoriqi"></p>
+    </div>
+</div>
+
