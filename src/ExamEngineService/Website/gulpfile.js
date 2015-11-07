@@ -45,6 +45,10 @@ gulp.task("watcher", function () {
         gulp.src(event.path).pipe(livereload());
     });
 
+    gulp.watch("forms/**/*.html", function (event) {
+        gulp.src(event.path).pipe(gulp.dest("../Exam.Api/forms"));
+    });
+
 });
 
 gulp.task("clean-dist", function () {

@@ -1,5 +1,5 @@
-﻿<div class="panel panel-default" ng-init="rows=getRows(Model)">
-    <div class="panel-heading">社会参保人员增加表
+<div class="panel panel-default" ng-init="rows=getRows(Model)">
+    <div class="panel-heading">社会参保人员减少表
         <button class="pull-right" ng-click="rows.push(rows.length);"><i class="fa fa-plus"></i> 添加行</button>
     </div>
     <div class="panel-body">
@@ -10,10 +10,10 @@
                 <th rowspan="2">*姓名</th>
                 <th rowspan="2">性别</th>
                 <th rowspan="2">*公民身份证号码</th>
-                <th colspan="5">*参加险种</th>
-                <th colspan="2">*个人缴费/支付(恢复)原因</th>
-                <th rowspan="2">申报月工资收入/档次(元)</th>
-                <th rowspan="2">*增加日期</th>
+                <th colspan="5">*停止缴费(支付)险种</th>
+                <th colspan="2">*个人停止缴费(支付)原因</th>
+                <th rowspan="2">是否清算</th>
+                <th rowspan="2">*缴费(支付)<br>截止日期</th>
             </tr>
             <tr>
                 <th>养老</th>
