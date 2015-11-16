@@ -1,7 +1,7 @@
 ﻿<div class="panel panel-default">
     <div class="panel-heading">失业人员领取失业保险金登记卡</div>
     <div class="panel-body">
-        <p style="display: inline;">
+        <p>
             <span>发放失业保险金单位名称：<input type="text" ng-model="Model.CompanyName"/></span>
             <span style="margin-left:50px;"><input type="text" ng-model="Model.CreateDate" placeholder="年月日" style="margin-left:50px;"/></span>
             <span style="margin-left:50px;">顺序号：<input type="text" ng-model="Model.SerialNo"/></span>
@@ -21,7 +21,7 @@
                 <td><input type="text" ng-model="Model.ResumeNo"/></td>
                 <td>领取月数</td>
                 <td><input type="text" ng-model="Model.ReceiveMonthCount"/></td>
-                <td rowspan="2" colspan="2" style="vertical-align: middle;text-align: center;">相片</td>
+                <td rowspan="3" colspan="2" style="vertical-align: middle;text-align: center;">相片</td>
             </tr>
             <tr>
                 <td colspan="2">住址</td>
@@ -30,17 +30,17 @@
             <tr>
                 <td rowspan="2" colspan="2">初次核定情况</td>
                 <td colspan="11">
-                    <p>自<input type="text" ng-model="Model.BeginDate1" placeholder="年月"/>至<input type="text" ng-model="Model.EndDate1" placeholder="年月"/>按第（<input type="text" ng-model="Model.Dang"/>）档<input type="text" ng-model="Model.Amount1"/>元标准发放；</p>
-                    <p>自<input type="text" ng-model="Model.BeginDate2" placeholder="年月"/>至<input type="text" ng-model="Model.EndDate2" placeholder="年月"/>按第一档<input type="text" ng-model="Model.Amount1"/>元标准发放。</p>
+                    <p style="text-align: left;">自<input type="text" ng-model="Model.BeginDate1" placeholder="年月" style="width: auto;border: 1px solid;padding: 2px"/>至<input type="text" ng-model="Model.EndDate1" placeholder="年月" style="width: auto;border: 1px solid;padding: 2px"/>按第（<input type="text" ng-model="Model.Dang" style="width: auto;border: 1px solid;padding: 2px"/>）档<input type="text" ng-model="Model.Amount1" style="width: auto;border: 1px solid;padding: 2px"/>元标准发放；</p>
+                    <p style="text-align: left;">自<input type="text" ng-model="Model.BeginDate2" placeholder="年月" style="width: auto;border: 1px solid;padding: 2px"/>至<input type="text" ng-model="Model.EndDate2" placeholder="年月" style="width: auto;border: 1px solid;padding: 2px"/>按第一档<input type="text" ng-model="Model.Amount1" style="width: auto;border: 1px solid;padding: 2px"/>元标准发放。</p>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">指定医院</td>
                 <td colspan="3"><input type="text" ng-model="Model.Hospital"/></td>
                 <td colspan="2">补助比例</td>
-                <td colspan="2"><input type="text" ng-model="Model.Hospital"/>%</td>
+                <td colspan="2"><input type="text" ng-model="Model.Hospital" placeholder="%"/></td>
                 <td colspan="2">医疗补助金限额</td>
-                <td colspan="2"><input type="text" ng-model="Model.Hospital"/>元</td>
+                <td colspan="2"><input type="text" ng-model="Model.Hospital" placeholder="元"/></td>
             </tr>
             <tr>
                 <td colspan="15"><span style="padding-left:40%;">领&nbsp;取&nbsp;失&nbsp;业&nbsp;保&nbsp;险&nbsp;金&nbsp;记&nbsp;录</span><span style="float:right;">单位：元</span></td>

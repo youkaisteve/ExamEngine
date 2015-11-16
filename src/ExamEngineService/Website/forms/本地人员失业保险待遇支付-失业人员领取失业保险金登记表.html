@@ -1,4 +1,9 @@
-﻿<div class="panel panel-default">
+﻿<style type="text/css">
+    .flat-tr p{
+        text-align: left;
+    }
+</style>
+<div class="panel panel-default">
     <div class="panel-heading">失业人员领取失业保险金登记表</div>
     <div class="panel-body">
         <table class="table table-style">
@@ -46,18 +51,40 @@
                 <td colspan="2">户口所在地</td>
                 <td colspan="6"><input type="text" ng-model="Model.Address"/></td>
             </tr>
-            <tr>
+            <tr class="flat-tr">
                 <td colspan="8">
-                    <p>根据<input type="text" ng-model="Model.RemarkDistrict">区(县)失业保险经办机构填写的《北京市失业人员领取失业保险金和医疗补助金通知单》。</p>
-                    <p>[（<input type="text" ng-model="Model.RemarkZi">）字第<input type="text" ng-model="Model.RemarkHao">号]，该失业人员按下列标准领取失业保险金和享受医疗补助金待遇。</p>
-                    <p>1.领取期限：自<input type="text" ng-model="Model.RemarkBeginDate" placeholder="年月日"/>起至<input type="text" ng-model="Model.RemarkEndDate" placeholder="年月日"/>止共<input type="text" ng-model="Model.RemarkTotalMonth"/>个月。</p>
-                    <p>2.领取标准：自<input type="text" ng-model="Model.RemarkBeginDate1" placeholder="年月日"/>起至<input type="text" ng-model="Model.RemarkEndDate1" placeholder="年月日"/>止每月按第（<input type="text" ng-model="Model.RemarkDang"/>）档标准发放，金额为<input type="text" ng-model="Model.RemarkAmount1"/>元。</p>
-                    <p>&nbsp;&nbsp;自<input type="text" ng-model="Model.RemarkBeginDate2" placeholder="年月日"/>起至<input type="text" ng-model="Model.RemarkEndDate2" placeholder="年月日"/>止每月按第一档标准发放，金额为<input type="text" ng-model="Model.RemarkAmount2"/>元。</p>
-                    <p>3.应领取失业保险金总额为<input type="text" ng-model="Model.RemarkTotalAmount"/>元。</p>
-                    <p>4.《北京市失业保险金领取证》编号：<input type="text" ng-model="Model.RemarkBianHao"/>。</p>
-                    <p>5.指定医院：<input type="text" ng-model="Model.RemarkHospital"/>。</p>
-                    <p>6.医疗补助比例为：<input type="text" ng-model="Model.RemarkRate"/>%，医疗补助金最高限额为<input type="text" ng-model="Model.RemarkLimitMaxAmount"/>元。</p>
-                    <p>经办人签章：：<input type="text" ng-model="Model.RemarkProcessPerson"/>街道（镇）劳动和社会保障部门（盖章） 填表日期：<input type="text" ng-model="Model.RemarkProcessDate" placeholder="年月日"/></p>
+                    <p class="text-left">根据<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.RemarkDistrict">区(县)失业保险经办机构填写的《北京市失业人员领取失业保险金和医疗补助金通知单》。
+                    </p>
+
+                    <p class="text-left">[（<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.RemarkZi">）字第<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.RemarkHao">号]，该失业人员按下列标准领取失业保险金和享受医疗补助金待遇。
+                    </p>
+
+                    <p class="text-left">1.领取期限：自<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.RemarkBeginDate" placeholder="年月日"/>起至<input
+                            type="text" ng-model="Model.RemarkEndDate" placeholder="年月日" style="width: auto;border: 1px solid;padding: 2px"/>止共<input type="text" style="width: auto;border: 1px solid;padding: 2px"
+                                                                                                   ng-model="Model.RemarkTotalMonth"/>个月。
+                    </p>
+
+                    <p class="text-left">2.领取标准：自<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.RemarkBeginDate1" placeholder="年月日"/>起至<input
+                            type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.RemarkEndDate1" placeholder="年月日"/>止每月按第（<input type="text" style="width: auto;border: 1px solid;padding: 2px"
+                                                                                                        ng-model="Model.RemarkDang"/>）档标准发放，金额为<input
+                            type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.RemarkAmount1"/>元。</p>
+
+                    <p class="text-left">&nbsp;&nbsp;自<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.RemarkBeginDate2" placeholder="年月日"/>起至<input
+                            type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.RemarkEndDate2" placeholder="年月日"/>止每月按第一档标准发放，金额为<input
+                            type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.RemarkAmount2"/>元。</p>
+
+                    <p class="text-left">3.应领取失业保险金总额为<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.RemarkTotalAmount"/>元。</p>
+
+                    <p class="text-left">4.《北京市失业保险金领取证》编号：<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.RemarkBianHao"/>。</p>
+
+                    <p class="text-left">5.指定医院：<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.RemarkHospital"/>。</p>
+
+                    <p class="text-left">6.医疗补助比例为：<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.RemarkRate"/>%，医疗补助金最高限额为<input type="text" style="width: auto;border: 1px solid;padding: 2px"
+                                                                                                    ng-model="Model.RemarkLimitMaxAmount"/>元。
+                    </p>
+
+                    <p>经办人签章：：<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.RemarkProcessPerson"/>街道（镇）劳动和社会保障部门（盖章） 填表日期：<input
+                            type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.RemarkProcessDate" placeholder="年月日"/></p>
                 </td>
             </tr>
             </tbody>

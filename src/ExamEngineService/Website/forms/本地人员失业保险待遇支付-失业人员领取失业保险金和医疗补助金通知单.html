@@ -1,33 +1,33 @@
 ﻿<div class="panel panel-default">
-    <div class="panel-heading">失业人员领取失业保险金登记表</div>
+    <div class="panel-heading">失业人员领取失业保险金和医疗补助金通知单</div>
     <div class="panel-body">
         <table class="table table-style">
             <tbody>
             <tr>
                 <td colspan="8">
-                    <p><input type="text" ng-model="Model.Department">街道（镇）劳动和社会保障部门：</p>
-                    <p>&nbsp;&nbsp;同志，男性（女性），<input type="text" ng-model="Model.EndDate" placeholder="年月日"/>
-                        因<input type="text" ng-model="Model.Reason"/>原因与原用工单位终止劳动（工作）关系（第<input type="text" ng-model="Model.UnemployCount"/>次失业）。
-                        现为失业人员。经审核，其视同缴费年限<input type="text" ng-model="Model.LikeTime" placeholder="年月"/>，
-                        正式缴费年限<input type="text" ng-model="Model.FormalTime" placeholder="年月"/>，
-                        累计缴费时间为年<input type="text" ng-model="Model.TotalYear"/>年。
+                    <p class="text-left"><input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.Department">街道（镇）劳动和社会保障部门：</p>
+                    <p class="text-left">&nbsp;&nbsp;同志，男性（女性），<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.EndDate" placeholder="年月日"/>
+                        因<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.Reason"/>原因与原用工单位终止劳动（工作）关系（第<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.UnemployCount"/>次失业）。
+                        现为失业人员。经审核，其视同缴费年限<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.LikeTime" placeholder="年月"/>，
+                        正式缴费年限<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.FormalTime" placeholder="年月"/>，
+                        累计缴费时间为年<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.TotalYear"/>年。
                     </p>
-                    <p>
-                        &nbsp;&nbsp;另前次失业后尚未领完的失业保险金期限为<input type="text" ng-model="Model.UnGetCount"/>个月。
-                        按照规定，应领取失业保险金期限为<input type="text" ng-model="Model.ShouldGetCount"/>个月。自失业人员登记之月起：
+                    <p class="text-left">
+                        &nbsp;&nbsp;另前次失业后尚未领完的失业保险金期限为<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.UnGetCount"/>个月。
+                        按照规定，应领取失业保险金期限为<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.ShouldGetCount"/>个月。自失业人员登记之月起：
                     </p>
-                    <p>
-                        &nbsp;&nbsp;第<input type="text" ng-model="Model.BeginDate1"/>个月至<input type="text" ng-model="Model.EndDate1" />个月按第（<input type="text" ng-model="Model.Dang"/>）档标准发放；
+                    <p class="text-left">
+                        &nbsp;&nbsp;第<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.BeginDate1"/>个月至<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.EndDate1" />个月按第（<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.Dang"/>）档标准发放；
                     </p>
-                    <p>
-                        &nbsp;&nbsp;第<input type="text" ng-model="Model.BeginDate2"/>个月至<input type="text" ng-model="Model.EndDate2" />个月按第一档标准发放；
+                    <p class="text-left">
+                        &nbsp;&nbsp;第<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.BeginDate2"/>个月至<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.EndDate2" />个月按第一档标准发放；
                     </p>
-                    <p>
-                        &nbsp;&nbsp;该失业人员就诊指定医院是<input type="text" ng-model="Model.Hospital" />，其医疗补助比例为<input type="text" ng-model="Model.Rate" />%。
+                    <p class="text-left">
+                        &nbsp;&nbsp;该失业人员就诊指定医院是<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.Hospital" />，其医疗补助比例为<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.Rate" />%。
                     </p>
-                    <p>
-                        &nbsp;&nbsp;经办人：<input type="text" ng-model="Model.ProcessPerson" />
-                        <span style="float: right;margin-right:10%;"><input type="text" ng-model="Model.ProcessDate" placeholder="年月日"/></span>
+                    <p class="text-left">
+                        &nbsp;&nbsp;经办人：<input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.ProcessPerson" />
+                        <span style="float: right;margin-right:10%;"><input type="text" style="width: auto;border: 1px solid;padding: 2px" ng-model="Model.ProcessDate" placeholder="年月日"/></span>
                     </p>
                 </td>
             </tr>
