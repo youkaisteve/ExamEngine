@@ -49,7 +49,7 @@ namespace Exam.Service.Implement
 
         public dynamic LoadForm(string formName)
         {
-            formName = PublicFunc.GetConfigByKey_AppSettings("Form_Path")  + "/" + formName;
+            formName = PublicFunc.GetConfigByKey_AppSettings("TemplatePrefix") + formName;
             return
                 stAnswerRepo.Entities.Select(n => new { n.TemplateName, n.TemplateData, n.TemplateDesc })
                     .FirstOrDefault(m => m.TemplateName == formName);
