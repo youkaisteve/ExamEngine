@@ -77,9 +77,8 @@ namespace Exam.Service.Implement
             if (page != null)
             {
                 //获取当前流程实例的所有变量，查找和当前节点的pageName相同的变量，取出变量值，该值就是表单的数据
-                List<VariableInstance> vars = proxy.GetVariables(instanceId, "");
-                var findVar = vars.FirstOrDefault(m => m.VariableName == page.Value);
-                pageValue = findVar == null ? page.Value.ToString() : findVar.Value.ToString();
+                VariableInstance vars = proxy.GetVariable(instanceId, page.Value.ToString());
+                pageValue = vars == null ? pageValue : vars.Value.ToString();
 
                 var shortName = Path.GetFileName(page.Value.ToString());
                 //获取page desc
