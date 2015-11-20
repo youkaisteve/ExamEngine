@@ -1,0 +1,83 @@
+﻿<div class="panel panel-default" ng-init="rows=getRows(Model)">
+    <div class="panel-heading">生育保险手工报销医疗费用支付拒付明细汇总单
+        <button class="pull-right" ng-click="rows.push(rows.length);"><i class="fa fa-plus"></i> 添加行</button></div>
+    <div class="panel-body">
+        <p><span style="padding-left:40%;">支付时间：<input type="text" ng-model="Model.PayTime" placeholder="年月日"/></span>
+        </p>
+
+        <p>
+            <span style="padding-left:5%;">单位名称：<input type="text" ng-model="Model.CompanyName"/></span>
+            <span>社保登记证号：<input type="text" ng-model="Model.SocialNo"/></span>
+        </p>
+
+        <p>
+            <span style="padding-left:5%;">医疗经办机构（盖章）：<input type="text" ng-model="Model.MedicalCorp"/></span>
+            <span style="float:right;">单位：人.元</span>
+        </p>
+        <table class="table table-style">
+            <thead>
+            <tr>
+                <th rowspan="3">序号</th>
+                <th rowspan="3">姓名</th>
+                <th rowspan="3">医疗保险手册</th>
+                <th rowspan="3">参保人员缴费区（县）</th>
+                <th rowspan="3">交易时期</th>
+                <th rowspan="2">申报总金额</th>
+                <th rowspan="2">基金支付金额</th>
+                <th rowspan="1">基金不予支付金额</th>
+            </tr>
+            <tr>
+                <th rowspan="1">小计</th>
+                <th rowspan="1">自费金额</th>
+                <th rowspan="1">拒付金额（明细附后）</th>
+            </tr>
+            <tr>
+                <th rowspan="1">（1）</th>
+                <th rowspan="1">（2）</th>
+                <th rowspan="1">（3）</th>
+                <th rowspan="1">（4）</th>
+                <th rowspan="1">（5）</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in rows">
+                <td>{{row+1}}</td>
+                <td><input type="text" ng-model="Model[row].Name"/></td>
+                <td><input type="text" ng-model="Model[row].ManualNo"/></td>
+                <td><input type="text" ng-model="Model[row].PayArea"/></td>
+                <td><input type="text" ng-model="Model[row].TradeDate"/></td>
+                <td><input type="text" ng-model="Model[row].TotalAmount"/></td>
+                <td><input type="text" ng-model="Model[row].FundPayAmount"/></td>
+                <td><input type="text" ng-model="Model[row].SubFund"/></td>
+                <td><input type="text" ng-model="Model[row].SelfPayAmount"/></td>
+                <td><input type="text" ng-model="Model[row].RejectAmount"/></td>
+            </tr>
+            <tr>
+                <td>本页小计</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td><input type="text" ng-model="Model.SubTotalAmount"/></td>
+                <td><input type="text" ng-model="Model.SubFundPayAmount"/></td>
+                <td><input type="text" ng-model="Model.SubFundTotal"/></td>
+                <td><input type="text" ng-model="Model.SubSelfPayAmount"/></td>
+                <td><input type="text" ng-model="Model.SubRejectAmount"/></td>
+            </tr>
+            <tr>
+                <td>合计</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td><input type="text" ng-model="Model.AllTotalAmount"/></td>
+                <td><input type="text" ng-model="Model.AllFundPayAmount"/></td>
+                <td><input type="text" ng-model="Model.AllFundTotal"/></td>
+                <td><input type="text" ng-model="Model.AllSelfPayAmount"/></td>
+                <td><input type="text" ng-model="Model.AllRejectAmount"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
