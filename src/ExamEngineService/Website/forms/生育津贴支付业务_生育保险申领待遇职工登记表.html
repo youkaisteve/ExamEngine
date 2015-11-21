@@ -1,0 +1,135 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">生育保险申领待遇职工登记表
+    </div>
+    <div class="panel-body">
+        <table class="table table-style">
+            <tbody>
+            <tr>
+                <td>申领人公民身份号码</td>
+                <td><input type="text" ng-model="Model.r1c2"/></td>
+                <td>姓名</td>
+                <td><input type="text" ng-model="Model.r3c4"/></td>
+                <td>性别</td>
+                <td><input type="text" ng-model="Model.r3c6"/></td>
+            </tr>
+            <tr>
+                <td>配偶证件类别</td>
+                <td colspan="5">
+                    <input name="r2c2" value="公民身份证" type="radio" ng-model="Model.r2c2"/>公民身份证
+                    <input name="r2c2" value="港澳台证" type="radio" ng-model="Model.r2c2"/>港澳台证
+                    <input name="r2c2" value="护照" type="radio" ng-model="Model.r2c2"/>护照
+                </td>
+            </tr>
+            <tr>
+                <td>配偶证件号码</td>
+                <td colspan="3">
+                    <input type="text" ng-model="Model.r3c2"/>
+                </td>
+                <td>配偶姓名</td>
+                <td>
+                    <input type="text" ng-model="Model.r3c4"/>
+                </td>
+            </tr>
+            <tr>
+                <td>配偶出生日期</td>
+                <td><input type="text" ng-model="Model.r4c2"/></td>
+                <td>生育/引,流产日期</td>
+                <td><input type="text" ng-model="Model.r4c4"/></td>
+                <td>终止妊辰前的怀孕周数</td>
+                <td><input type="text" ng-model="Model.r4c6"/></td>
+            </tr>
+            <tr>
+                <td>本次生育胎儿数</td>
+                <td><input type="text" ng-model="Model.r5c2"/></td>
+                <td>生育类别</td>
+                <td colspan="3">
+                    <input name="r5c4" value="正常产" type="radio" ng-model="Model.r5c4"/>正常产
+                    <input name="r5c4" value="难产" type="radio" ng-model="Model.r5c4"/>难产
+                    <input name="r5c4" value="引,流产" type="radio" ng-model="Model.r5c4"/>引,流产
+                </td>
+            </tr>
+            <tr>
+                <td>产假终止原因</td>
+                <td colspan="5">
+                    <input name="r6c2" value="正常到期" type="radio" ng-model="Model.r6c2"/>正常到期
+                    <input name="r6c2" value="退休" type="radio" ng-model="Model.r6c2"/>退休
+                    <input name="r6c2" value="死亡" type="radio" ng-model="Model.r6c2"/>死亡
+                    <input name="r6c2" value="其他" type="radio" ng-model="Model.r6c2"/>其他
+                </td>
+            </tr>
+            <tr>
+                <td>是否为晚育</td>
+                <td colspan="2">
+                    <input name="r7c2" value="是" type="radio" ng-model="Model.r7c2"/>是
+                    <input name="r7c2" value="否" type="radio" ng-model="Model.r7c2"/>否
+                </td>
+                <td>产假终止日期</td>
+                <td colspan="2">
+                    <input type="text" ng-model="Model.r7c4"/>
+                </td>
+            </tr>
+            <tr>
+                <td>申领晚育津贴人<br>公民身份号码</td>
+                <td colspan="2">
+                    <input type="text" ng-model="Model.r8c2"/>
+                </td>
+                <td>申领晚育津贴人<br>姓名</td>
+                <td colspan="2">
+                    <input type="text" ng-model="Model.r8c4"/>
+                </td>
+            </tr>
+            <tr>
+                <td>申领人开户姓名</td>
+                <td colspan="2">
+                    <input type="text" ng-model="Model.r9c2"/>
+                </td>
+                <td>申领人开户账号</td>
+                <td colspan="2">
+                    <input type="text" ng-model="Model.r9c4"/>
+                </td>
+            </tr>
+            <tr>
+                <td>申领人开户银行名称</td>
+                <td colspan="2">
+                    <input type="text" ng-model="Model.r10c2"/>
+                </td>
+                <td>行号</td>
+                <td colspan="2">
+                    <input type="text" ng-model="Model.r10c4"/>
+                </td>
+            </tr>
+            <tr>
+                <td>女方签字</td>
+                <td colspan="2">
+                    <input type="text" ng-model="Model.r11c2"/>
+                </td>
+                <td>男方签字</td>
+                <td colspan="2">
+                    <input type="text" ng-model="Model.r11c4"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">女方所在单位(盖章)<input type="text" ng-model="Model.r12c2"/></td>
+                <td colspan="3">男方所在单位(盖章)<input type="text" ng-model="Model.r12c4"/></td>
+            </tr>
+            <tr>
+                <td>申请单位联系电话</td>
+                <td colspan="2">
+                    <input type="text" ng-model="Model.r13c2"/>
+                </td>
+                <td>申请单位邮编</td>
+                <td colspan="2">
+                    <input type="text" ng-model="Model.r13c4"/>
+                </td>
+            </tr>
+            <tr>
+                <td>申请单位地址</td>
+                <td colspan="5">
+                    <input type="text" ng-model="Model.r14c2"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

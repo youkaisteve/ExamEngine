@@ -1,0 +1,49 @@
+﻿<div class="panel panel-default" ng-init="rows=getRows(Model)">
+    <div class="panel-heading">参保职工生育津贴支付月报表
+        <button class="pull-right" ng-click="rows.push(rows.length);"><i class="fa fa-plus"></i> 添加行</button>
+    </div>
+    <div class="panel-body">
+        <table class="table table-style">
+            <thead>
+            <tr>
+                <th>项目</th>
+                <th>人数</th>
+                <th>月缴费工资基数合计</th>
+                <th>产假天数合计</th>
+                <th>金额合计</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in rows">
+                <td><input type="text" ng-model="Model[row].XiangMu"/></td>
+                <td><input type="text" ng-model="Model[row].RenShu"/></td>
+                <td><input type="text" ng-model="Model[row].YueJiaoFeiGongZiJiShuHeJi"/></td>
+                <td><input type="text" ng-model="Model[row].ChanJiaTianShuHeJi"/></td>
+                <td><input type="text" ng-model="Model[row].JinEHeJi"/></td>
+            </tr>
+            <tr>
+                <td>合计</td>
+                <td><input type="text" ng-model="Model.HeJi.RenShu"/></td>
+                <td><input type="text" ng-model="Model.HeJi.YueJiaoFeiGongZiJiShuHeJi"/></td>
+                <td><input type="text" ng-model="Model.HeJi.ChanJiaTianShuHeJi"/></td>
+                <td><input type="text" ng-model="Model.HeJi.JinEHeJi"/></td>
+            </tr>
+            <tr>
+                <td>新增职工生育津贴</td>
+                <td><input type="text" ng-model="Model.XinZenZhiGongShengYuJinTie.RenShu"/></td>
+                <td><input type="text" ng-model="Model.XinZenZhiGongShengYuJinTie.YueJiaoFeZhiGongShengYuJinTieiGongZiJiShuHeJi"/></td>
+                <td><input type="text" ng-model="Model.XinZenZhiGongShengYuJinTie.ChanJiaTianShuHeJi"/></td>
+                <td><input type="text" ng-model="Model.XinZenZhiGongShengYuJinTie.JinEHeJi"/></td>
+            </tr>
+            <tr>
+                <td>变更生育津贴</td>
+                <td><input type="text" ng-model="Model.BianGengShengYuJinTie.RenShu"/></td>
+                <td><input type="text" ng-model="Model.BianGengShengYuJinTie.YueJiaoFeZhiGongShengYuJinTieiGongZiJiShuHeJi"/></td>
+                <td><input type="text" ng-model="Model.BianGengShengYuJinTie.ChanJiaTianShuHeJi"/></td>
+                <td><input type="text" ng-model="Model.BianGengShengYuJinTie.JinEHeJi"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

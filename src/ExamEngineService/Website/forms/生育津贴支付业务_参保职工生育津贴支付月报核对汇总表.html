@@ -1,0 +1,38 @@
+﻿<div class="panel panel-default" ng-init="rows=getRows(Model)">
+    <div class="panel-heading">参保职工生育津贴支付月报核对汇总表
+        <button class="pull-right" ng-click="rows.push(rows.length);"><i class="fa fa-plus"></i> 添加行</button>
+    </div>
+    <div class="panel-body">
+        <table class="table table-style">
+            <thead>
+            <tr>
+                <th rowspan="2">单位数</th>
+                <th rowspan="2">生育津贴合计</th>
+                <th colspan="4">新增职工生育津贴</th>
+                <th colspan="2">变更生育津贴</th>
+            </tr>
+            <tr>
+                <th>人数</th>
+                <th>月缴费工资基数</th>
+                <th>产假天数</th>
+                <th>金额</th>
+                <th>人次</th>
+                <th>金额</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in rows">
+                <td><input type="text" ng-model="Model[row].DanWeiShu"/></td>
+                <td><input type="text" ng-model="Model[row].ShengYuJinTieHeJi"/></td>
+                <td><input type="text" ng-model="Model[row].RenShu"/></td>
+                <td><input type="text" ng-model="Model[row].YueJiaoFeiGongZiJiShu"/></td>
+                <td><input type="text" ng-model="Model[row].ChanJiaTianShu"/></td>
+                <td><input type="text" ng-model="Model[row].JinE"/></td>
+                <td><input type="text" ng-model="Model[row].RenCi"/></td>
+                <td><input type="text" ng-model="Model[row].JinE2"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
