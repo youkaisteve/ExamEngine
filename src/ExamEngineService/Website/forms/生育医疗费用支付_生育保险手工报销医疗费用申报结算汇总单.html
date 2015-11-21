@@ -4,8 +4,8 @@
     </div>
     <div class="panel-body">
         <p>
-            <span style="padding-left:5%;">单位名称：<input type="text" ng-model="Model.CompanyName"/></span>
-            <span>社保登记证号：<input type="text" ng-model="Model.SocialNo"/></span>
+            <span style="padding-left:5%;">单位名称：（盖章）<input type="text" ng-model="Model.CompanyName"/></span>
+            <span>社保保险登记证号：<input type="text" ng-model="Model.SocialNo"/></span>
             <span>缴费区（县）：<input type="text" ng-model="Model.PayDistrict"/></span>
         </p>
 
@@ -26,7 +26,6 @@
                 <th rowspan="3">单据数（张）</th>
             </tr>
             <tr>
-                <th rowspan="1">(1)</th>
                 <th rowspan="1">小计</th>
                 <th rowspan="1">本埠</th>
                 <th rowspan="1">外埠</th>
@@ -35,6 +34,7 @@
                 <th rowspan="1">外埠</th>
             </tr>
             <tr>
+                <th rowspan="1">（1）</th>
                 <th rowspan="1">（2）</th>
                 <th rowspan="1">（3）</th>
                 <th rowspan="1">（4）</th>
@@ -89,13 +89,13 @@
                 <td><input type="text" ng-model="Model.HeJiZhuYuanTotalOut"/></td>
                 <td><input type="text" ng-model="Model.HeJiDocNumber"/></td>
             </tr>
-            <p>
-                <span>联系电话：<input type="text" ng-model="Model.PhoneNumber"></span>
-                <span>填报人：<input type="text" ng-model="Model.TianBaoRen"></span>
-                <span>日期：<input type="text" ng-model="Model.TianBaoDate"></span>
-            </p>
             </tbody>
         </table>
+        <p>
+            <span>联系电话：<input type="text" ng-model="Model.PhoneNumber"></span>
+            <span>填报人：<input type="text" ng-model="Model.TianBaoRen"></span>
+            <span>日期：<input type="text" ng-model="Model.TianBaoDate"></span>
+        </p>
     </div>
 </div>
 

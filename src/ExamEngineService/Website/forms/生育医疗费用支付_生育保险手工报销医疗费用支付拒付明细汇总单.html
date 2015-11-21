@@ -8,10 +8,10 @@
         <p>
             <span style="padding-left:5%;">单位名称：<input type="text" ng-model="Model.CompanyName"/></span>
             <span>社保登记证号：<input type="text" ng-model="Model.SocialNo"/></span>
+            <span style="padding-left:5%;">医疗经办机构（盖章）：<input type="text" ng-model="Model.MedicalCorp"/></span>
         </p>
 
         <p>
-            <span style="padding-left:5%;">医疗经办机构（盖章）：<input type="text" ng-model="Model.MedicalCorp"/></span>
             <span style="float:right;">单位：人.元</span>
         </p>
         <table class="table table-style">
@@ -24,7 +24,7 @@
                 <th rowspan="3">交易时期</th>
                 <th rowspan="2">申报总金额</th>
                 <th rowspan="2">基金支付金额</th>
-                <th rowspan="1">基金不予支付金额</th>
+                <th rowspan="1" colspan="3">基金不予支付金额</th>
             </tr>
             <tr>
                 <th rowspan="1">小计</th>
@@ -76,12 +76,12 @@
                 <td><input type="text" ng-model="Model.AllSelfPayAmount"/></td>
                 <td><input type="text" ng-model="Model.AllRejectAmount"/></td>
             </tr>
-            <p>
-                <span>审核结算签章：<input type="text" ng-model="Model.ShenHeJieSuan"></span>
-                <span>日期：<input type="text" ng-model="Model.ShenHeDate"></span>
-            </p>
             </tbody>
         </table>
+        <p>
+            <span>审核结算签章：<input type="text" ng-model="Model.ShenHeJieSuan"></span>
+            <span>日期：<input type="text" ng-model="Model.ShenHeDate"></span>
+        </p>
     </div>
 </div>
 
