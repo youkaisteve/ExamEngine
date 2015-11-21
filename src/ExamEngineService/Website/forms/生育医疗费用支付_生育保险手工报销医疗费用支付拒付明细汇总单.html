@@ -19,7 +19,7 @@
             <tr>
                 <th rowspan="3">序号</th>
                 <th rowspan="3">姓名</th>
-                <th rowspan="3">医疗保险手册</th>
+                <th rowspan="3">医疗保险手册号</th>
                 <th rowspan="3">参保人员缴费区（县）</th>
                 <th rowspan="3">交易时期</th>
                 <th rowspan="2">申报总金额</th>
@@ -76,6 +76,10 @@
                 <td><input type="text" ng-model="Model.AllSelfPayAmount"/></td>
                 <td><input type="text" ng-model="Model.AllRejectAmount"/></td>
             </tr>
+            <p>
+                <span>审核结算签章：<input type="text" ng-model="Model.ShenHeJieSuan"></span>
+                <span>日期：<input type="text" ng-model="Model.ShenHeDate"></span>
+            </p>
             </tbody>
         </table>
     </div>

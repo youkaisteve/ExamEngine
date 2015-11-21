@@ -1,0 +1,101 @@
+﻿<div class="panel panel-default" ng-init="rows=getRows(Model)">
+    <div class="panel-heading">生育保险手工报销医疗费用申报结算汇总单
+        <button class="pull-right" ng-click="rows.push(rows.length);"><i class="fa fa-plus"></i> 添加行</button>
+    </div>
+    <div class="panel-body">
+        <p>
+            <span style="padding-left:5%;">单位名称：<input type="text" ng-model="Model.CompanyName"/></span>
+            <span>社保登记证号：<input type="text" ng-model="Model.SocialNo"/></span>
+            <span>缴费区（县）：<input type="text" ng-model="Model.PayDistrict"/></span>
+        </p>
+
+        <p>
+            <span style="float:right;">单位：元、角、分</span>
+        </p>
+        <table class="table table-style">
+            <thead>
+            <tr>
+                <th rowspan="3">序号</th>
+                <th rowspan="3">患者姓名</th>
+                <th rowspan="3">医疗保险手册号</th>
+                <th rowspan="3">公民身份号码</th>
+                <th rowspan="3">就诊医院名称</th>
+                <th rowspan="2">合计</th>
+                <th rowspan="1" colspan="3">门（急）诊费用</th>
+                <th rowspan="1" colspan="3">住院费用</th>
+                <th rowspan="3">单据数（张）</th>
+            </tr>
+            <tr>
+                <th rowspan="1">(1)</th>
+                <th rowspan="1">小计</th>
+                <th rowspan="1">本埠</th>
+                <th rowspan="1">外埠</th>
+                <th rowspan="1">小计</th>
+                <th rowspan="1">本埠</th>
+                <th rowspan="1">外埠</th>
+            </tr>
+            <tr>
+                <th rowspan="1">（2）</th>
+                <th rowspan="1">（3）</th>
+                <th rowspan="1">（4）</th>
+                <th rowspan="1">（5）</th>
+                <th rowspan="1">（6）</th>
+                <th rowspan="1">（7）</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in rows">
+                <td>{{row+1}}</td>
+                <td><input type="text" ng-model="Model[row].Name"/></td>
+                <td><input type="text" ng-model="Model[row].ManualNo"/></td>
+                <td><input type="text" ng-model="Model[row].IdCardNo"/></td>
+                <td><input type="text" ng-model="Model[row].HospitalName"/></td>
+                <td><input type="text" ng-model="Model[row].TotalAmount"/></td>
+                <td><input type="text" ng-model="Model[row].MenZhenTotal"/></td>
+                <td><input type="text" ng-model="Model[row].MenZhenTotalIn"/></td>
+                <td><input type="text" ng-model="Model[row].MenZhenTotalOut"/></td>
+                <td><input type="text" ng-model="Model[row].ZhuYuanTotal"/></td>
+                <td><input type="text" ng-model="Model[row].ZhuYuanTotalIn"/></td>
+                <td><input type="text" ng-model="Model[row].ZhuYuanTotalOut"/></td>
+                <td><input type="text" ng-model="Model[row].DocNumber"/></td>
+            </tr>
+            <tr>
+                <td>本页小计</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td><input type="text" ng-model="Model.XiaoJiTotalAmount"/></td>
+                <td><input type="text" ng-model="Model.XiaoJiMenZhenTotal"/></td>
+                <td><input type="text" ng-model="Model.XiaoJiMenZhenIn"/></td>
+                <td><input type="text" ng-model="Model.XiaoJiMenZhenOut"/></td>
+                <td><input type="text" ng-model="Model.XiaoJiZhuYuanTotal"/></td>
+                <td><input type="text" ng-model="Model.XiaoJiZhuYuanTotalIn"/></td>
+                <td><input type="text" ng-model="Model.XiaoJiZhuYuanTotalOut"/></td>
+                <td><input type="text" ng-model="Model.XiaoJiDocNumber"/></td>
+            </tr>
+            <tr>
+                <td>合计</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td><input type="text" ng-model="Model.HeJiTotalAmount"/></td>
+                <td><input type="text" ng-model="Model.HeJiMenZhenTotal"/></td>
+                <td><input type="text" ng-model="Model.HeJiHeJiMenZhenIn"/></td>
+                <td><input type="text" ng-model="Model.HeJiMenZhenOut"/></td>
+                <td><input type="text" ng-model="Model.HeJiZhuYuanTotal"/></td>
+                <td><input type="text" ng-model="Model.HeJiZhuYuanTotalIn"/></td>
+                <td><input type="text" ng-model="Model.HeJiZhuYuanTotalOut"/></td>
+                <td><input type="text" ng-model="Model.HeJiDocNumber"/></td>
+            </tr>
+            <p>
+                <span>联系电话：<input type="text" ng-model="Model.PhoneNumber"></span>
+                <span>填报人：<input type="text" ng-model="Model.TianBaoRen"></span>
+                <span>日期：<input type="text" ng-model="Model.TianBaoDate"></span>
+            </p>
+            </tbody>
+        </table>
+    </div>
+</div>
+

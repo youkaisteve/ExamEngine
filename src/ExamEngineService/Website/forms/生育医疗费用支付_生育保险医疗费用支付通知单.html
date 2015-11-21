@@ -1,0 +1,101 @@
+﻿<div class="panel panel-default" ng-init="rows=getRows(Model)">
+    <div class="panel-heading">生育保险手工报销医疗费用申报结算汇总单
+        <button class="pull-right" ng-click="rows.push(rows.length);"><i class="fa fa-plus"></i> 添加行</button>
+    </div>
+    <div class="panel-body">
+        <p>
+            <span style="padding-left:5%;">医保经办机构（盖章）：<input type="text" ng-model="Model.YiBaoBu"/></span>
+            <span>送达社保经（代）办机构：<input type="text" ng-model="Model.ZhiFuBu"/></span>
+        </p>
+        <p>
+            <span style="float:right;">单位：元</span>
+        </p>
+        <table class="table table-style">
+            <thead>
+            <tr>
+                <th rowspan="3">序号</th>
+                <th rowspan="3">社保登记证号</th>
+                <th rowspan="3">单位名称</th>
+                <th rowspan="3">支付金额合计</th>
+                <th rowspan="1" colspan="6">生育医疗费</th>
+                <th rowspan="2" colspan="2">计划生育手术医疗费</th>
+            </tr>
+            <tr>
+                <th rowspan="1" colspan="2">小计</th>
+                <th rowspan="1" colspan="2">门（急）诊医疗费</th>
+                <th rowspan="1" colspan="2">住院医疗费</th>
+            </tr>
+            <tr>
+                <th rowspan="1">人次</th>
+                <th rowspan="1">金额</th>
+                <th rowspan="1">人次</th>
+                <th rowspan="1">金额</th>
+                <th rowspan="1">人次</th>
+                <th rowspan="1">金额</th>
+                <th rowspan="1">人次</th>
+                <th rowspan="1">金额</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in rows">
+                <td>{{row+1}}</td>
+                <td><input type="text" ng-model="Model[row].SheBaoHao"/></td>
+                <td><input type="text" ng-model="Model[row].DanWeiName"/></td>
+                <td><input type="text" ng-model="Model[row].PayTotalAmount"/></td>
+                <td><input type="text" ng-model="Model[row].XiaoJiRenci"/></td>
+                <td><input type="text" ng-model="Model[row].XiaoJiAmount"/></td>
+                <td><input type="text" ng-model="Model[row].MenZhenRenci"/></td>
+                <td><input type="text" ng-model="Model[row].MenZhenAmount"/></td>
+                <td><input type="text" ng-model="Model[row].ZhuYuanRenci"/></td>
+                <td><input type="text" ng-model="Model[row].ZhuYuanAmount"/></td>
+                <td><input type="text" ng-model="Model[row].JiHuaRenci"/></td>
+                <td><input type="text" ng-model="Model[row].JiHuaAmount"/></td>
+            </tr>
+            <tr>
+                <td>本页小计</td>
+                <td>--</td>
+                <td>--</td>
+                <td><input type="text" ng-model="Model.XiaoJiPayTotalAmount"/></td>
+                <td><input type="text" ng-model="Model.XiaoJiMen2Renci"/></td>
+                <td><input type="text" ng-model="Model.XiaoJi2Amount"/></td>
+                <td><input type="text" ng-model="Model.XiaoJiMenZhenRenci"/></td>
+                <td><input type="text" ng-model="Model.XiaoJiMenZhenAmount"/></td>
+                <td><input type="text" ng-model="Model.XiaoJiZhuYuanRenci"/></td>
+                <td><input type="text" ng-model="Model.XiaoZhuYuanAmount"/></td>
+                <td><input type="text" ng-model="Model.XiaoJiJiHuaRenci"/></td>
+                <td><input type="text" ng-model="Model.XiaoJiJiHuaAmount"/></td>
+            </tr>
+            <tr>
+                <td>合计</td>
+                <td>--</td>
+                <td>--</td>
+                <td><input type="text" ng-model="Model.TotalPayTotalAmount"/></td>
+                <td><input type="text" ng-model="Model.TotalMen2Renci"/></td>
+                <td><input type="text" ng-model="Model.Total2Amount"/></td>
+                <td><input type="text" ng-model="Model.TotalMenZhenRenci"/></td>
+                <td><input type="text" ng-model="Model.TotalMenZhenAmount"/></td>
+                <td><input type="text" ng-model="Model.TotalZhuYuanRenci"/></td>
+                <td><input type="text" ng-model="Model.TotaluYuanAmount"/></td>
+                <td><input type="text" ng-model="Model.TotalJiHuaRenci"/></td>
+                <td><input type="text" ng-model="Model.TotalJiHuaAmount"/></td>
+            </tr>
+            <tr>
+                <span>医保经办机构经办人：<input type="text" ng-model="Model.PhoneNumber"></span>
+                <span>医保经办机构负责人：<input type="text" ng-model="Model.TianBaoRen"></span>
+                <span>信息传递时间：<input type="text" ng-model="Model.TianBaoDate"></span>
+            </tr>
+            <p>
+                <span>医保经办机构经办人：<input type="text" ng-model="Model.YiBaoJingBanRen"></span>
+                <span>医保经办机构负责人：<input type="text" ng-model="Model.YiBaoFuZeRen"></span>
+                <span>信息传递时间：<input type="text" ng-model="Model.ChuanDiShiJian"></span>
+            </p>
+            <p>
+                <span>社保经（代）办机构经办人：<input type="text" ng-model="Model.SheBaoJingBanRen"></span>
+                <span>社保经（代）办机构负责人：<input type="text" ng-model="Model.SheBaoFuZeRen"></span>
+                <span>信息接收时间：<input type="text" ng-model="Model.JieShouShiJian"></span>
+            </p>
+            </tbody>
+        </table>
+    </div>
+</div>
+
