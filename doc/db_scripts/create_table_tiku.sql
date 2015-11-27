@@ -1,16 +1,28 @@
-create table dbo.Tiku
+create table dbo.ProcessInfo
 (
 	SysNo Int Primary key NOT NULL Identity(1,1)
-	,ProcessName nvarchar(100) NOT NULL
-	,NodeName nvarchar(100) NOT NULL
-	,CategorySysNo INT NOT NULL
+	,ProcessName NVARCHAR(100) NOT NULL
+	,Category NVARCHAR(50) NOT NULL
 	,DifficultyLevel NVARCHAR(50) NOT NULL
+	,Description NVARCHAR(500) NULL
 )
 
-create table dbo.ProcessCategory
+create table dbo.TiKuMaster
 (
 	SysNo Int Primary key NOT NULL Identity(1,1)
-	,Code varchar(20) NOT NULL
-	,[Level] INT NOT NULL
-	,ParentSysNo
+	,TiKuName NVARCHAR(100) NOT NULL
+	,InDate DATETIME DEFAULT(getdate()) NOT NULL
+	,InUser INT NOT NULL
+	,LastEditDate DATETIME NULL
+	,LastEditUser INT NULL
+	,Status INT NOT NULL DEFAULT(0)--1:待激活；2：已删除；3-已激活
+)
+
+create table dbo.TiKuDetail
+(
+	SysNo Int Primary key NOT NULL Identity(1,1)
+	,MasterSysNo INT NOT NULL
+	,ProcessInfoSysNo INT NOT NULL
+	,NodeName NVARCHAR(100) NOT NULL
+	,TeamName NVARCHAR(50) NOT NULL
 )
