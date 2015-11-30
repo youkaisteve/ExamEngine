@@ -12,9 +12,9 @@ create table dbo.TiKuMaster
 	SysNo Int Primary key NOT NULL Identity(1,1)
 	,TiKuName NVARCHAR(100) NOT NULL
 	,InDate DATETIME DEFAULT(getdate()) NOT NULL
-	,InUser INT NOT NULL
+	,InUser NVARCHAR(100) NOT NULL
 	,LastEditDate DATETIME NULL
-	,LastEditUser INT NULL
+	,LastEditUser NVARCHAR(100) NULL
 	,Status INT NOT NULL DEFAULT(0)--1:待激活；2：已删除；3-已激活
 )
 
