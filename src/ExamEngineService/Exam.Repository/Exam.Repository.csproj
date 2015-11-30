@@ -89,6 +89,9 @@
     <Compile Include="Functions.cs">
       <DependentUpon>ExamSystem.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProcessInfo.cs">
+      <DependentUpon>ExamSystem.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repo\AssignedUserRepository.cs" />
     <Compile Include="Repo\ExamRepositoryBase.cs" />
@@ -117,6 +120,12 @@
       <DependentUpon>ExamSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="Team.cs">
+      <DependentUpon>ExamSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TiKuDetail.cs">
+      <DependentUpon>ExamSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TiKuMaster.cs">
       <DependentUpon>ExamSystem.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">

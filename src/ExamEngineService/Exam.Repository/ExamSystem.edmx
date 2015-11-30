@@ -31,6 +31,16 @@
           <Property Name="EditDate" Type="datetime" />
           <Property Name="EditUser" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="ProcessInfo">
+          <Key>
+            <PropertyRef Name="SysNo" />
+          </Key>
+          <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProcessName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DifficultyLevel" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="SysNo" />
@@ -105,6 +115,28 @@
           <Property Name="EditDate" Type="datetime" />
           <Property Name="EditUser" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="TiKuDetail">
+          <Key>
+            <PropertyRef Name="SysNo" />
+          </Key>
+          <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MasterSysNo" Type="int" Nullable="false" />
+          <Property Name="ProcessInfoSysNo" Type="int" Nullable="false" />
+          <Property Name="NodeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TeamName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TiKuMaster">
+          <Key>
+            <PropertyRef Name="SysNo" />
+          </Key>
+          <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TiKuName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="InDate" Type="datetime" Nullable="false" />
+          <Property Name="InUser" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastEditDate" Type="datetime" />
+          <Property Name="LastEditUser" Type="nvarchar" MaxLength="100" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="SysNo" />
@@ -160,12 +192,15 @@
         <EntityContainer Name="ExamSystemModelStoreContainer">
           <EntitySet Name="AssignedUser" EntityType="Self.AssignedUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Functions" EntityType="Self.Functions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcessInfo" EntityType="Self.ProcessInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleFunction" EntityType="Self.RoleFunction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleUser" EntityType="Self.RoleUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SocialSecurityPersonnel" EntityType="Self.SocialSecurityPersonnel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StandardAnwser" EntityType="Self.StandardAnwser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Team" EntityType="Self.Team" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiKuDetail" EntityType="Self.TiKuDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TiKuMaster" EntityType="Self.TiKuMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAnwser" EntityType="Self.UserAnwser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserTeam" EntityType="Self.UserTeam" Schema="dbo" store:Type="Tables" />
@@ -289,6 +324,9 @@
           <EntitySet Name="RoleFunction" EntityType="ExamSystemModel.RoleFunction" />
           <EntitySet Name="SocialSecurityPersonnel" EntityType="ExamSystemModel.SocialSecurityPersonnel" />
           <EntitySet Name="AssignedUser" EntityType="ExamSystemModel.AssignedUser" />
+          <EntitySet Name="ProcessInfo" EntityType="ExamSystemModel.ProcessInfo" />
+          <EntitySet Name="TiKuDetail" EntityType="ExamSystemModel.TiKuDetail" />
+          <EntitySet Name="TiKuMaster" EntityType="ExamSystemModel.TiKuMaster" />
         </EntityContainer>
         <EntityType Name="Functions">
           <Key>
@@ -340,6 +378,38 @@
           <Property Name="Nodename" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="InUser" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProcessInfo">
+          <Key>
+            <PropertyRef Name="SysNo" />
+          </Key>
+          <Property Name="SysNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProcessName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DifficultyLevel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TiKuDetail">
+          <Key>
+            <PropertyRef Name="SysNo" />
+          </Key>
+          <Property Name="SysNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MasterSysNo" Type="Int32" Nullable="false" />
+          <Property Name="ProcessInfoSysNo" Type="Int32" Nullable="false" />
+          <Property Name="NodeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TeamName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TiKuMaster">
+          <Key>
+            <PropertyRef Name="SysNo" />
+          </Key>
+          <Property Name="SysNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TiKuName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InUser" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastEditDate" Type="DateTime" Precision="3" />
+          <Property Name="LastEditUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -507,6 +577,41 @@
                 <ScalarProperty Name="InstanceID" ColumnName="InstanceID" />
                 <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcessInfo">
+            <EntityTypeMapping TypeName="ExamSystemModel.ProcessInfo">
+              <MappingFragment StoreEntitySet="ProcessInfo">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DifficultyLevel" ColumnName="DifficultyLevel" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
+                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiKuDetail">
+            <EntityTypeMapping TypeName="ExamSystemModel.TiKuDetail">
+              <MappingFragment StoreEntitySet="TiKuDetail">
+                <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+                <ScalarProperty Name="NodeName" ColumnName="NodeName" />
+                <ScalarProperty Name="ProcessInfoSysNo" ColumnName="ProcessInfoSysNo" />
+                <ScalarProperty Name="MasterSysNo" ColumnName="MasterSysNo" />
+                <ScalarProperty Name="SysNo" ColumnName="SysNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TiKuMaster">
+            <EntityTypeMapping TypeName="ExamSystemModel.TiKuMaster">
+              <MappingFragment StoreEntitySet="TiKuMaster">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="LastEditUser" ColumnName="LastEditUser" />
+                <ScalarProperty Name="LastEditDate" ColumnName="LastEditDate" />
+                <ScalarProperty Name="InUser" ColumnName="InUser" />
+                <ScalarProperty Name="InDate" ColumnName="InDate" />
+                <ScalarProperty Name="TiKuName" ColumnName="TiKuName" />
                 <ScalarProperty Name="SysNo" ColumnName="SysNo" />
               </MappingFragment>
             </EntityTypeMapping>

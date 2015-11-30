@@ -161,6 +161,7 @@
     <Compile Include="Configuration\API_CONFIG\IApiConfiguration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\TaskController.cs" />
+    <Compile Include="Controllers\TiKuController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\LoginActionFilter.cs" />
     <Compile Include="Filters\BaseExceptionFilter.cs" />
