@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Exam.Model
 {
-    public class TiKuMaster : ModelBase
+    public class TiKuMasterModel : ModelBase
     {
         public int SysNo { get; set; }
         public string TiKuName { get; set; }
@@ -15,9 +15,11 @@ namespace Exam.Model
         public string LastEditUser { get; set; }
         public DateTime? LastEditDate { get; set; }
         public int Status { get; set; }
+
+        public List<TiKuDetailModel> Details { get; set; }
     }
 
-    public class TiKuDetail
+    public class TiKuDetailModel
     {
         public int SysNo { get; set; }
         public int MasterSysNo { get; set; }

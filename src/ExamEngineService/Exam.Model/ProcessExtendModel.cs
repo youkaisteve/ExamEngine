@@ -12,5 +12,9 @@ namespace Exam.Model
         public string Category { get;set; }
         public string DifficultyLevel { get; set; }
         public string Description { get; set; }
+        public string InUser { get; set; }
+        public DateTime InDate { get; set; }
+        public string LastEditUser { get; set; }
+        public DateTime? LastEditDate { get; set; }
     }
 }

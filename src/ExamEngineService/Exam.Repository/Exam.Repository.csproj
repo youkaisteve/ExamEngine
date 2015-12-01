@@ -99,6 +99,8 @@
     <Compile Include="Repo\SocialSPRepository.cs" />
     <Compile Include="Repo\StandardAnswerRepository.cs" />
     <Compile Include="Repo\StAnswerRepository.cs" />
+    <Compile Include="Repo\ProcessInfoRepository.cs" />
+    <Compile Include="Repo\TiKuRepository.cs" />
     <Compile Include="Repo\UserAnswerRepository.cs" />
     <Compile Include="Repo\UserRepository.cs" />
     <Compile Include="Repo\TeamRepository.cs" />

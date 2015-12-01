@@ -1,4 +1,4 @@
-﻿using Exam.Repository;
+﻿using Exam.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +9,18 @@ namespace Exam.Service.Interface
 {
     public interface ITiKuService
     {
-        void CreateOrUpdateProcessInfo(ProcessInfo pInfo);
+        void CreateProcessInfo(ProcessExtendModel pInfo);
+        void UpdateProcessInfo(ProcessExtendModel pInfo);
 
-        ProcessInfo GetProcessInfo(int id);
-        ProcessInfo GetProcessInfo(string name);
+        ProcessExtendModel GetProcessInfo(int id);
+        ProcessExtendModel GetProcessInfo(string name);
 
-        List<ProcessInfo> GetAllProcess();
+        List<ProcessExtendModel> GetAllProcess();
 
 
-        List<TiKuMaster> GetAllTiKu();
-        void CreateOrUpdateTiKu(TiKuMaster master);
+        List<TiKuMasterModel> GetAllTiKu();
+        void CreateTiKu(TiKuMasterModel master);
+
+        void UpdateTiKu(TiKuMasterModel master);
     }
 }

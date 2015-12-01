@@ -5,6 +5,10 @@ create table dbo.ProcessInfo
 	,Category NVARCHAR(50) NOT NULL
 	,DifficultyLevel NVARCHAR(50) NOT NULL
 	,Description NVARCHAR(500) NULL
+	,InDate DATETIME DEFAULT(getdate()) NOT NULL
+	,InUser NVARCHAR(100) NOT NULL
+	,LastEditDate DATETIME NULL
+	,LastEditUser NVARCHAR(100) NULL
 )
 
 create table dbo.TiKuMaster

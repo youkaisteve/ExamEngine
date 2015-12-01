@@ -40,6 +40,10 @@
           <Property Name="Category" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DifficultyLevel" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="InDate" Type="datetime" Nullable="false" />
+          <Property Name="InUser" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastEditDate" Type="datetime" />
+          <Property Name="LastEditUser" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -388,6 +392,10 @@
           <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DifficultyLevel" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="InDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InUser" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastEditDate" Type="DateTime" Precision="3" />
+          <Property Name="LastEditUser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TiKuDetail">
           <Key>
@@ -584,6 +592,10 @@
           <EntitySetMapping Name="ProcessInfo">
             <EntityTypeMapping TypeName="ExamSystemModel.ProcessInfo">
               <MappingFragment StoreEntitySet="ProcessInfo">
+                <ScalarProperty Name="LastEditUser" ColumnName="LastEditUser" />
+                <ScalarProperty Name="LastEditDate" ColumnName="LastEditDate" />
+                <ScalarProperty Name="InUser" ColumnName="InUser" />
+                <ScalarProperty Name="InDate" ColumnName="InDate" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="DifficultyLevel" ColumnName="DifficultyLevel" />
                 <ScalarProperty Name="Category" ColumnName="Category" />
