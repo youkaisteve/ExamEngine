@@ -68,12 +68,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implement\AccountService.cs" />
+    <Compile Include="Implement\TiKuService.cs" />
     <Compile Include="Interface\ISettingService.cs" />
     <Compile Include="Implement\SettingService.cs" />
     <Compile Include="Implement\TaskService.cs" />
     <Compile Include="Implement\UserService.cs" />
     <Compile Include="Interface\IAccountService.cs" />
     <Compile Include="Interface\ITaskService.cs" />
+    <Compile Include="Interface\ITiKuService.cs" />
     <Compile Include="Interface\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceBase.cs" />

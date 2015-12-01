@@ -61,6 +61,7 @@
     <Compile Include="InitExamModel.cs" />
     <Compile Include="ModelBase.cs" />
     <Compile Include="NodeTeamModel.cs" />
+    <Compile Include="ProcessExtendModel.cs" />
     <Compile Include="ProcessModel.cs" />
     <Compile Include="ProcessWithNodeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="QueryFilters\WorkfolowQueryFilter.cs" />
     <Compile Include="StandardAnwserModel.cs" />
     <Compile Include="TeamUserImportModel.cs" />
+    <Compile Include="TiKu.cs" />
     <Compile Include="UserInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
