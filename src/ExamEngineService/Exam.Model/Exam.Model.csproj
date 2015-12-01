@@ -67,6 +67,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryFilters\QueryFilter.cs" />
     <Compile Include="QueryFilters\QueryPageInfo.cs" />
+    <Compile Include="QueryFilters\TiKuQueryFilter.cs" />
     <Compile Include="QueryFilters\UserTaskQueryFilter.cs" />
     <Compile Include="QueryFilters\WorkfolowQueryFilter.cs" />
     <Compile Include="StandardAnwserModel.cs" />

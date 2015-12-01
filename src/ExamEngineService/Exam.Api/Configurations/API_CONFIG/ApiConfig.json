@@ -20,9 +20,11 @@
 	{"Name":"CleanData","Controller":"User","Action":"CleanData"},
 	{"Name":"GetAllStudent","Controller":"User","Action":"GetAllStudent"}
 
-	{"Name":"SaveOrUpdateProcessInfo","Controller":"TiKu","Action":"SaveOrUpdateProcessInfo"},
+	{"Name":"SaveProcessInfo","Controller":"TiKu","Action":"SaveProcessInfo"},
+	{"Name":"UpdateProcessInfo","Controller":"TiKu","Action":"UpdateProcessInfo"},
 	{"Name":"ExportProcessInfo","Controller":"TiKu","Action":"ExportProcessInfo"},
 	{"Name":"ImportTiKu","Controller":"TiKu","Action":"ImportTiKu"},
 	{"Name":"ActiveTiKu","Controller":"TiKu","Action":"ActiveTiKu"},
-	{"Name":"DeleteTiKu","Controller":"TiKu","Action":"DeleteTiKu"}
+	{"Name":"DeleteTiKu","Controller":"TiKu","Action":"DeleteTiKu"},
+	{"Name":"GetTiKuByCondition","Controller":"TiKu","Action":"GetTiKuByCondition"},
 ]

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Exam.Model.QueryFilters;
 
 namespace Exam.Service.Interface
 {
@@ -19,6 +20,8 @@ namespace Exam.Service.Interface
 
 
         List<TiKuMasterModel> GetAllTiKu();
+
+        List<TiKuMasterModel> GetTiKuByCondition(TiKuQueryFilter filter);
         void CreateTiKu(TiKuMasterModel master);
 
         void UpdateTiKu(TiKuMasterModel master);

@@ -1,4 +1,5 @@
-﻿using Exam.Model;
+﻿using System.Linq.Expressions;
+using Exam.Model;
 using Exam.Repository;
 using Exam.Repository.Repo;
 using Component.Tools;
@@ -8,6 +9,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Exam.Model.QueryFilters;
 
 namespace Exam.Service.Interface
 {
@@ -84,11 +86,20 @@ namespace Exam.Service.Interface
                                           TeamName = detail.TeamName
                                       }).ToList()
                         };
-            if (query != null)
+            return query.ToList();
+        }
+
+        public List<TiKuMasterModel> GetTiKuByCondition(TiKuQueryFilter filter)
+        {
+            if (filter == null)
             {
-                return query.ToList<TiKuMasterModel>();
+                throw new ArgumentNullException("filter");
             }
-            return null;
+
+            var query = TiKuRepo.Entities.OrderByDescending(m => m.LastEditDate)
+                .Skip(filter.PageInfo.PageSize * (filter.PageInfo.PageIndex - 1))
+                .Take(filter.PageInfo.PageSize).Select(data => PublicFunc.EntityMap<TiKuMaster, TiKuMasterModel>(data));
+            return query.ToList();
         }
 
         public void CreateTiKu(TiKuMasterModel master)
