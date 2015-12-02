@@ -27,5 +27,7 @@ namespace Exam.Service.Interface
         void CreateTiKu(TiKuMasterModel master);
 
         void UpdateTiKu(TiKuMasterModel master);
+
+        List<dynamic> GetExportProcess();
     }
 }

@@ -29,18 +29,20 @@ namespace Exam.Api.Controllers
         }
 
         [HttpGet]
-        public HttpResponseMessage ExportProcessInfo([FromUri] string processName)
+        public HttpResponseMessage ExportProcessInfo()
         {
-            var path = @"D:\400中心_数据库文档.xls";
+            var data = tiKuService.GetExportProcess();
+            var table = Utility.ToDataTable(data);
+            var stream = Utility.DataTableToExcel(table, "流程列表");
             HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
-            var stream = new FileStream(path, FileMode.Open);
             result.Content = new StreamContent(stream);
             result.Content.Headers.ContentType =
                 new MediaTypeHeaderValue("application/octet-stream");
             result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
             {
-                FileName = "400中心_数据库文档.xls"
+                FileName = "流程列表.xls"
             };
+            
             return result;
         }
 
