@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Exam.Model
 {
-    public class ProcessExtendModel : ProcessModel
+    public class ProcessExtendModel : ModelBase
     {
         public int SysNo { get; set; }
+        public string ProcessName { get; set; }
         public string Category { get;set; }
         public string DifficultyLevel { get; set; }
         public string Description { get; set; }

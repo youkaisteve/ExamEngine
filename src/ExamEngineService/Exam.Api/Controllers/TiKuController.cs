@@ -41,9 +41,9 @@ namespace Exam.Api.Controllers
         }
 
         [HttpPost]
-        public ApiResponse GetAllProcess()
+        public ApiResponse QueryProcess(ProcessQueryFilter filter)
         {
-            var result = tiKuService.GetAllProcess();
+            var result = tiKuService.GetProcessByCondition(filter);
             return ApiOk(result);
         }
 

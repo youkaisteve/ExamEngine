@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Exam.Model;
 using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json.Converters;
+using Component.Tools;
 
 namespace Exam.Api.Framework
 {
@@ -25,9 +26,9 @@ namespace Exam.Api.Framework
 
         public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
         {
-            string typeNameUpper = type.GetTypeInfo().Name.ToUpper();
-            string baseTypeNameUpper = type.GetTypeInfo().BaseType != null ? type.GetTypeInfo().BaseType.Name.ToUpper() : "";
-            if (typeNameUpper == "MODELBASE" || baseTypeNameUpper == "MODELBASE")
+            //string typeNameUpper = type.GetTypeInfo().Name.ToUpper();
+            //string baseTypeNameUpper = type.GetTypeInfo().BaseType != null ? type.GetTypeInfo().BaseType.Name.ToUpper() : "";
+            if (PublicFunc.MatchType(type, "MODELBASE"))
             {
                 var result = base.ReadFromStreamAsync(type, readStream, content, formatterLogger).Result as ModelBase;
                 if (result != null)

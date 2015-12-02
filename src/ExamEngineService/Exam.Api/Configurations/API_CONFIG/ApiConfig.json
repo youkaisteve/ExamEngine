@@ -18,13 +18,14 @@
 	{"Name":"UploadForm","Controller":"User","Action":"UploadForm"},
 	{"Name":"TerminateAllUnFinishProcess","Controller":"User","Action":"TerminateAllUnFinishProcess"},
 	{"Name":"CleanData","Controller":"User","Action":"CleanData"},
-	{"Name":"GetAllStudent","Controller":"User","Action":"GetAllStudent"}
+	{"Name":"GetAllStudent","Controller":"User","Action":"GetAllStudent"},
 
-	{"Name":"SaveProcessInfo","Controller":"TiKu","Action":"SaveProcessInfo"},
+	{"Name":"CreateProcessInfo","Controller":"TiKu","Action":"CreateProcessInfo"},
 	{"Name":"UpdateProcessInfo","Controller":"TiKu","Action":"UpdateProcessInfo"},
+	{"Name":"QueryProcess","Controller":"TiKu","Action":"QueryProcess"},
 	{"Name":"ExportProcessInfo","Controller":"TiKu","Action":"ExportProcessInfo"},
 	{"Name":"ImportTiKu","Controller":"TiKu","Action":"ImportTiKu"},
 	{"Name":"ActiveTiKu","Controller":"TiKu","Action":"ActiveTiKu"},
 	{"Name":"DeleteTiKu","Controller":"TiKu","Action":"DeleteTiKu"},
-	{"Name":"GetTiKuByCondition","Controller":"TiKu","Action":"GetTiKuByCondition"},
+	{"Name":"GetTiKuByCondition","Controller":"TiKu","Action":"GetTiKuByCondition"}
 ]

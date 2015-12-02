@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Reflection;
+
 using EmitMapper;
 
 namespace Component.Tools
@@ -87,6 +89,27 @@ namespace Component.Tools
         public static string GetDeployDirectory()
         {
             return AppDomain.CurrentDomain.BaseDirectory;
+        }
+
+        public static bool MatchType(Type sourceType, string destTypeName)
+        {
+            destTypeName = destTypeName.ToUpper();
+            var baseType = sourceType.GetTypeInfo().BaseType;
+            if (baseType != null)
+            {
+                if (baseType.Name.ToUpper() == destTypeName)
+                {
+                    return true;
+                }
+                else
+                {
+                    return PublicFunc.MatchType(baseType, destTypeName);
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

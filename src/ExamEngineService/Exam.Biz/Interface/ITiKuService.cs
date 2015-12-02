@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Exam.Model.QueryFilters;
+using Component.Data;
 
 namespace Exam.Service.Interface
 {
@@ -18,10 +19,11 @@ namespace Exam.Service.Interface
 
         List<ProcessExtendModel> GetAllProcess();
 
+        QueryResult<ProcessExtendModel> GetProcessByCondition(ProcessQueryFilter filter);
 
         List<TiKuMasterModel> GetAllTiKu();
 
-        List<TiKuMasterModel> GetTiKuByCondition(TiKuQueryFilter filter);
+        QueryResult<TiKuMasterModel> GetTiKuByCondition(TiKuQueryFilter filter);
         void CreateTiKu(TiKuMasterModel master);
 
         void UpdateTiKu(TiKuMasterModel master);

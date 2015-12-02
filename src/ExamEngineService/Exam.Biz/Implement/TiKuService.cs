@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Exam.Model.QueryFilters;
+using Component.Data;
 
 namespace Exam.Service.Interface
 {
@@ -35,6 +36,10 @@ namespace Exam.Service.Interface
             var data = PublicFunc.EntityMap<ProcessExtendModel, ProcessInfo>(pInfo);
             if (data != null)
             {
+                data.InUser = pInfo.User.UserID;
+                data.InDate = DateTime.Now;
+                data.LastEditUser = pInfo.User.UserID;
+                data.LastEditDate = DateTime.Now;
                 ProcessInfoRepo.Insert(data);
             }
         }
@@ -44,6 +49,8 @@ namespace Exam.Service.Interface
             var data = PublicFunc.EntityMap<ProcessExtendModel, ProcessInfo>(pInfo);
             if (data != null)
             {
+                data.LastEditUser = pInfo.User.UserID;
+                data.LastEditDate = DateTime.Now;
                 ProcessInfoRepo.Update(data);
             }
         }
@@ -58,6 +65,29 @@ namespace Exam.Service.Interface
         {
             var pInfo = ProcessInfoRepo.Entities.FirstOrDefault(m => m.ProcessName == name);
             return PublicFunc.EntityMap<ProcessInfo, ProcessExtendModel>(pInfo);
+        }
+
+        public QueryResult<ProcessExtendModel> GetProcessByCondition(ProcessQueryFilter filter)
+        {
+            if (filter == null)
+            {
+                throw new ArgumentNullException("filter");
+            }
+            var queryResult = new QueryResult<ProcessExtendModel>()
+            {
+                Page = new PageInfo()
+                {
+                    PageIndex = filter.PageInfo.PageIndex,
+                    PageSize = filter.PageInfo.PageSize
+                }
+            };
+
+            queryResult.Page.Total = ProcessInfoRepo.Entities.Count();
+            var query = ProcessInfoRepo.Entities.OrderByDescending(m => m.LastEditDate)
+                .Skip(filter.PageInfo.PageSize * (filter.PageInfo.PageIndex - 1))
+                .Take(filter.PageInfo.PageSize);
+            queryResult.Result = PublicFunc.EntityMap<List<ProcessInfo>, List<ProcessExtendModel>>(query.ToList());
+            return queryResult;
         }
 
         public List<ProcessExtendModel> GetAllProcess()
@@ -89,17 +119,28 @@ namespace Exam.Service.Interface
             return query.ToList();
         }
 
-        public List<TiKuMasterModel> GetTiKuByCondition(TiKuQueryFilter filter)
+        public QueryResult<TiKuMasterModel> GetTiKuByCondition(TiKuQueryFilter filter)
         {
             if (filter == null)
             {
                 throw new ArgumentNullException("filter");
             }
 
+            var queryResult = new QueryResult<TiKuMasterModel>()
+            {
+                Page = new PageInfo()
+                {
+                      PageIndex = filter.PageInfo.PageIndex,
+                      PageSize = filter.PageInfo.PageSize
+                }
+            };
+
+            queryResult.Page.Total = TiKuRepo.Entities.Count();
             var query = TiKuRepo.Entities.OrderByDescending(m => m.LastEditDate)
                 .Skip(filter.PageInfo.PageSize * (filter.PageInfo.PageIndex - 1))
-                .Take(filter.PageInfo.PageSize).Select(data => PublicFunc.EntityMap<TiKuMaster, TiKuMasterModel>(data));
-            return query.ToList();
+                .Take(filter.PageInfo.PageSize);
+            queryResult.Result = PublicFunc.EntityMap<List<TiKuMaster>, List<TiKuMasterModel>>(query.ToList());
+            return queryResult;
         }
 
         public void CreateTiKu(TiKuMasterModel master)
