@@ -5,6 +5,8 @@ using Exam.Api.Framework;
 using Exam.Model;
 using Exam.Model.QueryFilters;
 using Exam.Service.Interface;
+using DCommon.LinqToNPOI;
+using DCommon.LinqToNPOI.Writer;
 
 namespace Exam.Api.Controllers
 {
