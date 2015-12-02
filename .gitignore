@@ -56,3 +56,5 @@ TestResults/
 
 .idea
 node_modules
+
+doc/~*
