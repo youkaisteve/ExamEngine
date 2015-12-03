@@ -41,7 +41,7 @@ namespace Exam.Api.Framework
         /// </summary>
         /// <param name="dtSource">源DataTable</param>
         /// <param name="strHeaderText">表头文本</param>
-        public static MemoryStream DataTableToExcel(DataTable dtSource, string strHeaderText)
+        public static MemoryStream DataTableToExcel(DataTable dtSource)
         {
             HSSFWorkbook workbook = new HSSFWorkbook();
             HSSFSheet sheet = (HSSFSheet)workbook.CreateSheet();

@@ -33,17 +33,34 @@ namespace Exam.Api.Controllers
         {
             var data = tiKuService.GetExportProcess();
             var table = Utility.ToDataTable(data);
-            var stream = Utility.DataTableToExcel(table, "流程列表");
+            var stream = Utility.DataTableToExcel(table);
             HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
             result.Content = new StreamContent(stream);
             result.Content.Headers.ContentType =
                 new MediaTypeHeaderValue("application/octet-stream");
             result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
             {
-                FileName = "流程列表.xls"
+                FileName = "题库.xls"
             };
             
             return result;
+        }
+
+        public ApiResponse ImportTiKu()
+        {
+            string uploadPath = Path.Combine(
+                PublicFunc.GetDeployDirectory(),
+                PublicFunc.GetConfigByKey_AppSettings("Upload_Path"));
+            HttpPostedFile file = HttpContext.Current.Request.Files[0];
+            string strPath = Path.Combine(uploadPath, file.FileName);
+            if (!Directory.Exists(uploadPath))
+            {
+                Directory.CreateDirectory(uploadPath);
+            }
+            file.SaveAs(strPath);
+
+            TiKuMasterModel model = new TiKuMasterModel();
+            return ApiOk();
         }
 
         [HttpPost]
