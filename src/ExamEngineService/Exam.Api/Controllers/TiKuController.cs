@@ -59,7 +59,13 @@ namespace Exam.Api.Controllers
             }
             file.SaveAs(strPath);
 
+            var ds = Utility.ExcelToDataSet(strPath, "select * from [Sheet1$]");
             TiKuMasterModel model = new TiKuMasterModel();
+
+            if (File.Exists(strPath))
+            {
+                File.Delete(strPath);
+            }
             return ApiOk();
         }
 
