@@ -17,8 +17,8 @@ namespace Exam.Repository
     {
         public int SysNo { get; set; }
         public int MasterSysNo { get; set; }
-        public int ProcessInfoSysNo { get; set; }
         public string NodeName { get; set; }
         public string TeamName { get; set; }
+        public string ProcessName { get; set; }
     }
 }

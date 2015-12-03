@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BeginExamModel.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="InitExamModel.cs" />
     <Compile Include="ModelBase.cs" />
     <Compile Include="NodeTeamModel.cs" />

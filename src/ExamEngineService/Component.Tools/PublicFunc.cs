@@ -94,6 +94,11 @@ namespace Component.Tools
         public static bool MatchType(Type sourceType, string destTypeName)
         {
             destTypeName = destTypeName.ToUpper();
+            if (sourceType.GetTypeInfo().Name.ToUpper() == destTypeName)
+            {
+                return true;
+            }
+
             var baseType = sourceType.GetTypeInfo().BaseType;
             if (baseType != null)
             {
@@ -101,15 +106,9 @@ namespace Component.Tools
                 {
                     return true;
                 }
-                else
-                {
-                    return PublicFunc.MatchType(baseType, destTypeName);
-                }
+                return MatchType(baseType, destTypeName);
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
     }
 }

@@ -61,20 +61,6 @@ namespace Exam.Api.Controllers
                 }
             };
             var list = model.Lists;
-            //using (var sr = new StreamReader(strPath, Encoding.UTF8))
-            //{
-            //    string lineContent = sr.ReadLine();
-            //    while (!string.IsNullOrEmpty(lineContent = sr.ReadLine()))
-            //    {
-            //        string[] splitValues = lineContent.Split(',');
-            //        list.Add(new TeamUserImportModel
-            //        {
-            //            TeamName = splitValues[0],
-            //            UserId = splitValues[1],
-            //            UserName = splitValues[2]
-            //        });
-            //    }
-            //}
 
             var ds = Utility.ExcelToDataSet(strPath, "select * from [Sheet1$]");
             if (ds != null && ds.Tables[0] != null)

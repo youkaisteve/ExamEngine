@@ -25,14 +25,24 @@ namespace Exam.Api.Framework
         public static DataSet ExcelToDataSet(string filename, string tSql)
         {
             DataSet ds;
-            string strCon = "Provider=Microsoft.Jet.OLEDB.4.0;Extended Properties=Excel 8.0;data source=" + filename;
-            OleDbConnection myConn = new OleDbConnection(strCon);
-            string strCom = tSql;
-            myConn.Open();
-            OleDbDataAdapter myCommand = new OleDbDataAdapter(strCom, myConn);
-            ds = new DataSet();
-            myCommand.Fill(ds);
-            myConn.Close();
+            OleDbConnection myConn = null;
+            try
+            {
+                string strCon = "Provider=Microsoft.Jet.OLEDB.4.0;Extended Properties=Excel 8.0;data source=" + filename;
+                myConn = new OleDbConnection(strCon);
+                string strCom = tSql;
+                myConn.Open();
+                OleDbDataAdapter myCommand = new OleDbDataAdapter(strCom, myConn);
+                ds = new DataSet();
+                myCommand.Fill(ds);
+            }
+            finally 
+            {
+                if (myConn != null)
+                {
+                    myConn.Close();
+                }
+            }
             return ds;
         }
 
@@ -41,7 +51,7 @@ namespace Exam.Api.Framework
         /// </summary>
         /// <param name="dtSource">源DataTable</param>
         /// <param name="strHeaderText">表头文本</param>
-        public static MemoryStream DataTableToExcel(DataTable dtSource)
+        public static MemoryStream DataTableToExcel(DataTable dtSource,string sheetName)
         {
             HSSFWorkbook workbook = new HSSFWorkbook();
             HSSFSheet sheet = (HSSFSheet)workbook.CreateSheet();
@@ -93,7 +103,7 @@ namespace Exam.Api.Framework
                 {
                     if (rowIndex != 0)
                     {
-                        sheet = (HSSFSheet)workbook.CreateSheet();
+                        sheet = (HSSFSheet)workbook.CreateSheet(sheetName);
                     }
 
                     #region 表头及样式

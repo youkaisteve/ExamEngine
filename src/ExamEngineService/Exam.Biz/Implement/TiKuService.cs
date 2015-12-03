@@ -1,4 +1,6 @@
-﻿using System.Linq.Expressions;
+﻿using System.Data;
+using System.Data.SqlClient;
+using System.Linq.Expressions;
 using Exam.Model;
 using Exam.Repository;
 using Exam.Repository.Repo;
@@ -33,6 +35,9 @@ namespace Exam.Service.Interface
 
         [Import]
         private WorkflowTeamRepository workflowTeamRepo;
+
+        [Import("Exam")]
+        private IAdoNetWrapper adonetWrapper;
 
         public void CreateProcessInfo(ProcessExtendModel pInfo)
         {
@@ -115,7 +120,7 @@ namespace Exam.Service.Interface
                                           SysNo = detail.SysNo,
                                           MasterSysNo = detail.MasterSysNo,
                                           NodeName = detail.NodeName,
-                                          ProcessInfoSysNo = detail.ProcessInfoSysNo,
+                                          ProcessName = detail.ProcessName,
                                           TeamName = detail.TeamName
                                       }).ToList()
                         };
@@ -150,38 +155,68 @@ namespace Exam.Service.Interface
         {
             if (master != null)
             {
-                var insertCount = tiKuRepo.Insert(PublicFunc.EntityMap<TiKuMasterModel, TiKuMaster>(master), false);
+                var parameter = new SqlParameter()
+                {
+                    DbType = DbType.String,
+                    ParameterName = "@TiKuName",
+                    Value = master.TiKuName
+                };
+                adonetWrapper.ExecuteSqlCommand(
+                        @"declare @masterSysNo int
+                          select @masterSysNo = SysNo FROM dbo.TiKuMaster where TiKuName=@TiKuName
+                          delete from dbo.TiKuMaster where SysNo = @masterSysNo;
+                          delete from dbo.TiKuDetail where MasterSysNo = @masterSysNo"
+                        , parameter);
+
+                var insertCount = tiKuRepo.Insert(PublicFunc.EntityMap<TiKuMasterModel, TiKuMaster>(master));
                 if (insertCount > 0)
                 {
+                    var masterSysNo = tiKuRepo.Entities.FirstOrDefault(m => m.TiKuName == master.TiKuName).SysNo;
                     var details = PublicFunc.EntityMap<List<TiKuDetailModel>, List<TiKuDetail>>(master.Details);
                     if (details != null)
                     {
-                        tiKuDetailRepo.Insert(details, false);
+                        details.ForEach((detail) =>
+                        {
+                            detail.MasterSysNo = masterSysNo;
+                        });
+                        tiKuDetailRepo.Insert(details);
                     }
                 }
-
-                UnitOfWork.Submit();
             }
         }
 
-        public void UpdateTiKu(TiKuMasterModel master)
+        public void UpdateTiKuStatus(TiKuUpdateModel masters)
         {
-            if (master != null)
+            if (masters != null)
             {
-                var updateCount = tiKuRepo.Update(PublicFunc.EntityMap<TiKuMasterModel, TiKuMaster>(master), false);
-                if (updateCount > 0)
+                foreach (var master in masters.List)
                 {
-                    var details = PublicFunc.EntityMap<List<TiKuDetailModel>, List<TiKuDetail>>(master.Details);
-                    if (details != null)
+                    var entity = tiKuRepo.Entities.FirstOrDefault(m => m.SysNo == master.SysNo);
+                    if (entity != null)
                     {
-                        foreach (var detail in details)
-                        {
-                            tiKuDetailRepo.Update(detail, false);
-                        }
+                        entity.Status = master.Status;
+                        entity.LastEditDate = DateTime.Now;
+                        entity.LastEditUser = masters.User.UserID;
+                        tiKuRepo.Update(entity);
                     }
                 }
+            }
+        }
 
-                UnitOfWork.Submit();
+        public void DeleteTiKu(TiKuUpdateModel model)
+        {
+            foreach (var master in model.List)
+            {
+                var parameter = new SqlParameter()
+                {
+                    DbType = DbType.Int32,
+                    ParameterName = "@SysNo",
+                    Value = master.SysNo
+                };
+                adonetWrapper.ExecuteSqlCommand(
+                        @"delete from dbo.TiKuMaster where SysNo = @SysNo;
+                      delete from dbo.TiKuDetail where MasterSysNo = @SysNo"
+                        , parameter);
             }
         }
 

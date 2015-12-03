@@ -125,7 +125,7 @@
           </Key>
           <Property Name="SysNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MasterSysNo" Type="int" Nullable="false" />
-          <Property Name="ProcessInfoSysNo" Type="int" Nullable="false" />
+          <Property Name="ProcessName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="NodeName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="TeamName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -403,9 +403,9 @@
           </Key>
           <Property Name="SysNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MasterSysNo" Type="Int32" Nullable="false" />
-          <Property Name="ProcessInfoSysNo" Type="Int32" Nullable="false" />
           <Property Name="NodeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="TeamName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TiKuMaster">
           <Key>
@@ -607,9 +607,9 @@
           <EntitySetMapping Name="TiKuDetail">
             <EntityTypeMapping TypeName="ExamSystemModel.TiKuDetail">
               <MappingFragment StoreEntitySet="TiKuDetail">
+                <ScalarProperty Name="ProcessName" ColumnName="ProcessName" />
                 <ScalarProperty Name="TeamName" ColumnName="TeamName" />
                 <ScalarProperty Name="NodeName" ColumnName="NodeName" />
-                <ScalarProperty Name="ProcessInfoSysNo" ColumnName="ProcessInfoSysNo" />
                 <ScalarProperty Name="MasterSysNo" ColumnName="MasterSysNo" />
                 <ScalarProperty Name="SysNo" ColumnName="SysNo" />
               </MappingFragment>

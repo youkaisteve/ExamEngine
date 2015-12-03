@@ -30,18 +30,17 @@ namespace Exam.Api.Framework
             //string baseTypeNameUpper = type.GetTypeInfo().BaseType != null ? type.GetTypeInfo().BaseType.Name.ToUpper() : "";
             if (PublicFunc.MatchType(type, "MODELBASE"))
             {
-                var result = base.ReadFromStreamAsync(type, readStream, content, formatterLogger).Result as ModelBase;
-                if (result != null)
+                var result = base.ReadFromStreamAsync(type, readStream, content, formatterLogger).Result;
+                var baseModel = result as ModelBase ?? new ModelBase();
+                var headers = content.Headers;
+                baseModel.User = new UserInfo
                 {
-                    var headers = content.Headers;
-                    result.User = new UserInfo
-                    {
-                        UserID = headers.GetValues("UserID").FirstOrDefault(),
-                        UserName = headers.GetValues("UserName").FirstOrDefault(),
-                        UserSysNo = int.Parse(headers.GetValues("UserSysNo").FirstOrDefault())
-                    };
-                }
-                return Task.Run<object>(() => result);
+                    UserID = headers.GetValues("UserID").FirstOrDefault(),
+                    UserName = headers.GetValues("UserName").FirstOrDefault(),
+                    UserSysNo = int.Parse(headers.GetValues("UserSysNo").FirstOrDefault())
+                };
+   
+                return Task.Run<object>(() => baseModel);
             }
             return base.ReadFromStreamAsync(type, readStream, content, formatterLogger);
         }

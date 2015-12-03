@@ -1,5 +1,10 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Data;
+using System.Web;
 using System.Web.Http;
+using Component.Tools;
 using Exam.Api.Filters;
 using Exam.Api.Framework;
 using Exam.Model;
@@ -20,20 +25,12 @@ namespace Exam.Api.Controllers
         [Import]
         private ITiKuService tiKuService { get; set; }
 
-        [HttpPost]
-        [BaseAuthoriizeFilter]
-        public ApiResponse ImportTiku(TiKuMasterModel model)
-        {
-            tiKuService.CreateTiKu(model);
-            return ApiOk();
-        }
-
         [HttpGet]
         public HttpResponseMessage ExportProcessInfo()
         {
             var data = tiKuService.GetExportProcess();
             var table = Utility.ToDataTable(data);
-            var stream = Utility.DataTableToExcel(table);
+            var stream = Utility.DataTableToExcel(table, "tiku");
             HttpResponseMessage result = new HttpResponseMessage(HttpStatusCode.OK);
             result.Content = new StreamContent(stream);
             result.Content.Headers.ContentType =
@@ -42,16 +39,20 @@ namespace Exam.Api.Controllers
             {
                 FileName = "题库.xls"
             };
-            
+
             return result;
         }
 
-        public ApiResponse ImportTiKu()
+
+        [HttpPost]
+        [BaseAuthoriizeFilter]
+        public ApiResponse ImportTiKu(ModelBase baseModel)
         {
             string uploadPath = Path.Combine(
                 PublicFunc.GetDeployDirectory(),
                 PublicFunc.GetConfigByKey_AppSettings("Upload_Path"));
             HttpPostedFile file = HttpContext.Current.Request.Files[0];
+            //var file = new {FileName = "流程列表 (4).xls"};
             string strPath = Path.Combine(uploadPath, file.FileName);
             if (!Directory.Exists(uploadPath))
             {
@@ -59,13 +60,54 @@ namespace Exam.Api.Controllers
             }
             file.SaveAs(strPath);
 
-            var ds = Utility.ExcelToDataSet(strPath, "select * from [Sheet1$]");
-            TiKuMasterModel model = new TiKuMasterModel();
+            var ds = Utility.ExcelToDataSet(strPath, "select * from [tiku$]");
+            var model = new TiKuMasterModel();
+            if (ds != null && ds.Tables[0] != null)
+            {
+                model.TiKuName = file.FileName.Substring(0, file.FileName.LastIndexOf('.'));
+                model.InDate = DateTime.Now;
+                model.InUser = baseModel.User.UserID;
+                model.LastEditDate = DateTime.Now;
+                model.LastEditUser = baseModel.User.UserID;
+                model.Status = (int)TiKuStatus.WaitForActive;
+                model.Details = new List<TiKuDetailModel>();
+                foreach (DataRow row in ds.Tables[0].Rows)
+                {
+                    model.Details.Add(new TiKuDetailModel
+                    {
+                        TeamName = row["TeamName"].ToString(),
+                        ProcessName = row["ProcessName"].ToString(),
+                        NodeName = row["NodeName"].ToString()
+                    });
+                }
+            }
+
+            tiKuService.CreateTiKu(model);
 
             if (File.Exists(strPath))
             {
                 File.Delete(strPath);
             }
+            return ApiOk();
+        }
+
+        [HttpPost]
+        [BaseAuthoriizeFilter]
+        public ApiResponse ActiveTiKu(TiKuUpdateModel model)
+        {
+            foreach(var item in model.List)
+            {
+                item.Status = (int)TiKuStatus.Actived;
+            }
+            tiKuService.UpdateTiKuStatus(model);
+            return ApiOk();
+        }
+
+        [HttpPost]
+        [BaseAuthoriizeFilter]
+        public ApiResponse DeleteTiKu(TiKuUpdateModel model)
+        {
+            tiKuService.DeleteTiKu(model);
             return ApiOk();
         }
 
