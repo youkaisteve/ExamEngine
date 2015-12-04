@@ -52,7 +52,7 @@ namespace Exam.Api.Controllers
                 PublicFunc.GetDeployDirectory(),
                 PublicFunc.GetConfigByKey_AppSettings("Upload_Path"));
             HttpPostedFile file = HttpContext.Current.Request.Files[0];
-            //var file = new {FileName = "流程列表 (4).xls"};
+            //var file = new { FileName = "题库.xls" };
             string strPath = Path.Combine(uploadPath, file.FileName);
             if (!Directory.Exists(uploadPath))
             {
@@ -60,8 +60,9 @@ namespace Exam.Api.Controllers
             }
             file.SaveAs(strPath);
 
-            var ds = Utility.ExcelToDataSet(strPath, "select * from [tiku$]");
+            var ds = Utility.ExcelToDataSet(strPath, "select * from [Sheet0$]");
             var model = new TiKuMasterModel();
+            model.User = baseModel.User;
             if (ds != null && ds.Tables[0] != null)
             {
                 model.TiKuName = file.FileName.Substring(0, file.FileName.LastIndexOf('.'));
@@ -99,7 +100,7 @@ namespace Exam.Api.Controllers
             {
                 item.Status = (int)TiKuStatus.Actived;
             }
-            tiKuService.UpdateTiKuStatus(model);
+            tiKuService.ActiveTiKu(model);
             return ApiOk();
         }
 

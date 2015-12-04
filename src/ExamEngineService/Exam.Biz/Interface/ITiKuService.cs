@@ -26,7 +26,7 @@ namespace Exam.Service.Interface
         QueryResult<TiKuMasterModel> GetTiKuByCondition(TiKuQueryFilter filter);
         void CreateTiKu(TiKuMasterModel master);
 
-        void UpdateTiKuStatus(TiKuUpdateModel master);
+        void ActiveTiKu(TiKuUpdateModel master);
 
         void DeleteTiKu(TiKuUpdateModel model);
 

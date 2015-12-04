@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Exam.Model.QueryFilters;
 using Component.Data;
+using WorkflowCallWapper;
 
 namespace Exam.Service.Interface
 {
@@ -38,6 +39,11 @@ namespace Exam.Service.Interface
 
         [Import("Exam")]
         private IAdoNetWrapper adonetWrapper;
+
+        [Import]
+        private ITaskService taskService;
+        [Import]
+        private IUserService userService;
 
         public void CreateProcessInfo(ProcessExtendModel pInfo)
         {
@@ -175,17 +181,30 @@ namespace Exam.Service.Interface
                     var details = PublicFunc.EntityMap<List<TiKuDetailModel>, List<TiKuDetail>>(master.Details);
                     if (details != null)
                     {
+                        var initExam = new InitExamModel();
+                        initExam.User = master.User;
+                        initExam.ProcessName = details[0].ProcessName;
+                        initExam.NodeTeams = new List<NodeTeamModel>();
+
                         details.ForEach((detail) =>
                         {
                             detail.MasterSysNo = masterSysNo;
+                            initExam.NodeTeams.Add(new NodeTeamModel()
+                            {
+                                NodeName = detail.NodeName,
+                                TeamName = detail.TeamName
+                            });
                         });
+
                         tiKuDetailRepo.Insert(details);
+
+                        taskService.InitExam(initExam);
                     }
                 }
             }
         }
 
-        public void UpdateTiKuStatus(TiKuUpdateModel masters)
+        public void ActiveTiKu(TiKuUpdateModel masters)
         {
             if (masters != null)
             {
@@ -198,6 +217,19 @@ namespace Exam.Service.Interface
                         entity.LastEditDate = DateTime.Now;
                         entity.LastEditUser = masters.User.UserID;
                         tiKuRepo.Update(entity);
+
+                        var queryDetail = tiKuDetailRepo.Entities.Where(m => m.MasterSysNo == entity.SysNo);
+                        if (queryDetail.Any())
+                        {
+                            var detail= queryDetail.FirstOrDefault();
+                            taskService.BeginExam(new BeginExamModel()
+                            {
+                                ProcessName = detail.ProcessName,
+                                UserId = masters.User.UserID,
+                                UserName = masters.User.UserName
+                            });
+                        }
+
                     }
                 }
             }
@@ -222,24 +254,32 @@ namespace Exam.Service.Interface
 
         public List<dynamic> GetExportProcess()
         {
-            var query = from wt in workflowTeamRepo.Entities
-                        join p in processInfoRepo.Entities
-                            on wt.ProcessName equals p.ProcessName
-                        select new
-                        {
-                            wt.ProcessName,
-                            wt.NodeName,
-                            wt.TeamName,
-                            p.Category,
-                            p.DifficultyLevel,
-                            p.Description,
-                            p.InDate,
-                            p.InUser,
-                            LastEditDate = p.LastEditDate.Value,
-                            p.LastEditUser
-                        };
+            List<dynamic> result = new List<dynamic>();
+            var proxy = new WorkflowProxy();
+            var processList = processInfoRepo.Entities.ToList();
 
-            return query.ToList<dynamic>();
+            foreach (var p in processList)
+            {
+                var tasks = proxy.GetProcessAllTask(p.ProcessName);
+                foreach (var task in tasks)
+                {
+                    result.Add(new
+                    {
+                        p.ProcessName,
+                        NodeName = task,
+                        TeamName="",
+                        p.Category,
+                        p.DifficultyLevel,
+                        p.Description,
+                        p.InDate,
+                        p.InUser,
+                        LastEditDate = p.LastEditDate.Value,
+                        p.LastEditUser
+                    });
+                }
+            }
+
+            return result;
         }
     }
 }
