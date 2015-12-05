@@ -54,7 +54,7 @@ define(["app", "dialog"], function (app) {
 
             //显示流程图片
             methods.showProcessImage = function (name) {
-                return methods.getProcessImage(name,true).then(function(res){
+                return methods.getProcessImage(name, true).then(function (res) {
                     var base64 = res.Data.Image;
                     var html = '<div><img style="max-width:100%;" src="data:image/png;base64,' + base64 + '"/></div>';
                     return Dialog.open($rootScope, {
@@ -66,6 +66,32 @@ define(["app", "dialog"], function (app) {
                         }
                     });
                 });
+            };
+
+            //获得题库
+            methods.queryQuestion = function (filter, loading) {
+                return $rootScope._request("GetTiKuByCondition", filter, loading);
+            };
+
+            //激活题库
+            methods.activeQuestion = function (arr) {
+                var formData = {
+                    List: []
+                };
+                for (var i = 0; i < arr.length; i++) {
+                    formData.List.push({SysNo: arr[i]});
+                }
+                return $rootScope._request("ActiveTiKu",formData,true);
+            };
+            //删除题库
+            methods.deleteQuestion=function(arr){
+                var formData = {
+                    List: []
+                };
+                for (var i = 0; i < arr.length; i++) {
+                    formData.List.push({SysNo: arr[i]});
+                }
+                return $rootScope._request("DeleteTiKu",formData,true);
             };
 
             return methods;

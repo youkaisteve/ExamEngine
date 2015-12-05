@@ -10,7 +10,7 @@ define(["app.config"], function (config) {
 
     return ["$rootScope", "$http", "$sessionStorage", "$window", "$q",
         function ($rootScope, $http, $sessionStorage, $window, $q) {
-
+            $rootScope.config=config;
             $rootScope.sessionStorage = $sessionStorage;
             $rootScope.fixedFooter = false;
             $rootScope.environment = config.environment;

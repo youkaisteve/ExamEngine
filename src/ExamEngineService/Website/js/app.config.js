@@ -13,6 +13,8 @@ define({
     , api: "http://127.0.0.1:8083/api/Home/Handler"
     , importStudentUri: "http://127.0.0.1:8083/api/User/ImportUser"
     , uploadFormUri: "http://127.0.0.1:8083/api/User/UploadForm"
+    , importQuestion: "http://127.0.0.1:8083/api/Tiku/ExportProcessInfo"
+    , exportQuestion: "http://127.0.0.1:8083/api/Tiku/ExportProcessInfo"
     , start: "/default"
     , route: {
         "/default": {
@@ -60,6 +62,10 @@ define({
         }
         , "/maintain_process": {
             templateUrl: "maintain_process.html"
+            , ssl: true
+        }
+        , "/question": {
+            templateUrl: "question.html"
             , ssl: true
         }
     }

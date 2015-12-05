@@ -1,0 +1,47 @@
+<ng-include src="'partials/header.html'"></ng-include>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <span style="margin-top: 6px;display:inline-block;">题库设置</span>
+        </div>
+        <div class="panel-body">
+            <div class="panel panel-primary">
+                <div class="panel-heading">题库导入</div>
+                <div class="panel-body">
+                    <file-uploader oncomplete="uploadComplete($result)" url="config.importQuestion"></file-uploader>
+                </div>
+            </div>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>SysNo</th>
+                    <th>题库名称</th>
+                    <th>状态</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="q in Questions track by $index">
+                    <td>{{q.SysNo}}</td>
+                    <td>{{q.TiKuName}}</td>
+                    <td>{{q.Status}}</td>
+                    <td>
+                        <button class="btn btn-xs" disabled-when-click="active(q.SysNo)"><i class="fa fa-check"></i></button>
+                        <button class="btn btn-xs" disabled-when-click="del(q.SysNo)"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <pager page-info="PageInfo" on-page-change=""></pager>
+                        <a target="_blank" ng-href="config.exportQuestion" class="btn btn-default pull-right">导出</a>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<ng-include src="'partials/footer.html'"></ng-include>
