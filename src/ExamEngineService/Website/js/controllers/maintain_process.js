@@ -4,11 +4,11 @@
  * email:mahai_1986@126.com
  *
  */
-define(["app", "process", "dialog", "pager","disabled-when-click"], function (app) {
+define(["app", "process", "dialog", "pager", "disabled-when-click"], function (app) {
 
     app.controller("maintain_process", ["$scope", "$window", "Dialog", "Process",
         function ($scope, $window, Dialog, Process) {
-            $scope.ProcessService=Process;
+            $scope.ProcessService = Process;
             $scope.PageInfo = {
                 PageIndex: 1,
                 PageSize: 10,
@@ -46,21 +46,28 @@ define(["app", "process", "dialog", "pager","disabled-when-click"], function (ap
                     }
                 });
             };
-            $scope.updateProcessInfo=function(model,process){
-                model.SysNo=process.SysNo;
-                return $scope._request("UpdateProcessInfo",model,false).then(function(res){
-                    if(res.Code==0) {
+            $scope.updateProcessInfo = function (model, process) {
+                model.SysNo = process.SysNo;
+                return $scope._request("UpdateProcessInfo", model, false).then(function (res) {
+                    if (res.Code == 0) {
                         process.edit = false;
                         for (var key in model) {
                             process[key] = model[key];
                         }
                     }
-                    else{
+                    else {
                         $scope._notify(res.Message);
                     }
                 });
             };
-
+            $scope.add = function (model) {
+                return $scope._request("CreateProcessInfo", model, true).then(function (res) {
+                    $scope.PageInfo.PageIndex = 1;
+                    return $scope.query().then(function () {
+                        $scope.Model2 = {};
+                    });
+                });
+            };
             $scope.query();
 
         }]);
