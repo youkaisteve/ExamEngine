@@ -26,6 +26,7 @@ require.config({
         , "team-select": "directive/team-select/index"
         , "custom-select": "directive/custom-select/index"
         , "file-uploader": "directive/file-uploader/index"
+        , "pager": "directive/pager/index"
         , "disabled-when-click": "directive/disabled_when_click"
 
         //servie

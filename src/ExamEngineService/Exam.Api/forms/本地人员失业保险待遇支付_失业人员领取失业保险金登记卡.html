@@ -1,0 +1,205 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">失业人员领取失业保险金登记卡</div>
+    <div class="panel-body">
+        <p>
+            <span>发放失业保险金单位名称：<input type="text" ng-model="Model.CompanyName"/></span>
+            <span style="margin-left:50px;"><input type="text" ng-model="Model.CreateDate" placeholder="年月日" style="margin-left:50px;"/></span>
+            <span style="margin-left:50px;">顺序号：<input type="text" ng-model="Model.SerialNo"/></span>
+        </p>
+        <table class="table table-style">
+            <tbody>
+            <tr>
+                <td colspan="2">失业人员姓名</td>
+                <td><input type="text" ng-model="Model.Name"/></td>
+                <td>性别</td>
+                <td><input type="text" ng-model="Model.Sex"/></td>
+                <td>出生年月</td>
+                <td><input type="text" ng-model="Model.BirthDay"/></td>
+                <td>领取证编号</td>
+                <td><input type="text" ng-model="Model.ReceiveNo"/></td>
+                <td>求职证编号</td>
+                <td><input type="text" ng-model="Model.ResumeNo"/></td>
+                <td>领取月数</td>
+                <td><input type="text" ng-model="Model.ReceiveMonthCount"/></td>
+                <td rowspan="3" colspan="2" style="vertical-align: middle;text-align: center;">相片</td>
+            </tr>
+            <tr>
+                <td colspan="2">住址</td>
+                <td colspan="11"><input type="text" ng-model="Model.Address"/></td>
+            </tr>
+            <tr>
+                <td rowspan="2" colspan="2">初次核定情况</td>
+                <td colspan="11">
+                    <p style="text-align: left;">自<input type="text" ng-model="Model.BeginDate1" placeholder="年月" style="width: auto;border: 1px solid;padding: 2px"/>至<input type="text" ng-model="Model.EndDate1" placeholder="年月" style="width: auto;border: 1px solid;padding: 2px"/>按第（<input type="text" ng-model="Model.Dang" style="width: auto;border: 1px solid;padding: 2px"/>）档<input type="text" ng-model="Model.Amount1" style="width: auto;border: 1px solid;padding: 2px"/>元标准发放；</p>
+                    <p style="text-align: left;">自<input type="text" ng-model="Model.BeginDate2" placeholder="年月" style="width: auto;border: 1px solid;padding: 2px"/>至<input type="text" ng-model="Model.EndDate2" placeholder="年月" style="width: auto;border: 1px solid;padding: 2px"/>按第一档<input type="text" ng-model="Model.Amount1" style="width: auto;border: 1px solid;padding: 2px"/>元标准发放。</p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">指定医院</td>
+                <td colspan="3"><input type="text" ng-model="Model.Hospital"/></td>
+                <td colspan="2">补助比例</td>
+                <td colspan="2"><input type="text" ng-model="Model.Hospital" placeholder="%"/></td>
+                <td colspan="2">医疗补助金限额</td>
+                <td colspan="2"><input type="text" ng-model="Model.Hospital" placeholder="元"/></td>
+            </tr>
+            <tr>
+                <td colspan="15"><span style="padding-left:40%;">领&nbsp;取&nbsp;失&nbsp;业&nbsp;保&nbsp;险&nbsp;金&nbsp;记&nbsp;录</span><span style="float:right;">单位：元</span></td>
+            </tr>
+            <tr>
+                <td>月数</td>
+                <td>时间</td>
+                <td>金额</td>
+                <td>经手人</td>
+                <td>复核人</td>
+                <td>月数</td>
+                <td>时间</td>
+                <td>金额</td>
+                <td>经手人</td>
+                <td>复核人</td>
+                <td>月数</td>
+                <td>时间</td>
+                <td>金额</td>
+                <td>经手人</td>
+                <td>复核人</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><input type="text" ng-model="Model.List.R1C1"/></td>
+                <td><input type="text" ng-model="Model.List.R1C2"/></td>
+                <td><input type="text" ng-model="Model.List.R1C3"/></td>
+                <td><input type="text" ng-model="Model.List.R1C4"/></td>
+                <td>9</td>
+                <td><input type="text" ng-model="Model.List.R9C1"/></td>
+                <td><input type="text" ng-model="Model.List.R9C2"/></td>
+                <td><input type="text" ng-model="Model.List.R9C3"/></td>
+                <td><input type="text" ng-model="Model.List.R9C4"/></td>
+                <td>17</td>
+                <td><input type="text" ng-model="Model.List.R17C1"/></td>
+                <td><input type="text" ng-model="Model.List.R17C2"/></td>
+                <td><input type="text" ng-model="Model.List.R17C3"/></td>
+                <td><input type="text" ng-model="Model.List.R17C4"/></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><input type="text" ng-model="Model.List.R2C1"/></td>
+                <td><input type="text" ng-model="Model.List.R2C2"/></td>
+                <td><input type="text" ng-model="Model.List.R2C3"/></td>
+                <td><input type="text" ng-model="Model.List.R2C4"/></td>
+                <td>10</td>
+                <td><input type="text" ng-model="Model.List.R10C1"/></td>
+                <td><input type="text" ng-model="Model.List.R10C2"/></td>
+                <td><input type="text" ng-model="Model.List.R10C3"/></td>
+                <td><input type="text" ng-model="Model.List.R10C4"/></td>
+                <td>18</td>
+                <td><input type="text" ng-model="Model.List.R18C1"/></td>
+                <td><input type="text" ng-model="Model.List.R18C2"/></td>
+                <td><input type="text" ng-model="Model.List.R18C3"/></td>
+                <td><input type="text" ng-model="Model.List.R18C4"/></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><input type="text" ng-model="Model.List.R3C1"/></td>
+                <td><input type="text" ng-model="Model.List.R3C2"/></td>
+                <td><input type="text" ng-model="Model.List.R3C3"/></td>
+                <td><input type="text" ng-model="Model.List.R3C4"/></td>
+                <td>11</td>
+                <td><input type="text" ng-model="Model.List.R11C1"/></td>
+                <td><input type="text" ng-model="Model.List.R11C2"/></td>
+                <td><input type="text" ng-model="Model.List.R11C3"/></td>
+                <td><input type="text" ng-model="Model.List.R11C4"/></td>
+                <td>19</td>
+                <td><input type="text" ng-model="Model.List.R19C1"/></td>
+                <td><input type="text" ng-model="Model.List.R19C2"/></td>
+                <td><input type="text" ng-model="Model.List.R19C3"/></td>
+                <td><input type="text" ng-model="Model.List.R19C4"/></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><input type="text" ng-model="Model.List.R4C1"/></td>
+                <td><input type="text" ng-model="Model.List.R4C2"/></td>
+                <td><input type="text" ng-model="Model.List.R4C3"/></td>
+                <td><input type="text" ng-model="Model.List.R4C4"/></td>
+                <td>12</td>
+                <td><input type="text" ng-model="Model.List.R12C1"/></td>
+                <td><input type="text" ng-model="Model.List.R12C2"/></td>
+                <td><input type="text" ng-model="Model.List.R12C3"/></td>
+                <td><input type="text" ng-model="Model.List.R12C4"/></td>
+                <td>20</td>
+                <td><input type="text" ng-model="Model.List.R20C1"/></td>
+                <td><input type="text" ng-model="Model.List.R20C2"/></td>
+                <td><input type="text" ng-model="Model.List.R20C3"/></td>
+                <td><input type="text" ng-model="Model.List.R20C4"/></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><input type="text" ng-model="Model.List.R5C1"/></td>
+                <td><input type="text" ng-model="Model.List.R5C2"/></td>
+                <td><input type="text" ng-model="Model.List.R5C3"/></td>
+                <td><input type="text" ng-model="Model.List.R5C4"/></td>
+                <td>13</td>
+                <td><input type="text" ng-model="Model.List.R13C1"/></td>
+                <td><input type="text" ng-model="Model.List.R13C2"/></td>
+                <td><input type="text" ng-model="Model.List.R13C3"/></td>
+                <td><input type="text" ng-model="Model.List.R13C4"/></td>
+                <td>21</td>
+                <td><input type="text" ng-model="Model.List.R21C1"/></td>
+                <td><input type="text" ng-model="Model.List.R21C2"/></td>
+                <td><input type="text" ng-model="Model.List.R21C3"/></td>
+                <td><input type="text" ng-model="Model.List.R21C4"/></td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td><input type="text" ng-model="Model.List.R6C1"/></td>
+                <td><input type="text" ng-model="Model.List.R6C2"/></td>
+                <td><input type="text" ng-model="Model.List.R6C3"/></td>
+                <td><input type="text" ng-model="Model.List.R6C4"/></td>
+                <td>14</td>
+                <td><input type="text" ng-model="Model.List.R14C1"/></td>
+                <td><input type="text" ng-model="Model.List.R14C2"/></td>
+                <td><input type="text" ng-model="Model.List.R14C3"/></td>
+                <td><input type="text" ng-model="Model.List.R14C4"/></td>
+                <td>22</td>
+                <td><input type="text" ng-model="Model.List.R22C1"/></td>
+                <td><input type="text" ng-model="Model.List.R22C2"/></td>
+                <td><input type="text" ng-model="Model.List.R22C3"/></td>
+                <td><input type="text" ng-model="Model.List.R22C4"/></td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td><input type="text" ng-model="Model.List.R7C1"/></td>
+                <td><input type="text" ng-model="Model.List.R7C2"/></td>
+                <td><input type="text" ng-model="Model.List.R7C3"/></td>
+                <td><input type="text" ng-model="Model.List.R7C4"/></td>
+                <td>15</td>
+                <td><input type="text" ng-model="Model.List.R15C1"/></td>
+                <td><input type="text" ng-model="Model.List.R15C2"/></td>
+                <td><input type="text" ng-model="Model.List.R15C3"/></td>
+                <td><input type="text" ng-model="Model.List.R15C4"/></td>
+                <td>23</td>
+                <td><input type="text" ng-model="Model.List.R23C1"/></td>
+                <td><input type="text" ng-model="Model.List.R23C2"/></td>
+                <td><input type="text" ng-model="Model.List.R23C3"/></td>
+                <td><input type="text" ng-model="Model.List.R23C4"/></td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td><input type="text" ng-model="Model.List.R8C1"/></td>
+                <td><input type="text" ng-model="Model.List.R8C2"/></td>
+                <td><input type="text" ng-model="Model.List.R8C3"/></td>
+                <td><input type="text" ng-model="Model.List.R8C4"/></td>
+                <td>16</td>
+                <td><input type="text" ng-model="Model.List.R16C1"/></td>
+                <td><input type="text" ng-model="Model.List.R16C2"/></td>
+                <td><input type="text" ng-model="Model.List.R16C3"/></td>
+                <td><input type="text" ng-model="Model.List.R16C4"/></td>
+                <td>24</td>
+                <td><input type="text" ng-model="Model.List.R24C1"/></td>
+                <td><input type="text" ng-model="Model.List.R24C2"/></td>
+                <td><input type="text" ng-model="Model.List.R24C3"/></td>
+                <td><input type="text" ng-model="Model.List.R24C4"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

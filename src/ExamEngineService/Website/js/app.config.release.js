@@ -58,6 +58,10 @@ define({
         , "/test": {
             templateUrl: "test.html"
         }
+        , "/maintain_process": {
+            templateUrl: "maintain_process.html"
+            , ssl: true
+        }
     }
     , formDependence: {}
     , roleMappding: {

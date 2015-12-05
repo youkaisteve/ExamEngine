@@ -1,0 +1,42 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">失业人员领取失业保险金申领单</div>
+    <div class="panel-body">
+        <table class="table table-style">
+            <tbody>
+            <tr>
+                <td>失业人员姓名</td>
+                <td><input type="text" ng-model="Model.Name"/></td>
+                <td>性别</td>
+                <td><input type="text" ng-model="Model.Sex"/></td>
+                <td>出生年月</td>
+                <td><input type="text" ng-model="Model.BirthDay"/></td>
+            </tr>
+            <tr>
+                <td colspan="2">领取证编号</td>
+                <td colspan="2"><input type="text" ng-model="Model.GetNo"/></td>
+                <td>申领月份</td>
+                <td><input type="text" ng-model="Model.GetMonth"/></td>
+            </tr>
+            <tr>
+                <td colspan="2">申领失业保险金额</td>
+                <td colspan="4" style="text-align:left;">大写<input type="text" ng-model="Model.AmountUpper" style="width: auto;border: 1px solid;padding: 2px"/>（￥<input type="text" ng-model="Model.AmountNumber" style="width: auto;border: 1px solid;padding: 2px"/>）
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2">现金付讫章</td>
+                <td>经手人：</td>
+                <td><input type="text" ng-model="Model.ProcessPerson"/></td>
+                <td rowspan="2">领款人：</td>
+                <td rowspan="2"><input type="text" ng-model="Model.ReceivePerson"/></td>
+                <td>付款日期：</td>
+            </tr>
+            <tr>
+                <td>复核人:</td>
+                <td><input type="text" ng-model="Model.ReAuditPerson"/></td>
+                <td><input type="text" ng-model="Model.PayDate" placeholder="年月日"/></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

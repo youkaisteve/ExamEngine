@@ -1,0 +1,54 @@
+<ng-include src="'partials/header.html'"></ng-include>
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            流程分类维护
+        </div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th style="width:100px">流程名</th>
+                    <th style="width:150px">分类</th>
+                    <th style="width:150px">难度</th>
+                    <th>描述</th>
+                    <th style="width:180px"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="process in Processes track by $index" ng-init="process.edit=false">
+                    <td ng-show="!process.edit">{{process.ProcessName}}</td>
+                    <td ng-show="process.edit">
+                        <input class="form-control" ng-model="Model.ProcessName" ng-init="Model.ProcessName=process.ProcessName"
+                               type="text"></td>
+                    <td ng-show="!process.edit">{{process.Category}}</td>
+                    <td ng-show="process.edit">
+                        <input class="form-control" ng-model="Model.Category" ng-init="Model.Category=process.Category"
+                               type="text"></td>
+                    <td ng-show="!process.edit">{{process.DifficultyLevel}}</td>
+                    <td ng-show="process.edit">
+                        <input class="form-control" ng-model="Model.DifficultyLevel" ng-init="Model.DifficultyLevel=process.DifficultyLevel"
+                               type="text"></td>
+                    <td ng-show="!process.edit">{{process.Description}}</td>
+                    <td ng-show="process.edit">
+                        <input class="form-control" ng-model="Model.Description" ng-init="Model.Description=process.Description"
+                               type="text"></td>
+                    <td>
+                        <button class="btn btn-sm" ng-show="!process.edit" ng-click="process.edit=true"><i class="fa fa-edit"></i></button>
+                        <button class="btn btn-sm" ng-show="process.edit"  disabled-when-click="updateProcessInfo(Model,process)"><i class="fa fa-save"></i></button>
+                        <button class="btn btn-sm" ng-show="!process.edit" disabled-when-click="ProcessService.showProcessImage(process.ProcessName)"><i class="fa fa-eye"></i></button>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <pager page-info="PageInfo" on-page-change="query"></pager>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<ng-include src="'partials/footer.html'"></ng-include>
