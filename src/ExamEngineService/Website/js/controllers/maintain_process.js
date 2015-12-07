@@ -4,7 +4,7 @@
  * email:mahai_1986@126.com
  *
  */
-define(["app", "process", "dialog", "pager", "disabled-when-click"], function (app) {
+define(["app", "process", "dialog", "pager", "disabled-when-click","custom-select"], function (app) {
 
     app.controller("maintain_process", ["$scope", "$window", "Dialog", "Process",
         function ($scope, $window, Dialog, Process) {
@@ -15,6 +15,18 @@ define(["app", "process", "dialog", "pager", "disabled-when-click"], function (a
                 Total: 0
             };
             $scope.Processes = [];
+
+            $scope.workflows = [{
+                text: "--请选择--"
+                , value: -1
+            }];
+
+            $scope.getAllWorkflows = function () {
+                return Process.getAllProcess(true).then(function (res) {
+                    $scope.workflows = Process.convertToKV(res.Data.AllProcess);
+                });
+            };
+
 
             $scope.query = function () {
                 return Process.queryProcess({
@@ -28,6 +40,8 @@ define(["app", "process", "dialog", "pager", "disabled-when-click"], function (a
             };
             $scope.updateProcessInfo = function (model, process) {
                 model.SysNo = process.SysNo;
+                model.InUser=process.InUser;
+                model.InDate=process.InDate;
                 return $scope._request("UpdateProcessInfo", model, false).then(function (res) {
                     if (res.Code == 0) {
                         process.edit = false;
@@ -49,7 +63,7 @@ define(["app", "process", "dialog", "pager", "disabled-when-click"], function (a
                 });
             };
             $scope.query();
-
+            $scope.getAllWorkflows();
         }]);
 
 });
