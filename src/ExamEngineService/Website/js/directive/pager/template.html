@@ -1,17 +1,17 @@
-﻿<ul class="pagination" ng-if="pageInfo.PageCount>1">
-    <li ng-class="{disabled:pageInfo.PageIndex==0}">
+﻿<ul class="pagination" ng-show="pageCount>1">
+    <li ng-class="{disabled:pageIndex==0}">
         <a href="javascript:void(0)"
            ng-click="prev()">
             <span>&laquo;</span>
         </a>
     </li>
-    <li ng-class="{active:page==pageInfo.PageIndex}"
-        ng-repeat="page in [] | TIMES:pageInfo.Total track by $index">
-        <a href="javascript:void(0)" ng-click="goto(page)">{{page+1}}
+    <li ng-class="{active:page==pageIndex}"
+        ng-repeat="page in [] | TIMES1:total track by $index">
+        <a href="javascript:void(0)" ng-click="goto(page)">{{page}}
             <span class="sr-only">(current)</span>
         </a>
     </li>
-    <li ng-class="{disabled:pageInfo.PageIndex==pageInfo.Total}">
+    <li ng-class="{disabled:pageIndex==total}">
         <a href="javascript:void(0)"
            ng-click="next()">
             <span>&raquo;</span>

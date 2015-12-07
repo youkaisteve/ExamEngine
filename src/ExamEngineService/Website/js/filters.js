@@ -20,4 +20,13 @@ define(["app"], function (app) {
         };
     }]);
 
+    app.filter("TIMES1", [function () {
+        return function (input, times) {
+            for (var i = 1; i <= times; i++) {
+                input.push(i);
+            }
+            return input;
+        };
+    }]);
+
 });
