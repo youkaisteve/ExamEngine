@@ -23,7 +23,9 @@ gulp.task("less", function () {
 });
 
 gulp.task("watcher", function () {
-    livereload.listen();
+    livereload.listen({
+        port:9000
+    });
 
     //less watcher
     gulp.watch("less/**/*.less", ["less"]);
