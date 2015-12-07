@@ -4,17 +4,15 @@
  * email:mahai_1986@126.com
  *
  */
-define(["app", "process", "dialog", "pager", "disabled-when-click","custom-select"], function (app) {
+define(["app", "process", "dialog", "pager", "disabled-when-click", "custom-select"], function (app) {
 
     app.controller("maintain_process", ["$scope", "$window", "Dialog", "Process",
         function ($scope, $window, Dialog, Process) {
             $scope.ProcessService = Process;
-            $scope.PageInfo = {
-                PageIndex: 1,
-                PageSize: 10,
-                Total: 0
-            };
             $scope.Processes = [];
+            $scope.pageSize = 1;
+            $scope.pageIndex = 1;
+            $scope.total = 0;
 
             $scope.workflows = [{
                 text: "--请选择--"
@@ -28,20 +26,26 @@ define(["app", "process", "dialog", "pager", "disabled-when-click","custom-selec
             };
 
 
-            $scope.query = function () {
+            $scope.query = function (pageIndex, pageSize) {
                 return Process.queryProcess({
-                    PageInfo: $scope.PageInfo
+                    PageInfo: {
+                        PageSize: pageSize,
+                        PageIndex: pageIndex
+                    }
                 }, true).then(function (res) {
                     if (res.Data) {
                         $scope.Processes = res.Data.Result;
-                        $scope.PageInfo = res.Data.Page;
+                        //$scope.PageInfo = res.Data.Page;
+                        $scope.pageIndex = pageIndex;
+                        $scope.pageSize = pageSize;
+                        $scope.total = res.Data.Page.Total;
                     }
                 });
             };
             $scope.updateProcessInfo = function (model, process) {
                 model.SysNo = process.SysNo;
-                model.InUser=process.InUser;
-                model.InDate=process.InDate;
+                model.InUser = process.InUser;
+                model.InDate = process.InDate;
                 return $scope._request("UpdateProcessInfo", model, false).then(function (res) {
                     if (res.Code == 0) {
                         process.edit = false;
@@ -55,15 +59,14 @@ define(["app", "process", "dialog", "pager", "disabled-when-click","custom-selec
                 });
             };
             $scope.add = function (model) {
-                model.ProcessName=model.ProcessName.ProcessName;
+                model.ProcessName = model.ProcessName.ProcessName;
                 return $scope._request("CreateProcessInfo", model, true).then(function (res) {
-                    $scope.PageInfo.PageIndex = 1;
-                    return $scope.query().then(function () {
+                    return $scope.query($scope.pageIndex, $scope.pageSize).then(function () {
                         $scope.Model2 = {};
                     });
                 });
             };
-            $scope.query();
+            $scope.query($scope.pageIndex, $scope.pageSize);
             $scope.getAllWorkflows();
         }]);
 
