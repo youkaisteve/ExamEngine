@@ -55,6 +55,7 @@ define(["app", "process", "dialog", "pager", "disabled-when-click","custom-selec
                 });
             };
             $scope.add = function (model) {
+                model.ProcessName=model.ProcessName.ProcessName;
                 return $scope._request("CreateProcessInfo", model, true).then(function (res) {
                     $scope.PageInfo.PageIndex = 1;
                     return $scope.query().then(function () {
