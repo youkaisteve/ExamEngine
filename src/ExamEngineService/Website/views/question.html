@@ -25,7 +25,7 @@
                 <tr ng-repeat="q in Questions track by $index">
                     <td>{{q.SysNo}}</td>
                     <td>{{q.TiKuName}}</td>
-                    <td>{{q.Status}}</td>
+                    <td ng-switch="q.Status"><span ng-switch-when="1">未激活</span><span ng-switch-when="2">激活</span></td>
                     <td>
                         <button class="btn btn-xs" disabled-when-click="active(q.SysNo)"><i class="fa fa-check"></i></button>
                         <button class="btn btn-xs" disabled-when-click="del(q.SysNo)"><i class="fa fa-trash"></i></button>
@@ -36,7 +36,7 @@
                 <tr>
                     <td colspan="4">
                         <pager page-info="PageInfo" on-page-change=""></pager>
-                        <a target="_blank" ng-href="config.exportQuestion" class="btn btn-default pull-right">导出</a>
+                        <a target="_blank" href="{{config.exportQuestion}}" class="btn btn-default pull-right">导出</a>
                     </td>
                 </tr>
                 </tfoot>
