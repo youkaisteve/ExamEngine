@@ -17,7 +17,9 @@ define(["app", "process", "dialog", "pager", "disabled-when-click"], function (a
             $scope.Processes = [];
 
             $scope.query = function () {
-                return Process.queryProcess($scope.PageInfo, true).then(function (res) {
+                return Process.queryProcess({
+                    PageInfo: $scope.PageInfo
+                }, true).then(function (res) {
                     if (res.Data) {
                         $scope.Processes = res.Data.Result;
                         $scope.PageInfo = res.Data.Page;
