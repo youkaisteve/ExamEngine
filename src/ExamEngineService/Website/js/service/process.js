@@ -56,7 +56,7 @@ define(["app", "dialog"], function (app) {
             methods.showProcessImage = function (name) {
                 return methods.getProcessImage(name, true).then(function (res) {
                     var base64 = res.Data.Image;
-                    var html = '<div><img style="max-width:100%;" src="data:image/png;base64,' + base64 + '"/></div>';
+                    var html = '<div style="text-align: center"><img style="max-width:100%;" src="data:image/png;base64,' + base64 + '"/></div>';
                     return Dialog.open($rootScope, {
                         title: name
                         , body: html

@@ -19,7 +19,9 @@ define(["app", "process", "dialog", "pager", "disabled-when-click", "file-upload
             $scope.Questions = [];
 
             $scope.query = function () {
-                return Process.queryQuestion($scope.PageInfo, true).then(function (res) {
+                return Process.queryQuestion({
+                    PageInfo:$scope.PageInfo
+                }, true).then(function (res) {
                     if (res.Data) {
                         $scope.PageInfo.Total = res.Data.Page.Total;
                         $scope.Questions = res.Data.Result;
