@@ -22,7 +22,7 @@ Function Install-SolutionPackages() {
 }
 
 Function Deploy-Api() {
-    iex -Command "& '$global_msBuildPath' /p:WebAppPublishDir='C:\ExamApi\' /p:Configuration=Release '$global_deployApiProject'"
+    iex -Command "& '$global_msBuildPath' /p:WebAppPublishDir='C:\ExamApi\' /p:Configuration=Debug '$global_deployApiProject'"
 }
 
 #=======================================  

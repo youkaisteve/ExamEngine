@@ -6,6 +6,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Dispatcher;
 using System.Web.SessionState;
 using Exam.Api.Framework;
+using System.Web.ModelBinding;
 
 namespace Exam.Api
 {

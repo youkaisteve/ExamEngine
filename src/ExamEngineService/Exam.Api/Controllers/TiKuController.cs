@@ -16,6 +16,7 @@ using System.Net.Http;
 using System.IO;
 using System.Net;
 using System.Net.Http.Headers;
+using System.Web.Http.ModelBinding;
 
 namespace Exam.Api.Controllers
 {
@@ -46,7 +47,7 @@ namespace Exam.Api.Controllers
 
         [HttpPost]
         [BaseAuthoriizeFilter]
-        public ApiResponse ImportTiKu(ModelBase baseModel)
+        public ApiResponse ImportTiKu()
         {
             string uploadPath = Path.Combine(
                 PublicFunc.GetDeployDirectory(),
@@ -59,6 +60,8 @@ namespace Exam.Api.Controllers
                 Directory.CreateDirectory(uploadPath);
             }
             file.SaveAs(strPath);
+
+            var baseModel = GetModelBase();
 
             var ds = Utility.ExcelToDataSet(strPath, "select * from [Sheet0$]");
             var model = new TiKuMasterModel();
