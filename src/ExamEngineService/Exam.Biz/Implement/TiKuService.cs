@@ -91,7 +91,7 @@ namespace Exam.Service.Interface
             {
                 Page = new PageInfo()
                 {
-                    PageIndex = filter.PageInfo.PageIndex,
+                    PageIndex = filter.PageInfo.PageIndex <= 0 ? 1 : filter.PageInfo.PageIndex,
                     PageSize = filter.PageInfo.PageSize
                 }
             };
@@ -144,7 +144,7 @@ namespace Exam.Service.Interface
             {
                 Page = new PageInfo()
                 {
-                    PageIndex = filter.PageInfo.PageIndex,
+                    PageIndex = filter.PageInfo.PageIndex <= 0 ? 1 : filter.PageInfo.PageIndex,
                     PageSize = filter.PageInfo.PageSize
                 }
             };
@@ -181,24 +181,35 @@ namespace Exam.Service.Interface
                     var details = PublicFunc.EntityMap<List<TiKuDetailModel>, List<TiKuDetail>>(master.Details);
                     if (details != null)
                     {
-                        var initExam = new InitExamModel();
-                        initExam.User = master.User;
-                        initExam.ProcessName = details[0].ProcessName;
-                        initExam.NodeTeams = new List<NodeTeamModel>();
-
                         details.ForEach((detail) =>
                         {
                             detail.MasterSysNo = masterSysNo;
-                            initExam.NodeTeams.Add(new NodeTeamModel()
-                            {
-                                NodeName = detail.NodeName,
-                                TeamName = detail.TeamName
-                            });
                         });
 
                         tiKuDetailRepo.Insert(details);
 
-                        taskService.InitExam(initExam);
+                        var names = details.Select(m => m.ProcessName).Distinct();
+                        foreach (var name in names)
+                        {
+                            var matchDetails = details.Where(m => m.ProcessName == name);
+                            if (matchDetails != null)
+                            {
+                                var initExam = new InitExamModel();
+                                initExam.User = master.User;
+                                initExam.ProcessName = name;
+                                initExam.NodeTeams = new List<NodeTeamModel>();
+
+                                foreach (var mDetail in matchDetails)
+                                {
+                                    initExam.NodeTeams.Add(new NodeTeamModel()
+                                    {
+                                        NodeName = mDetail.NodeName,
+                                        TeamName = mDetail.TeamName
+                                    });
+                                }
+                                taskService.InitExam(initExam);
+                            }
+                        }
                     }
                 }
             }
@@ -218,18 +229,16 @@ namespace Exam.Service.Interface
                         entity.LastEditUser = masters.User.UserID;
                         tiKuRepo.Update(entity);
 
-                        var queryDetail = tiKuDetailRepo.Entities.Where(m => m.MasterSysNo == entity.SysNo);
-                        if (queryDetail.Any())
+                        var names = tiKuDetailRepo.Entities.Where(m => m.MasterSysNo == entity.SysNo).Select(m => m.ProcessName).Distinct();
+                        foreach (var name in names)
                         {
-                            var detail= queryDetail.FirstOrDefault();
                             taskService.BeginExam(new BeginExamModel()
                             {
-                                ProcessName = detail.ProcessName,
+                                ProcessName = name,
                                 UserId = masters.User.UserID,
                                 UserName = masters.User.UserName
                             });
                         }
-
                     }
                 }
             }
@@ -267,7 +276,7 @@ namespace Exam.Service.Interface
                     {
                         p.ProcessName,
                         NodeName = task,
-                        TeamName="",
+                        TeamName = "",
                         p.Category,
                         p.DifficultyLevel,
                         p.Description,
