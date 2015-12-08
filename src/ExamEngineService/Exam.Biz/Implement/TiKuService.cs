@@ -188,7 +188,7 @@ namespace Exam.Service.Interface
 
                         tiKuDetailRepo.Insert(details);
 
-                        var names = details.Select(m => m.ProcessName).Distinct();
+                        var names = details.Select(m => m.ProcessName).Distinct().ToList();
                         foreach (var name in names)
                         {
                             var matchDetails = details.Where(m => m.ProcessName == name);
