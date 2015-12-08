@@ -37,11 +37,15 @@ define(["app", "process", "dialog", "pager", "disabled-when-click", "file-upload
             };
 
             $scope.active = function (sysNo) {
-                return Process.activeQuestion([sysNo]).then($scope.query);
+                return Process.activeQuestion([sysNo]).then(function(){
+                    return $scope.query();
+                });
             };
 
             $scope.del = function (sysNo) {
-                return Process.deleteQuestion([sysNo]).then($scope.query);
+                return Process.deleteQuestion([sysNo]).then(function(){
+                    return $scope.query();
+                });
             };
 
 
