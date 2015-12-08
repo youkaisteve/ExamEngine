@@ -18,12 +18,15 @@ define(["app", "process", "dialog", "pager", "disabled-when-click", "file-upload
 
             $scope.Questions = [];
 
-            $scope.query = function () {
+            $scope.query = function (pageIndex, pageSize) {
                 return Process.queryQuestion({
-                    PageInfo:$scope.PageInfo
+                    PageInfo: {
+                        PageIndex: pageIndex || $scope.PageInfo.PageIndex,
+                        PageSize: pageSize || $scope.PageInfo.PageSize
+                    }
                 }, true).then(function (res) {
                     if (res.Data) {
-                        $scope.PageInfo.Total = res.Data.Page.Total;
+                        $scope.PageInfo = res.Data.Page;
                         $scope.Questions = res.Data.Result;
                     }
                 });

@@ -35,7 +35,7 @@
                 <tfoot>
                 <tr>
                     <td colspan="4">
-                        <pager page-info="PageInfo" on-page-change=""></pager>
+                        <pager page-index="PageInfo.PageIndex" page-size="PageInfo.PageSize" total="PageInfo.Total" onpagechange="query($pageIndex,$pageSize)"></pager>
                         <a target="_blank" href="{{config.exportQuestion}}" class="btn btn-default pull-right">导出</a>
                     </td>
                 </tr>
