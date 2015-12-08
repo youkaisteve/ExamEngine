@@ -10,11 +10,16 @@ define({
     , appDeps: ["ngRoute", /*"ngCookies",*/"ngStorage"]
     , controllerPath: "controllers/"
     , templatePath: "views/"
-    , api: "http://127.0.0.1:8083/api/Home/Handler"
-    , importStudentUri: "http://127.0.0.1:8083/api/User/ImportUser"
-    , uploadFormUri: "http://127.0.0.1:8083/api/User/UploadForm"
-    , importQuestion: "http://127.0.0.1:8083/api/TiKu/ImportTiKu"
-    , exportQuestion: "http://127.0.0.1:8083/api/Tiku/ExportProcessInfo"
+    , api: "http://172.16.70.16:8083/api/Home/Handler"
+    , importStudentUri: "http://172.16.70.16:8083/api/User/ImportUser"
+    , uploadFormUri: "http://172.16.70.16:8083/api/User/UploadForm"
+    , importQuestion: "http://172.16.70.16:8083/api/TiKu/ImportTiKu"
+    , exportQuestion: "http://172.16.70.16:8083/api/Tiku/ExportProcessInfo"
+    //, api: "http://127.0.0.1:8083/api/Home/Handler"
+    //, importStudentUri: "http://127.0.0.1:8083/api/User/ImportUser"
+    //, uploadFormUri: "http://127.0.0.1:8083/api/User/UploadForm"
+    //, importQuestion: "http://127.0.0.1:8083/api/TiKu/ImportTiKu"
+    //, exportQuestion: "http://127.0.0.1:8083/api/Tiku/ExportProcessInfo"
     , start: "/default"
     , route: {
         "/default": {

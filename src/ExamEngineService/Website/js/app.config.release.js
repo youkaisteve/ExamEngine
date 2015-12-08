@@ -13,7 +13,7 @@ define({
     , api: "http://222.196.244.45/api/Home/Handler"
     , importStudentUri: "http://222.196.244.45/api/User/ImportUser"
     , uploadFormUri: "http://222.196.244.45/api/User/UploadForm"
-    , importQuestion: "http://222.196.244.45/api/Tiku/ExportProcessInfo"
+    , importQuestion: "http://222.196.244.45/api/TiKu/ImportTiKu"
     , exportQuestion: "http://222.196.244.45/api/Tiku/ExportProcessInfo"
     , start: "/default"
     , route: {

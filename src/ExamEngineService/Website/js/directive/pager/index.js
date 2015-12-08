@@ -10,7 +10,7 @@ define(["app", "filters"], function (app) {
                 pageIndex: "=",
                 pageSize: "=",
                 total: "=",
-                onpagechange:"&"
+                onpagechange: "&"
             }
             , link: function (scope, ele, attrs, ctrl) {
                 scope.pageCount = 0;
@@ -21,23 +21,46 @@ define(["app", "filters"], function (app) {
                 }
 
                 scope.prev = function () {
-                    scope.pageIndex--;
+                    if (scope.pageIndex > 1) {
+                        scope.pageIndex--;
+                    }
                 };
                 scope.next = function () {
-                    scope.pageIndex++;
+                    if (scope.pageIndex < scope.pageCount) {
+                        scope.pageIndex++;
+                    }
                 };
                 scope.goto = function (index) {
+                    if (index < 1) {
+                        index = 1;
+                    }
+                    if (index > scope.pageCount) {
+                        index = scope.pageCount;
+                    }
                     scope.pageIndex = index;
                 };
 
                 //page change
                 scope.$watch("pageIndex", function (newValue, oldValue) {
                     if (newValue != oldValue) {
-                        scope.onpagechange(scope.pageIndex,scope.pageSize);
+                        scope.onpagechange({
+                            $pageIndex: scope.pageIndex,
+                            $pageSize: scope.pageSize
+                        });
                     }
                 }, true);
+                scope.$watch("pageSize", function (newValue, oldValue) {
+                    if (!angular.equals(newValue, oldValue)) {
+                        scope.onpagechange({
+                            $pageIndex: scope.pageIndex,
+                            $pageSize: scope.pageSize
+                        });
+                    }
+                });
                 scope.$watch("total", function (newValue, oldValue) {
-                    caluPageCount();
+                    if (!angular.equals(newValue, oldValue)) {
+                        caluPageCount();
+                    }
                 }, true);
             }
         };

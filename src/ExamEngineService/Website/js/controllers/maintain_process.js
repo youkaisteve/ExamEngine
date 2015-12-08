@@ -10,7 +10,7 @@ define(["app", "process", "dialog", "pager", "disabled-when-click", "custom-sele
         function ($scope, $window, Dialog, Process) {
             $scope.ProcessService = Process;
             $scope.Processes = [];
-            $scope.pageSize = 1;
+            $scope.pageSize = 10;
             $scope.pageIndex = 1;
             $scope.total = 0;
 
