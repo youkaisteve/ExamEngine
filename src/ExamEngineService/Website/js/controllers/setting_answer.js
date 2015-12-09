@@ -6,8 +6,8 @@
  */
 define(["app", "custom-select", "disabled-when-click"], function (app) {
 
-    app.controller("setting_answer", ["$scope", "$window", "$routeParams",
-        function ($scope, $window, $routeParams) {
+    app.controller("setting_answer", ["$scope", "$window", "$routeParams","$q",
+        function ($scope, $window, $routeParams,$q) {
             $scope.Model = {};
             $scope.formPath = "";
             $scope.formName = "";
@@ -64,7 +64,10 @@ define(["app", "custom-select", "disabled-when-click"], function (app) {
                 });
             };
 
-            $scope.save = function () {
+            $scope.save = function (form) {
+                //if(form.$invalid){
+                //    return $q();
+                //}
                 return $scope._request("SaveAnswer", {
                     TemplateName: $scope.formPath
                     , TemplateDesc: $scope.templateDesc

@@ -17,6 +17,7 @@ require.config({
         , "angular-route": "lib/angular-route/angular-route.min"
         , "angular-cookie": "lib/angular-cookies/angular-cookies.min"
         , "angular-storage": "lib/ngstorage/ngStorage.min"
+        , "angular-messages": "lib/angular-messages/angular-messages.min"
         , "root_scope": "root_scope"
         , "cryptojs.core": "lib/cryptojslib/core.min"
         , "cryptojs.md5": "lib/cryptojslib/md5.min"
@@ -41,6 +42,7 @@ require.config({
         , "angular-route": ["angular"]
         , "angular-cookie": ["angular"]
         , "angular-storage": ["angular"]
+        , "angular-messages": ["angular"]
         , "angularAMD": ["angular-route"]
         , "bootstrap": ["jquery"]
         , "cryptojs.core": {
@@ -50,7 +52,7 @@ require.config({
             deps: ["cryptojs.core"]
             , exports: "CryptoJS"
         }
-        , "app": ["angular-storage", /*"angular-cookie",*/"bootstrap"]
+        , "app": ["angular-storage", /*"angular-cookie",*/"bootstrap","angular-messages"]
     }
     , deps: ["app"]
     , waitSeconds: 60

@@ -16,6 +16,7 @@
   "dependencies": {
     "angular": "~1.4.5",
     "angular-cookies": "~1.4.5",
+    "angular-messages": "~1.4.8",
     "angular-route": "~1.4.5",
     "angularAMD": "~0.2.1",
     "bootstrap": "~3.3.5",
