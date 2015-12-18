@@ -80,9 +80,10 @@ namespace Exam.Service.Implement
                 VariableInstance vars = proxy.GetVariable(instanceId, page.Value.ToString());
                 pageValue = vars == null ? pageValue : vars.Value.ToString();
 
-                var shortName = Path.GetFileName(page.Value.ToString());
+                //var shortName = Path.GetFileName(page.Value.ToString());
+                var pageName = page.Value.ToString();
                 //获取page desc
-                var firstOrDefault = stAnswerRepo.Entities.FirstOrDefault(m => m.TemplateName == shortName);
+                var firstOrDefault = stAnswerRepo.Entities.FirstOrDefault(m => m.TemplateName == pageName);
                 if (firstOrDefault != null)
                 {
                     pageDesc = firstOrDefault.TemplateDesc;
