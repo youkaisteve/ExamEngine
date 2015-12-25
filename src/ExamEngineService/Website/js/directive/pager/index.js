@@ -40,6 +40,20 @@ define(["app", "filters"], function (app) {
                     scope.pageIndex = index;
                 };
 
+                scope.isShow = function (page, pageIndex, total) {
+                    var min = pageIndex - 2;
+                    var max = pageIndex + 2;
+                    if (min < 1) {
+                        min = 1;
+                        max += 2;
+                    }
+                    if (max > total) {
+                        max = total;
+                        min -= 2;
+                    }
+                    return page >= min && page <= max;
+                };
+
                 //page change
                 scope.$watch("pageIndex", function (newValue, oldValue) {
                     if (newValue != oldValue) {
