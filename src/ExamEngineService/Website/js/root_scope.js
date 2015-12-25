@@ -10,7 +10,7 @@ define(["app.config"], function (config) {
 
     return ["$rootScope", "$http", "$sessionStorage", "$window", "$q",
         function ($rootScope, $http, $sessionStorage, $window, $q) {
-            $rootScope.config=config;
+            $rootScope.config = config;
             $rootScope.sessionStorage = $sessionStorage;
             $rootScope.fixedFooter = false;
             $rootScope.environment = config.environment;
@@ -23,7 +23,7 @@ define(["app.config"], function (config) {
             function clear() {
                 $sessionStorage.$reset();
                 $rootScope.userName = null;
-            };
+            }
 
             $rootScope._goto = function (url) {
                 if (url.indexOf("#") === 0) {
@@ -60,6 +60,9 @@ define(["app.config"], function (config) {
                     var url = next.$$route.originalPath;
                     $rootScope.url = url;
                     var route = config.route[url];
+                    if (typeof route.ssl == "string") {
+                        route.ssl = /^true$/i.test(route.ssl);
+                    }
                     if (route.ssl) {
                         if (!$rootScope._auth()) {
                             toLogin();

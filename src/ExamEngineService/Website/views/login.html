@@ -5,7 +5,7 @@
             <h4>川大政务</h4>
         </div>
         <div class="panel-body">
-            <form>
+            <form ng-if="!sso">
                 <div class="form-group">
                     <label>用户名</label>
                     <input class="form-control" type="text" placeholder="用户名" required ng-model="Model.UserID" />
@@ -16,6 +16,9 @@
                            ng-keypress="($event.which === 13)?login($event,Model,true):0"/>
                 </div>
             </form>
+            <div ng-if="sso">
+                处理中...
+            </div>
         </div>
         <div class="panel-footer">
             <button style="width:100%;" class="btn btn-primary" disabled-when-click="login($event,Model,true)">登录</button>
