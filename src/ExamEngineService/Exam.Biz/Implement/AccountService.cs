@@ -37,5 +37,17 @@ namespace Exam.Service.Implement
             }
             throw new BusinessException("用户名或密码错误");
         }
+
+        public dynamic GetUserInfoByUserId(string userID)
+        {
+            var query = from user in userRepo.Entities
+                        join roleUser in roleUserRepo.Entities
+                            on user.UserID equals roleUser.UserID
+                        join role in roleRepo.Entities
+                            on roleUser.RoleSysNo equals role.SysNo
+                        where user.UserID == userID
+                        select new { user.UserID, user.UserName, user.SysNo, user.Password, user.Status, role.AuthID, role.AuthName };
+            return query.FirstOrDefault();
+        }
     }
 }

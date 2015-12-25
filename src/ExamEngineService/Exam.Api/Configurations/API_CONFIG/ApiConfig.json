@@ -1,5 +1,6 @@
 ﻿[
 	{"Name":"Login","Controller":"Account","Action":"Login"},
+	{"Name":"GetUserInfoByToken","Controller":"Account","Action":"GetUserInfoByToken"},
 	{"Name":"MyTeamUsers","Controller":"User","Action":"MyTeamUsers"},
 	{"Name":"Tasks","Controller":"Task","Action":"GetUserTasks"},
 	{"Name":"BeginExam","Controller":"Task","Action":"BeginExam"},

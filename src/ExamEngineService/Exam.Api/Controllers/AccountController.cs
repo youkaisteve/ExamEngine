@@ -10,7 +10,8 @@ namespace Exam.Api.Controllers
     [Export]
     public class AccountController : BaseApiController
     {
-        [Import] private IAccountService _accountService;
+        [Import]
+        private IAccountService _accountService;
 
 
         [HttpPost]
@@ -19,6 +20,13 @@ namespace Exam.Api.Controllers
         {
             dynamic returnUser = _accountService.Login(user.UserID, user.Password);
             return ApiOk(returnUser);
+        }
+
+        [HttpPost]
+        public ApiResponse GetUserInfoByToken([FromBody] CommonModel token)
+        {
+            var userInfo = UserHelper.GetCredentialsToUserInfo(token.token);
+            return ApiOk(_accountService.GetUserInfoByUserId(userInfo.UserID));
         }
     }
 }

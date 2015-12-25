@@ -188,6 +188,7 @@
     </Compile>
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\ApiRequestData.cs" />
+    <Compile Include="Models\CommonModel.cs" />
     <Compile Include="Models\LoginUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Framework\ExamHttpControllerSelector.cs" />
