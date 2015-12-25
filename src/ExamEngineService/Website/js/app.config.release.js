@@ -51,7 +51,7 @@ define({
         }
         , "/login": {
             templateUrl: "login.html"
-            , ssl: "true"
+            , ssl: "false"
         }
         , "/workflow/view": {
             templateUrl: "view_workflow.html"
