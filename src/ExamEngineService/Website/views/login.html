@@ -1,5 +1,5 @@
 ﻿<ng-include src="'partials/header.html'"></ng-include>
-<div class="container login-container" >
+<div class="container login-container">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4>川大政务</h4>
@@ -8,7 +8,7 @@
             <form ng-if="!sso">
                 <div class="form-group">
                     <label>用户名</label>
-                    <input class="form-control" type="text" placeholder="用户名" required ng-model="Model.UserID" />
+                    <input class="form-control" type="text" placeholder="用户名" required ng-model="Model.UserID"/>
                 </div>
                 <div class="form-group">
                     <label>密码</label>
@@ -16,12 +16,13 @@
                            ng-keypress="($event.which === 13)?login($event,Model,true):0"/>
                 </div>
             </form>
-            <div ng-if="sso">
+            <div ng-if="sso" style="text-align: center;">
                 处理中...
             </div>
         </div>
-        <div class="panel-footer">
-            <button style="width:100%;" class="btn btn-primary" disabled-when-click="login($event,Model,true)">登录</button>
+        <div class="panel-footer" ng-if="!sso">
+            <button style="width:100%;" class="btn btn-primary" disabled-when-click="login($event,Model,true)">登录
+            </button>
         </div>
     </div>
 </div>
