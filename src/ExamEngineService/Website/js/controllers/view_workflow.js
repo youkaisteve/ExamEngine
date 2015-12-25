@@ -4,7 +4,7 @@
  * email:mahai_1986@126.com
  *
  */
-define(["app", "custom-select", "disabled-when-click", "process", "filters"], function (app) {
+define(["app", "custom-select", "disabled-when-click", "process", "filters","pager"], function (app) {
 
     app.controller("view_workflow", ["$scope", "$window", "Process",
         function ($scope, $window, Process) {
@@ -12,7 +12,8 @@ define(["app", "custom-select", "disabled-when-click", "process", "filters"], fu
             //$scope.imageBase64 = "";
             //$scope.allProcess = [];
             $scope.unfinshedTasks = [];
-            $scope.totalPage = 0;
+            //$scope.totalPage = 0;
+            $scope.total=0;
             $scope.filter = {
                 PageInfo: {
                     PageIndex: 0
@@ -38,7 +39,8 @@ define(["app", "custom-select", "disabled-when-click", "process", "filters"], fu
             $scope.getTasks = function (filter, loading) {
                 return Process.getUnfinshedTask(filter, loading).then(function (res) {
                     $scope.unfinshedTasks = res.Data.Processes;
-                    $scope.totalPage = Math.floor(res.Data.TotalCount / filter.PageInfo.PageSize);
+                    $scope.total=res.Data.TotalCount;
+                    //$scope.totalPage = Math.floor(res.Data.TotalCount / filter.PageInfo.PageSize);
                 });
             };
             $scope.getTasks($scope.filter, true);

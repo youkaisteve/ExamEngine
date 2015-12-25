@@ -27,28 +27,7 @@
                 <tfoot>
                 <tr>
                     <td colspan="5">
-                        <nav class="pull-right">
-                            <ul class="pagination">
-                                <li ng-class="{disabled:filter.PageInfo.PageIndex==0}">
-                                    <a href="javascript:void(0)"
-                                       ng-click="filter.PageInfo.PageIndex>0?filter.PageInfo.PageIndex=filter.PageInfo.PageIndex-1:1">
-                                        <span>&laquo;</span>
-                                    </a>
-                                </li>
-                                <li ng-class="{active:page==filter.PageInfo.PageIndex}"
-                                    ng-repeat="page in [] | TIMES:totalPage track by $index">
-                                    <a href="javascript:void(0)" ng-click="filter.PageInfo.PageIndex=page">{{page+1}}
-                                        <span class="sr-only">(current)</span>
-                                    </a>
-                                </li>
-                                <li ng-class="{disabled:filter.PageInfo.PageIndex==totalPage}">
-                                    <a href="javascript:void(0)"
-                                       ng-click="filter.PageInfo.PageIndex<totalPage?filter.PageInfo.PageIndex=filter.PageInfo.PageIndex+1:1">
-                                        <span>&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <pager page-index="filter.PageInfo.PageIndex" page-size="filter.PageInfo.PageSize" total="total"></pager>
                     </td>
                 </tr>
                 </tfoot>

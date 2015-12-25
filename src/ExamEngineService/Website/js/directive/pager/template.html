@@ -5,9 +5,9 @@
             <span>&laquo;</span>
         </a>
     </li>
-    <li ng-class="{active:page==pageIndex}" ng-show="isShow(page,pageIndex,total)"
-        ng-repeat="page in [] | TIMES1:total track by $index">
-        <a href="javascript:void(0)" ng-click="goto(page)">{{page}}
+    <li ng-class="{active:page==pageIndex}"
+        ng-repeat="page in pageNumbers track by $index">
+        <a href="javascript:void(0)" ng-click="goto(page)">{{page+1}}
             <span class="sr-only">(current)</span>
         </a>
     </li>

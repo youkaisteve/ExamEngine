@@ -14,10 +14,28 @@ define(["app", "filters"], function (app) {
             }
             , link: function (scope, ele, attrs, ctrl) {
                 scope.pageCount = 0;
+                scope.pageNumbers = [];
+                scope.displayCount = 5;
                 //var onPageChange = $parse(attrs.onpagechange);
                 //计算页数
                 function caluPageCount() {
                     scope.pageCount = Math.ceil(scope.total / scope.pageSize);
+                }
+
+                function buildPageNumbers() {
+                    var arr = [];
+                    var begin = scope.pageIndex - (Math.floor(scope.displayCount / 2));
+                    if (begin < 0) {
+                        begin = 0;
+                    }
+                    var num;
+                    for (var i = 0; i < scope.displayCount; i++) {
+                        num = begin + i;
+                        if (num < scope.pageCount) {
+                            arr.push(num);
+                        }
+                    }
+                    scope.pageNumbers=arr;
                 }
 
                 scope.prev = function () {
@@ -40,20 +58,6 @@ define(["app", "filters"], function (app) {
                     scope.pageIndex = index;
                 };
 
-                scope.isShow = function (page, pageIndex, total) {
-                    var min = pageIndex - 2;
-                    var max = pageIndex + 2;
-                    if (min < 1) {
-                        min = 1;
-                        max += 2;
-                    }
-                    if (max > total) {
-                        max = total;
-                        min -= 2;
-                    }
-                    return page >= min && page <= max;
-                };
-
                 //page change
                 scope.$watch("pageIndex", function (newValue, oldValue) {
                     if (newValue != oldValue) {
@@ -61,6 +65,7 @@ define(["app", "filters"], function (app) {
                             $pageIndex: scope.pageIndex,
                             $pageSize: scope.pageSize
                         });
+                        buildPageNumbers();
                     }
                 }, true);
                 scope.$watch("pageSize", function (newValue, oldValue) {
@@ -69,11 +74,13 @@ define(["app", "filters"], function (app) {
                             $pageIndex: scope.pageIndex,
                             $pageSize: scope.pageSize
                         });
+                        buildPageNumbers();
                     }
-                });
+                }, true);
                 scope.$watch("total", function (newValue, oldValue) {
                     if (!angular.equals(newValue, oldValue)) {
                         caluPageCount();
+                        buildPageNumbers();
                     }
                 }, true);
             }
