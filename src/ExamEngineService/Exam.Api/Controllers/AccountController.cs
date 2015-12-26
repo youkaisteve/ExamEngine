@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Composition;
 using System.Web.Http;
+using Component.Tools.Exceptions;
 using Exam.Api.Filters;
 using Exam.Api.Framework;
 using Exam.Api.Models;
@@ -18,6 +19,11 @@ namespace Exam.Api.Controllers
         [LoginActionFilter]
         public ApiResponse Login([FromBody] LoginUser user)
         {
+            if (user == null)
+            {
+                throw new BusinessException("无效用户");
+            }
+
             dynamic returnUser = _accountService.Login(user.UserID, user.Password);
             return ApiOk(returnUser);
         }

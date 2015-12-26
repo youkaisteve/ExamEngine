@@ -20,7 +20,7 @@ namespace Exam.Api.Filters
                 throw new UnAuthorizedException();
             }
             string userToken = auth.FirstOrDefault();
-            if (string.IsNullOrEmpty(userToken))
+            if (string.IsNullOrEmpty(userToken) || userToken == "null")
             {
                 throw new UnAuthorizedException();
             }
