@@ -29,6 +29,7 @@ namespace Exam.Api.Controllers
         }
 
         [HttpPost]
+        [LoginActionFilter]
         public ApiResponse GetUserInfoByToken([FromBody] CommonModel token)
         {
             var userInfo = UserHelper.GetCredentialsToUserInfo(token.token);
